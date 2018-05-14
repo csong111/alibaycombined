@@ -56,8 +56,8 @@ class ArtistSignUp extends Component {
                 <input type="text" onChange={this.handleArtist} value={this.state.artistInput} placeholder="Artist Description" required/>
                 <input type="text" onChange={this.handleCity} value={this.state.cityInput} placeholder="City, Country" required/>
                 <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
-                <input type="file" onChange={event => this.uploadFile(event.target.files[1])} placeholder="Upload Art" required/>
-                <input type="file" onChange={event => this.uploadFile(event.target.files[2])} placeholder="Upload Art" required/>
+                <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
                 <input type="submit"/>
             </form>
         </div>
