@@ -7,11 +7,11 @@ import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import './App.css';
 
-class Cart extends Component {
+class Account extends Component {
   constructor() {
     super();
     this.state = {
-      cartItems: [
+      itemsBought: [
         {
           itemID: "123458",
           name: "Pillow",
@@ -25,15 +25,10 @@ class Cart extends Component {
     };
   }
 
-  buy = (itemID, artistName, userID) => {};
-  removeItem = itemID => {};
-  updateQuantity = qty => {};
-  renderCartItems = () => {};
-
   render() {
     return (
       <div className="App">
-        <h1>CART</h1>
+        <h1>ACCOUNT</h1>
         <NavButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
         {this.state.userID === "" ? null : <CartButton />}
@@ -42,4 +37,4 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+export default Account;

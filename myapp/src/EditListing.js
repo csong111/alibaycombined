@@ -5,7 +5,7 @@ import NavButton from './page-elements.js/nav-button.js';
 import ArtistAccount from './ArtistAccount.js';
 import ArtistAccountButton from './page-elements.js/artist-account-button.js';
 
-class CreateListing extends Component {
+class EditListing extends Component {
   constructor() {
     super();
     this.state={
@@ -18,18 +18,16 @@ class CreateListing extends Component {
       imageURL: 'image.jpg'
     }
   }
-  seeArtistAcct = () => {
-    return (<ArtistAccount/>)
-  }
+  
   handleSubmit = () => {
 
   }
   render() {
       return (
         <div className="App">
-          <h1>Create Listing</h1>
+          <h1>EDIT LISTING</h1>
             <NavButton />
-            <button onClick={this.seeArtistAcct}>Your artist account</button>
+            <ArtistAccountButton/>
             <form onSubmit={this.handleSubmit}>
               <input type="text" placeholder="Name"/>
               <input type="text" placeholder="Price"/>
@@ -49,4 +47,4 @@ class CreateListing extends Component {
     }
   }
   
-  export default CreateListing;
+  export default EditListing;

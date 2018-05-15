@@ -4,7 +4,7 @@ import "./App.css";
 import Cart from "./Cart.js";
 import StripeCheckout from 'react-stripe-checkout';
 
-export default class TakeMoney extends React.Component {
+export default class Stripe extends React.Component {
   onToken = (token) => { 
     console.log(token)
   }
