@@ -24,12 +24,12 @@ class ArtistAccount extends Component {
       }
     }
     createListing = (artistName) => {
-
+      this.props.history.push("/createListing/")
     }
-    seeOrders = (artistName) => {
-      
+    seeOrders = () => {
+      this.props.history.push("/orders/" + this.state.artistProfile.artistName)
     }
-    editInfo = (artistName) => {
+    editInfo = () => {
 
     }
 
@@ -47,25 +47,32 @@ class ArtistAccount extends Component {
               {this.state.userID === "" ? null : <ArtistAccountButton />}
 
               <h2>MY ACCOUNT</h2>
-              <div><img src = {this.state.artistProfile.imageURL} /></div>
+              <input id="changeProfile" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} />
+              {this.state.artistProfile.imageURL !== "" ? <img src={this.state.artistProfile.imageURL}/> : 
+              <img src="/items/addimage.png" height="50px" width="50px"/>
+              }
+              <br/>
+              <input value="Change Profile Pic" type="submit" onClick={()=>{document.getElementById("changeProfile").click()}}/>
 
-              <button>Change Profile Pic</button>
               <p>Name: {this.state.artistProfile.artistName}</p>
               <p>Location: {this.state.artistProfile.location}</p>
               <p>{this.state.artistProfile.bio}</p>
-              <button>Edit Info</button>
+              <button onClick = {this.editInfo}>Edit Info</button>
 
               <h2>ORDERS</h2>
-              <button>See Orders</button>
+              <button onClick = {this.seeOrders}>See Orders</button>
 
               <h2>MY ITEMS</h2>
               <div name="items">
               {itemsRendered}
               </div>
+              <button onClick = {this.createListing}>Create Listing</button>
               
           </div>
         );
       }
     }
     
-    export default ArtistAccount;
+
+let Content = withRouter(ArtistAccount)
+export default Content;

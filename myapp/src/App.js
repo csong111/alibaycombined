@@ -99,7 +99,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/createlisting/:itemID"
+              path="/createlisting/"
               render={()=>{return(<CreateListing aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
