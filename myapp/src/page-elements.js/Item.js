@@ -12,6 +12,7 @@ class Item extends Component {
         </Link>
           <div className ="itemName">{this.props.name}</div>
           <div className="price">${this.props.price}</div>
+          {this.props.artistName !== "" ? <Link to = {"/editlisting/" + this.props.itemID}>Edit Item</Link> : null}
       </div>
       </div>
           )

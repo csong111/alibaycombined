@@ -29,9 +29,6 @@ class SearchResults extends Component {
     //FETCH get searchItems by searchQuery then setState the results
   }
 
-  //seeItemDetails = () => {};
-
-
   render() {
     var itemsRendered = this.state.searchItems.map((el,id)=>{
       return (

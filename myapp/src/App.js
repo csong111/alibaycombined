@@ -31,9 +31,9 @@ class App extends Component {
   constructor() {
     super();
     this.state={
-      aName: "",
+      aName: "aisha",
       email: "",
-      userID: ""
+      userID: 1,
     }
   }
   loginArtist = (e) => {
@@ -80,31 +80,31 @@ class App extends Component {
             <Route
               exact={true}
               path="/useraccount/:userID"
-              render={()=>{return(<UserAccount aName={this.state.aName} email={this.state.email}/>)}}
+              render={()=>{return(<UserAccount aName={this.state.aName} email={this.state.email} userID={this.state.userID}/>)}}
             />
             <Route
               exact={true}
-              path="/artistprofile/:artistName"
+              path="/artistprofile/:aName"
               render={()=>{return(<ArtistProfile aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/artistaccount/:artistName"
+              path="/artistaccount/:aName"
               render={()=>{return(<ArtistAccount aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/orders/:artistName"
+              path="/orders/:aName"
               render={()=>{return(<Orders aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/createlisting/:artistName"
+              path="/createlisting/:itemID"
               render={()=>{return(<CreateListing aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/editlisting/:artistName"
+              path="/editlisting/:itemID"
               render={()=>{return(<EditListing aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
@@ -129,7 +129,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/checkoutcomplete:orderNumber"
+              path="/checkoutcomplete/:orderNumber"
               render={()=>{return(<CheckoutComplete aName={this.state.aName} email={this.state.email}/>)}}
             />
           </div>

@@ -18,31 +18,45 @@ class Cart extends Component {
           name: "Pillow",
           price: 100,
           artistName: "caro",
-          imageURL: "pillow.jpg",
+          imageURL: "items/pillow.jpg",
           cat: "Popular",
-          quantity: 2
+          quantity: 2,
+          quantityToBuy : 1,
+          orderNumber: 333
         }
       ]
     };
   }
   //fetch from backend, will return orderID and pass it as props to checkout complete.
   buy = (itemID, artistName, userID) => {
-    this.props.history.push('/checkoutcomplete/'+"123")
+    this.props.history.push('/checkoutcomplete/'+this.state.orderNumber)
   };
   
   removeItem = itemID => {};
-  updateQuantity = qty => {};
+  updateQuantity = qty => {
+
+  };
+
 
   render() {
+    let total=0;
     let cartItems = this.state.cartItems.map((item,id)=>{
+      total +=item.price*item.quantityToBuy
       return (
         <div key={id}>
-          {item.name}
-          {item.artistName}
-          {item.price}
-          {item.imageURL}
+        <img src={"/"+item.imageURL} /><br/>
+          {item.name}<br/>
+          {item.artistName}<br/>
+          Price: {item.price}<br/>
+          <input type="text" onChange={(e)=>{
+              if(e.target.value <= item.quantity){
+                var temp = JSON.parse(JSON.stringify(this.state.cartItems))
+                temp[id].quantityToBuy = e.target.value
+                this.setState({cartItems: temp})
+              }
+            }} value={item.quantityToBuy} placeholder={item.quantity+" in stock"}/>
+          <button onClick={this.updateQuanity}>Update Quantity</button>
           <button onClick={this.removeItem}>Remove Item</button>
-          <input type="text" onChange={this.updateQuantity} value={this.state.quantity} placeholder="quantity"/>
         </div>
       )
     })
@@ -55,8 +69,8 @@ class Cart extends Component {
        {this.props.email !== "" ? <CartButton /> : null}
        <h1>CART</h1>
       <div>{cartItems}</div>
-      <div>Cart Total</div>
-      <button onClick={this.buy}>Buy Now</button>
+      <div>Total: ${total}</div>
+      <button onClick={this.buy}>Pay with Paypal</button>
       </div>
     );
   }
