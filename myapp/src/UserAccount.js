@@ -18,6 +18,7 @@ class Account extends Component {
         { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
      ],
     firstName: "Jen",
+    lastName: "o",
     email: 'jen@email.com',
     address: '123 Blah St.',
     city: "Montreal",
@@ -53,6 +54,7 @@ class Account extends Component {
         {this.state.userID === "" ? null : <CartButton />}
         <h2>ACCOUNT INFO</h2>
         <p>Name: {this.state.firstName}</p>
+        <p>Last Name: {this.state.lastName}</p>
         <p>Email: {this.state.email}</p>
         <p>Password: ******</p>
         <button onClick={this.changePassword}>Change Password</button>
