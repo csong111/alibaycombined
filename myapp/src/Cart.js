@@ -25,22 +25,42 @@ class Cart extends Component {
       ]
     };
   }
-
-  buy = (itemID, artistName, userID) => {};
+  //fetch from backend, will return orderID and pass it as props to checkout complete.
+  buy = (itemID, artistName, userID) => {
+    this.props.history.push('/checkoutcomplete/'+"123")
+  };
+  
   removeItem = itemID => {};
   updateQuantity = qty => {};
-  renderCartItems = () => {};
 
   render() {
+    let cartItems = this.state.cartItems.map((item,id)=>{
+      return (
+        <div key={id}>
+          {item.name}
+          {item.artistName}
+          {item.price}
+          {item.imageURL}
+          <button onClick={this.removeItem}>Remove Item</button>
+          <input type="text" onChange={this.updateQuantity} value={this.state.quantity} placeholder="quantity"/>
+        </div>
+      )
+    })
     return (
       <div className="App">
-        <h1>CART</h1>
         <NavButton />
-        {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
+       {this.props.email !== "" ? <UserAccountButton /> : null}
+       {this.props.aName !== "" ? <ArtistAccountButton /> : null}
+       {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+       {this.props.email !== "" ? <CartButton /> : null}
+       <h1>CART</h1>
+      <div>{cartItems}</div>
+      <div>Cart Total</div>
+      <button onClick={this.buy}>Buy Now</button>
       </div>
     );
   }
 }
 
-export default Cart;
+let Content = withRouter(Cart)
+export default Content;

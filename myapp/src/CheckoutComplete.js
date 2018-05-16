@@ -55,7 +55,7 @@ class CheckoutComplete extends Component {
           <div className="App">
               <NavButton />
               <h1>LOGO</h1>
-              <h1>Thank you for your purchase. Your order number is {this.orderID}</h1>
+              <h1>Thank you for your purchase. Your order number is {this.props.orderID}</h1>
               {this.state.userID === "" ? null : <UserAccountButton />}
               {this.state.userID === "" ? null : <CartButton />}
               <div>Order details</div>

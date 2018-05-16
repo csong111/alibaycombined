@@ -16,7 +16,9 @@ class CreateListing extends Component {
       cat: "Prints",
       blurb: "cool print",
       quantity: 1,
-      imageURL: 'image.jpg',
+      imageURL1: 'image1.jpg',
+      imageURL2: 'image2.jpg',
+      imageURL3: 'image3jpg',
       itemID: 123
     }
   }
@@ -34,20 +36,23 @@ class CreateListing extends Component {
             <h1>Create Listing</h1>
             <button onClick={this.seeArtistAcct}>Your artist account</button>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" placeholder="Name"/>
-              <input type="text" placeholder="Price"/>
-              <input type="text" placeholder="A little blurb about the art"/>
-              <input type="text" placeholder="Quantity"/>
-              <select>
+              <input type="text" onChange={(e)=>{this.setState({name:e.target.value})}} value={this.state.name} placeholder="Name" required/>
+              <input type="text" onChange={(e)=>{this.setState({price:e.target.value})}} value={this.state.price} placeholder="Price" required/>
+              <input type="text" onChange={(e)=>{this.setState({blurb:e.target.value})}} value={this.state.blurb} placeholder="A little blurb about the item" required/>
+              <input type="text" onChange={(e)=>{this.setState({quantity:e.target.value})}} value={this.state.quantity} placeholder="Name" required/>
+              <select onChange={(e)=>{this.setState({category:e.target.value})}} value={this.state.category} placeholder="Category" required>
                 <option value="Prints">Prints</option>
                 <option value="Pillows">Pillows</option>
                 <option value="Embroidery">Embroidery</option>
                 <option value="Wallpaper">Wallpaper</option>
                 <option value="Curtains">Curtains</option>
               </select>
-              <input type="file"/>
-              <input type="file"/>
-              <input type="file"/>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
+                    <p>{this.state.imageURL1}</p>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
+                    <p>{this.state.imageURL2}</p>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
+                    <p>{this.state.imageURL3}</p>
               <input type="submit"/>
             </form>
         </div>
