@@ -63,11 +63,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-<<<<<<< HEAD
-              path="/cart/:userID"
-=======
               path="/cart/:userId"
->>>>>>> 905c0e0ea5a239058d5bbea2ace9047c701b636d
               render={()=>{return(<Cart aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
