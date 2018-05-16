@@ -26,7 +26,7 @@ class EditListing extends Component {
     return (<ArtistAccount/>)
   }
 
-  //fetch edit listings
+  //fetch editListings
   handleSubmit = () => {
     this.props.history.push("/itemdetail/"+this.state.itemID)
 

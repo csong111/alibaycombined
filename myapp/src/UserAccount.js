@@ -55,7 +55,6 @@ class Account extends Component {
         <NavButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
         {this.state.userID === "" ? null : <CartButton />}
-
         <h2>ACCOUNT INFO</h2>
         <p>Name: {this.state.firstName}</p>
         <p>Last Name: {this.state.lastName}</p>

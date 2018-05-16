@@ -20,7 +20,7 @@ class SearchBar extends Component {
       <div className="">
         <form onSubmit={this.handleSubmit}>
             <input type="text" onChange={(e)=>this.setState({query: e.target.value})}/>
-            <input type="submit"/>
+            <button className="noButton"><img src='../search.png' className="search"/></button>
         </form>
       </div>
     );

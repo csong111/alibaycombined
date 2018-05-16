@@ -23,20 +23,64 @@ class Cart extends Component {
           quantity: 2,
           quantityToBuy : 1,
           orderNumber: 333,
-          showCheckout:false
+          showCheckout:false,
+          firstName: "Jen",
+          lastName: "O",
+          email: 'jen@email.com',
+          address: '123 Blah St.',
+          city: "Montreal",
+          province: "Quebec",
+          postalCode: "H13 1Y8",
+          country: "Canada"
         }
       ]
     };
   }
 
-  componentDidMount = () =>{
+
   //do a fetch to getCart  and  then setState with the items.
+  //getUser details to prepopulate the shipping info.
+  componentDidMount = () =>{
+    window.paypal.Button.render({
+
+        env: 'sandbox',
+  
+        client: {
+            sandbox:    'ARwoGJ_sUwvA4yVX-fyaodG5lm0U1JqrsAhz5tk43xTgeL7C-kUgaAg1yFfZEJWi3o0qUq2Y__He2lTi',
+        },
+  
+        commit: true, // Show a 'Pay Now' button
+  
+        payment: (data, actions) => {
+          console.log(this.state.sum)
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: "1.00", currency: 'CAD' }
+                        }
+                    ]
+                }
+            });
+        },
+  
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+  
+                // The payment is complete!
+                // You can now show a confirmation message to the customer
+            });
+        }
+  
+    }, '#paypal-button');
     
   }
   //fetch from backend, will return orderID and pass it as props to checkout complete.
   //When you buy, you use the putItemsBought and putOrder endpoints. 
+  //send shipping info...putUserShippingInfo
   buy = (itemID, artistName, userID) => {
     this.props.history.push('/checkoutcomplete/'+this.state.orderNumber)
+    
 
   };
 
@@ -46,7 +90,7 @@ class Cart extends Component {
 
   
   render() {
-
+    console.log(window.paypal)
     let total=0;
     let cartItems = this.state.cartItems.map((item,id)=>{
       total +=item.price*item.quantityToBuy
@@ -73,15 +117,27 @@ class Cart extends Component {
         <NavButton />
        {this.props.email !== "" ? <UserAccountButton /> : null}
        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-       {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+       {this.props.email == "" || this.props.aName == "" ? <ConnectButton /> : null}
        {this.props.email !== "" ? <CartButton /> : null}
        <h1>CART</h1>
       <div>{cartItems}</div>
       <div>Total: ${total}</div>
       <button onClick={(e)=>{this.setState({showCheckout:true})}}>Checkout Now</button>
       {!this.state.showCheckout ? null :    
-    <div><div>Enter Shipping Info</div>     
-    <button onClick={this.buy}>Pay with Paypal</button></div>}
+    <div><div>Enter Shipping Info</div>
+    <div id="paypal-button"></div>
+    <form>
+    First Name: <input type="text" onChange={(e)=>{this.setState({firstName:e.target.value})}} value={this.state.firstName} placeholder="First Name" required/><br/>
+    Last Name: <input type="text" onChange={(e)=>{this.setState({lastName:e.target.value})}} value={this.state.lastName} placeholder="Last Name" required/><br/>
+    Email: <input type="text" onChange={(e)=>{this.setState({email:e.target.value})}} value={this.state.email} placeholder="Email" required/><br/>
+    Address: <input type="text" onChange={(e)=>{this.setState({address:e.target.value})}} value={this.state.email} placeholder="Address" required/><br/>
+    City: <input type="text" onChange={(e)=>{this.setState({city:e.target.value})}} value={this.state.city} placeholder="City" required/><br/>
+    Province: <input type="text" onChange={(e)=>{this.setState({province:e.target.value})}} value={this.state.province} placeholder="Province" required/><br/>
+    Postal Code: <input type="text" onChange={(e)=>{this.setState({postalCode:e.target.value})}} value={this.state.postalCode} placeholder="Postal Code" required/><br/>
+    Country: <input type="text" onChange={(e)=>{this.setState({country:e.target.value})}} value={this.state.country} placeholder="Country" required/><br/>
+    <div id="paypal-button"></div>  
+    </form>  
+    <button className="noButton" onClick={this.buy}/></div>}
       </div>
     );
   }

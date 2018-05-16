@@ -57,7 +57,7 @@ class ConnectUser extends Component {
         <button onClick={this.bringA}>I'm an artist</button>
         <h1>CONNECT USER</h1>
         <NavButton />
-        {this.state.email ? <UserAccountButton /> : null}
+        {this.props.email ? <UserAccountButton /> : null}
         <hr />
         <form onSubmit={this.handleLogin}>
           {" "}
