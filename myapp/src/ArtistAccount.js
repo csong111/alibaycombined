@@ -10,37 +10,60 @@ import './App.css';
 class ArtistAccount extends Component {
     constructor() {
       super();
-      this.state={
-        artistProfile: {
-          artistName: "caro",
-          bio: "I'm a cool artist",
-          location: "Montreal, Canada",
-          imageURL: "mypic.jpg",
-          items: [
+      this.state= {
+        edit: false,
+        artistName: "caro",
+        bio: "I'm a cool artist",
+        location: "Montreal, Canada",
+        imageURL: "mypic.jpg",
+        items: [
               { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
               { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
-          ],
-      }
-      }
+          ]
+
     }
+  }
+
+    componentDidMount () {
+      //FETCH get artist info endpoint: getArtistDetails
+      //FETCH change profile endpoint: uploadProfilePic
+    }
+
     createListing = (artistName) => {
       this.props.history.push("/createListing/")
     }
     seeOrders = () => {
-      this.props.history.push("/orders/" + this.state.artistProfile.artistName)
+      this.props.history.push("/orders/" + this.state.artistName)
     }
     editInfo = () => {
+      //FETCH endpoint: updateArtistAccount
+    }
 
+
+    handleArtistNameChange = (event) => {
+      this.setState({ artistName: event.target.value })
     }
 
     render() {
-      var itemsRendered = this.state.artistProfile.items.map((el,id)=>{
+      let itemsRendered = this.state.items.map((el,id)=>{
         return (
-          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} artistName = {this.state.artistProfile.artistName} />
+          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
         )
       })
-      
 
+      let accountInfo = (() => {
+        if (this.state.edit === false) {
+          return (<div>
+            <p>Name: {this.state.artistName}</p>
+            <p>Location: {this.state.location}</p>
+            <p>{this.state.bio}</p>
+            </div>)
+        } else {return (<form>
+          <input type="text" value={this.state.artistName} onChange={this.handleArtistNameChange}></input>
+        </form>)
+        }
+      })()
+      
         return (
           <div className="ArtistProf">
               <NavButton />
@@ -48,15 +71,16 @@ class ArtistAccount extends Component {
 
               <h2>MY ACCOUNT</h2>
               <input id="changeProfile" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} />
-              {this.state.artistProfile.imageURL !== "" ? <img src={this.state.artistProfile.imageURL}/> : 
+              {this.state.imageURL !== "" ? <img src={this.state.imageURL}/> : 
               <img src="/items/addimage.png" height="50px" width="50px"/>
               }
               <br/>
               <input value="Change Profile Pic" type="submit" onClick={()=>{document.getElementById("changeProfile").click()}}/>
 
-              <p>Name: {this.state.artistProfile.artistName}</p>
-              <p>Location: {this.state.artistProfile.location}</p>
-              <p>{this.state.artistProfile.bio}</p>
+              <div>
+              {accountInfo}
+              </div>
+
               <button onClick = {this.editInfo}>Edit Info</button>
 
               <h2>ORDERS</h2>

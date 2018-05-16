@@ -29,7 +29,9 @@ class Account extends Component {
   }
 
   componentDidMount () {
-    //FETCH get itemsBought then setState the results
+    //FETCH get itemsBought then setState the results endpoint: getItemsBought
+    //FETCH get account info endpoint: getUserShippingInfo
+    //FETCH get user info endpoint: getUserDetails
   }
 
   changePassword = () => {
@@ -38,6 +40,7 @@ class Account extends Component {
 
   editAccount = () => {
     //edit account & update server
+    //FETCH endpoint: updateUserAccount
   }
 
   render() {

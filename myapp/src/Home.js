@@ -25,16 +25,14 @@ class Home extends Component {
       { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
       { itemID: '123459', name: "Painting", price: 20, artistName: "jen", imageURL: 'painting.jpg', cat: "Prints", blurb: "This is a cool painting", quantity: 3 },
       { itemID: '123450', name: "Cool Print", price: 30, artistName: "jen", imageURL: 'print.jpg', cat: "Prints", blurb: "Great print", quantity: 4 } ],
-      email: "jen@email.com",
-      query: ""
+      query: "",
     };
   }
 
   componentDidMount () {
-    //FETCH get randomItems then setState the results
+    //FETCH get randomItems then setState the results endpoint: getRandomItems
+    //FETCH get featuredCat endpoint: getCat
   }
-
-  seeItemsInCat = () => {};
 
   render() {
     let featuredCollection = this.state.featuredCat.map((el, id) => {
