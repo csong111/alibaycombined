@@ -20,7 +20,7 @@ class ConnectButton extends Component {
   render = () => {
     return (
       <div className="">
-        <button onClick={this.bring}>ConnectButton</button>
+        <button className="noButton" onClick={this.bring}><img src='../connect.png' className="icon"/></button>
       </div>
     );
   }

@@ -9,14 +9,18 @@ class ArtistAccountButton extends Component {
 
         }
     }
+    handleClick = (event) => {
+        event.preventDefault();
+        this.props.history.push("/artistaccount/"+this.props.aName)
+    }
   render() {
     return (
       <div className="">
-        <button onClick={this.handleClick}>ArtistAccountButton</button>
+        <button className="noButton" onClick={this.handleClick}><img src='../artistacct.png' className="icon"/></button>
       </div>
     );
   }
 }
+let artistAcct=withRouter(ArtistAccountButton);
 
-
-export default ArtistAccountButton;
+export default artistAcct;

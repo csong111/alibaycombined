@@ -85,7 +85,7 @@ class Cart extends Component {
         <NavButton />
        {this.props.email !== "" ? <UserAccountButton /> : null}
        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-       {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+       {this.props.email == "" || this.props.aName == "" ? <ConnectButton /> : null}
        {this.props.email !== "" ? <CartButton /> : null}
        <h1>CART</h1>
       <div>{cartItems}</div>

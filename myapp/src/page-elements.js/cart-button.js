@@ -9,14 +9,18 @@ class CartButton extends Component {
 
         }
     }
+    goToCart = (event) => {
+      event.preventDefault();
+      this.props.history.push("/cart/"+this.props.userID);
+    }
   render() {
     return (
       <div className="">
-        <button>CartButton</button>
+        <button className="noButton" onClick={this.goToCart}><img src='../cart.png' className="icon"/></button>
       </div>
     );
   }
 }
 
-
-export default CartButton;
+let cartB=withRouter(CartButton);
+export default cartB;

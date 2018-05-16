@@ -20,6 +20,7 @@ class ItemDetail extends Component {
       price: ""
     };
   }
+<<<<<<< HEAD
 
   //getItem details
   componentDidMount = () =>{
@@ -27,16 +28,26 @@ class ItemDetail extends Component {
   }
   addToCart = itemID => {};
   seeArtistInfo = artistName => {};
+=======
+  addToCart = itemID => {
+    //fetch addtocart
+
+  };
+  seeArtistInfo = artistName => {
+    //fetch getartistdetails
+  };
+>>>>>>> 56be73041b4128f9bd8154c09b30d79a45323abd
 
   render() {
+      //fetch itemdetails from backend
     return (
       <div className="">
       <h1>LOGO</h1>
         <h1>ITEM DETAILS</h1>
         <NavButton />
-        {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
-        {this.state.userID === "" ? <ConnectButton /> : null}
+        {this.props.email === "" ? null : <UserAccountButton />}
+        {this.props.email === "" ? null : <CartButton />}
+        {this.props.email === "" ? <ConnectButton /> : null}
         <SearchBar />
         <img src={"/"+this.state.imageURL}/>
         <div>{this.state.name}</div>
