@@ -16,15 +16,17 @@ class UserSignUpComplete extends Component{
             
         }
     }
-    redirect() {
-        //redirecting in 5, 4, 3, 2, 1
+    redirect = (event) => {
+        event.preventDefault();
+        this.props.history.push("/")
+
     }
 
     render() {
         return (
-          <div className="ArtistComp">
-          {this.redirect}
-            <h1>USER SIGNUP COMPLETE</h1>
+          <div className="UserComp">
+           <h1>THANK YOU! YOU'RE NOW LOGGED IN.</h1>
+            <button onClick={this.redirect}>Back to Home</button>
           </div>
         );
       }

@@ -14,9 +14,9 @@ class Home extends Component {
     super();
     this.state = {
       featuredCat: [
-        { name: "Spring", imageURL: "image1.jpg" },
-        { name: "Popular", imageURL: "image2.jpg" },
-        { name: "Featured Items", imageURL: "image3.jpg" }
+        { name: "Spring", imageURL: "collections/image1.jpg" },
+        { name: "Popular", imageURL: "collections/image2.jpg" },
+        { name: "Featured Items", imageURL: "collections/image3.jpg" }
       ],
       randomItems: [
         {
@@ -35,19 +35,17 @@ class Home extends Component {
         }
       ],
       email: "jen@email.com",
-      userID: "123456789",
       query: ""
     };
   }
   seeItemsInCat = () => {};
   render() {
-    var featuredCollection = this.state.featuredCat.map((el, id) => {
+    let featuredCollection = this.state.featuredCat.map((el, id) => {
       return (
         <div key={id}>
-          <img
-            src="http://unsplash.it/201/201"
-          />
-          {el.name}
+          <Link to = {"/featuredcat/" + el.name}><img src = {el.imageURL} /></Link>
+          <br />
+          <p>{el.name}</p>
         </div>
       );
     });
@@ -55,9 +53,10 @@ class Home extends Component {
       <div>
         <NavButton />
         <h1>LOGO</h1>
-        {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? <ConnectButton /> : null}
-        {this.state.userID === "" ? null : <CartButton />}
+        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+        {this.props.email !== "" ? <CartButton /> : null}
         <SearchBar />
         <h2>Featured collection</h2>
         <div name="categories">

@@ -13,8 +13,9 @@ class ConnectUser extends Component {
         super();
         this.state={
             //LOGIN
-            emailLogin: 'jen@email.com',
-            passwordLogin: '123456',
+            email: 'jen@email.com',
+            password: '123456',
+            loggedIn: false,
 
             //SIGN UP
             firstName: 'jen',
@@ -24,33 +25,40 @@ class ConnectUser extends Component {
             passwordSignUpConf: '123456'
         }
     }
-   
+    redirect = (event) => {
+        event.preventDefault();
+        this.props.history.push("/")
+    }
+   handleLogin = (event) => {
+       event.preventDefault();
+       this.props.loginUser('jen@email.com');
+       this.setState({loggedIn: true});
+   }
+
+   handleSubmit = (event) => {
+       event.preventDefault();
+       this.props.history.push("/usersignupcomplete");
+       this.setState({email: this.state.emailSignUp});
+   }
     
     render () {
         return (
             <div>
                 <h1>CONNECT USER</h1>
                 <NavButton />
-                {this.state.emailLogin? <UserAccountButton/>: null}
-                <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
-                    <input type="text" onChange={(e)=>{this.setState({lEmail:e.target.value})}} value={this.state.lEmail} placeholder="name@email.com" required/>
-                    <input type="password" onChange={(e)=>{this.setState({lPassword:e.target.value})}} value={this.state.lPassword} placeholder="Password" required/>
+                {this.state.email? <UserAccountButton/>: null}
+                <form onSubmit={this.handleLogin}> LOG IN TO YOUR ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({email:e.target.value})}} value={this.state.email} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({password:e.target.value})}} value={this.state.password} placeholder="Password" required/>
                     <input type="submit"/>
-        {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
+                {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
                 </form>
-                <form onSubmit={this.handleSubmit}> FIRST TIME? CREATE AN ARTIST ACCOUNT
-                    <input type="text" onChange={(e)=>{this.setState({sName:e.target.value})}} value={this.state.sName} placeholder="Name" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sEmail:e.target.value})}} value={this.state.sEmail} placeholder="name@email.com" required/>
-                    <input type="password" onChange={(e)=>{this.setState({sPassword:e.target.value})}} value={this.state.sPassword} placeholder="Password" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sDescription:e.target.value})}} value={this.state.sDescription} placeholder="Artist Description" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sLocation:e.target.value})}} value={this.state.sLocation}  placeholder="Montreal, QC" required/>
-                    <p>{this.state.sImageURL1}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
-                    <p>{this.state.sImageURL2}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
-                    <p>{this.state.sImageURL3}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                <form onSubmit={this.handleSubmit}> FIRST TIME? CREATE AN ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({firstName:e.target.value})}} value={this.state.firstName} placeholder="First Name" required/>
+                    <input type="text" onChange={(e)=>{this.setState({lastName:e.target.value})}} value={this.state.lastName} placeholder="Last Name" required/>
+                    <input type="text" onChange={(e)=>{this.setState({emailSignUp:e.target.value})}} value={this.state.emailSignUp} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({passwordSignUp:e.target.value})}} value={this.state.passwordSignUp} placeholder="Password" required/>
+                    <input type="password" onChange={(e)=>{this.setState({passwordSignUpConf:e.target.value})}} value={this.state.passwordSignUpConf} placeholder="Confirm Password" required/>
                     <br/>
                     <input type="submit"/>
                 </form>
@@ -58,5 +66,5 @@ class ConnectUser extends Component {
         )
     }
 }
-
-export default ConnectUser;
+let ConnectUserComplete=withRouter(ConnectUser);
+export default ConnectUserComplete;
