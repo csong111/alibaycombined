@@ -35,6 +35,12 @@ class App extends Component {
       email: ""
     }
   }
+  loginArtist = (e) => {
+    this.setState({aName : e})
+  }
+  loginUser = (e) => {
+    this.setState({email : e})
+  }
   render() {
     return (
       <div className="App">
@@ -103,12 +109,17 @@ class App extends Component {
             <Route
               exact={true}
               path="/connectuser"
-              render={()=>{return(<ConnectUser aName={this.state.aName} email={this.state.email}/>)}}
+              render={()=>{return(<ConnectUser loginUser={this.loginUser} aName={this.state.aName} email={this.state.email}/>)}}
+            />
+            <Route
+              exact={true}
+              path="/usersignupcomplete"
+              render={()=>{return(<UserSignUpComplete loginUser={this.loginUser} aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/connectartist"
-              render={()=>{return(<ConnectArtist aName={this.state.aName} email={this.state.email}/>)}}
+              render={()=>{return(<ConnectArtist loginArtist={this.loginArtist} aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
