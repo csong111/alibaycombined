@@ -6,6 +6,7 @@ import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import UserAccount from './UserAccount.js';
+import Item from "./page-elements.js/Item.js"
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import "./App.css";
 
@@ -19,26 +20,18 @@ class Home extends Component {
         { name: "Featured Items", imageURL: "collections/image3.jpg" }
       ],
       randomItems: [
-        {
-          itemID: "123456",
-          name: "Spring Print",
-          price: 50,
-          artistName: "aisha",
-          imageURL: "print.jpg"
-        },
-        {
-          itemID: "123457",
-          name: "Awesome Emproidery",
-          price: 100,
-          artistName: "caro",
-          imageURL: "embroidery.jpg"
-        }
-      ],
+      { itemID: '123456', name: "Spring Print", price: 50, artistName: "aisha", imageURL: 'print.jpg', cat: "Spring", blurb: "Here's my spring print", quantity: 2 },
+      { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
+      { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
+      { itemID: '123459', name: "Painting", price: 20, artistName: "jen", imageURL: 'painting.jpg', cat: "Prints", blurb: "This is a cool painting", quantity: 3 },
+      { itemID: '123450', name: "Cool Print", price: 30, artistName: "jen", imageURL: 'print.jpg', cat: "Prints", blurb: "Great print", quantity: 4 } ],
       email: "jen@email.com",
       query: ""
     };
   }
+
   seeItemsInCat = () => {};
+
   render() {
     let featuredCollection = this.state.featuredCat.map((el, id) => {
       return (
@@ -49,6 +42,13 @@ class Home extends Component {
         </div>
       );
     });
+
+    var itemsRendered = this.state.randomItems.map((el,id)=>{
+      return (
+        <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+      )
+    })
+    
     return (
       <div>
         <NavButton />
@@ -61,6 +61,9 @@ class Home extends Component {
         <h2>Featured collection</h2>
         <div name="categories">
             {featuredCollection}
+        </div>
+        <div name="items">
+          {itemsRendered}
         </div>
       </div>
     );
