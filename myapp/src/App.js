@@ -28,6 +28,13 @@ import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state={
+      aName: "aisha",
+      email: ""
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -36,82 +43,82 @@ class App extends Component {
             <Route
               exact={true}
               path="/"
-              render={()=>{return(<Home />)}}
+              render={()=>{return(<Home aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
               path="/nav"
-              render={()=>{return(<Nav />)}}
+              render={()=>{return(<Nav aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
               path="/featuredcat/:cat"
-              render={()=>{return(<FeaturedCat />)}}
+              render={()=>{return(<FeaturedCat aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
               path="/cart/:userId"
-              render={()=>{return(<SearchResults />)}}
+              render={()=>{return(<SearchResults aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
               path="/searchresults/:query"
-              render={()=>{return(<SearchResults />)}}
+              render={()=>{return(<SearchResults aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/itemdetail/:itemId"
-              render={()=>{return(<ItemDetail />)}}
+              render={()=>{return(<ItemDetail aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/useraccount/:userId"
-              render={()=>{return(<UserAccount />)}}
+              render={()=>{return(<UserAccount aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/artistprofile/:artistName"
-              render={()=>{return(<ArtistProfile />)}}
+              render={()=>{return(<ArtistProfile aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/artistaccount/:artistName"
-              render={()=>{return(<ArtistAccount />)}}
+              render={()=>{return(<ArtistAccount aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/orders/:artistName"
-              render={()=>{return(<Orders />)}}
+              render={()=>{return(<Orders aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/createlisting/:artistName"
-              render={()=>{return(<CreateListing />)}}
+              render={()=>{return(<CreateListing aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/editlisting/:artistName"
-              render={()=>{return(<EditListing />)}}
+              render={()=>{return(<EditListing aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/connectuser"
-              render={()=>{return(<ConnectUser />)}}
+              render={()=>{return(<ConnectUser aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/connectartist"
-              render={()=>{return(<ConnectArtist />)}}
+              render={()=>{return(<ConnectArtist aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/artistsignupcomplete"
-              render={()=>{return(<ArtistSignUpComplete />)}}
+              render={()=>{return(<ArtistSignUpComplete aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/checkoutcomplete"
-              render={()=>{return(<CheckoutComplete />)}}
+              render={()=>{return(<CheckoutComplete aName={this.state.aName} email={this.state.email}/>)}}
             />
           </div>
         </BrowserRouter>

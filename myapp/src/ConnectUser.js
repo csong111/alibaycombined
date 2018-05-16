@@ -30,6 +30,30 @@ class ConnectUser extends Component {
         return (
             <div>
                 <h1>CONNECT USER</h1>
+                <NavButton />
+                {this.state.emailLogin? <UserAccountButton/>: null}
+                <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({lEmail:e.target.value})}} value={this.state.lEmail} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({lPassword:e.target.value})}} value={this.state.lPassword} placeholder="Password" required/>
+                    <input type="submit"/>
+        {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
+                </form>
+                <form onSubmit={this.handleSubmit}> FIRST TIME? CREATE AN ARTIST ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({sName:e.target.value})}} value={this.state.sName} placeholder="Name" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sEmail:e.target.value})}} value={this.state.sEmail} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({sPassword:e.target.value})}} value={this.state.sPassword} placeholder="Password" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sDescription:e.target.value})}} value={this.state.sDescription} placeholder="Artist Description" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sLocation:e.target.value})}} value={this.state.sLocation}  placeholder="Montreal, QC" required/>
+                    <p>{this.state.sImageURL1}</p>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <p>{this.state.sImageURL2}</p>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <p>{this.state.sImageURL3}</p>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <br/>
+                    <input type="submit"/>
+                </form>
             </div>
         )
     }
