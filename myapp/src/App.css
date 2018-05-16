@@ -39,3 +39,7 @@
 .search {
   width: 30px;
 }
+
+#paypal-button {
+  bottom: 400px;
+}
