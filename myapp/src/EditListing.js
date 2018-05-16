@@ -16,19 +16,25 @@ class EditListing extends Component {
       cat: "Prints",
       blurb: "cool print",
       quantity: 1,
-      imageURL: 'image.jpg'
+      imageURL: 'image.jpg',
+      itemID: 1333
     }
   }
-  
+  seeArtistAcct = () => {
+    return (<ArtistAccount/>)
+  }
+
   handleSubmit = () => {
+    this.props.history.push("/itemdetails/"+this.state.itemID)
 
   }
   render() {
       return (
         <div className="App">
-          <h1>EDIT LISTING</h1>
             <NavButton />
-            <ArtistAccountButton/>
+            <h1>LOGO</h1>
+            <h1>EDIT LISTING</h1>
+            <button onClick={this.seeArtistAcct}>Your artist account</button>
             <form onSubmit={this.handleSubmit}>
               <input type="text" placeholder="Name"/>
               <input type="text" placeholder="Price"/>
@@ -42,10 +48,14 @@ class EditListing extends Component {
                 <option value="Curtains">Curtains</option>
               </select>
               <input type="file"/>
+              <input type="file"/>
+              <input type="file"/>
+              <input type="submit"/>
             </form>
         </div>
       );
     }
   }
   
-  export default EditListing;
+  let Content = withRouter(EditListing)
+  export default Content;
