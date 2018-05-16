@@ -13,11 +13,17 @@ class ItemDetail extends Component {
     super();
     this.state = {
       itemID: "",
-      imageURL: "",
+      name: "A pillow",
+      imageURL: "items/pillow.jpg",
       blurb: "",
-      artistName: "",
+      artistName: "clara",
       price: ""
     };
+  }
+
+  //getItem details
+  componentDidMount = () =>{
+
   }
   addToCart = itemID => {};
   seeArtistInfo = artistName => {};
@@ -25,13 +31,19 @@ class ItemDetail extends Component {
   render() {
     return (
       <div className="">
+      <h1>LOGO</h1>
         <h1>ITEM DETAILS</h1>
         <NavButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
         {this.state.userID === "" ? null : <CartButton />}
         {this.state.userID === "" ? <ConnectButton /> : null}
         <SearchBar />
-      </div>
+        <img src={"/"+this.state.imageURL}/>
+        <div>{this.state.name}</div>
+        <div>{this.state.blurb}</div>
+        Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
+        <button onClick={this.addToCart}>Add to Cart</button>
+      </div>      
     );
   }
 }
