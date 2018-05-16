@@ -11,7 +11,8 @@ class SearchBar extends Component {
     }
 
     handleSubmit = () => {
-
+      //
+      this.props.history.push("/searchresults/"+this.state.query)
     }
 
   render() {
@@ -26,5 +27,5 @@ class SearchBar extends Component {
   }
 }
 
-
-export default SearchBar;
+let Content = withRouter(SearchBar)
+export default Content;

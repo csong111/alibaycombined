@@ -43,7 +43,7 @@ class Home extends Component {
   render() {
     var featuredCollection = this.state.featuredCat.map((el, id) => {
       return (
-        <div>
+        <div key={id}>
           <img
             src="http://unsplash.it/201/201"
           />
