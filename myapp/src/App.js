@@ -31,7 +31,7 @@ class App extends Component {
   constructor() {
     super();
     this.state={
-      aName: "aisha",
+      aName: "",
       email: "",
       userID: 1,
     }
@@ -64,8 +64,8 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/cart/:userId"
-              render={()=>{return(<Cart aName={this.state.aName} email={this.state.email} />)}}
+              path="/cart/:userID"
+              render={(routerData)=>{return(<Cart aName={this.state.aName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
               exact={true}
@@ -80,7 +80,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/useraccount/:userID"
-              render={()=>{return(<UserAccount aName={this.state.aName} email={this.state.email} userID={this.state.userID}/>)}}
+              render={(routerData)=>{return(<UserAccount aName={this.state.aName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
               exact={true}

@@ -19,17 +19,23 @@ class ItemDetail extends Component {
       price: ""
     };
   }
-  addToCart = itemID => {};
-  seeArtistInfo = artistName => {};
+  addToCart = itemID => {
+    //fetch addtocart
+
+  };
+  seeArtistInfo = artistName => {
+    //fetch getartistdetails
+  };
 
   render() {
+      //fetch itemdetails from backend
     return (
       <div className="">
         <h1>ITEM DETAILS</h1>
         <NavButton />
-        {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
-        {this.state.userID === "" ? <ConnectButton /> : null}
+        {this.props.email === "" ? null : <UserAccountButton />}
+        {this.props.email === "" ? null : <CartButton />}
+        {this.props.email === "" ? <ConnectButton /> : null}
         <SearchBar />
       </div>
     );

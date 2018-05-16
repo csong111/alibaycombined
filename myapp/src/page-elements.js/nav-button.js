@@ -17,7 +17,7 @@ class NavButton extends Component {
   render() {
     return (
       <div className="">
-        <button onClick={this.bring}>NavButton</button>
+        <button className="noButton" onClick={this.bring}><img src='../nav.png' className="icon"/></button>
       </div>
     );
   }
