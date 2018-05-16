@@ -33,10 +33,6 @@ class EditListing extends Component {
         <div className="App">
             <NavButton />
             <h1>LOGO</h1>
-            {this.props.email !== "" ? <UserAccountButton /> : null}
-            {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-            {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
-            {this.props.email !== "" ? <CartButton /> : null}
             <h1>EDIT LISTING</h1>
             <button onClick={this.seeArtistAcct}>Your artist account</button>
             <form onSubmit={this.handleSubmit}>
@@ -51,11 +47,11 @@ class EditListing extends Component {
                 <option value="Wallpaper">Wallpaper</option>
                 <option value="Curtains">Curtains</option>
               </select>
-              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" required/>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
                     <p>{this.state.imageURL1}</p>
-              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" required/>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
                     <p>{this.state.imageURL2}</p>
-              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" required/>
+              <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
                     <p>{this.state.imageURL3}</p>
               <input type="submit"/>
             </form>

@@ -64,7 +64,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/cart/:userId"
-              render={()=>{return(<SearchResults aName={this.state.aName} email={this.state.email} />)}}
+              render={()=>{return(<Cart aName={this.state.aName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
@@ -128,7 +128,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/checkoutcomplete"
+              path="/checkoutcomplete:orderNumber"
               render={()=>{return(<CheckoutComplete aName={this.state.aName} email={this.state.email}/>)}}
             />
           </div>
