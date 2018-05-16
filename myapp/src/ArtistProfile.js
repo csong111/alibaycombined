@@ -6,6 +6,7 @@ import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import ItemDetail from "./ItemDetail.js";
+import Item from "./page-elements.js/Item.js";
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import './App.css';
 
@@ -30,6 +31,12 @@ class ArtistProfile extends Component {
     this.props.history.push("/itemdetail/"+this.state.itemId)
   }
     render() {
+      //fetch artist's details from backend
+      let itemsRendered = this.state.artistProfile.items.map((el)=>{
+        return (
+          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+        )
+      })
       return (
         <div className="ArtistProf">
         <NavButton />
@@ -44,6 +51,7 @@ class ArtistProfile extends Component {
           <br/>
           <h2>SHOP CLARA'S ART</h2>
           <div>RENDERED ITEMS</div>
+          {itemsRendered}
         </div>
       );
     }

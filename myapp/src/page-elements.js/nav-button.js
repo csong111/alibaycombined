@@ -9,14 +9,19 @@ class NavButton extends Component {
 
         }
     }
+
+    bring = (event) => {
+      event.preventDefault();
+      this.props.history.push("/nav")
+    }
   render() {
     return (
       <div className="">
-        <button>NavButton</button>
+        <button onClick={this.bring}>NavButton</button>
       </div>
     );
   }
 }
 
-
-export default NavButton;
+let navB=withRouter(NavButton);
+export default navB;
