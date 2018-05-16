@@ -13,13 +13,17 @@ class ArtistSignUpComplete extends Component{
     constructor() {
         super();
     }
+    redirect = () => {
+      this.props.history.push("/")
+    }
     render() {
         return (
           <div className="ArtistComp">
-            <h1>ARTIST SIGNUP COMPLETE</h1>
+            <h1>Thank you! We will review your submission & get back to you shortly.</h1>
+            <button onClick={this.redirect}>Back to Home</button>
           </div>
         );
       }
 }
-
-export default ArtistSignUpComplete;
+let ArtistComplete=withRouter(ArtistSignUpComplete);
+export default ArtistComplete;

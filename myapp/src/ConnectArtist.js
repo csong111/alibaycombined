@@ -9,11 +9,12 @@ import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import './App.css';
 
 class ConnectArtist extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state={//ARTIST LOGIN
             lEmail: 'jen@email.com',
             lPassword: '123456',
+            loggedIn: false,
          
             //ARTIST SIGN UP
             sName: 'jen',
@@ -32,8 +33,18 @@ class ConnectArtist extends Component {
 
     }
 
+    redirect = (event) => {
+        event.preventDefault();
+        this.props.history.push("/")
+    }
+    handleLogin = (event) => {
+        event.preventDefault();
+        this.setState({loggedIn: true});
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.history.push("/artistsignupcomplete")
 
     }
     
@@ -42,15 +53,20 @@ class ConnectArtist extends Component {
             <div>
                 <h1>CONNECT ARTIST</h1>
                 <NavButton />
-                {this.state.userID === "" ? null : <UserAccountButton />}
-                {this.state.userID === "" ? null : <CartButton />}
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={(e)=>{this.setState({sName:e.targetValue})}} value={this.state.name} placeholder="Name" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sEmail:e.targetValue})}} placeholder="name@email.com" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sPassword:e.targetValue})}} placeholder="Password" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sPasswordConf:e.targetValue})}} placeholder="Confirm Password" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sDescription:e.targetValue})}} placeholder="Artist Description" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sLocation:e.targetValue})}} placeholder="Montreal, QC" required/>
+                {this.state.lEmail? <ArtistAccountButton/>: null}
+                <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({this.props.aName: e.target.value})}} value={this.props.aName} placeholder="Coco" required/>
+                    <input type="password" onChange={(e)=>{this.setState({lPassword:e.target.value})}} value={this.state.lPassword} placeholder="Password" required/>
+                    <input type="submit"/>
+                    {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
+                </form>
+                <form onSubmit={this.handleSubmit}> FIRST TIME? CREATE AN ARTIST ACCOUNT
+                    <input type="text" onChange={(e)=>{this.setState({sName:e.target.value})}} value={this.state.sName} placeholder="Name" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sEmail:e.target.value})}} value={this.state.sEmail} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({sPassword:e.target.value})}} value={this.state.sPassword} placeholder="Password" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sDescription:e.target.value})}} value={this.state.sDescription} placeholder="Artist Description" required/>
+                    <input type="text" onChange={(e)=>{this.setState({sLocation:e.target.value})}} value={this.state.sLocation}  placeholder="Montreal, QC" required/>
                     <p>{this.state.sImageURL1}</p>
                     <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
                     <p>{this.state.sImageURL2}</p>
@@ -64,5 +80,6 @@ class ConnectArtist extends Component {
         )
     }
 }
+let ConnectComplete=withRouter(ConnectArtist);
 
-export default ConnectArtist;
+export default ConnectComplete;
