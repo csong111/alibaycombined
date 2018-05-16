@@ -38,6 +38,7 @@ class ConnectUser extends Component {
    handleSubmit = (event) => {
        event.preventDefault();
        this.props.history.push("/usersignupcomplete");
+       this.setState({email: this.state.emailSignUp});
    }
     
     render () {

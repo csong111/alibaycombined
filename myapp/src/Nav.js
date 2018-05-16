@@ -24,7 +24,13 @@ class Nav extends Component {
     render () {
         return (
             <div>
-                <h1>NAV</h1>
+                <ul style={{listStyleType: "none"}}>
+                    <li>PRINTS</li>
+                    <li>PILLOWS</li>
+                    <li>EMBROIDERY</li>
+                    <li>WALLPAPER</li>
+                    <li>CURTAINS</li>
+                </ul>
             </div>
         )
     }

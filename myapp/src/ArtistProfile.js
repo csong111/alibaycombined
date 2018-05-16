@@ -27,15 +27,23 @@ class ArtistProfile extends Component {
   }
 
   seeItemDetails = () => {
-
+    this.props.history.push("/itemdetail/"+this.state.itemId)
   }
     render() {
       return (
         <div className="ArtistProf">
-          <h1>ARTIST PROFILE</h1>
-            <NavButton />
-            {this.state.userID === "" ? null : <UserAccountButton />}
-            {this.state.userID === "" ? null : <CartButton />}
+        <NavButton />
+        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.email !== "" ? <ConnectButton /> : null}
+        {this.props.email !== "" ? <CartButton /> : null}
+          <h1>LOGO</h1>
+          <h2>MEET CLARA</h2>
+          <div>PROFILEPIC</div>
+          <div>MONTREAL, QC</div>
+          <div>I AM A COOL ARTIST, THIS IS MY ARTIST DESCRIPTION AND YOU LOVE IT</div>
+          <br/>
+          <h2>SHOP CLARA'S ART</h2>
+          <div>RENDERED ITEMS</div>
         </div>
       );
     }
