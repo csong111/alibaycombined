@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import '../App.css';
 
 class NavButton extends Component {

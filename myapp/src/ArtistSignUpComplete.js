@@ -6,6 +6,7 @@ import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import ItemDetail from "./ItemDetail.js";
+import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import './App.css';
 
 class ArtistSignUpComplete extends Component{

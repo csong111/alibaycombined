@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavButton from './page-elements.js/nav-button.js';
 import ArtistAccount from './ArtistAccount.js';
 import ArtistAccountButton from './page-elements.js/artist-account-button.js';
+import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 
 import './App.css';
 
