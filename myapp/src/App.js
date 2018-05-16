@@ -31,15 +31,16 @@ class App extends Component {
   constructor() {
     super();
     this.state={
-      aName: "aisha",
-      email: ""
+      aName: "",
+      email: "",
+      userID: ""
     }
   }
   loginArtist = (e) => {
     this.setState({aName : e})
   }
-  loginUser = (e) => {
-    this.setState({email : e})
+  loginUser = (e, id) => {
+    this.setState({email: e, userID: id})
   }
   render() {
     return (

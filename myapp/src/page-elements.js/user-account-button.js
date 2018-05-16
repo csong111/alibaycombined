@@ -9,14 +9,18 @@ class UserAccountButton extends Component {
 
         }
     }
+    bring = (event) => {
+      event.preventDefault();
+      this.props.history.push("/useraccount/"+this.props.userID)
+    }
   render() {
     return (
       <div className="">
-        <button onClick={this.handleClick}>UserAccountButton</button>
+        <button onClick={this.bring}>UserAccountButton</button>
       </div>
     );
   }
 }
 
-
-export default UserAccountButton;
+let userAccountB = withRouter(UserAccountButton);
+export default userAccountB;
