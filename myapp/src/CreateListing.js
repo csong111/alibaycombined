@@ -16,20 +16,22 @@ class CreateListing extends Component {
       cat: "Prints",
       blurb: "cool print",
       quantity: 1,
-      imageURL: 'image.jpg'
+      imageURL: 'image.jpg',
+      itemID: 123
     }
   }
   seeArtistAcct = () => {
     return (<ArtistAccount/>)
   }
   handleSubmit = () => {
-
+    this.props.history.push("/itemdetails/"+this.state.itemID)
   }
   render() {
       return (
         <div className="App">
-          <h1>Create Listing</h1>
             <NavButton />
+            <h1>LOGO</h1>
+            <h1>Create Listing</h1>
             <button onClick={this.seeArtistAcct}>Your artist account</button>
             <form onSubmit={this.handleSubmit}>
               <input type="text" placeholder="Name"/>
@@ -44,10 +46,14 @@ class CreateListing extends Component {
                 <option value="Curtains">Curtains</option>
               </select>
               <input type="file"/>
+              <input type="file"/>
+              <input type="file"/>
+              <input type="submit"/>
             </form>
         </div>
       );
     }
   }
   
-  export default CreateListing;
+  let Content = withRouter(CreateListing)
+  export default Content;

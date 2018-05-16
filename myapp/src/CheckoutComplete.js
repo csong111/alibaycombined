@@ -35,19 +35,38 @@ class CheckoutComplete extends Component {
 
     backHome = (event) => {
         event.preventDefault();
+        this.props.history.push("/")
     }
 
+   
+
     render() {
+      let checkoutItems = this.state.checkoutItems.map((item,id) =>{
+        return (
+          <li key={id}>
+          Item Name: {item.name}
+          Price: {item.price}
+          artistName: {item.artistName}
+          quantity: {item.quantity}
+          </li>
+        )
+      })
         return (
           <div className="App">
-            <h1>Thank you for your purchase. Your order number is {this.orderID}</h1>
               <NavButton />
+              <h1>LOGO</h1>
+              <h1>Thank you for your purchase. Your order number is {this.orderID}</h1>
               {this.state.userID === "" ? null : <UserAccountButton />}
               {this.state.userID === "" ? null : <CartButton />}
+              <div>Order details</div>
+              <ul>
+                {checkoutItems}
+              </ul>
             <button onClick={this.backHome}>BACK TO SHOPPING</button>
           </div>
         );
       }
     }
 
-export default CheckoutComplete; 
+let Content = withRouter(CheckoutComplete)
+export default Content;

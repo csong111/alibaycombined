@@ -12,8 +12,8 @@ class ConnectArtist extends Component {
     constructor (props) {
         super(props);
         this.state={//ARTIST LOGIN
-            lEmail: 'jen@email.com',
-            lPassword: '123456',
+            aName: 'aisha',
+            aPassword: '123456',
             loggedIn: false,
          
             //ARTIST SIGN UP
@@ -39,9 +39,9 @@ class ConnectArtist extends Component {
     }
     handleLogin = (event) => {
         event.preventDefault();
+        this.props.loginArtist("aisha") //change to artistName from backend
         this.setState({loggedIn: true});
     }
-
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.history.push("/artistsignupcomplete")
@@ -55,8 +55,8 @@ class ConnectArtist extends Component {
                 <NavButton />
                 {this.state.lEmail? <ArtistAccountButton/>: null}
                 <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
-                    <input type="text" onChange={(e)=>{this.setState({aName: e.target.value})}} value={this.props.aName} placeholder="Coco" required/>
-                    <input type="password" onChange={(e)=>{this.setState({lPassword:e.target.value})}} value={this.state.lPassword} placeholder="Password" required/>
+                    <input type="text" onChange={(e)=>{this.setState({aName: e.target.value})}} value={this.state.aName} placeholder="name@email.com" required/>
+                    <input type="password" onChange={(e)=>{this.setState({aPassword:e.target.value})}} value={this.state.aPassword} placeholder="Password" required/>
                     <input type="submit"/>
                     {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
                 </form>
@@ -64,7 +64,7 @@ class ConnectArtist extends Component {
                     <input type="text" onChange={(e)=>{this.setState({sName:e.target.value})}} value={this.state.sName} placeholder="Name" required/>
                     <input type="text" onChange={(e)=>{this.setState({sEmail:e.target.value})}} value={this.state.sEmail} placeholder="name@email.com" required/>
                     <input type="password" onChange={(e)=>{this.setState({sPassword:e.target.value})}} value={this.state.sPassword} placeholder="Password" required/>
-                    <input type="text" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
+                    <input type="password" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
                     <input type="text" onChange={(e)=>{this.setState({sDescription:e.target.value})}} value={this.state.sDescription} placeholder="Artist Description" required/>
                     <input type="text" onChange={(e)=>{this.setState({sLocation:e.target.value})}} value={this.state.sLocation}  placeholder="Montreal, QC" required/>
                     <p>{this.state.sImageURL1}</p>
