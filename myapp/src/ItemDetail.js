@@ -20,13 +20,13 @@ class ItemDetail extends Component {
       price: ""
     };
   }
-  addToCart = itemID => {
-    //fetch addtocart
 
-  };
-  seeArtistInfo = artistName => {
-    //fetch getartistdetails
-  };
+  //getItem details
+  componentDidMount = () =>{
+
+  }
+  addToCart = itemID => {};
+  seeArtistInfo = artistName => {};
 
   render() {
       //fetch itemdetails from backend
