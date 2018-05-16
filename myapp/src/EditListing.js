@@ -26,10 +26,25 @@ class EditListing extends Component {
     return (<ArtistAccount/>)
   }
 
+  //fetch edit listings
   handleSubmit = () => {
-    this.props.history.push("/itemdetails/"+this.state.itemID)
+    this.props.history.push("/itemdetail/"+this.state.itemID)
 
   }
+
+  uploadFile = x => {
+    // let filename = x.name;
+    // let fileExtension = filename.split(".").pop();
+    // this.setState({ imageInputName: x.name });
+    // fetch("/uploadPic?ext=" + fileExtension, {
+    //   method: "POST",
+    //   body: x
+    // })
+    //   .then(response => response.text())
+    //   .then(response => this.setState({ imageInput: response }))
+    //   .then(() => this.state.imageInput);
+  };
+  
   render() {
       return (
         <div className="App">
