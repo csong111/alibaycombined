@@ -39,7 +39,7 @@ class CheckoutComplete extends Component {
   };
 
   componentDidMount() {
-    // check into URL the id, then fetch with it, then setState checkOutItem
+    // check the URL for the Order ID, then do a fetch to get the Order details and  then setState checkOutItem
   }
 
   render() {

@@ -59,7 +59,7 @@ class Home extends Component {
         <h1>LOGO</h1>
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-        {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+        {this.props.email === "" && this.props.aName === "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton /> : null}
         <SearchBar />
         <h2>Featured collection</h2>

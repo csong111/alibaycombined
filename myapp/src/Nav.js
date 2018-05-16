@@ -16,7 +16,7 @@ class Nav extends Component {
         }
     }
     seeItemsInCat = () => {
-
+    //fetch items in categories
     }
     closeNav = () => {
         window.history.back();
@@ -24,6 +24,7 @@ class Nav extends Component {
     render () {
         return (
             <div>
+                <button onClick={this.closeNav}>X</button>
                 <ul style={{listStyleType: "none"}}>
                     <li>PRINTS</li>
                     <li>PILLOWS</li>

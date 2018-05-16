@@ -32,5 +32,5 @@ class UserSignUpComplete extends Component{
       }
 
 }
-
-export default UserSignUpComplete;
+let UserComplete=withRouter(UserSignUpComplete)
+export default UserComplete;

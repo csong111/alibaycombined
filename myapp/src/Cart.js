@@ -22,23 +22,31 @@ class Cart extends Component {
           cat: "Popular",
           quantity: 2,
           quantityToBuy : 1,
-          orderNumber: 333
+          orderNumber: 333,
+          showCheckout:false
         }
       ]
     };
   }
+
+  componentDidMount = () =>{
+  //do a fetch to getCart  and  then setState with the items.
+    
+  }
   //fetch from backend, will return orderID and pass it as props to checkout complete.
+  //When you buy, you use the putItemsBought and putOrder endpoints. 
   buy = (itemID, artistName, userID) => {
     this.props.history.push('/checkoutcomplete/'+this.state.orderNumber)
+
   };
-  
+
+  //fetch to remove the item from cart
   removeItem = itemID => {};
-  updateQuantity = qty => {
+  updateQuantity = qty => {};
 
-  };
-
-
+  
   render() {
+
     let total=0;
     let cartItems = this.state.cartItems.map((item,id)=>{
       total +=item.price*item.quantityToBuy
@@ -55,7 +63,7 @@ class Cart extends Component {
                 this.setState({cartItems: temp})
               }
             }} value={item.quantityToBuy} placeholder={item.quantity+" in stock"}/>
-          <button onClick={this.updateQuanity}>Update Quantity</button>
+          <button onClick={this.updateQuantity}>Update Quantity</button>
           <button onClick={this.removeItem}>Remove Item</button>
         </div>
       )
@@ -70,7 +78,10 @@ class Cart extends Component {
        <h1>CART</h1>
       <div>{cartItems}</div>
       <div>Total: ${total}</div>
-      <button onClick={this.buy}>Pay with Paypal</button>
+      <button onClick={(e)=>{this.setState({showCheckout:true})}}>Checkout Now</button>
+      {!this.state.showCheckout ? null :    
+    <div><div>Enter Shipping Info</div>     
+    <button onClick={this.buy}>Pay with Paypal</button></div>}
       </div>
     );
   }

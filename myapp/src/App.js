@@ -39,8 +39,8 @@ class App extends Component {
   loginArtist = (e) => {
     this.setState({aName : e})
   }
-  loginUser = (e) => {
-    this.setState({email : e})
+  loginUser = (e, id) => {
+    this.setState({email: e, userID: id})
   }
   render() {
     return (

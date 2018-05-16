@@ -23,9 +23,9 @@ class Orders extends Component {
     render() {
         return (
           <div className="ArtistProf">
-            <h1>ORDERS</h1>
               <NavButton />
               <button onClick={this.seeArtistAcct}>Your artist account</button>
+              <h1>PREVIOUS ORDERS</h1>
           </div>
         );
       }
