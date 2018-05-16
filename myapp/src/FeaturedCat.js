@@ -5,6 +5,7 @@ import NavButton from './page-elements.js/nav-button.js';
 import CartButton from './page-elements.js/cart-button.js';
 import ConnectButton from './page-elements.js/connect-button.js';
 import SearchBar from './page-elements.js/search-bar.js';
+import Item from "./page-elements.js/Item.js"
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import './App.css';
 
@@ -18,18 +19,30 @@ class FeaturedCat extends Component {
             ],
         }
     }
-    seeItemDetails = () => {
-    
+
+    componentDidMount () {
+      //FETCH get itemsInCat by cat name then setState the results
     }
+
     render() {
+      var itemsRendered = this.state.itemsInCat.map((el,id)=>{
+        return (
+          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+        )
+      })
+
       return (
         <div>
-          <h1>FEATURED CAT</h1>
         <NavButton />
-        {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
-        {this.state.userID === "" ?<ConnectButton /> :null}
+        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.email !== "" || this.props.aName !== "" ? <ConnectButton /> : null}
+        {this.props.email !== "" ? <CartButton /> : null}
         <SearchBar/>
+        <h2>FEATURED CAT</h2>
+        <div name="cat-items">
+          {itemsRendered}
+        </div>
         </div>
       );
     }
