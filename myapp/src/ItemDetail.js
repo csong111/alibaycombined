@@ -25,7 +25,7 @@ class ItemDetail extends Component {
   render() {
     return (
       <div className="">
-        <h1>ITEM DETAIL</h1>
+        <h1>ITEM DETAILS</h1>
         <NavButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
         {this.state.userID === "" ? null : <CartButton />}
