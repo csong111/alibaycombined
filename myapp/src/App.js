@@ -73,12 +73,12 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/itemdetail/:itemId"
+              path="/itemdetail/:itemID"
               render={()=>{return(<ItemDetail aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/useraccount/:userId"
+              path="/useraccount/:userID"
               render={()=>{return(<UserAccount aName={this.state.aName} email={this.state.email}/>)}}
             />
             <Route
