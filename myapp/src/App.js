@@ -128,7 +128,7 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/checkoutcomplete:orderNumber"
+              path="/checkoutcomplete/:orderNumber"
               render={()=>{return(<CheckoutComplete aName={this.state.aName} email={this.state.email}/>)}}
             />
           </div>
