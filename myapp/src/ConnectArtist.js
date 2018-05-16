@@ -55,7 +55,7 @@ class ConnectArtist extends Component {
                 <NavButton />
                 {this.state.lEmail? <ArtistAccountButton/>: null}
                 <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
-                    <input type="text" onChange={(e)=>{this.setState({this.props.aName: e.target.value})}} value={this.props.aName} placeholder="Coco" required/>
+                    <input type="text" onChange={(e)=>{this.setState({aName: e.target.value})}} value={this.props.aName} placeholder="Coco" required/>
                     <input type="password" onChange={(e)=>{this.setState({lPassword:e.target.value})}} value={this.state.lPassword} placeholder="Password" required/>
                     <input type="submit"/>
                     {this.state.loggedIn? (<div>THANKS FOR LOGGING IN!<button onClick={this.redirect}>Back to Home</button></div>) : null}
