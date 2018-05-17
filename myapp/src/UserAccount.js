@@ -20,6 +20,8 @@ class Account extends Component {
         { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
         { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
      ],
+
+     // infos from back end
     firstName: "Jen",
     lastName: "o",
     email: 'jen@email.com',
@@ -27,56 +29,84 @@ class Account extends Component {
     city: "Montreal",
     province: "Quebec",
     postalCode: "H13 1Y8",
-    country: "Canada"
+    country: "Canada",
+
+    // info that we are changing
+    ifirstName: "Jen",
+    ilastName: "o",
+    iemail: 'jen@email.com',
+    iaddress: '123 Blah St.',
+    icity: "Montreal",
+    iprovince: "Quebec",
+    ipostalCode: "H13 1Y8",
+    icountry: "Canada"
     };
   }
 
+
   componentDidMount () {
+    this.initGetData()
+  }
+
+  initGetData = () => {
     //FETCH get itemsBought then setState the results endpoint: getItemsBought
     //FETCH get account info endpoint: getUserShippingInfo
     //FETCH get user info endpoint: getUserDetails
+      // Copy the data to idata
   }
 
   changePassword = () => {
     //this is probably fake
+    // Strech goal
   }
 
-  editAccount = () => {
+  saveAccount = () => {
     //edit account & update server
     //FETCH endpoint: updateUserAccount
   }
 
+  saveShipping = () => {
+    //edit Shipping Info & update server
+    //FETCH endpoint: updateUserAccount
+  }
+
+  ///////////////////////////////////
+  ///////////////////////////////////
+  ///////////////////////////////////
   handleAddressChange = (event) => {
-    this.setState({ address: event.target.value })
+    this.setState({ iaddress: event.target.value })
   }
 
   handleCityChange = (event) => {
-    this.setState({ city: event.target.value })
+    this.setState({ icity: event.target.value })
   }
 
   handleProvinceChange = (event) => {
-    this.setState({ province: event.target.value })
+    this.setState({ iprovince: event.target.value })
   }
 
   handlePostalCodeChange = (event) => {
-    this.setState({ postalCode: event.target.value })
+    this.setState({ ipostalCode: event.target.value })
   }
 
   handleCountryChange = (event) => {
-    this.setState({ country: event.target.value })
+    this.setState({ icountry: event.target.value })
   }
 
   handleFirstNameChange = (event) => {
-    this.setState({ firstName: event.target.value })
+    this.setState({ ifirstName: event.target.value })
   }
 
   handleLastNameChange = (event) => {
-    this.setState({ lastName: event.target.value })
+    this.setState({ ilastName: event.target.value })
   }
 
   handleEmailChange = (event) => {
-    this.setState({ email: event.target.value })
+    this.setState({ iemail: event.target.value })
   }
+  ///////////////////////////////////
+  ///////////////////////////////////
+  ///////////////////////////////////
 
   editShippingInfo = () => {
     this.setState({editShipping: true})
@@ -104,12 +134,12 @@ class Account extends Component {
         <button onClick={this.editShippingInfo}>Edit Shipping Info</button>
           </div>)
       } else {return (<form>
-        <input type="text" value={this.state.address} onChange={this.handleAddressChange}></input><br />
-        <input type="text" value={this.state.city} onChange={this.handleCityChange}></input><br />
-        <input type="text" value={this.state.province} onChange={this.handleProvinceChange}></input><br />
-        <input type="text" value={this.state.postalCode} onChange={this.handlePostalCodeChange}></input><br />
-        <input type="text" value={this.state.country} onChange={this.handleCountryChange}></input><br />
-        <button onClick = {this.saveInfo}>Save Info</button>
+        <input type="text" value={this.state.iaddress} onChange={this.handleAddressChange}></input><br />
+        <input type="text" value={this.state.icity} onChange={this.handleCityChange}></input><br />
+        <input type="text" value={this.state.iprovince} onChange={this.handleProvinceChange}></input><br />
+        <input type="text" value={this.state.ipostalCode} onChange={this.handlePostalCodeChange}></input><br />
+        <input type="text" value={this.state.icountry} onChange={this.handleCountryChange}></input><br />
+        <button onClick = {this.saveShipping}>Save Info</button>
       </form>)
       }
     })()
@@ -123,11 +153,11 @@ class Account extends Component {
         <button onClick={this.editAccountInfo}>Edit Account</button>
         </div>)
       } else {return (<form>
-        <input type="text" value={this.state.firstName} onChange={this.handleFirstNameChange}></input><br />
-        <input type="text" value={this.state.lastName} onChange={this.handleLastNameChange}></input><br />
-        <input type="text" value={this.state.email} onChange={this.handleEmailChange}></input><br />
+        <input type="text" value={this.state.ifirstName} onChange={this.handleFirstNameChange}></input><br />
+        <input type="text" value={this.state.ilastName} onChange={this.handleLastNameChange}></input><br />
+        <input type="text" value={this.state.iemail} onChange={this.handleEmailChange}></input><br />
         <p>Password: ******</p>
-        <button onClick = {this.saveInfo}>Save Info</button>
+        <button onClick = {this.saveAccount}>Save Info</button>
       </form>)
       }
     })()
