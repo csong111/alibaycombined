@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Item from "./Item.js";
+import Item from "./page-elements.js/Item.js";
 import NavButton from './page-elements.js/nav-button.js';
 import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from './page-elements.js/cart-button.js';

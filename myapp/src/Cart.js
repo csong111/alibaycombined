@@ -46,10 +46,10 @@ class Cart extends Component {
       method: 'GET',
     }).then(res=>res.text())
       .then(resB=>{
-        let parsed=JSON.parse(resB)
-        
+        let parsed=JSON.parse(resB);
+        let items=parsed.items;
+        this.setState({items: items})
       })
-    
     
     var self = this
     window.paypal.Button.render(
@@ -88,16 +88,58 @@ class Cart extends Component {
       "#paypal-button"
     );
   }
-  buy = (itemID, artistName, userID) => {
-    //fetch from backend, will return orderID and pass it as props to checkout complete.
-    //When you buy, you use the putItemsBought and putOrder endpoints.
+
+  getUserDetails = () => {
+    fetch("/getUserDetails?userID="+this.props.userID, {
+      method: 'GET'
+    }).then(res=>res.text())
+      .then(resB=> {
+        let parsed=JSON.parse(resB);
+        let firstName=parsed.firstName;
+        let lastName=parsed.lastName;
+        let email=parsed.email;
+        let address=parsed.address;
+        let city=parsed.city;
+        let province=parsed.province;
+        let postalCode=parsed.postalCode;
+        let country=parsed.country;
+        this.setState({firstName: firstName, lastName: lastName, email: email, address: address, city: city, province: province, postalCode: postalCode, country: country})
+      })
+  }
+  buy = () => {
+    let date=new Date();
+    let body=JSON.stringify({userID: this.state.userID, items: this.state.items, date: date})
+    fetch("/putTransaction", {
+      method: 'POST',
+      body: body
+    }).then(res=>res.text())
+      .then(resB=> {
+        let parsed=JSON.parse(resB);
+        let orderID=parsed.orderID;
+        this.setState({orderID: orderID});
+      }).fetch("/putUserShippingInfo", {
+        method: 'POST',
+        body: JSON.stringify({userID: this.state.userID, address: this.state.address})
+      }).then(res=>res.text())
+        .then(resB=>{
+          let parsed=JSON.parse(resB);
+          console.log(parsed)
+        })
+    
+    //When you buy, you use the puttransaction
     //send shipping info...putUserShippingInfo    
-    this.props.history.push("/checkoutcomplete/" + this.state.orderNumber);
+    //send date   
+    //fetch from transactions the orderID, then setState with orderID, then pass it as props to checkout complete.
+    this.props.history.push("/checkoutcomplete/" + this.state.orderID);
   };
 
   //fetch to remove the item from cart
-  removeItem = itemID => {};
-  updateQuantity = qty => {};
+  removeItem = itemID => {
+
+  };
+  updateQuantity = qty => {
+
+  };
 
   render() {
     console.log(window.paypal);

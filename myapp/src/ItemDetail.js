@@ -24,9 +24,31 @@ class ItemDetail extends Component {
 
   //getItem details
   componentDidMount = () =>{
-
+    fetch("/getItemDetails?itemID="+this.props.itemID, {
+      method: 'GET',
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        let name=parsed.name;
+        let imageURL=parsed.imageURL;
+        let blurb=parsed.blurb;
+        let artistName=parsed.artistName;
+        let price=parsed.price;
+        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
+    })
   }
-  addToCart = itemID => {};
+  addToCart = (userID, itemID) => {
+    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID})
+    fetch("/addToCart", {
+      method: 'POST',
+      body: body 
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        
+      })
+
+  };
   seeArtistInfo = artistName => {};
 
   render() {
