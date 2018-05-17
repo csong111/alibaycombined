@@ -31,6 +31,18 @@ class ArtistAccount extends Component {
     }
 
     initData = () => {
+      fetch('/getArtistDetails?aName='+this.props.aName, {
+        method: 'GET'
+      }).then(res=>res.text())
+        .then(resB=>{
+          let parsed = JSON.parse(resB);
+          let artistName = parsed.artistName;
+          let bio = parsed.bio;
+          let location = parsed.location;
+          let imageURL = parsed.imageURL;
+          let items = parsed.items;
+          this.setState({artistName: artistName, bio: bio, location: location, imageURL: imageURL, items: items})
+        })
       //FETCH get artist info endpoint: getArtistDetails
     }
 
@@ -109,7 +121,7 @@ class ArtistAccount extends Component {
               <NavButton />
               <HomeButton />
 
-              {this.props.artistName === "" ? null : <ArtistAccountButton />}
+              {this.props.aName === "" ? null : <ArtistAccountButton />}
 
               <h2>MY ACCOUNT</h2>
               <input id="changeProfile" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} />
