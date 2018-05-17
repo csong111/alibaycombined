@@ -3,8 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import UserAccountButton from "./page-elements.js/user-account-button.js";
 import NavButton from "./page-elements.js/nav-button.js";
+import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+
 
 class CheckoutComplete extends Component {
   constructor() {
@@ -59,7 +61,7 @@ class CheckoutComplete extends Component {
     return (
       <div className="App">
         <NavButton />
-        <h1>LOGO</h1>
+        <HomeButton />
         <h1>
           Thank you for your purchase. Your order number is {this.props.orderID}
         </h1>
