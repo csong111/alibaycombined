@@ -26,11 +26,11 @@ class Nav extends Component {
             <div>
                 <button onClick={this.closeNav}>X</button>
                 <ul style={{listStyleType: "none"}}>
-                    <li>PRINTS</li>
-                    <li>PILLOWS</li>
-                    <li>EMBROIDERY</li>
-                    <li>WALLPAPER</li>
-                    <li>CURTAINS</li>
+                    <li><Link className="link" to={"/featuredcat/prints"}>PRINTS</Link></li>
+                    <li><Link className="link" to={"/featuredcat/pillows"}>PILLOWS</Link></li>
+                    <li><Link className="link" to={"/featuredcat/embroidery"}>EMBROIDERY</Link></li>
+                    <li><Link className="link" to={"/featuredcat/wallpaper"}>WALLPAPER</Link></li>
+                    <li><Link className="link" to={"/featuredcat/curtains"}>CURTAINS</Link></li>
                 </ul>
             </div>
         )
