@@ -238,7 +238,6 @@ class Cart extends Component {
               <Stripe />
               <button onClick={this.buy}/>
             </form>
-            <button className="noButton" onClick={this.buy} />
           </div>
         
       </div>
