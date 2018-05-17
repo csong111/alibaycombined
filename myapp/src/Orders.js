@@ -11,6 +11,7 @@ class Orders extends Component {
     constructor() {
         super();
         this.state={
+            artistName:"caro",
             orders: [
                 { orderID: "#123782", buyerName: "Joe", itemID: ['123457','123458'], total: 100, date: "May 15, 2018", fulfilled: "fulfilled" },
                 { orderID: "#1237866", buyerName: "Joe", itemID: ['1479','123458'], total: 600, date: "May 10, 2018", fulfilled: "unfulfilled" }
@@ -19,13 +20,15 @@ class Orders extends Component {
     }
 
     //fetch getOrders. returns an array or Order objects
+    //get the artist name
     componentDidMount = () =>{
 
     }
     
 
-    seeArtistAcct = (artistName) => {
-    return (<ArtistAccount/>);
+    seeArtistAcct = () => {
+
+        this.props.history.push("/artistaccount/"+this.state.artistName)
     }
 
     //getItem details from the array of itemID's that were bought
@@ -99,4 +102,5 @@ class Orders extends Component {
       }
 }
 
-export default Orders;
+let Content = withRouter(Orders)
+export default Content;
