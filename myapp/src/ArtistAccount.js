@@ -13,6 +13,7 @@ class ArtistAccount extends Component {
       this.state= {
         edit: false,
         artistName: "caro",
+        artistNameInput: "",
         bio: "I'm a cool artist",
         location: "Montreal, Canada",
         imageURL: "mypic.jpg",
@@ -25,9 +26,29 @@ class ArtistAccount extends Component {
   }
 
     componentDidMount () {
-      //FETCH get artist info endpoint: getArtistDetails
-      //FETCH change profile endpoint: uploadProfilePic
+      this.initData()
     }
+
+    initData = () => {
+      //FETCH get artist info endpoint: getArtistDetails
+    }
+
+    // JACQUES'S CODE UPLOAD PICTURE
+      //FETCH change profile endpoint: uploadProfilePic
+
+    uploadFile = x => {
+        // let filename = x.name;
+        // let fileExtension = filename.split(".").pop();
+        // this.setState({ imageInputName: x.name });
+        // fetch("/uploadPic?ext=" + fileExtension, {
+        //   method: "POST",
+        //   body: x
+        // })
+        //   .then(response => response.text())
+        //   .then(response => this.setState({ imageInput: response }))
+        //   .then(() => this.state.imageInput);
+    };
+
 
     createListing = (artistName) => {
       this.props.history.push("/createListing/")
@@ -36,18 +57,30 @@ class ArtistAccount extends Component {
       this.props.history.push("/orders/" + this.state.artistName)
     }
     editInfo = () => {
-      //FETCH endpoint: updateArtistAccount
+      this.setState({edit: true})
     }
 
+    saveInfo = (event) => {
+      //FETCH endpoint: updateArtistAccount then =>
+        this.initData()
+    }
 
     handleArtistNameChange = (event) => {
       this.setState({ artistName: event.target.value })
     }
 
+    handleLocationChange = (event) => {
+      this.setState({ location: event.target.value })
+    }
+
+    handleBioChange = (event) => {
+      this.setState({ bio: event.target.value })
+    }
+
     render() {
       let itemsRendered = this.state.items.map((el,id)=>{
         return (
-          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          <Item key={id} itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
         )
       })
 
@@ -57,9 +90,13 @@ class ArtistAccount extends Component {
             <p>Name: {this.state.artistName}</p>
             <p>Location: {this.state.location}</p>
             <p>{this.state.bio}</p>
+            <button onClick = {this.editInfo}>Edit Info</button>
             </div>)
         } else {return (<form>
-          <input type="text" value={this.state.artistName} onChange={this.handleArtistNameChange}></input>
+          <input type="text" value={this.state.artistName} onChange={this.handleArtistNameChange}></input><br />
+          <input type="text" value={this.state.location} onChange={this.handleLocationChange}></input><br />
+          <textarea value={this.state.bio} onChange={this.handleBioChange}></textarea><br />
+          <button onClick = {this.saveInfo}>Save Info</button>
         </form>)
         }
       })()
@@ -80,8 +117,6 @@ class ArtistAccount extends Component {
               <div>
               {accountInfo}
               </div>
-
-              <button onClick = {this.editInfo}>Edit Info</button>
 
               <h2>ORDERS</h2>
               <button onClick = {this.seeOrders}>See Orders</button>

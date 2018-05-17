@@ -27,7 +27,7 @@ class FeaturedCat extends Component {
     render() {
       var itemsRendered = this.state.itemsInCat.map((el,id)=>{
         return (
-          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          <Item key={id} itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
         )
       })
 
