@@ -30,7 +30,24 @@ class CreateListing extends Component {
   
   //Fetch create listing. 
   handleSubmit = () => {
-    this.props.history.push("/itemdetail/"+this.state.itemID)
+    let body = JSON.stringify({
+      artistName: this.state.artistName,
+      name: this.state.name,
+      price: this.state.price,
+      cat: this.state.cat,
+      blurb: this.state.blurb,
+      quantity: this.state.quantity,
+      imageURL1: this.state.imageURL1,
+      imageURL2: this.state.imageURL2,
+      imageURL3: this.state.imageURL3,
+    })
+
+    fetch("/createListing", {
+      method: 'POST',
+      body: body
+    }).then(res=>res.text())
+      .then(resB=> this.props.history.push("/itemdetail/"+JSON.parse(resB).itemID))
+    //this.props.history.push("/itemdetail/"+this.state.itemID)
   }
 
   uploadFile = x => {
