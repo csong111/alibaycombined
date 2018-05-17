@@ -9,59 +9,39 @@ import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
 
 class ArtistAccount extends Component {
-    constructor() {
-      super();
-      this.state= {
-        edit: false,
-        artistName: "caro",
-        artistNameInput: "",
-        bio: "I'm a cool artist",
-        location: "Montreal, Canada",
-        imageURL: "mypic.jpg",
-        items: [
-              { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
-              { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
-          ]
-
-    }
-  }
-
-    componentDidMount () {
-      this.initData()
-    }
-
-    initData = () => {
-      fetch('/getArtistDetails?artistName='+this.props.artistName, {
-        method: 'GET'
-      }).then(res=>res.text())
-        .then(resB=>{
-          let parsed = JSON.parse(resB);
-          let artistName = parsed.artistName;
-          let bio = parsed.bio;
-          let location = parsed.location;
-          let imageURL = parsed.imageURL;
-          let items = parsed.items;
-          this.setState({artistName: artistName, bio: bio, location: location, imageURL: imageURL, items: items})
-        })
-      //FETCH get artist info endpoint: getArtistDetails
-    }
-
-    // JACQUES'S CODE UPLOAD PICTURE
-      //FETCH change profile endpoint: uploadProfilePic
-
-    uploadFile = x => {
-        // let filename = x.name;
-        // let fileExtension = filename.split(".").pop();
-        // this.setState({ imageInputName: x.name });
-        // fetch("/uploadPic?ext=" + fileExtension, {
-        //   method: "POST",
-        //   body: x
-        // })
-        //   .then(response => response.text())
-        //   .then(response => this.setState({ imageInput: response }))
-        //   .then(() => this.state.imageInput);
+  constructor() {
+    super();
+    this.state = {
+      edit: false,
+      artistName: "caro",
+      artistNameInput: "",
+      bio: "I'm a cool artist",
+      location: "Montreal, Canada",
+      profPicURL: "",
+      items: [
+        {
+          itemID: "123457",
+          name: "Awesome Embroidery",
+          price: 100,
+          artistName: "caro",
+          imageURL: "embroidery.jpg",
+          cat: "Spring",
+          blurb: "Best embroidery ever!",
+          quantity: 1
+        },
+        {
+          itemID: "123458",
+          name: "Pillow",
+          price: 100,
+          artistName: "caro",
+          imageURL: "pillow.jpg",
+          cat: "Popular",
+          blurb: "Best pillow ever!",
+          quantity: 2
+        }
+      ]
     };
-  
+  }
 
   componentDidMount() {
     this.initData();
@@ -77,32 +57,33 @@ class ArtistAccount extends Component {
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
-        let imageURL = parsed.imageURL;
+        let profPicURL = parsed.profPicURL;
         let items = parsed.items;
         this.setState({
           artistName: artistName,
           bio: bio,
           location: location,
-          imageURL: imageURL,
+          profPicURL: profPicURL,
           items: items
         });
       });
+    //FETCH get artist info endpoint: getArtistDetails
   };
 
   // JACQUES'S CODE UPLOAD PICTURE
   //FETCH change profile endpoint: uploadProfilePic
 
-  uploadFile = x => {
-    // let filename = x.name;
-    // let fileExtension = filename.split(".").pop();
-    // this.setState({ imageInputName: x.name });
-    // fetch("/uploadPic?ext=" + fileExtension, {
-    //   method: "POST",
-    //   body: x
-    // })
-    //   .then(response => response.text())
-    //   .then(response => this.setState({ imageInput: response }))
-    //   .then(() => this.state.imageInput);
+  uploadFile = (x, stateName) => {
+    let filename = x.name;
+    let fileExtension = filename.split(".").pop();
+    this.setState({ imageInputName: x.name });
+    fetch("/uploadPicProfile?ext=" + fileExtension, {
+      method: "POST",
+      body: x
+    })
+      .then(response => response.text())
+      .then(response => this.setState({ [stateName]: response }))
+      .then(() => this.state.imageInput);
   };
 
   createListing = artistName => {
@@ -133,6 +114,7 @@ class ArtistAccount extends Component {
   };
 
   render() {
+    console.log(this.state)
     let itemsRendered = this.state.items.map((el, id) => {
       return (
         <div key={id}>
@@ -141,7 +123,7 @@ class ArtistAccount extends Component {
             name={el.name}
             price={el.price}
             artistName={el.artistName}
-            imageURL={el.imageURL}
+            profPicURL={el.profPicURL}
           />
         </div>
       );
@@ -188,25 +170,9 @@ class ArtistAccount extends Component {
         {this.props.artistName === "" ? null : <ArtistAccountButton />}
 
         <h2>MY ACCOUNT</h2>
-        <input
-          id="changeProfile"
-          style={{ display: "none" }}
-          type="file"
-          onChange={event => this.uploadFile(event.target.files[0])}
-        />
-        {this.state.imageURL !== "" ? (
-          <img src={this.state.imageURL} />
-        ) : (
-          <img src="/items/addimage.png" height="50px" width="50px" />
-        )}
-        <br />
-        <input
-          value="Change Profile Pic"
-          type="submit"
-          onClick={() => {
-            document.getElementById("changeProfile").click();
-          }}
-        />
+
+        <input id="changeProfile" style={{ display: "none" }} type="file" onChange={event => this.uploadFile(event.target.files[0], "profPicURL")} placeholder="Upload Profile Pic Image"/>
+        {this.state.profPicURL !== "" ? <img src={this.state.profPicURL} /> :<img onClick={() => {document.getElementById("changeProfile").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
 
         <div>{accountInfo}</div>
 
@@ -223,4 +189,3 @@ class ArtistAccount extends Component {
 
 let Content = withRouter(ArtistAccount);
 export default Content;
-
