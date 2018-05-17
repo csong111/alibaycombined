@@ -4,6 +4,8 @@ import '../App.css';
 
 class Item extends Component {
   render() {
+    // console.log(this.props.location.pathname)
+    // console.log(this.props.location.pathname.split('/')[1])
     return (
       <div className="card">
       <div>
@@ -12,11 +14,14 @@ class Item extends Component {
         </Link>
           <div className ="itemName">{this.props.name}</div>
           <div className="price">${this.props.price}</div>
-          {this.props.artistName !== "" ? <Link to = {"/editlisting/" + this.props.itemID}>Edit Item</Link> : null}
+          {this.props.location.pathname.split('/')[1] === "artistaccount" ? <Link to = {"/editlisting/" + this.props.itemID}>Edit Item</Link> : null}
       </div>
       </div>
           )
         }
       }
+    
+
+      let Content = withRouter(Item)
+      export default Content;
       
-export default Item;

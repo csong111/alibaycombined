@@ -22,7 +22,7 @@ class FeaturedCat extends Component {
     }
 
     componentDidMount () {
-      //FETCH get itemsInCat by cat name then setState the results
+      //FETCH get itemsInCat by cat name then setState the results endpoint: getCatItems
     }
 
     render() {

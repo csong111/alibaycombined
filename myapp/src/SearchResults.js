@@ -27,7 +27,7 @@ class SearchResults extends Component {
   }
 
   componentDidMount () {
-    //FETCH get searchItems by searchQuery then setState the results
+    //FETCH get searchItems by searchQuery then setState the results endpoint: searchItems
   }
 
   render() {
