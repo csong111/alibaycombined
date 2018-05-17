@@ -48,7 +48,9 @@ class Home extends Component {
 
     var itemsRendered = this.state.randomItems.map((el,id)=>{
       return (
+        <div key={id}>
         <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+        </div>
       )
     })
     

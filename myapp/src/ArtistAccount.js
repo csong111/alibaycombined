@@ -48,7 +48,7 @@ class ArtistAccount extends Component {
     render() {
       let itemsRendered = this.state.items.map((el,id)=>{
         return (
-          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          <div key={id}><Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} /></div>
         )
       })
 
