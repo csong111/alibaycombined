@@ -48,8 +48,25 @@ class ArtistAccount extends Component {
   }
 
   initData = () => {
-    //FETCH get artist info endpoint: getArtistDetails
-    fetch()
+    fetch("/getArtistDetails?artistName=" + this.props.artistName, {
+      method: "GET"
+    })
+      .then(res => res.text())
+      .then(resB => {
+        let parsed = JSON.parse(resB);
+        let artistName = parsed.artistName;
+        let bio = parsed.bio;
+        let location = parsed.location;
+        let imageURL = parsed.imageURL;
+        let items = parsed.items;
+        this.setState({
+          artistName: artistName,
+          bio: bio,
+          location: location,
+          imageURL: imageURL,
+          items: items
+        });
+      });
   };
 
   // JACQUES'S CODE UPLOAD PICTURE
@@ -186,3 +203,4 @@ class ArtistAccount extends Component {
 
 let Content = withRouter(ArtistAccount);
 export default Content;
+
