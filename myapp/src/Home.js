@@ -57,8 +57,8 @@ class Home extends Component {
         <NavButton />
         <HomeButton/>
         {this.props.email !== "" ? <UserAccountButton /> : null}
-        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-        {this.props.email === "" && this.props.aName === "" ? <ConnectButton /> : null}
+        {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.email === "" && this.props.artistName === "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton /> : null}
         <SearchBar />
         <h2>Featured collection</h2>

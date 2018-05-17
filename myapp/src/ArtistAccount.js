@@ -109,7 +109,7 @@ class ArtistAccount extends Component {
               <NavButton />
               <HomeButton />
 
-              {this.props.aName === "" ? null : <ArtistAccountButton />}
+              {this.props.artistName === "" ? null : <ArtistAccountButton />}
 
               <h2>MY ACCOUNT</h2>
               <input id="changeProfile" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} />

@@ -20,7 +20,6 @@ class CreateListing extends Component {
       imageURL1: '/items/aisha.jpg',
       imageURL2: '/items/pillow.jpg',
       imageURL3: '',
-      itemID: 123
     }
   }
 
@@ -30,7 +29,22 @@ class CreateListing extends Component {
   
   //Fetch create listing. 
   handleSubmit = () => {
-    this.props.history.push("/itemdetail/"+this.state.itemID)
+    let body = JSON.stringify({
+      artistName: this.state.artistName,
+      name: this.state.name,
+      price: this.state.price,
+      cat: this.state.cat,
+      blurb: this.state.blurb,
+      quantity: this.state.quantity,
+      imageURL1: this.state.imageURL1,
+      imageURL2: this.state.imageURL2,
+      imageURL3: this.state.imageURL3,
+    })
+
+    fetch("/createListing",{method:"POST",body:body})
+    .then(e=>e.text())
+    .then(e=>JSON.parse(e))
+    .then(e=>this.props.history.push("/itemdetail/"+e.itemID))    
   }
 
   uploadFile = x => {

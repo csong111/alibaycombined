@@ -40,8 +40,8 @@ class SearchResults extends Component {
         <NavButton />
         <HomeButton />
         {this.props.email !== "" ? <UserAccountButton /> : null}
-        {this.props.aName !== "" ? <ArtistAccountButton /> : null}
-        {this.props.email !== "" || this.props.aName !== "" ? (
+        {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.email !== "" || this.props.artistName !== "" ? (
           <ConnectButton />
         ) : null}
         {this.props.email !== "" ? <CartButton /> : null}

@@ -13,7 +13,7 @@ class ConnectArtist extends Component {
     constructor (props) {
         super(props);
         this.state={//ARTIST LOGIN
-            aName: 'aisha',
+            artistName: 'aisha',
             aPassword: '123456',
             loggedIn: false,
          
@@ -67,7 +67,7 @@ class ConnectArtist extends Component {
                 {this.state.lEmail? <ArtistAccountButton/>: null}
                 <hr/>
                 <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
-                    <input type="text" onChange={(e)=>{this.setState({aName: e.target.value})}} value={this.state.aName} placeholder="name@email.com" required/>
+                    <input type="text" onChange={(e)=>{this.setState({artistName: e.target.value})}} value={this.state.artistName} placeholder="name@email.com" required/>
                     <input type="password" onChange={(e)=>{this.setState({aPassword:e.target.value})}} value={this.state.aPassword} placeholder="Password" required/>
                     <input type="submit"/>
                 </form>
