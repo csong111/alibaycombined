@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavButton from './page-elements.js/nav-button.js';
+import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from './ArtistAccount.js';
 import ArtistAccountButton from './page-elements.js/artist-account-button.js';
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
@@ -49,7 +50,7 @@ class EditListing extends Component {
       return (
         <div className="App">
             <NavButton />
-            <h1>LOGO</h1>
+            <HomeButton/>
             <h1>EDIT LISTING</h1>
             <button onClick={this.seeArtistAcct}>Your artist account</button>
             <form onSubmit={this.handleSubmit}>

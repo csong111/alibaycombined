@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserAccountButton from './page-elements.js/user-account-button.js';
 import ArtistAccountButton from './page-elements.js/artist-account-button.js';
 import NavButton from './page-elements.js/nav-button.js';
+import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from './page-elements.js/cart-button.js';
 import ConnectButton from './page-elements.js/connect-button.js';
 import SearchBar from './page-elements.js/search-bar.js';
@@ -62,6 +63,7 @@ class ConnectArtist extends Component {
                 <button>I'm an artist</button>
                 <h1>CONNECT ARTIST</h1>
                 <NavButton />
+                <HomeButton/>
                 {this.state.lEmail? <ArtistAccountButton/>: null}
                 <hr/>
                 <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
