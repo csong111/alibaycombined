@@ -44,7 +44,7 @@ class ArtistProfile extends Component {
         <HomeButton />
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.email !== "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton /> : null}
+        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
           <h1>LOGO</h1>
           <h2>MEET CLARA</h2>
           <div>PROFILEPIC</div>

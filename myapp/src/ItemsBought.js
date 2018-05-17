@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Item from "./Item.js";
+import Item from "./page-elements.js/Item.js";
 import NavButton from './page-elements.js/nav-button.js';
 import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from './page-elements.js/cart-button.js';
@@ -15,6 +15,9 @@ class ItemsBought extends Component {
     this.state = {itemsBought:[]};
   }
  
+  componentDidMount = () => {
+    //fetch itemsbought from transactions database
+  }
 
   render() {
     return (
@@ -22,7 +25,7 @@ class ItemsBought extends Component {
         <NavButton />
         <HomeButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
+        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
       </div>
     );
   }

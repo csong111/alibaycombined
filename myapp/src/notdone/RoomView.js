@@ -11,7 +11,7 @@ class RoomView extends Component {
         <div className="App">
             <NavButton />
             {this.state.userID === "" ? null : <UserAccountButton />}
-            {this.state.userID === "" ? null : <CartButton />}
+            {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
         </div>
       );
     }

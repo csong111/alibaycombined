@@ -4,7 +4,7 @@ import './App.css';
 // import Account from './Account.js';
 // import SignIn from './SignIn.js';
 // import SignUp from './SignUp.js';
-// import ItemsBought from './ItemsBought.js';
+//import ItemsBought from './ItemsBought.js';
 // import ArtistSignUp from './ArtistSignUp.js';
 // import ArtistProfile from './ArtistProfile.js';
 // import CreateListing from './CreateListing.js'; 
@@ -26,14 +26,16 @@ import ArtistSignUpComplete from './ArtistSignUpComplete.js';
 import UserSignUpComplete from './UserSignUpComplete.js';
 import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
+import ItemsBought from './ItemsBought.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state={
+
       artistName: "",
-      email: "",
-      userID: 1,
+      email: "jen@asd.com",
+      userID: "jen",
     }
   }
   loginArtist = (e) => {
@@ -50,7 +52,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/"
-              render={()=>{return(<Home artistName={this.state.artistName} email={this.state.email} />)}}
+              render={()=>{return(<Home artistName={this.state.artistName} email={this.state.email} userID={this.state.userID} />)}}
             />
             <Route
               exact={true}
@@ -69,13 +71,18 @@ class App extends Component {
             />
             <Route
               exact={true}
+              path="/itemsbought/:userID"
+              render={(routerData)=>{return(<ItemsBought artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
+            />
+            <Route
+              exact={true}
               path="/searchresults/:query"
               render={()=>{return(<SearchResults artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/itemdetail/:itemID"
-              render={()=>{return(<ItemDetail artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ItemDetail artistName={this.state.artistName} userID={this.state.userID} email={this.state.email} itemID={routerData.match.params.itemID}/>)}}
             />
             <Route
               exact={true}

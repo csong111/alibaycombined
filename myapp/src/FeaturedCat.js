@@ -39,7 +39,7 @@ class FeaturedCat extends Component {
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
         {this.props.email !== "" || this.props.artistName !== "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton /> : null}
+        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
         <SearchBar/>
         <h2>FEATURED CAT</h2>
         <div name="cat-items">

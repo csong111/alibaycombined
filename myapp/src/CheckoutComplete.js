@@ -41,7 +41,8 @@ class CheckoutComplete extends Component {
   };
 
   componentDidMount() {
-    // check the URL for the Order ID, then do a fetch to get the Order details and  then setState checkOutItem
+    //fetch itemdetails of chekcedout items
+    // check the URL for the Order ID, then get the orderID as props from Cart, then then setState checkOutItems with this info
   }
 
   render() {
@@ -66,7 +67,7 @@ class CheckoutComplete extends Component {
           Thank you for your purchase. Your order number is {this.props.orderID}
         </h1>
         {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
+        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
         <div>Order details</div>
         <ul>{checkoutItems}</ul>
         <div>Total: ${total}</div>

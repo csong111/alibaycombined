@@ -167,7 +167,7 @@ class Account extends Component {
         <NavButton />
         <HomeButton/>
         {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
+        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
         <h2>ACCOUNT INFO</h2>
         {accountInfo}
 
