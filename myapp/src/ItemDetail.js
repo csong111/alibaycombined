@@ -49,7 +49,6 @@ class ItemDetail extends Component {
       })
 
   };
-  seeArtistInfo = artistName => {};
 
   render() {
       //fetch itemdetails from backend
@@ -60,7 +59,7 @@ class ItemDetail extends Component {
         <NavButton />
         <HomeButton/>
         {this.props.email === "" ? null : <UserAccountButton />}
-        {this.props.email === "" ? null : <CartButton />}
+        {this.props.email === "" ? null : <CartButton userID = {this.props.userID} />}
         {this.props.email === "" ? <ConnectButton /> : null}
         <SearchBar />
         <img src={"/"+this.state.imageURL}/>

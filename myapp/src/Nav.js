@@ -15,9 +15,6 @@ class Nav extends Component {
             allCat: ["Prints", "Pillows", "Embroidery", "Wallpaper", "Curtains", "Spring", "Popular", "Featured Items"],
         }
     }
-    seeItemsInCat = () => {
-    //fetch items in categories
-    }
     closeNav = () => {
         window.history.back();
     }

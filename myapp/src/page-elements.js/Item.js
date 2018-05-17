@@ -9,7 +9,7 @@ class Item extends Component {
     return (
       <div className="card">
       <div>
-        <Link to={"/details/" + this.props.itemID}> 
+        <Link to={"/itemdetail/" + this.props.itemID}> 
           <img className="images" src={'/' + this.props.image} alt="null" />
         </Link>
           <div className ="itemName">{this.props.name}</div>

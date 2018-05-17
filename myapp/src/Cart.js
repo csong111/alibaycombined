@@ -14,6 +14,22 @@ class Cart extends Component {
   constructor() {
     super();
     this.state = {
+
+      // Inner
+      showCheckout: false,
+
+
+      // UserDetails
+      firstName: "Jen",
+      lastName: "O",
+      email: "jen@email.com",
+      address: "123 Blah St.",
+      city: "Montreal",
+      province: "Quebec",
+      postalCode: "H13 1Y8",
+      country: "Canada",
+
+      // Cart
       cartItems: [
         {
           itemID: "123458",
@@ -24,34 +40,32 @@ class Cart extends Component {
           cat: "Popular",
           quantity: 2,
           quantityToBuy: 1,
-          orderNumber: 333,
-          showCheckout: false,
-          firstName: "Jen",
-          lastName: "O",
-          email: "jen@email.com",
-          address: "123 Blah St.",
-          city: "Montreal",
-          province: "Quebec",
-          postalCode: "H13 1Y8",
-          country: "Canada"
         }
       ]
-    };
-  }
+
+    };    
+  }   
 
   //do a fetch to getCart  and  then setState with the items.
   //getUser details to prepopulate the shipping info.
   componentDidMount() {
-    fetch('/getCart?userID='+this.props.userID, {
-      method: 'GET',
-    }).then(res=>res.text())
-      .then(resB=>{
-        let parsed=JSON.parse(resB);
-        let items=parsed.items;
-        this.setState({items: items})
-      })
-    
-    var self = this
+    var body = {
+      userID : this.props.userID
+    }
+    console.log("getCart-1",body)
+    fetch("/getCart", {
+      method: "POST",
+      body : JSON.stringify(body)
+    })
+    .then(e => e.text())
+    .then(e => JSON.parse(e))
+    .then(e=>{console.log("getCart-4",e);return e})
+    .then(e => {
+      this.setState({ cartItems: e.cartItems });
+      this.getUserDetails()
+    });
+
+    var self = this;
     window.paypal.Button.render(
       {
         env: "sandbox",
@@ -69,7 +83,7 @@ class Cart extends Component {
             payment: {
               transactions: [
                 {
-                  amount: { total: '1.00', currency: "CAD" }
+                  amount: { total: "1.00", currency: "CAD" }
                 }
               ]
             }
@@ -80,7 +94,7 @@ class Cart extends Component {
           return actions.payment.execute().then(function(payment) {
             // The payment is complete!
             // You can now show a confirmation message to the customer
-            console.log(payment)
+            console.log(payment);
             self.buy();
           });
         }
@@ -90,59 +104,125 @@ class Cart extends Component {
   }
 
   getUserDetails = () => {
-    fetch("/getUserDetails?userID="+this.props.userID, {
-      method: 'GET'
-    }).then(res=>res.text())
-      .then(resB=> {
-        let parsed=JSON.parse(resB);
-        let firstName=parsed.firstName;
-        let lastName=parsed.lastName;
-        let email=parsed.email;
-        let address=parsed.address;
-        let city=parsed.city;
-        let province=parsed.province;
-        let postalCode=parsed.postalCode;
-        let country=parsed.country;
-        this.setState({firstName: firstName, lastName: lastName, email: email, address: address, city: city, province: province, postalCode: postalCode, country: country})
-      })
-  }
+    var body = {
+      userID : this.props.userID
+    }
+    console.log("getUserDetails-1",body)
+    fetch("/getUserDetails", {
+      method: "POST",
+      body : JSON.stringify(body)
+    })
+    .then(e => e.text())
+    .then(e => JSON.parse(e))
+    .then(e=>{console.log("getUserDetails-4",e);return e})
+    .then(e => {
+      this.setState({ 
+        firstName: e.firstName,
+        lastName: e.lastName,
+        email: e.email,
+        address: e.address,
+        city: e.city,
+        province: e.province,
+        postalCode: e.postalCode,
+        country: e.country,
+      });
+    });
+  };
+
   buy = () => {
-    let date=new Date();
-    let body=JSON.stringify({userID: this.state.userID, items: this.state.items, date: date})
-    fetch("/putTransaction", {
-      method: 'POST',
-      body: body
-    }).then(res=>res.text())
-      .then(resB=> {
-        let parsed=JSON.parse(resB);
-        let orderID=parsed.orderID;
-        this.setState({orderID: orderID});
-      }).fetch("/putUserShippingInfo", {
-        method: 'POST',
-        body: JSON.stringify({userID: this.state.userID, address: this.state.address})
-      }).then(res=>res.text())
-        .then(resB=>{
-          let parsed=JSON.parse(resB);
-          console.log(parsed)
-        })
-    
-    //When you buy, you use the puttransaction
-    //send shipping info...putUserShippingInfo    
-    //send date   
-    //fetch from transactions the orderID, then setState with orderID, then pass it as props to checkout complete.
-    this.props.history.push("/checkoutcomplete/" + this.state.orderID);
+    // addTransaction
+    var body = {
+      // Shipping Infos
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      address: this.state.address,
+      city: this.state.city,
+      province: this.state.province,
+      postalCode: this.state.postalCode,
+      country: this.state.country,
+      // userID
+      userID : this.props.userID,
+      // transactions
+      cartItems : this.state.cartItems,
+    }
+    console.log("createTransaction-1",body)
+    fetch("/createTransaction", {
+      method: "POST",
+      body : JSON.stringify(body)
+    })
+    .then(e => e.text())
+    .then(e => JSON.parse(e))
+    .then(e=>{console.log("createTransaction-4",e);return e})
+    .then(e => {
+      this.props.history.push("/checkoutcomplete/" + e.transactionID);
+    });
   };
 
   //fetch to remove the item from cart
-  removeItem = itemID => {
+  removeItem = tempCartItems => {
+    // 1) See&correct business logic
+    // 2) Figure how I'm going to change things in the database
+    // 3) Define what you send
+    // 4) Define What you receive
+    // 5) Go on back end, and rewrite the logic
+    // 6) Test it & look at the consolelog
+    // 7) Define backEndLogic as pseudoCode
 
+    // // 1)
+      // Go through cartItems array and remove the object that contains the itemID we want to remove
+      //
+        // resetFront State ()
+    var body = {
+      // userID
+      userID : this.props.userID,
+      // transactions
+      cartItems : tempCartItems,
+    }
+    console.log("removeItem-1",body)
+    fetch("/removeItem", {
+      method: "POST",
+      body : JSON.stringify(body)
+    })
+    .then(e => e.text())
+    .then(e => JSON.parse(e))
+    .then(e=>{console.log("removeItem-4",e);return e})
+    .then(e => {
+      this.setState({
+        cartItems : e.cartItems,
+      })
+    });
   };
   updateQuantity = qty => {
-
+    // 1) See&correct business logic
+    // 2) Figure how I'm going to change things in the database
+    // 3) Define what you send
+    // 4) Define What you receive
+    // 5) Go on back end, and rewrite the logic
+    // 6) Test it & look at the consolelog
+    // 7) Define backEndLogic as pseudoCode
+    var body = {
+      // userID
+      userID : this.props.userID,
+      // transactions
+      cartItems : this.state.cartItems,
+    }
+    console.log("updateQuantity-1",body)
+    fetch("/updateQuantity", {
+      method: "POST",
+      body : JSON.stringify(body)
+    })
+    .then(e => e.text())
+    .then(e => JSON.parse(e))
+    .then(e=>{console.log("updateQuantity-4",e);return e})
+    .then(e => {
+      this.setState({
+        cartItems : e.cartItems,
+      })
+    });
   };
 
   render() {
-    console.log(window.paypal);
     let total = 0;
     let cartItems = this.state.cartItems.map((item, id) => {
       total += item.price * item.quantityToBuy;
@@ -169,20 +249,24 @@ class Cart extends Component {
             placeholder={item.quantity + " in stock"}
           />
           <button onClick={this.updateQuantity}>Update Quantity</button>
-          <button onClick={this.removeItem}>Remove Item</button>
+          <button onClick={()=>{
+            var temp = JSON.parse(JSON.stringify(this.state.cartItems));
+            temp = temp.filter((EL,ID)=> ID!==id)
+            this.removeItem(temp)
+          }}>Remove Item</button>
         </div>
       );
     });
     return (
       <div className="App">
-      <HomeButton />
+        <HomeButton />
         <NavButton />
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
         {this.props.email == "" || this.props.artistName == "" ? (
           <ConnectButton />
         ) : null}
-        {this.props.email !== "" ? <CartButton /> : null}
+        {this.props.email !== "" ? <CartButton  userID = {this.props.userID}/> : null}
         <h1>CART</h1>
         <div>{cartItems}</div>
         <div>Total: ${total}</div>
@@ -193,104 +277,109 @@ class Cart extends Component {
         >
           Checkout Now
         </button>
-        
-          <div style={this.state.showCheckout ? {display:"inline"} : {display:"none"}}>
-            <div>Enter Shipping Info</div>
-            <form>
-              First Name:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ firstName: e.target.value });
-                }}
-                value={this.state.firstName}
-                placeholder="First Name"
-                required
-              />
-              <br />
-              Last Name:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ lastName: e.target.value });
-                }}
-                value={this.state.lastName}
-                placeholder="Last Name"
-                required
-              />
-              <br />
-              Email:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ email: e.target.value });
-                }}
-                value={this.state.email}
-                placeholder="Email"
-                required
-              />
-              <br />
-              Address:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ address: e.target.value });
-                }}
-                value={this.state.email}
-                placeholder="Address"
-                required
-              />
-              <br />
-              City:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ city: e.target.value });
-                }}
-                value={this.state.city}
-                placeholder="City"
-                required
-              />
-              <br />
-              Province:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ province: e.target.value });
-                }}
-                value={this.state.province}
-                placeholder="Province"
-                required
-              />
-              <br />
-              Postal Code:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ postalCode: e.target.value });
-                }}
-                value={this.state.postalCode}
-                placeholder="Postal Code"
-                required
-              />
-              <br />
-              Country:{" "}
-              <input
-                type="text"
-                onChange={e => {
-                  this.setState({ country: e.target.value });
-                }}
-                value={this.state.country}
-                placeholder="Country"
-                required
-              />
-              <br />
-              <div id="paypal-button" />
-              <Stripe />
-              <button onClick={this.buy}/>
-            </form>
-          </div>
-        
+
+        <div
+          style={
+            this.state.showCheckout
+              ? { display: "inline" }
+              : { display: "none" }
+          }
+        >
+          <div>Enter Shipping Info</div>
+          <form>
+            First Name:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ firstName: e.target.value });
+              }}
+              value={this.state.firstName}
+              placeholder="First Name"
+              required
+            />
+            <br />
+            Last Name:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ lastName: e.target.value });
+              }}
+              value={this.state.lastName}
+              placeholder="Last Name"
+              required
+            />
+            <br />
+            Email:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ email: e.target.value });
+              }}
+              value={this.state.email}
+              placeholder="Email"
+              required
+            />
+            <br />
+            Address:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ address: e.target.value });
+              }}
+              value={this.state.email}
+              placeholder="Address"
+              required
+            />
+            <br />
+            City:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ city: e.target.value });
+              }}
+              value={this.state.city}
+              placeholder="City"
+              required
+            />
+            <br />
+            Province:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ province: e.target.value });
+              }}
+              value={this.state.province}
+              placeholder="Province"
+              required
+            />
+            <br />
+            Postal Code:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ postalCode: e.target.value });
+              }}
+              value={this.state.postalCode}
+              placeholder="Postal Code"
+              required
+            />
+            <br />
+            Country:{" "}
+            <input
+              type="text"
+              onChange={e => {
+                this.setState({ country: e.target.value });
+              }}
+              value={this.state.country}
+              placeholder="Country"
+              required
+            />
+            <br />
+            <div id="paypal-button" />
+            <Stripe />
+            <button onClick={this.buy} />
+          </form>
+        </div>
       </div>
     );
   }

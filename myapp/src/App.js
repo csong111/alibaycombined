@@ -32,9 +32,10 @@ class App extends Component {
   constructor() {
     super();
     this.state={
+
       artistName: "",
-      email: "",
-      userID: 1,
+      email: "jen@asd.com",
+      userID: "jen",
     }
   }
   loginArtist = (e) => {
@@ -51,7 +52,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/"
-              render={()=>{return(<Home artistName={this.state.artistName} email={this.state.email} />)}}
+              render={()=>{return(<Home artistName={this.state.artistName} email={this.state.email} userID={this.state.userID} />)}}
             />
             <Route
               exact={true}

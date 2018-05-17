@@ -28,8 +28,8 @@ class ConnectUser extends Component {
   }
   handleLogin = event => {
     event.preventDefault();
-    // Fetch login, if success ...
-        this.props.loginUser("jen@email.com"); //fetch userID from the backend and send to app.js
+    // Fetch login, if success ...   
+    this.props.loginUser("jen@email.com","jen"); //fetch userID from the backend and send to app.js
     this.setState({ loggedIn: true });
     this.props.history.push("/");
   };
@@ -37,7 +37,7 @@ class ConnectUser extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.history.push("/usersignupcomplete");
-    this.props.loginUser("jen@email.com");
+    this.props.loginUser("jen@email.com","jen");
     // Fetch Create new User
     this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
   };

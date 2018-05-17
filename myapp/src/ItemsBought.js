@@ -15,6 +15,9 @@ class ItemsBought extends Component {
     this.state = {itemsBought:[]};
   }
  
+  componentDidMount = () => {
+    //fetch itemsbought from transactions database
+  }
 
   render() {
     return (
@@ -22,7 +25,7 @@ class ItemsBought extends Component {
         <NavButton />
         <HomeButton />
         {this.state.userID === "" ? null : <UserAccountButton />}
-        {this.state.userID === "" ? null : <CartButton />}
+        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
       </div>
     );
   }
