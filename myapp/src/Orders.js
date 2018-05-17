@@ -93,7 +93,7 @@ class Orders extends Component {
           <div className="ArtistProf">
               <NavButton />
               <HomeButton />
-              <button onClick={this.seeArtistAcct}>Your artist account</button>
+              <ArtistAccountButton/>
               <h1>PREVIOUS ORDERS</h1>
               <div>{renderTitle}</div>
               <div>{renderOrders}</div>
