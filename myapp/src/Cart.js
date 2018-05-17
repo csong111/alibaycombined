@@ -42,6 +42,15 @@ class Cart extends Component {
   //do a fetch to getCart  and  then setState with the items.
   //getUser details to prepopulate the shipping info.
   componentDidMount() {
+    fetch('/getCart?userID='+this.props.userID, {
+      method: 'GET',
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB)
+        
+      })
+    
+    
     var self = this
     window.paypal.Button.render(
       {

@@ -9,39 +9,59 @@ import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
 
 class ArtistAccount extends Component {
-  constructor() {
-    super();
-    this.state = {
-      edit: false,
-      artistName: "caro",
-      artistNameInput: "",
-      bio: "I'm a cool artist",
-      location: "Montreal, Canada",
-      imageURL: "mypic.jpg",
-      items: [
-        {
-          itemID: "123457",
-          name: "Awesome Embroidery",
-          price: 100,
-          artistName: "caro",
-          imageURL: "embroidery.jpg",
-          cat: "Spring",
-          blurb: "Best embroidery ever!",
-          quantity: 1
-        },
-        {
-          itemID: "123458",
-          name: "Pillow",
-          price: 100,
-          artistName: "caro",
-          imageURL: "pillow.jpg",
-          cat: "Popular",
-          blurb: "Best pillow ever!",
-          quantity: 2
-        }
-      ]
-    };
+    constructor() {
+      super();
+      this.state= {
+        edit: false,
+        artistName: "caro",
+        artistNameInput: "",
+        bio: "I'm a cool artist",
+        location: "Montreal, Canada",
+        imageURL: "mypic.jpg",
+        items: [
+              { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
+              { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
+          ]
+
+    }
   }
+
+    componentDidMount () {
+      this.initData()
+    }
+
+    initData = () => {
+      fetch('/getArtistDetails?artistName='+this.props.artistName, {
+        method: 'GET'
+      }).then(res=>res.text())
+        .then(resB=>{
+          let parsed = JSON.parse(resB);
+          let artistName = parsed.artistName;
+          let bio = parsed.bio;
+          let location = parsed.location;
+          let imageURL = parsed.imageURL;
+          let items = parsed.items;
+          this.setState({artistName: artistName, bio: bio, location: location, imageURL: imageURL, items: items})
+        })
+      //FETCH get artist info endpoint: getArtistDetails
+    }
+
+    // JACQUES'S CODE UPLOAD PICTURE
+      //FETCH change profile endpoint: uploadProfilePic
+
+    uploadFile = x => {
+        // let filename = x.name;
+        // let fileExtension = filename.split(".").pop();
+        // this.setState({ imageInputName: x.name });
+        // fetch("/uploadPic?ext=" + fileExtension, {
+        //   method: "POST",
+        //   body: x
+        // })
+        //   .then(response => response.text())
+        //   .then(response => this.setState({ imageInput: response }))
+        //   .then(() => this.state.imageInput);
+    };
+  
 
   componentDidMount() {
     this.initData();
