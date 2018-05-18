@@ -82,10 +82,6 @@ class Home extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    //console.log(this.props)
-    let featuredCollection = this.state.featuredCat.map((el, id) => {
-=======
     // let featuredCollection = this.state.featuredCat.map((el, id) => {
     //   return (
     //     <div key={id}>
@@ -97,7 +93,6 @@ class Home extends Component {
     // });
 
     var itemsRendered = this.state.randomItems.map((el, id) => {
->>>>>>> 77e6b81492b727f600d93f5e8bdba167d3bb619e
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
           <Item
