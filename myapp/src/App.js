@@ -45,6 +45,7 @@ class App extends Component {
     this.setState({email: e, userID: id})
   }
   render() {
+    //console.log(this.state)
     return (
       <div className="App">
         <BrowserRouter>

@@ -24,7 +24,7 @@ class ItemDetail extends Component {
 
   //getItem details
   componentDidMount = () =>{
-    fetch("/getItemDetails", {
+    fetch("/getItemDetails?itemID="+this.props.itemID, {
       method: 'GET',
     }).then(res=>res.text())
       .then(resB=>{
@@ -58,7 +58,7 @@ class ItemDetail extends Component {
         <h1>ITEM DETAILS</h1>
         <NavButton />
         <HomeButton/>
-        {this.props.email === "" ? null : <UserAccountButton />}
+        {this.props.email === "" ? null : <UserAccountButton userID={this.props.userID} />}
         {this.props.email === "" ? null : <CartButton userID = {this.props.userID} />}
         {this.props.email === "" ? <ConnectButton /> : null}
         <SearchBar />
