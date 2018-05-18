@@ -33,17 +33,22 @@ class App extends Component {
     super();
     this.state={
 
-      artistName: "jen",
-      email: "jen@asd.com",
-      userID: "jen",
+      artistName: "",
+      email: "jen@jen.com",
+      firstName: "jen",
+      userID: "12345",
     }
   }
+
+
   loginArtist = (e) => {
     this.setState({artistName : e})
   }
-  loginUser = (e, id) => {
-    this.setState({email: e, userID: id})
+  loginUser = (e, id, name) => {
+    this.setState({email: e, userID: id, firstName: name})
   }
+
+
   render() {
     //console.log(this.state)
     return (

@@ -24,32 +24,105 @@ class ConnectArtist extends Component {
             sPasswordConf: '123456',
             sDescription: "I'm an artist",
             sLocation: 'Montreal, QC',
-            sProfPicURL: 'image.jpg',
+            sProfPicURL: '',
             sImageURL1: 'image1.jpg',
             sImageURL2: 'image2.jpg',
             sImageURL3: 'image3.jpg',
         }
     }
 
-    uploadFile = (event) => {
-        // Fetch upload pic
-    }
+    uploadProfile = (x,stateName) => {
+        let filename = x.name;
+        let fileExtension = filename.split(".").pop();
+        this.setState({ imageInputName: x.name });
+        fetch("/uploadProfilePic?ext=" + fileExtension, {
+          method: "POST",
+          body: x
+        })
+        .then(response => response.text())
+        .then(response => this.setState({ [stateName]: response }))
+        .then(() => this.state.imageInput);
+    };
+    
+    uploadFile = (x,stateName) => {
+        let filename = x.name;
+        let fileExtension = filename.split(".").pop();
+        this.setState({ imageInputName: x.name });
+        fetch("/uploadSubmission?ext=" + fileExtension, {
+          method: "POST",
+          body: x
+        })
+        .then(response => response.text())
+        .then(response => this.setState({ [stateName]: filename }))
+        .then(() => this.state.imageInput);
+    };
+
+
     bringU = (event) => {
         this.props.history.push("/connectuser");
     }
     
+    // handleLogin = (event) => {
+    //     event.preventDefault();
+    //     this.props.loginArtist("aisha") //change to artistName from backend
+    //     this.setState({loggedIn: true});
+    //     // Fetch login in
+    //     this.props.history.push("/")
+    // }
+
     handleLogin = (event) => {
         event.preventDefault();
-        this.props.loginArtist("aisha") //change to artistName from backend
-        this.setState({loggedIn: true});
-        // Fetch login in
-        this.props.history.push("/")
+
+        let bod = JSON.stringify({
+            artistName: 'aisha',
+            aPassword: '123456',
+          });
+      
+          fetch("/artistLogin", { method: "POST", body: bod })
+          .then(x => x.text())
+          .then(x => JSON.parse(x))
+          .then(x => {
+              if (x.artistName !== "") {
+                this.props.loginArtist(x.artistName) //change to artistName from backend
+                this.setState({loggedIn: true});
+                // Fetch login in
+                this.props.history.push("/")
+              } else {
+                  console.log("something went wrong")
+              }
+          })
     }
+
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.history.push("/artistsignupcomplete")
+
+        let bod = JSON.stringify({
+            sName: this.state.sName,
+            sEmail: this.state.sEmail,
+            sPassword: this.state.sPassword,
+            sPasswordConf: this.state.sPasswordConf,
+            sDescription: this.state.sDescription,
+            sLocation: this.state.sLocation,
+            sProfPicURL: this.state.sProfPicURL,
+            sImageURL1: this.state.sImageURL1,
+            sImageURL2: this.state.sImageURL2,
+            sImageURL3: this.state.sImageURL3,
+          });
+      
+          fetch("/artistSignUp", { method: "POST", body: bod })
+          .then(x => x.text())
+          .then(x => JSON.parse(x))
+          .then(x => {
+              if (x === "success") {
+                this.props.history.push("/artistsignupcomplete")
+              } else {
+                  console.log("something went wrong")
+              }
+          })
+
         // Fetch add new Artist
     }
+
     back = (event) => {
         event.preventDefault();
         window.history.back();
@@ -79,14 +152,21 @@ class ConnectArtist extends Component {
                     <input type="password" onChange={(e)=>{this.setState({sPasswordConf:e.target.value})}} value={this.state.sPasswordConf} placeholder="Confirm Password" required/>
                     <input type="text" onChange={(e)=>{this.setState({sDescription:e.target.value})}} value={this.state.sDescription} placeholder="Artist Description" required/>
                     <input type="text" onChange={(e)=>{this.setState({sLocation:e.target.value})}} value={this.state.sLocation}  placeholder="Montreal, QC" required/>
-                    <p>{this.state.sProfPicURL}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/>
+
+                <br />
+
+                    Upload Profile Pic
+                    <input id="profilePic" style={{display:"none"}} type="file" onChange={event => this.uploadProfile(event.target.files[0],"sProfPicURL")} placeholder="Upload Profile Picture" required/>
+                    {this.state.sProfPicURL !=="" ? <img src={this.state.sProfPicURL}/> : <img onClick={()=>{document.getElementById("profilePic").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+
+                    {/* <p>{this.state.sProfPicURL}</p>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/> */}
                     <p>{this.state.sImageURL1}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL1")} placeholder="Upload Art" required/>
                     <p>{this.state.sImageURL2}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL2")} placeholder="Upload Art" required/>
                     <p>{this.state.sImageURL3}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL3")} placeholder="Upload Art" required/>
                     <br/>
                     <input type="submit"/>
                 </form>
