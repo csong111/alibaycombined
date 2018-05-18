@@ -59,7 +59,7 @@ class Cart extends Component {
     })
     .then(e => e.text())
     .then(e => JSON.parse(e))
-    .then(e=>{console.log("getCart-4",e);return e})
+    //.then(e=>{console.log("getCart-4",e);return e})
     .then(e => {
       this.setState({ cartItems: e.cartItems });
       this.getUserDetails()
@@ -72,18 +72,17 @@ class Cart extends Component {
 
         client: {
           sandbox:
-            "  "
+            "ARwoGJ_sUwvA4yVX-fyaodG5lm0U1JqrsAhz5tk43xTgeL7C-kUgaAg1yFfZEJWi3o0qUq2Y__He2lTi"
         },
 
         commit: true, // Show a 'Pay Now' button
 
         payment: (data, actions) => {
-          console.log(this.state.sum);
           return actions.payment.create({
             payment: {
               transactions: [
                 {
-                  amount: { total: "1.00", currency: "CAD" }
+                  amount: { total: this.state.total, currency: "CAD" }
                 }
               ]
             }
@@ -94,7 +93,7 @@ class Cart extends Component {
           return actions.payment.execute().then(function(payment) {
             // The payment is complete!
             // You can now show a confirmation message to the customer
-            console.log(payment);
+            //console.log(payment);
             self.buy();
           });
         }
@@ -107,14 +106,14 @@ class Cart extends Component {
     var body = {
       userID : this.props.userID
     }
-    console.log("getUserDetails-1",body)
+    //console.log("getUserDetails-1",body)
     fetch("/getUserDetails", {
       method: "POST",
       body : JSON.stringify(body)
     })
     .then(e => e.text())
     .then(e => JSON.parse(e))
-    .then(e=>{console.log("getUserDetails-4",e);return e})
+    //.then(e=>{console.log("getUserDetails-4",e);return e})
     .then(e => {
       this.setState({ 
         firstName: e.firstName,
@@ -131,7 +130,7 @@ class Cart extends Component {
 
   buy = () => {
     // addTransaction
-    var body = {
+    var body = JSON.stringify({
       // Shipping Infos
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -145,17 +144,18 @@ class Cart extends Component {
       userID : this.props.userID,
       // transactions
       cartItems : this.state.cartItems,
-    }
-    console.log("createTransaction-1",body)
+    })
+    //console.log("createTransaction-1",body)
     fetch("/createTransaction", {
       method: "POST",
-      body : JSON.stringify(body)
+      body : body
     })
     .then(e => e.text())
     .then(e => JSON.parse(e))
-    .then(e=>{console.log("createTransaction-4",e);return e})
+    //.then(e=>{console.log("createTransaction-4",e);return e})
     .then(e => {
-      this.props.history.push("/checkoutcomplete/" + e.transactionID);
+      // @++ Error in props settings, watchout! see checkOutComplete at componentDidMount // double insertion
+      this.props.history.push("/checkoutcomplete/" + e.transactionID, {cartItems: this.state.cartItems})
     });
   };
 
@@ -179,14 +179,14 @@ class Cart extends Component {
       // transactions
       cartItems : tempCartItems,
     }
-    console.log("removeItem-1",body)
+    //console.log("removeItem-1",body)
     fetch("/removeItem", {
       method: "POST",
       body : JSON.stringify(body)
     })
     .then(e => e.text())
     .then(e => JSON.parse(e))
-    .then(e=>{console.log("removeItem-4",e);return e})
+    //.then(e=>{console.log("removeItem-4",e);return e})
     .then(e => {
       this.setState({
         cartItems : e.cartItems,
@@ -207,14 +207,14 @@ class Cart extends Component {
       // transactions
       cartItems : this.state.cartItems,
     }
-    console.log("updateQuantity-1",body)
+    //console.log("updateQuantity-1",body)
     fetch("/updateQuantity", {
       method: "POST",
       body : JSON.stringify(body)
     })
     .then(e => e.text())
     .then(e => JSON.parse(e))
-    .then(e=>{console.log("updateQuantity-4",e);return e})
+    //.then(e=>{console.log("updateQuantity-4",e);return e})
     .then(e => {
       this.setState({
         cartItems : e.cartItems,
@@ -223,6 +223,7 @@ class Cart extends Component {
   };
 
   render() {
+    console.log(this.state.total)
     let total = 0;
     let cartItems = this.state.cartItems.map((item, id) => {
       total += item.price * item.quantityToBuy;
@@ -262,7 +263,7 @@ class Cart extends Component {
         <HomeButton />
         <NavButton />
         {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
-        {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
         {this.props.email == "" || this.props.artistName == "" ? (
           <ConnectButton />
         ) : null}
@@ -272,7 +273,7 @@ class Cart extends Component {
         <div>Total: ${total}</div>
         <button
           onClick={e => {
-            this.setState({ showCheckout: true });
+            this.setState({ showCheckout: true, total: total });
           }}
         >
           Checkout Now
@@ -377,7 +378,6 @@ class Cart extends Component {
             <br />
             <div id="paypal-button" />
             <Stripe />
-            <button onClick={this.buy} />
           </form>
         </div>
       </div>

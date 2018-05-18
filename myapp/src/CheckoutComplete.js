@@ -41,8 +41,9 @@ class CheckoutComplete extends Component {
   };
 
   componentDidMount() {
-    //fetch itemdetails of chekcedout items
-    // check the URL for the Order ID, then get the orderID as props from Cart, then then setState checkOutItems with this info
+    this.setState({checkoutItems: this.props.cartItems.cartItems})
+    console.log(this.props)
+   //fetch itemdetails of chekcedout items
   }
 
   render() {
@@ -64,7 +65,7 @@ class CheckoutComplete extends Component {
         <NavButton />
         <HomeButton />
         <h1>
-          Thank you for your purchase. Your order number is {this.props.orderID}
+          Thank you for your purchase. Your order number is {this.props.transactionID}
         </h1>
         {this.state.userID === "" ? null : <UserAccountButton userID={this.props.userID} />}
         {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
