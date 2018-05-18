@@ -27,6 +27,20 @@ class SearchResults extends Component {
 
   componentDidMount () {
     //FETCH get searchItems by searchQuery then setState the results endpoint: searchItems
+    let body = {
+      query : this.props.query
+    }
+    console.log("getResults-1", body)
+    fetch("/getSearchResults",{
+      method: "POST",
+      body: JSON.stringify(body)
+    })
+    .then(e =>e.text())
+    .then(e =>JSON.parse(e))
+    .then(e=>{console.log("getResults-2",e); return e})
+    .then(e =>{
+      this.setState({searchItems: e.searchItems})
+    })
   }
 
   render() {
