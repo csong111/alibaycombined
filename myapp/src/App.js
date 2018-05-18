@@ -59,7 +59,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/featuredcat/:cat"
-              render={()=>{return(<FeaturedCat artistName={this.state.artistName} email={this.state.email} />)}}
+              render={(routerData)=>{return(<FeaturedCat cat={routerData.match.params.cat} artistName={this.state.artistName} email={this.state.email} />)}}
             />
             <Route
               exact={true}
