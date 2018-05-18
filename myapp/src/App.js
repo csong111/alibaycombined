@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
 import './App.css';
-// import Account from './Account.js';
-// import SignIn from './SignIn.js';
-// import SignUp from './SignUp.js';
-//import ItemsBought from './ItemsBought.js';
-// import ArtistSignUp from './ArtistSignUp.js';
-// import ArtistProfile from './ArtistProfile.js';
-// import CreateListing from './CreateListing.js'; 
-// import RoomView from './RoomView.js'; 
 import Home from './Home.js'; 
 import Nav from './Nav.js'; 
 import FeaturedCat from './FeaturedCat.js';  
@@ -34,16 +26,20 @@ class App extends Component {
     this.state={
 
       artistName: "jen",
-      email: "jen@asd.com",
-      userID: "jen",
+      email: "",
+      userID: "",
     }
   }
+
+
   loginArtist = (e) => {
     this.setState({artistName : e})
   }
-  loginUser = (e, id) => {
-    this.setState({email: e, userID: id})
+  loginUser = (e, id, name) => {
+    this.setState({email: e, userID: id, firstName: name})
   }
+
+
   render() {
     //console.log(this.state)
     return (
@@ -76,10 +72,17 @@ class App extends Component {
               render={(routerData)=>{return(<ItemsBought artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
+<<<<<<< HEAD
              exact={true}
              path="/searchresults/:query"
              render={(routerData)=>{return(<SearchResults query={routerData.match.params.query} artistName={this.state.artistName} email={this.state.email}/>)}}
            />
+=======
+              exact={true}
+              path="/searchresults/:query"
+              render={(routerData)=>{return(<SearchResults query={routerData.match.params.query} artistName={this.state.artistName} email={this.state.email}/>)}}
+            />
+>>>>>>> aae9380e6c6296c756cb004de482040347de74eb
             <Route
               exact={true}
               path="/itemdetail/:itemID"
@@ -93,12 +96,12 @@ class App extends Component {
             <Route
               exact={true}
               path="/artistprofile/:artistName"
-              render={()=>{return(<ArtistProfile artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ArtistProfile artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
               path="/artistaccount/:artistName"
-              render={()=>{return(<ArtistAccount artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ArtistAccount artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
@@ -146,66 +149,5 @@ class App extends Component {
     );
   }
 }
-
-/*
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<Cart />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<ArtistProfile />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<ArtistSignUp />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<CreateListing />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<Item />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<ItemDetail />)}}
-            />
-
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<RoomView />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<Search />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<SignIn />)}}
-            />
-            <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<SignUp />)}}
-            />
-             <Route
-              exact={true}
-              path="/"
-              render={()=>{return(<ItemsBought />)}}
-            /> 
-
-
-            */
 
 export default App;

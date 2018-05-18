@@ -22,8 +22,8 @@ class Account extends Component {
      ],
 
      // infos from back end
-    firstName: "Jen",
-    lastName: "o",
+    firstName: "",
+    lastName: "",
     email: 'jen@email.com',
     address: '123 Blah St.',
     city: "Montreal",
@@ -49,10 +49,39 @@ class Account extends Component {
   }
 
   initGetData = () => {
-    //FETCH get itemsBought then setState the results endpoint: getItemsBought
-    //FETCH get account info endpoint: getUserShippingInfo
+
+    let bod = JSON.stringify({
+      firstName: this.state.ifirstName,
+      lastName: this.state.ilastName,
+      email: this.state.iemail,
+      address: this.state.iaddress,
+      city: this.state.icity,
+      province: this.state.iprovince,
+      postalCode: this.state.ipostalCode,
+      country: this.state.icountry,
+    });
+
+    fetch("/getUserDetails", { method: "POST", body: bod })
+    .then(x => x.text())
+    .then(x => JSON.parse(x))
+    .then(x => {
+      this.setState ({
+        firstName: x.firstName,
+        lastName: x.lastName,
+        email: x.email,
+        address: x.address,
+        city: x.city,
+        province: x.province,
+        postalCode: x.postalCode,
+        country: x.country,
+      })
+    })
+
+
     //FETCH get user info endpoint: getUserDetails
       // Copy the data to idata
+    //FETCH get account info endpoint: getUserShippingInfo
+    //FETCH get itemsBought then setState the results endpoint: getItemsBought
   }
 
   changePassword = () => {
@@ -67,8 +96,9 @@ class Account extends Component {
 
   saveShipping = () => {
     //edit Shipping Info & update server
-    //FETCH endpoint: updateUserAccount
+    //FETCH endpoint: updateUserShippingInfo
   }
+
 
   ///////////////////////////////////
   ///////////////////////////////////

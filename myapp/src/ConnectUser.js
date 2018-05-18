@@ -26,21 +26,75 @@ class ConnectUser extends Component {
       passwordSignUpConf: "123456"
     };
   }
+
+  // handleLogin = event => {
+  //   event.preventDefault();
+  //   // Fetch login, if success ...   
+  //   this.props.loginUser("jen@email.com","jen"); //fetch userID from the backend and send to app.js
+  //   this.setState({ loggedIn: true });
+  //   this.props.history.push("/");
+  // };
+
   handleLogin = event => {
     event.preventDefault();
     // Fetch login, if success ...   
-    this.props.loginUser("jen@email.com","jen"); //fetch userID from the backend and send to app.js
-    this.setState({ loggedIn: true });
-    this.props.history.push("/");
+    let bod = JSON.stringify({
+      email: this.state.emailSignUp,
+      password: this.state.passwordSignUp,
+    });
+
+    fetch("/userLogin", { method: "POST", body: bod })
+    .then(x => x.text())
+    .then(x => JSON.parse(x))
+    //.then(x => console.log(x.success))
+    .then( x => {
+      if (x.success) {
+        this.props.loginUser(x.email, x.id, x.firstName); //fetch userID from the backend and send to app.js
+        //console.log(this.props.loginUser)
+        this.setState({ loggedIn: true });
+        this.props.history.push("/");
+      } else {
+        console.log("something went wrong")
+      }
+    })
   };
+
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   this.props.history.push("/usersignupcomplete");
+  //   this.props.loginUser("jen@email.com","jen");
+  //   // Fetch Create new User
+  //   this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
+  // };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.history.push("/usersignupcomplete");
-    this.props.loginUser("jen@email.com","jen");
-    // Fetch Create new User
-    this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
+
+    let bod = JSON.stringify({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      emailSignUp: this.state.emailSignUp,
+      passwordSignUp: this.state.passwordSignUp,
+      passwordSignUpConf: this.state.passwordSignUpConf,
+    });
+
+    fetch("/userSignUp", { method: "POST", body: bod })
+    .then(x => x.text())
+    .then(x => JSON.parse(x))
+    //.then(x => console.log(x))
+    .then(x => {
+      if (x.success) {
+      this.props.history.push("/usersignupcomplete");
+      this.props.loginUser(x.email, x.id, x.firstName);
+      // Fetch Create new User
+      //this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
+      this.setState({ loggedIn: true });
+      } else {
+        console.log("something went wrong")
+      }
+    })
   };
+
 
   bringA = event => {
     event.preventDefault();
@@ -50,6 +104,8 @@ class ConnectUser extends Component {
     event.preventDefault();
     window.history.back();
   };
+
+
   render() {
     return (
       <div>

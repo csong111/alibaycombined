@@ -21,64 +21,71 @@ class Home extends Component {
         { name: "Popular", imageURL: "collections/3.jpg" }
       ],
       randomItems: [
-        {
-          itemID: "123456",
-          name: "Spring Print",
-          price: 50,
-          artistName: "aisha",
-          imageURL: "/items/43581461_041_b2.jpg",
-          cat: "Spring",
-          blurb: "Here's my spring print",
-          quantity: 2
-        },
-        {
-          itemID: "123457",
-          name: "Awesome Embroidery",
-          price: 100,
-          artistName: "caro",
-          imageURL: "/items/44313724_104_b.jpg",
-          cat: "Spring",
-          blurb: "Best embroidery ever!",
-          quantity: 1
-        },
-        {
-          itemID: "123458",
-          name: "Pillow",
-          price: 100,
-          artistName: "caro",
-          imageURL: "/items/44622173_045_b.jpg",
-          cat: "Popular",
-          blurb: "Check out my pillow",
-          quantity: 1
-        },
-        {
-          itemID: "123459",
-          name: "Painting",
-          price: 20,
-          artistName: "jen",
-          imageURL: "/items/45513033_045_b10.jpg",
-          cat: "Prints",
-          blurb: "This is a cool painting",
-          quantity: 3
-        },
-        {
-          itemID: "123450",
-          name: "Cool Print",
-          price: 30,
-          artistName: "jen",
-          imageURL: "/items/45589157_095_b.jpg",
-          cat: "Prints",
-          blurb: "Great print",
-          quantity: 4
-        }
+        // {
+        //   itemID: "123456",
+        //   name: "Spring Print",
+        //   price: 50,
+        //   artistName: "aisha",
+        //   imageURL: "/items/43581461_041_b2.jpg",
+        //   cat: "Spring",
+        //   blurb: "Here's my spring print",
+        //   quantity: 2
+        // },
+        // {
+        //   itemID: "123457",
+        //   name: "Awesome Embroidery",
+        //   price: 100,
+        //   artistName: "caro",
+        //   imageURL: "/items/44313724_104_b.jpg",
+        //   cat: "Spring",
+        //   blurb: "Best embroidery ever!",
+        //   quantity: 1
+        // },
+        // {
+        //   itemID: "123458",
+        //   name: "Pillow",
+        //   price: 100,
+        //   artistName: "caro",
+        //   imageURL: "/items/44622173_045_b.jpg",
+        //   cat: "Popular",
+        //   blurb: "Check out my pillow",
+        //   quantity: 1
+        // },
+        // {
+        //   itemID: "123459",
+        //   name: "Painting",
+        //   price: 20,
+        //   artistName: "jen",
+        //   imageURL: "/items/45513033_045_b10.jpg",
+        //   cat: "Prints",
+        //   blurb: "This is a cool painting",
+        //   quantity: 3
+        // },
+        // {
+        //   itemID: "123450",
+        //   name: "Cool Print",
+        //   price: 30,
+        //   artistName: "jen",
+        //   imageURL: "/items/45589157_095_b.jpg",
+        //   cat: "Prints",
+        //   blurb: "Great print",
+        //   quantity: 4
+        // }
       ],
       query: ""
     };
   }
 
   componentDidMount() {
+    fetch("/getRandomItems", {
+      method: 'GET'
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        console.log(parsed)
+        this.setState({randomItems: parsed})
+      })
     //FETCH get randomItems then setState the results endpoint: getRandomItems
-    //FETCH get featuredCat endpoint: getCat
   }
 
   render() {
@@ -119,7 +126,7 @@ class Home extends Component {
           </div>
           <div>
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
-            {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
               <ConnectButton />
             ) : null}
@@ -178,7 +185,7 @@ class Home extends Component {
           {itemsRendered}
         </div>
       </div>
-      //   </div>
+      </div>
       // </div>
     );
   }

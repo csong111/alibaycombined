@@ -42,8 +42,6 @@ class CheckoutComplete extends Component {
 
   componentDidMount() {
     this.setState({checkoutItems: this.props.cartItems.cartItems})
-    console.log(this.props)
-   //fetch itemdetails of chekcedout items
   }
 
   render() {
