@@ -13,7 +13,7 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      itemID: "",
+      //itemID: "",
       name: "A pillow",
       imageURL: "items/pillow.jpg",
       blurb: "",
@@ -24,7 +24,7 @@ class ItemDetail extends Component {
 
   //getItem details
   componentDidMount = () =>{
-    fetch("/getItemDetails?itemID="+this.props.itemID, {
+    fetch("/getItemDetails", {
       method: 'GET',
     }).then(res=>res.text())
       .then(resB=>{
@@ -38,14 +38,14 @@ class ItemDetail extends Component {
     })
   }
   addToCart = (userID, itemID) => {
-    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID})
+    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID, quantity: 1})
     fetch("/addToCart", {
       method: 'POST',
       body: body 
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        
+        console.log(parsed);
       })
 
   };
