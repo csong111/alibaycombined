@@ -17,6 +17,15 @@ class ItemsBought extends Component {
  
   componentDidMount = () => {
     //fetch itemsbought from transactions database
+    fetch("/getItemsBought?userID="+this.props.userID, {
+      method: 'GET'
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        console.log(parsed)
+        let itemsBought=parsed.itemsBought;
+        console.log(itemsBought)
+      })
   }
 
   render() {
@@ -24,7 +33,7 @@ class ItemsBought extends Component {
       <div>
         <NavButton />
         <HomeButton />
-        {this.state.userID === "" ? null : <UserAccountButton />}
+        {this.state.userID === "" ? null : <UserAccountButton userID={this.props.userID} />}
         {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
       </div>
     );

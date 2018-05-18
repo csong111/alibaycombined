@@ -59,7 +59,7 @@ class ConnectUser extends Component {
         <h1>CONNECT USER</h1>
         <NavButton />
         <HomeButton/>
-        {this.props.email ? <UserAccountButton /> : null}
+        {this.props.email ? <UserAccountButton userID={this.props.userID} /> : null}
         <hr />
         <form onSubmit={this.handleLogin}>
           {" "}

@@ -85,7 +85,7 @@ this.setState({items: responses})
         <div className="ArtistProf">
         <NavButton />
         <HomeButton />
-        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
         {this.props.email !== "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
         <div>{this.state.profPicURL}</div>
