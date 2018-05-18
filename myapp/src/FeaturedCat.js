@@ -22,6 +22,14 @@ class FeaturedCat extends Component {
     }
 
     componentDidMount () {
+      fetch("/getCatItems?cat="+this.props.cat, {
+        method: 'GET'
+      }).then(res=>res.text())
+        .then(resB=>{
+          let parsed=JSON.parse(resB)
+          console.log(parsed)
+          this.setState({itemsInCat: parsed})
+        })
       //FETCH get itemsInCat by cat name then setState the results endpoint: getCatItems
     }
 
