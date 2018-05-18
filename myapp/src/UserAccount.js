@@ -17,19 +17,19 @@ class Account extends Component {
     editAccount: false,
     editShipping: false,
     itemsBought: [ 
-        { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
-        { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
+        // { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
+        // { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
      ],
 
      // infos from back end
     firstName: "",
     lastName: "",
-    email: 'jen@email.com',
-    address: '123 Blah St.',
-    city: "Montreal",
-    province: "Quebec",
-    postalCode: "H13 1Y8",
-    country: "Canada",
+    email: "",
+    address: "",
+    city: "",
+    province: "",
+    postalCode: "",
+    country: "",
 
     // info that we are changing
     ifirstName: "Jen",
@@ -49,6 +49,9 @@ class Account extends Component {
   }
 
   initGetData = () => {
+
+    //FETCH get user info endpoint: getUserDetails
+      // Copy the data to idata
 
     let bod = JSON.stringify({
       firstName: this.state.ifirstName,
@@ -77,11 +80,17 @@ class Account extends Component {
       })
     })
 
-
-    //FETCH get user info endpoint: getUserDetails
-      // Copy the data to idata
     //FETCH get account info endpoint: getUserShippingInfo
     //FETCH get itemsBought then setState the results endpoint: getItemsBought
+
+
+    fetch("/getItemsBought?userID="+this.props.userID, { method: 'GET' })
+    .then(x => x.text())
+    .then(x => JSON.parse(x))
+    .then(x => {
+        this.setState({itemsBought: x.itemsBought})
+    })
+
   }
 
   changePassword = () => {
@@ -137,6 +146,7 @@ class Account extends Component {
   ///////////////////////////////////
   ///////////////////////////////////
   ///////////////////////////////////
+  
 
   editShippingInfo = () => {
     this.setState({editShipping: true})
