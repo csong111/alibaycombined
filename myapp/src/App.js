@@ -76,10 +76,10 @@ class App extends Component {
               render={(routerData)=>{return(<ItemsBought artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
-              exact={true}
-              path="/searchresults/:query"
-              render={()=>{return(<SearchResults artistName={this.state.artistName} email={this.state.email}/>)}}
-            />
+             exact={true}
+             path="/searchresults/:query"
+             render={(routerData)=>{return(<SearchResults query={routerData.match.params.query} artistName={this.state.artistName} email={this.state.email}/>)}}
+           />
             <Route
               exact={true}
               path="/itemdetail/:itemID"
