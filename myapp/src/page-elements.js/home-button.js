@@ -16,8 +16,8 @@ class HomeButton extends Component {
     }
   render() {
     return (
-      <div className="">
-        <button className="noButton" onClick={this.bring}><img src='../logo.png'/></button>
+      <div>
+        <button className="noButton" onClick={this.bring}><img width="100px" src='/ui-elements/logo.png'/></button>
       </div>
     );
   }

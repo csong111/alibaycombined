@@ -16,7 +16,7 @@ class ArtistAccountButton extends Component {
   render() {
     return (
       <div className="">
-        <button className="noButton" onClick={this.handleClick}><img src='../artistacct.png' className="icon"/></button>
+        <button className="noButton" onClick={this.handleClick}><img width="30px" src='../artistacct.png' className="icon"/></button>
       </div>
     );
   }

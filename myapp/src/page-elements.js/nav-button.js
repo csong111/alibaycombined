@@ -11,13 +11,14 @@ class NavButton extends Component {
     }
 
     bring = (event) => {
+      console.log("hey")
       event.preventDefault();
       this.props.history.push("/nav")
     }
   render() {
     return (
-      <div className="">
-        <button className="noButton" onClick={this.bring}><img src='../nav.png' className="icon"/></button>
+      <div>
+        <button className="noButton navIcon" onClick={this.bring}><img src='/ui-elements/nav.png' width="25px"/></button>
       </div>
     );
   }

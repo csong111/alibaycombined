@@ -1,44 +1,129 @@
-.App {
+/* Text Styles */
+
+p {
+  margin: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  line-height: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  p {
+    font-size: 8pt;
+    margin: 12px;
+  }
+}
+
+h2 {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+/* Header Elements */
+
+.logo {
+  margin-left: 1%;
+  margin-right: auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.headerElements {
+  padding-top: 15px;
+  display: flex;
+  height: 50px;
+  background-color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.accountElements {
+  float: right;
 }
 
-.App-intro {
-  font-size: large;
+.navIcon {
+  margin-left: 5px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.connect {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-top: 2px;
+  margin-right: 10px;
+  vertical-align: middle;
+  /* font-weight: bolder; */
 }
+
+.line {
+  font-size: 10pt;
+  vertical-align: 2px;
+}
+
+/* Search Styles */
+
+.searchMobile {
+  text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .searchMobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    display: none;
+  }
+  .searchInput{
+    width: 250px;
+  }
+}
+
+.searchInput {
+  border: 0;
+  border-bottom: 1.5px solid black ;
+  outline: 0;
+}
+
+/*
+
+/* Bootstrap Spacing Styles */
+
+.noPad{
+  padding: 0px;
+  margin: 0px;
+}
+
+.space {
+  padding: 10px;
+}
+
+
+/* Mockup Styles */
 
 .noButton {
   background: none;
-  border: none
+  border: none;
+  outline: 0;
 }
 
-.icon {
-  width: 30px;
+button:focus { 
+  outline: none;
 }
 
-.search {
+/* .icon {
   width: 30px;
-}
+} */
+
+/* .search {
+  width: 30px;
+} */
 
 #paypal-button {
   bottom: 400px;
