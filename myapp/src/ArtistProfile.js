@@ -67,7 +67,15 @@ this.setState({items: responses})
     this.props.history.push("/itemdetail/"+this.state.itemId)
   }
     render() {
-      //fetch artist's details from backend
+      let accountInfo = (()=>{
+        return (
+          <div>
+            <p>Name: {this.state.artistName}</p>
+            <p>Location: {this.state.location}</p>
+            <p>{this.state.bio}</p>
+            </div>
+        )
+      })
       let itemsRendered = this.state.items.map((el)=>{
         return (
           <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
@@ -80,14 +88,7 @@ this.setState({items: responses})
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.email !== "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
-          <h1>LOGO</h1>
-          <h2>MEET CLARA</h2>
-          <div>PROFILEPIC</div>
-          <div>MONTREAL, QC</div>
-          <div>I AM A COOL ARTIST, THIS IS MY ARTIST DESCRIPTION AND YOU LOVE IT</div>
-          <br/>
-          <h2>SHOP CLARA'S ART</h2>
-          <div>RENDERED ITEMS</div>
+        <div>About this Artist: {accountInfo()}</div>
           {itemsRendered}
         </div>
       );
