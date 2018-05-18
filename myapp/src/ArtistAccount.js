@@ -48,11 +48,13 @@ class ArtistAccount extends Component {
   }
 
   initData = () => {
-    fetch("/getArtistDetails?artistName=" + this.props.artistName, {
-      method: "GET"
+    fetch("/getArtistProfile", {
+      method: "POST",
+      body: JSON.stringify({artistName: this.props.artistName})
     })
       .then(res => res.text())
       .then(resB => {
+        //console.log(resB)
         let parsed = JSON.parse(resB);
         let artistName = parsed.artistName;
         let bio = parsed.bio;
@@ -114,7 +116,7 @@ class ArtistAccount extends Component {
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.props.artistName)
     let itemsRendered = this.state.items.map((el, id) => {
       return (
         <div key={id}>
