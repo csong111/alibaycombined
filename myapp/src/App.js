@@ -33,7 +33,7 @@ class App extends Component {
     super();
     this.state={
 
-      artistName: "",
+      artistName: "jen",
       email: "jen@asd.com",
       userID: "jen",
     }

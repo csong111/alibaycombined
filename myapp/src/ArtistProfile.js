@@ -15,7 +15,7 @@ class ArtistProfile extends Component {
   constructor() {
     super();
     this.state={
-      artistProfile: {
+    
         artistName: "caro",
         bio: "I'm a cool artist",
         location: "Montreal, Canada",
@@ -25,15 +25,50 @@ class ArtistProfile extends Component {
             { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
         ],
     }
-    }
   }
+  componentDidMount() {
+    var body = {
+      artistName : this.props.artistName
+    }
+ // console.log("getArtistProfile-1",body)
+  fetch("/getArtistProfile", {
+    method: "POST",
+    body : JSON.stringify(body)
+  })
+  .then(e =>e.text())
+  .then(e =>JSON.parse(e))
+ // .then(e =>{console.log("getAristProfile-4",e); return e})
+  .then(e =>{
+    this.setState({
+      bio: e.bio,
+      location: e.location,
+      imageURL: e.imageURL,
+      items: e.items
+    })
+  })
+
+  this.viewArtistItems(this.state.items)
+
+}
+viewArtistItems = async items => {
+  let responses = await Promise.all(
+    items.map(item =>
+    fetch("/getItemDetails?itemID=" + item.itemID, { method: "GET" }).then(res => res.text())
+    .then(resB=> {
+      console.log(resB)
+      return JSON.parse(resB)
+    })
+));
+this.setState({items: responses})
+};
+
 
   seeItemDetails = () => {
     this.props.history.push("/itemdetail/"+this.state.itemId)
   }
     render() {
       //fetch artist's details from backend
-      let itemsRendered = this.state.artistProfile.items.map((el)=>{
+      let itemsRendered = this.state.items.map((el)=>{
         return (
           <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
         )
