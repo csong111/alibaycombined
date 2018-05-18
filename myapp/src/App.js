@@ -143,7 +143,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/checkoutcomplete/:orderNumber"
-              render={()=>{return(<CheckoutComplete artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<CheckoutComplete cartItems={routerData.location.state}transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
           </div>
         </BrowserRouter>

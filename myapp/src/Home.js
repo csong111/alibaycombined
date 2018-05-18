@@ -159,7 +159,7 @@ class Home extends Component {
         {/* <NavButton />
         <HomeButton/>
         {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
-        {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
         {this.props.email === "" && this.props.artistName === "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null} */}
 

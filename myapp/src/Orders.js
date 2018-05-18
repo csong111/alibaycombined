@@ -13,16 +13,31 @@ class Orders extends Component {
         this.state={
             artistName:"caro",
             orders: [
-                { orderID: "#123782", buyerName: "Joe", itemID: ['123457','123458'], total: 100, date: "May 15, 2018", fulfilled: "fulfilled" },
-                { orderID: "#1237866", buyerName: "Joe", itemID: ['1479','123458'], total: 600, date: "May 10, 2018", fulfilled: "unfulfilled" }
-            ]
+                { orderID: "#123782", buyerName: "Joe", itemID: ['123457','123458'], total: 100, date: "May 15, 2018", fulfilled: "fulfilled", itemNames:[] },
+                { orderID: "#1237866", buyerName: "Joe", itemID: ['1479','123458'], total: 600, date: "May 10, 2018", fulfilled: "unfulfilled", itemNames:[] }
+            ],
         }
     }
 
     //fetch getOrders. returns an array or Order objects
     //get the artist name
     componentDidMount = () =>{
+        let body = {
+            artistName : this.props.artistName
+        }
+        console.log("getOrders-1",body)
+        fetch("/getOrders",{
+            method:"POST",
+            body : JSON.stringify(body)
+        })
+        .then(e =>e.text())
+        .then (e =>JSON.parse(e))
+        .then(e=>{console.log("getOrders-4", e);return e})
+        .then(e =>{
+            // this.setState({orders :e.orders})
+            this.getOrderItemNames(e.orders)
 
+        })
     }
     
 
@@ -31,17 +46,33 @@ class Orders extends Component {
         this.props.history.push("/artistaccount/"+this.state.artistName)
     }
 
-    //getItem details from the array of itemID's that were bought
-    getNumberOfItems = () => {
-        this.state.orders.map((order)=>{
-            order.itemID.length()
-        })
-    }
+    getItemNames = async order=>{  
+        let itemNames = await Promise.all(
+                 order.itemID.map(id => 
+                 fetch("/getItemDetails?itemID=" + id, { method: "GET" })
+                 .then(e => e.text())
+                 .then(e =>JSON.parse(e))
+                 .then(e=>{
+                    return e.name
+                 })
+             ));
+        console.log(itemNames)
+        return itemNames
+       }
+
+    getOrderItemNames = async orders=>{  
+        console.log(orders)  
+        let ordersWithName = await Promise.all(orders.map(async order => {
+            let itemNames = await this.getItemNames(order)
+            return {...order, itemNames}
+        }))
+        console.log(ordersWithName)
+        this.setState({orders: ordersWithName})
+       }
     
     render() {
-
-        let renderTitle = (()=>{
-            return (
+    
+        let renderTitle = (
                 <div style={{display: "flex"}}>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
                 Order #
@@ -63,7 +94,6 @@ class Orders extends Component {
                     </div>
                 </div>
             )
-        })()
 
         let renderOrders = this.state.orders.map((order, id )=>{
             return (
@@ -75,7 +105,7 @@ class Orders extends Component {
                 {order.buyerName}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                 {order.itemID.length}
+                 {order.itemNames.map((itemName,id) => <li key={id}>{itemName}</li>)}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
                 {order.total}
@@ -94,7 +124,7 @@ class Orders extends Component {
               <NavButton />
               <HomeButton />
               <ArtistAccountButton/>
-              <h1>PREVIOUS ORDERS</h1>
+              <h1>Your order history</h1>
               <div>{renderTitle}</div>
               <div>{renderOrders}</div>
           </div>

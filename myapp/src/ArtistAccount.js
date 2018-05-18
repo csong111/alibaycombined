@@ -167,7 +167,7 @@ class ArtistAccount extends Component {
         <NavButton />
         <HomeButton />
 
-        {this.props.artistName === "" ? null : <ArtistAccountButton />}
+        {this.props.artistName === "" ? null : <ArtistAccountButton artistName={this.props.artistName} />}
 
         <h2>MY ACCOUNT</h2>
 
