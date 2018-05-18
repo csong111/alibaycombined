@@ -19,7 +19,7 @@ class ArtistProfile extends Component {
         artistName: "caro",
         bio: "I'm a cool artist",
         location: "Montreal, Canada",
-        imageURL: "mypic.jpg",
+        profPicURL: "/items/aisha.jpg",
         items: [
             { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
             { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
@@ -42,7 +42,7 @@ class ArtistProfile extends Component {
     this.setState({
       bio: e.bio,
       location: e.location,
-      imageURL: e.imageURL,
+      profPicURL: e.profPicURL,
       items: e.items
     })
   })
@@ -88,7 +88,11 @@ this.setState({items: responses})
         {this.props.email !== "" ? <UserAccountButton /> : null}
         {this.props.email !== "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
-        <div>About this Artist: {accountInfo()}</div>
+        <div>{this.state.profPicURL}</div>
+        <div>{this.state.artistName}</div>
+        <div>{this.state.location}</div>
+        <div>{this.state.bio}</div>
+        <div>Other items by this artist:</div>
           {itemsRendered}
         </div>
       );
