@@ -16,7 +16,7 @@ class UserAccountButton extends Component {
   render() {
     return (
       <div className="">
-        <button className="noButton" onClick={this.bring}><img src='../useracct.png' className="icon"/></button>
+        <button className="noButton" onClick={this.bring}><img width="30px" src='../useracct.png' className="icon"/></button>
       </div>
     );
   }
