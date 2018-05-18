@@ -17,10 +17,17 @@ class ConnectButton extends Component {
         event.preventDefault();
         this.props.history.push("/connectuser")
     }
+
   render = () => {
     return (
-      <div className="">
-        <button className="noButton" onClick={this.bring}><img src='../connect.png' className="icon"/></button>
+      <div>
+        <button className="noButton" onClick={this.bring}>
+        {/* <img src='../connect.png' width="30px"/> */}
+        <div className="connect">
+        {/* <img width="100px" src='/ui-elements/connect.png'/> */}
+        <span className ="bold">SIGN IN</span> <span className = "line"> | </span> <span className ="bold">SIGN UP</span>
+        </div>
+        </button>
       </div>
     );
   }
