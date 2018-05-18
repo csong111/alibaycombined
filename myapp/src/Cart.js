@@ -72,7 +72,7 @@ class Cart extends Component {
 
         client: {
           sandbox:
-            "AUd8sqBl5MJa4CHKQOjvkxQWN06fIRRPFO11uVRvTauWae6TSP4w2ERfDhUa_KUJmPaqGLF48zIDrbBZ"
+            "  "
         },
 
         commit: true, // Show a 'Pay Now' button
