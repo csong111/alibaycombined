@@ -13,7 +13,7 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      itemID: "",
+      //itemID: "",
       name: "A pillow",
       imageURL: "items/pillow.jpg",
       blurb: "",
@@ -24,10 +24,31 @@ class ItemDetail extends Component {
 
   //getItem details
   componentDidMount = () =>{
-
+    fetch("/getItemDetails?itemID="+this.props.itemID, {
+      method: 'GET',
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        let name=parsed.name;
+        let imageURL=parsed.imageURL;
+        let blurb=parsed.blurb;
+        let artistName=parsed.artistName;
+        let price=parsed.price;
+        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
+    })
   }
-  addToCart = itemID => {};
-  seeArtistInfo = artistName => {};
+  addToCart = (userID, itemID) => {
+    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID, quantity: 1})
+    fetch("/addToCart", {
+      method: 'POST',
+      body: body 
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        console.log(parsed);
+      })
+
+  };
 
   render() {
       //fetch itemdetails from backend
@@ -37,8 +58,8 @@ class ItemDetail extends Component {
         <h1>ITEM DETAILS</h1>
         <NavButton />
         <HomeButton/>
-        {this.props.email === "" ? null : <UserAccountButton />}
-        {this.props.email === "" ? null : <CartButton />}
+        {this.props.email === "" ? null : <UserAccountButton userID={this.props.userID} />}
+        {this.props.email === "" ? null : <CartButton userID = {this.props.userID} />}
         {this.props.email === "" ? <ConnectButton /> : null}
         <SearchBar />
         <img src={"/"+this.state.imageURL}/>

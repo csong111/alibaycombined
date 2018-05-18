@@ -39,12 +39,12 @@ class SearchResults extends Component {
       <div>
         <NavButton />
         <HomeButton />
-        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
         {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
         {this.props.email !== "" || this.props.artistName !== "" ? (
           <ConnectButton />
         ) : null}
-        {this.props.email !== "" ? <CartButton /> : null}
+        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
         <SearchBar />
         <h2>Search Results</h2>
         <div name="search-results">

@@ -9,7 +9,7 @@ class Item extends Component {
     return (
       <div>
       <div>
-        <Link to={"/itemDetail/" + this.props.itemID}> 
+        <Link to={"/itemdetail/" + this.props.itemID}> 
           <img width ="100%"src={this.props.imageURL} alt="null" />
         </Link>
           <div className="bold"><p>{this.props.name}</p></div>

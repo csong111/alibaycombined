@@ -15,25 +15,68 @@ class ArtistProfile extends Component {
   constructor() {
     super();
     this.state={
-      artistProfile: {
+    
         artistName: "caro",
         bio: "I'm a cool artist",
         location: "Montreal, Canada",
-        imageURL: "mypic.jpg",
+        profPicURL: "/items/aisha.jpg",
         items: [
             { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
             { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb:"Best pillow ever!", quantity: 2 },
         ],
     }
-    }
   }
+  componentDidMount() {
+    var body = {
+      artistName : this.props.artistName
+    }
+ // console.log("getArtistProfile-1",body)
+  fetch("/getArtistProfile", {
+    method: "POST",
+    body : JSON.stringify(body)
+  })
+  .then(e =>e.text())
+  .then(e =>JSON.parse(e))
+ // .then(e =>{console.log("getAristProfile-4",e); return e})
+  .then(e =>{
+    this.setState({
+      bio: e.bio,
+      location: e.location,
+      profPicURL: e.profPicURL,
+      items: e.items
+    })
+  })
+
+  this.viewArtistItems(this.state.items)
+
+}
+viewArtistItems = async items => {
+  let responses = await Promise.all(
+    items.map(item =>
+    fetch("/getItemDetails?itemID=" + item.itemID, { method: "GET" }).then(res => res.text())
+    .then(resB=> {
+      console.log(resB)
+      return JSON.parse(resB)
+    })
+));
+this.setState({items: responses})
+};
+
 
   seeItemDetails = () => {
     this.props.history.push("/itemdetail/"+this.state.itemId)
   }
     render() {
-      //fetch artist's details from backend
-      let itemsRendered = this.state.artistProfile.items.map((el)=>{
+      let accountInfo = (()=>{
+        return (
+          <div>
+            <p>Name: {this.state.artistName}</p>
+            <p>Location: {this.state.location}</p>
+            <p>{this.state.bio}</p>
+            </div>
+        )
+      })
+      let itemsRendered = this.state.items.map((el)=>{
         return (
           <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
         )
@@ -42,17 +85,14 @@ class ArtistProfile extends Component {
         <div className="ArtistProf">
         <NavButton />
         <HomeButton />
-        {this.props.email !== "" ? <UserAccountButton /> : null}
+        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
         {this.props.email !== "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton /> : null}
-          <h1>LOGO</h1>
-          <h2>MEET CLARA</h2>
-          <div>PROFILEPIC</div>
-          <div>MONTREAL, QC</div>
-          <div>I AM A COOL ARTIST, THIS IS MY ARTIST DESCRIPTION AND YOU LOVE IT</div>
-          <br/>
-          <h2>SHOP CLARA'S ART</h2>
-          <div>RENDERED ITEMS</div>
+        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
+        <div>{this.state.profPicURL}</div>
+        <div>{this.state.artistName}</div>
+        <div>{this.state.location}</div>
+        <div>{this.state.bio}</div>
+        <div>Other items by this artist:</div>
           {itemsRendered}
         </div>
       );

@@ -118,12 +118,12 @@ class Home extends Component {
             <SearchBar />
           </div>
           <div>
-            {this.props.email !== "" ? <UserAccountButton /> : null}
+            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
               <ConnectButton />
             ) : null}
-            {this.props.email !== "" ? <CartButton /> : null}
+            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
           </div>
         </div>
 
@@ -154,7 +154,21 @@ class Home extends Component {
               <p>{this.state.featuredCat[2].name}</p>
             </div>
           </div>
-        </div>
+
+
+        {/* <NavButton />
+        <HomeButton/>
+        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
+        {this.props.artistName !== "" ? <ArtistAccountButton /> : null}
+        {this.props.email === "" && this.props.artistName === "" ? <ConnectButton /> : null}
+        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null} */}
+
+
+        {/* <SearchBar /> */}
+        {/* <h2>Featured collection</h2> */}
+        {/* <div name="categories">
+            {featuredCollection}
+        </div> */}
         <div name="items" className="row">
           {/* HOW TO DO COLUMNS */}
           {/* <div className="col-2" style={{backgroundColor:"grey"}}>

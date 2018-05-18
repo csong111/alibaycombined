@@ -1,3 +1,4 @@
+/*
 this.state: {
 
     //HOME:
@@ -167,3 +168,4 @@ this.state: {
     cartTotal: 200,
     
 }
+*/
