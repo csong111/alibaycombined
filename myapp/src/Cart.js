@@ -33,11 +33,14 @@ class Cart extends Component {
       cartItems: [
         {
           itemID: "123458",
+          artistName: "caro",
+          blurb: "",
+          category: [],
+          img1: "",
+          img2: "",
+          img3: "",
           name: "Pillow",
           price: 100,
-          artistName: "caro",
-          imageURL: "items/pillow.jpg",
-          cat: "Popular",
           quantity: 2,
           quantityToBuy: 1,
         }
@@ -61,7 +64,7 @@ class Cart extends Component {
     .then(e => {
       let parsed=JSON.parse(e)
       this.setState({cartItems: parsed});
-      console.log(this.state.cartItems)
+      //console.log(this.state.cartItems)
       this.getUserDetails();
 
     })
@@ -78,19 +81,19 @@ class Cart extends Component {
     //   )); this.setState({cartItems: responses})
     // } 
     
-    fetch("/getItemDetails?itemID="+this.props.itemID, {
-      method: 'GET',
-    }).then(res=>res.text())
-      .then(resB=>{
-        let parsed=JSON.parse(resB);
-        console.log(parsed)
-        let name=parsed.name;
-        let imageURL=parsed.imageURL;
-        let blurb=parsed.blurb;
-        let artistName=parsed.artistName;
-        let price=parsed.price;
-        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
-    })
+    // fetch("/getItemDetails?itemID="+this.props.itemID, {
+    //   method: 'GET',
+    // }).then(res=>res.text())
+    //   .then(resB=>{
+    //     let parsed=JSON.parse(resB);
+    //     console.log(parsed)
+    //     let name=parsed.name;
+    //     let imageURL=parsed.imageURL;
+    //     let blurb=parsed.blurb;
+    //     let artistName=parsed.artistName;
+    //     let price=parsed.price;
+    //     this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
+    // })
   
 
     var self = this;
@@ -144,20 +147,22 @@ class Cart extends Component {
     //.then(e=>{console.log("getUserDetails-4",e);return e})
     .then(e => {
       this.setState({ 
-        firstName: e.firstName,
-        lastName: e.lastName,
-        email: e.email,
-        address: e.address,
-        city: e.city,
-        province: e.province,
-        postalCode: e.postalCode,
-        country: e.country,
+        // firstName: e.firstName,
+        // lastName: e.lastName,
+        // email: e.email,
+        // address: e.address,
+        // city: e.city,
+        // province: e.province,
+        // postalCode: e.postalCode,
+        // country: e.country,
+        ...e
       });
     });
   };
 
   buy = () => {
     // addTransaction
+    let date = new Date();
     var body = JSON.stringify({
       // Shipping Infos
       firstName: this.state.firstName,
@@ -172,31 +177,23 @@ class Cart extends Component {
       userID : this.props.userID,
       // transactions
       cartItems : this.state.cartItems,
+      date: date
     })
     //console.log("createTransaction-1",body)
-    fetch("/createTransaction", {
+    fetch("/checkout", {
       method: "POST",
       body : body
     })
-    .then(e => e.text())
-    .then(e => JSON.parse(e))
-    //.then(e=>{console.log("createTransaction-4",e);return e})
-    .then(e => {
-      // @++ Error in props settings, watchout! see checkOutComplete at componentDidMount // double insertion
-      this.props.history.push("/checkoutcomplete/" + e.transactionID, {cartItems: this.state.cartItems})
-    });
-  };
+    .then(res => res.text())
+    .then(res => {
+      console.log(res);
+      let parsed=JSON.parse(res);
+      this.props.history.push("/checkoutcomplete/" + parsed, {cartItems: this.state.cartItems})
+    })
+  }
 
   //fetch to remove the item from cart
   removeItem = tempCartItems => {
-    // 1) See&correct business logic
-    // 2) Figure how I'm going to change things in the database
-    // 3) Define what you send
-    // 4) Define What you receive
-    // 5) Go on back end, and rewrite the logic
-    // 6) Test it & look at the consolelog
-    // 7) Define backEndLogic as pseudoCode
-
     // // 1)
       // Go through cartItems array and remove the object that contains the itemID we want to remove
       //
@@ -221,40 +218,12 @@ class Cart extends Component {
       })
     });
   };
-  updateQuantity = qty => {
-    // 1) See&correct business logic
-    // 2) Figure how I'm going to change things in the database
-    // 3) Define what you send
-    // 4) Define What you receive
-    // 5) Go on back end, and rewrite the logic
-    // 6) Test it & look at the consolelog
-    // 7) Define backEndLogic as pseudoCode
-    var body = {
-      // userID
-      userID : this.props.userID,
-      // transactions
-      cartItems : this.state.cartItems,
-    }
-    //console.log("updateQuantity-1",body)
-    fetch("/updateQuantity", {
-      method: "POST",
-      body : JSON.stringify(body)
-    })
-    .then(e => e.text())
-    .then(e => JSON.parse(e))
-    //.then(e=>{console.log("updateQuantity-4",e);return e})
-    .then(e => {
-      this.setState({
-        cartItems : e.cartItems,
-      })
-    });
-  };
-
+  
   render() {
-    //console.log(this.state.total)
+    //console.log("cartItems", this.state.cartItems)
     let total = 0;
     let cartItems = this.state.cartItems.map((item, id) => {
-      total += parseInt(item.price) * parseInt(item.quantityToBuy);
+      total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <div key={id}>
           <img src={"/" + item.imageURL} />
@@ -263,12 +232,12 @@ class Cart extends Component {
           <br />
           {item.artistName}
           <br />
-          Price: {item.price}
+          Price: ${item.price}
           <br />
           <input
             type="text"
             onChange={e => {
-              if (e.target.value <= item.quantity) {
+              if (e.target.value <= Number(item.quantity)) {
                 var temp = JSON.parse(JSON.stringify(this.state.cartItems));
                 temp[id].quantityToBuy = e.target.value;
                 this.setState({ cartItems: temp });
@@ -277,7 +246,6 @@ class Cart extends Component {
             value={item.quantityToBuy}
             placeholder={item.quantity + " in stock"}
           />
-          <button onClick={this.updateQuantity}>Update Quantity</button>
           <button onClick={()=>{
             var temp = JSON.parse(JSON.stringify(this.state.cartItems));
             temp = temp.filter((EL,ID)=> ID!==id)
@@ -304,7 +272,7 @@ class Cart extends Component {
             this.setState({ showCheckout: true, total: total });
           }}
         >
-          Checkout Now
+          Check Out Now
         </button>
 
         <div
@@ -315,7 +283,7 @@ class Cart extends Component {
           }
         >
           <div>Enter Shipping Info</div>
-          <form>
+          <form onSubmit={e => e.preventDefault()}>
             First Name:{" "}
             <input
               type="text"
@@ -355,7 +323,7 @@ class Cart extends Component {
               onChange={e => {
                 this.setState({ address: e.target.value });
               }}
-              value={this.state.email}
+              value={this.state.address}
               placeholder="Address"
               required
             />
@@ -404,7 +372,8 @@ class Cart extends Component {
               required
             />
             <br />
-            <div id="paypal-button" />
+            <button onClick={this.buy}>Buy</button>
+            {/* <div id="paypal-button" /> */}
             <Stripe />
           </form>
         </div>

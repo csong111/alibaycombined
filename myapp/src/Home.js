@@ -82,7 +82,7 @@ class Home extends Component {
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        console.log(parsed)
+        //console.log(parsed)
         this.setState({randomItems: parsed})
       })
     //FETCH get randomItems then setState the results endpoint: getRandomItems

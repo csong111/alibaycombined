@@ -47,14 +47,14 @@ class CheckoutComplete extends Component {
   render() {
     let total =0;
     let checkoutItems = this.state.checkoutItems.map((item, id) => {
-      total +=item.price
+      total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <li key={id}>
         <img src={"/"+item.imageURL} />
-          Item Name: {item.name}
-          Price: {item.price}
-          artistName: {item.artistName}
-          quantity: {item.quantity}
+          <div>Item Name: {item.name}</div>
+          <div>Price: ${item.price}</div>
+          <div>Artist: {item.artistName}</div>
+          <div>Quantity: {item.quantityToBuy}</div>
         </li>
       );
     });
