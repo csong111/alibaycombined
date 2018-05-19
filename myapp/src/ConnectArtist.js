@@ -18,16 +18,16 @@ class ConnectArtist extends Component {
             loggedIn: false,
          
             //ARTIST SIGN UP
-            sName: 'jen',
-            sEmail: 'jen@email.com',
-            sPassword: '123456',
-            sPasswordConf: '123456',
-            sDescription: "I'm an artist",
-            sLocation: 'Montreal, QC',
+            sName: '',
+            sEmail: '',
+            sPassword: '',
+            sPasswordConf: '',
+            sDescription: "",
+            sLocation: '',
             sProfPicURL: '',
-            sImageURL1: 'image1.jpg',
-            sImageURL2: 'image2.jpg',
-            sImageURL3: 'image3.jpg',
+            sImageURL1: '',
+            sImageURL2: '',
+            sImageURL3: '',
         }
     }
 
