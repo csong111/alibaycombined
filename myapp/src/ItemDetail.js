@@ -35,18 +35,21 @@ class ItemDetail extends Component {
         let blurb=parsed.blurb;
         let artistName=parsed.artistName;
         let price=parsed.price;
-        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
+        let quantity=parsed.quantity;
+        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price, quantity: quantity})
     })
   }
-  addToCart = (userID, itemID) => {
-    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID, quantity: 1})
+  addToCart = () => {
+    let body=JSON.stringify({userID: this.props.userID, name: this.state.name, imageURL: this.state.imageURL,
+       blurb: this.state.blurb, artistName: this.state.artistName, price: this.state.price, itemID: this.props.itemID, 
+       quantity: this.state.quantity, quantityToBuy: 1})
     fetch("/addToCart", {
       method: 'POST',
       body: body 
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        console.log(parsed);
+        //console.log(parsed);
       })
   };
 
