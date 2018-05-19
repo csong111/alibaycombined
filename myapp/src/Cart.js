@@ -65,18 +65,18 @@ class Cart extends Component {
       this.getUserDetails();
 
     })
-    getCartItemDetails = async items => {
-      let responses = await Promise.all(
-        this.state.cartItems.map(item=>
-          fetch("getItemDetails?itemID="+item.itemID, {
-            method: "GET",
-          }).then(res=>res.text())
-            .then(resB=>{
-              let parsed=JSON.parse(resB)
-              return parsed;
-            })
-      )); this.setState({cartItems: responses})
-    } 
+    // getCartItemDetails = async items => {
+    //   let responses = await Promise.all(
+    //     this.state.cartItems.map(item=>
+    //       fetch("getItemDetails?itemID="+item.itemID, {
+    //         method: "GET",
+    //       }).then(res=>res.text())
+    //         .then(resB=>{
+    //           let parsed=JSON.parse(resB)
+    //           return parsed;
+    //         })
+    //   )); this.setState({cartItems: responses})
+    // } 
     
     fetch("/getItemDetails?itemID="+this.props.itemID, {
       method: 'GET',
