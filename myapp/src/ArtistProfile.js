@@ -39,12 +39,12 @@ class ArtistProfile extends Component {
   .then(e =>JSON.parse(e))
  // .then(e =>{console.log("getAristProfile-4",e); return e})
   .then(e =>{
-    console.log(e[0])
+    console.log(e)
     this.setState({
-      bio: e[0].bio,
-      location: e[0].location,
-      profPicURL: e[0].profPicURL,
-      items: e[0].items
+      bio: e.bio,
+      location: e.location,
+      profPicURL: e.profPicURL,
+      items: e.items
     })
   })
 console.log(this.state)
