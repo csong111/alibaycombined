@@ -14,58 +14,44 @@ class ConnectUser extends Component {
     super();
     this.state = {
       //LOGIN
-      email: "jen@email.com",
-      password: "123456",
+      email: "",
+      password: "",
       loggedIn: false,
+      incorrectData:false,
 
       //SIGN UP
-      firstName: "jen",
-      lastName: "o",
-      emailSignUp: "jen@email.com",
-      passwordSignUp: "123456",
-      passwordSignUpConf: "123456"
+      firstName: "",
+      lastName: "",
+      emailSignUp: "",
+      passwordSignUp: "",
+      passwordSignUpConf: "",
+      accountExists: false
     };
   }
 
-  // handleLogin = event => {
-  //   event.preventDefault();
-  //   // Fetch login, if success ...   
-  //   this.props.loginUser("jen@email.com","jen"); //fetch userID from the backend and send to app.js
-  //   this.setState({ loggedIn: true });
-  //   this.props.history.push("/");
-  // };
-
   handleLogin = event => {
     event.preventDefault();
-    // Fetch login, if success ...   
     let bod = JSON.stringify({
-      email: this.state.emailSignUp,
-      password: this.state.passwordSignUp,
+      email: this.state.email,
+      password: this.state.password,
     });
 
     fetch("/userLogin", { method: "POST", body: bod })
     .then(x => x.text())
-    .then(x => JSON.parse(x))
-    //.then(x => console.log(x.success))
+    .then(x =>  JSON.parse(x))
+    // .then(x => console.log(x))
     .then( x => {
       if (x.success) {
-        this.props.loginUser(x.email, x.id, x.firstName); //fetch userID from the backend and send to app.js
-        //console.log(this.props.loginUser)
+   //     console.log(x)
+        this.props.loginUser(x.RESB.email, x.RESB.id, x.RESB.firstName); //fetch userID from the backend and send to app.js
+   //     console.log(this.props.loginUser)
         this.setState({ loggedIn: true });
         this.props.history.push("/");
       } else {
-        console.log("something went wrong")
+        this.setState({incorrectData:true})
       }
     })
   };
-
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   this.props.history.push("/usersignupcomplete");
-  //   this.props.loginUser("jen@email.com","jen");
-  //   // Fetch Create new User
-  //   this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
-  // };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -81,7 +67,7 @@ class ConnectUser extends Component {
     fetch("/userSignUp", { method: "POST", body: bod })
     .then(x => x.text())
     .then(x => JSON.parse(x))
-    //.then(x => console.log(x))
+    // .then(x => console.log(x))
     .then(x => {
       if (x.success) {
       this.props.history.push("/usersignupcomplete");
@@ -90,7 +76,7 @@ class ConnectUser extends Component {
       //this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
       this.setState({ loggedIn: true });
       } else {
-        console.log("something went wrong")
+        this.setState({accountExists:true})
       }
     })
   };
@@ -137,7 +123,7 @@ class ConnectUser extends Component {
             value={this.state.password}
             placeholder="Password"
             required
-          />
+          />{this.state.incorrectData ? <div className="failedLogin">Woops - incorrect! Try again</div> :null}
           <input type="submit" />
         </form>
         <hr />
@@ -188,7 +174,7 @@ class ConnectUser extends Component {
             value={this.state.passwordSignUpConf}
             placeholder="Confirm Password"
             required
-          />
+          />{this.state.accountExists ? <div className="failedAccount">This email is already in use, please try another</div> :null}
           <br />
           <input type="submit" />
         </form>

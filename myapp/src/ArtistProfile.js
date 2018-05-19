@@ -24,8 +24,27 @@ class ArtistProfile extends Component {
   }
   componentDidMount() {
     var body = {
-      artistName: this.props.artistName
-    };
+      artistName : this.props.artistName
+    }
+ // console.log("getArtistProfile-1",body)
+  fetch("/getArtistProfile", {
+    method: "POST",
+    body : JSON.stringify(body)
+  })
+  .then(e =>e.text())
+  .then(e =>JSON.parse(e))
+ // .then(e =>{console.log("getAristProfile-4",e); return e})
+  .then(e =>{
+    console.log(e)
+    this.setState({
+      bio: e.bio,
+      location: e.location,
+      profPicURL: e.profPicURL,
+      items: e.items
+    })
+  })
+console.log(this.state)
+  this.viewArtistItems(this.state.items)
 
     fetch("/getArtistProfile", {
       method: "POST",
