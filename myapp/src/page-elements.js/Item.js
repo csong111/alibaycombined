@@ -10,7 +10,7 @@ class Item extends Component {
       <div>
       <div>
         <Link to={"/itemdetail/" + this.props.itemID}> 
-          <img width ="100%"src={this.props.imageURL} alt="null" />
+          <img width ="100%"src={this.props.img1} alt="null" />
         </Link>
           <div className="bold"><p>{this.props.name}</p></div>
           <div><p>${this.props.price}</p></div>
