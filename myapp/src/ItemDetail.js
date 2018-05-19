@@ -13,7 +13,7 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      itemID: "5afdb5c7f050e705bfccb99f",
+      itemID: "",
       artistName: "",
       blurb: "",
       category: [],
@@ -33,7 +33,7 @@ class ItemDetail extends Component {
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        console.log(parsed)
+        //console.log(parsed)
         let artistName=parsed.artistName;
         let blurb=parsed.blurb;
         let category=parsed.category;
@@ -95,11 +95,11 @@ class ItemDetail extends Component {
       <div className ="row">
         <div className="detailsContainer noPad">
           <div className ="space">
-          <img width="300px" src={"/"+this.state.imageURL}/>
+          <img width="300px" src={this.state.img1}/>
           </div>
 
           <div className ="space">
-          <div>{this.state.name}</div>
+          <div className="bold">{this.state.name}</div>
           <div>{this.state.blurb}</div>
           Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
           <br />

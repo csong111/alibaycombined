@@ -11,15 +11,15 @@ class CreateListing extends Component {
   constructor() {
     super();
     this.state={
-      artistName: "aisha",
-      name: 'print',
-      price: 100,
-      cat: "Prints",
-      blurb: "cool print",
-      quantity: 1,
-      imageURL1: '/items/aisha.jpg',
-      imageURL2: '/items/pillow.jpg',
-      imageURL3: '',
+      artistName: "",
+      name: '',
+      price: undefined,
+      cat: "",
+      blurb: "",
+      quantity: undefined,
+      img1: '',
+      img2: '',
+      img3: '',
     }
   }
 
@@ -37,9 +37,9 @@ class CreateListing extends Component {
       cat: this.state.cat,
       blurb: this.state.blurb,
       quantity: this.state.quantity,
-      imageURL1: this.state.imageURL1,
-      imageURL2: this.state.imageURL2,
-      imageURL3: this.state.imageURL3,
+      img1: this.state.img1,
+      img2: this.state.img2,
+      img3: this.state.img3,
     }
     console.log("createListing-1",body)
     fetch("/createListing",{method:"POST",body:JSON.stringify(body)})
@@ -86,14 +86,14 @@ class CreateListing extends Component {
                 <option value="Curtains">Curtains</option>
               </select><br/>
              Upload up to 3 images: <br/>
-              <input id="createListingImg1" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"imageURL1")} placeholder="Upload Item Image" />
-              {this.state.imageURL1 !=="" ? <img src={this.state.imageURL1}/> : <img onClick={()=>{document.getElementById("createListingImg1").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              <input id="createListingImg1" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img1")} placeholder="Upload Item Image" />
+              {this.state.img1 !=="" ? <img src={this.state.img1}/> : <img onClick={()=>{document.getElementById("createListingImg1").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
               <br/>
-              <input id="createListingImg2" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"imageURL2")} placeholder="Upload Item Image" />
-              {this.state.imageURL2 !=="" ? <img src={this.state.imageURL2}/> : <img onClick={()=>{document.getElementById("createListingImg2").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              <input id="createListingImg2" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img2")} placeholder="Upload Item Image" />
+              {this.state.img2 !=="" ? <img src={this.state.img2}/> : <img onClick={()=>{document.getElementById("createListingImg2").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
               <br/>
-              <input id="createListingImg3" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"imageURL3")} placeholder="Upload Item Image" />
-              {this.state.imageURL3 !=="" ? <img src={this.state.imageURL3}/> : <img onClick={()=>{document.getElementById("createListingImg3").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              <input id="createListingImg3" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img3")} placeholder="Upload Item Image" />
+              {this.state.img3 !=="" ? <img src={this.state.img3}/> : <img onClick={()=>{document.getElementById("createListingImg3").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
               <br/>
               <input type="submit"/>
             </form>

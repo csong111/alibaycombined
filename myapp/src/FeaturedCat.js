@@ -15,8 +15,8 @@ class FeaturedCat extends Component {
         super();
         this.state={
             itemsInCat: [
-                { itemID: '123456', name: "Spring Print", price: 50, artistName: "aisha", imageURL: '/items/45589157_095_b.jpg', cat: "Spring" },
-                { itemID: '123457', name: "Awesome Emproidery", price: 100, artistName: "caro", imageURL: '/items/45513033_045_b10.jpg', cat: "Spring" },
+                // { itemID: '123456', name: "Spring Print", price: 50, artistName: "aisha", img1: '/items/45589157_095_b.jpg', cat: "Spring" },
+                // { itemID: '123457', name: "Awesome Emproidery", price: 100, artistName: "caro", img1: '/items/45513033_045_b10.jpg', cat: "Spring" },
             ],
         }
     }
@@ -37,7 +37,7 @@ class FeaturedCat extends Component {
       var itemsRendered = this.state.itemsInCat.map((el,id)=>{
         return (
           <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
-          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          <Item itemID = {el._id} name = {el.name} price = {el.price} artistName = {el.artistName} img1 = {el.img1} />
           </div>
         )
       })

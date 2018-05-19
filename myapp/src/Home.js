@@ -99,15 +99,17 @@ class Home extends Component {
     //   );
     // });
 
+    console.log(this.state.randomItems)
+
     var itemsRendered = this.state.randomItems.map((el, id) => {
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
           <Item
-            itemID={el.itemID}
+            itemID={el._id}
             name={el.name}
             price={el.price}
             artistName={el.artistName}
-            imageURL={el.imageURL}
+            img1={el.img1}
           />
         </div>
       );
