@@ -48,13 +48,15 @@ class ArtistAccount extends Component {
   }
 
   initData = () => {
+    var body = {artistName: this.props.artistName}
+    console.log("getArtistProfile-1", body)
     fetch("/getArtistProfile", {
       method: "POST",
-      body: JSON.stringify({artistName: this.props.artistName})
+      body: JSON.stringify(body)
     })
       .then(res => res.text())
       .then(resB => {
-        //console.log(resB)
+        console.log("getArtistProfile-4", JSON.parse(resB))
         let parsed = JSON.parse(resB);
         let artistName = parsed.artistName;
         let bio = parsed.bio;
@@ -66,7 +68,7 @@ class ArtistAccount extends Component {
           bio: bio,
           location: location,
           profPicURL: profPicURL,
-          items: items
+          //items: items
         });
       });
     //FETCH get artist info endpoint: getArtistDetails

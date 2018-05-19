@@ -25,7 +25,7 @@ class App extends Component {
     super();
     this.state={
 
-      artistName: "jen",
+      artistName: "",
       email: "",
       userID: "",
     }
