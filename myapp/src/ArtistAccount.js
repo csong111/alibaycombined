@@ -13,32 +13,12 @@ class ArtistAccount extends Component {
     super();
     this.state = {
       edit: false,
-      artistName: "caro",
+      artistName: "",
       artistNameInput: "",
-      bio: "I'm a cool artist",
-      location: "Montreal, Canada",
+      bio: "",
+      location: "",
       profPicURL: "",
       items: [
-        {
-          itemID: "123457",
-          name: "Awesome Embroidery",
-          price: 100,
-          artistName: "caro",
-          imageURL: "embroidery.jpg",
-          cat: "Spring",
-          blurb: "Best embroidery ever!",
-          quantity: 1
-        },
-        {
-          itemID: "123458",
-          name: "Pillow",
-          price: 100,
-          artistName: "caro",
-          imageURL: "pillow.jpg",
-          cat: "Popular",
-          blurb: "Best pillow ever!",
-          quantity: 2
-        }
       ]
     };
   }
@@ -49,20 +29,20 @@ class ArtistAccount extends Component {
 
   initData = () => {
     var body = {artistName: this.props.artistName}
-    console.log("getArtistProfile-1", body)
+    //console.log("getArtistProfile-1", body)
     fetch("/getArtistProfile", {
       method: "POST",
       body: JSON.stringify(body)
     })
       .then(res => res.text())
       .then(resB => {
-        console.log("getArtistProfile-4", JSON.parse(resB))
+        //console.log("getArtistProfile-4", JSON.parse(resB))
         let parsed = JSON.parse(resB);
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
         let profPicURL = parsed.profPicURL;
-        let items = parsed.items;
+        //let items = parsed.items;
         this.setState({
           artistName: artistName,
           bio: bio,
@@ -72,6 +52,17 @@ class ArtistAccount extends Component {
         });
       });
     //FETCH get artist info endpoint: getArtistDetails
+
+    //FETCH ARTIST ITEMS
+    fetch("/getArtistItems?artistName="+this.props.artistName, {
+      method: 'GET'
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB)
+        //console.log(parsed)
+        this.setState({items: parsed})
+      })
+
   };
 
   // JACQUES'S CODE UPLOAD PICTURE
@@ -118,8 +109,9 @@ class ArtistAccount extends Component {
   };
 
   render() {
-    console.log(this.props.artistName)
+    //console.log(this.props.artistName)
     let itemsRendered = this.state.items.map((el, id) => {
+      //console.log("state items", this.state.items)
       return (
         <div key={id}>
           <Item
@@ -127,7 +119,7 @@ class ArtistAccount extends Component {
             name={el.name}
             price={el.price}
             artistName={el.artistName}
-            profPicURL={el.profPicURL}
+            img1={el.img1}
           />
         </div>
       );
