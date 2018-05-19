@@ -15,7 +15,7 @@ class ItemDetail extends Component {
     this.state = {
       //itemID: "",
       name: "A pillow",
-      imageURL: "items/pillow.jpg",
+      imageURL: "items/45589157_095_b.jpg",
       blurb: "",
       artistName: "clara",
       price: ""
@@ -47,27 +47,57 @@ class ItemDetail extends Component {
         let parsed=JSON.parse(resB);
         console.log(parsed);
       })
-
   };
 
   render() {
       //fetch itemdetails from backend
     return (
-      <div className="">
-      <h1>LOGO</h1>
-        <h1>ITEM DETAILS</h1>
-        <NavButton />
-        <HomeButton/>
-        {this.props.email === "" ? null : <UserAccountButton userID={this.props.userID} />}
-        {this.props.email === "" ? null : <CartButton userID = {this.props.userID} />}
-        {this.props.email === "" ? <ConnectButton /> : null}
-        <SearchBar />
-        <img src={"/"+this.state.imageURL}/>
-        <div>{this.state.name}</div>
-        <div>{this.state.blurb}</div>
-        Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
-        <button onClick={this.addToCart}>Add to Cart</button>
-      </div>      
+      <div>
+
+        <div className="headerElements">
+          <NavButton />
+
+          <div className="logo">
+            <HomeButton />
+          </div>
+          
+          <div className="search">
+            <SearchBar />
+          </div>
+
+          <div>
+            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
+            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
+            {this.props.email === "" && this.props.artistName === "" ? (
+              <ConnectButton />
+            ) : null}
+            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+
+      <div className ="container space">
+      <div className ="row">
+        <div className="detailsContainer noPad">
+          <div className ="space">
+          <img width="300px" src={"/"+this.state.imageURL}/>
+          </div>
+
+          <div className ="space">
+          <div>{this.state.name}</div>
+          <div>{this.state.blurb}</div>
+          Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
+          <br />
+          <button onClick={this.addToCart}>Add to Cart</button>
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      </div>
     );
   }
 }

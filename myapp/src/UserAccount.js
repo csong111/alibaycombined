@@ -53,21 +53,13 @@ class Account extends Component {
     //FETCH get user info endpoint: getUserDetails
       // Copy the data to idata
 
-    let bod = JSON.stringify({
-      firstName: this.state.ifirstName,
-      lastName: this.state.ilastName,
-      email: this.state.iemail,
-      address: this.state.iaddress,
-      city: this.state.icity,
-      province: this.state.iprovince,
-      postalCode: this.state.ipostalCode,
-      country: this.state.icountry,
-    });
+    let bod = JSON.stringify({ userID : this.props.userID });
 
     fetch("/getUserDetails", { method: "POST", body: bod })
     .then(x => x.text())
     .then(x => JSON.parse(x))
     .then(x => {
+      console.log(x)
       this.setState ({
         firstName: x.firstName,
         lastName: x.lastName,
@@ -82,7 +74,6 @@ class Account extends Component {
 
     //FETCH get account info endpoint: getUserShippingInfo
     //FETCH get itemsBought then setState the results endpoint: getItemsBought
-
 
     fetch("/getItemsBought?userID="+this.props.userID, { method: 'GET' })
     .then(x => x.text())

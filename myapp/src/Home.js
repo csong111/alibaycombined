@@ -121,9 +121,11 @@ class Home extends Component {
           <div className="logo">
             <HomeButton />
           </div>
+          
           <div className="search">
             <SearchBar />
           </div>
+
           <div>
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
@@ -137,6 +139,7 @@ class Home extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
+
         <div>
           <div name="mainBanner" className="row">
             <div className="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 noPad space">
