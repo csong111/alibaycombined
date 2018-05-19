@@ -18,8 +18,7 @@ class ArtistAccount extends Component {
       bio: "",
       location: "",
       profPicURL: "",
-      items: [
-      ]
+      items: []
     };
   }
 
@@ -28,45 +27,35 @@ class ArtistAccount extends Component {
   }
 
   initData = () => {
-    var body = {artistName: this.props.artistName}
-    //console.log("getArtistProfile-1", body)
+    var body = { artistName: this.props.artistName };
     fetch("/getArtistProfile", {
       method: "POST",
       body: JSON.stringify(body)
     })
       .then(res => res.text())
       .then(resB => {
-        //console.log("getArtistProfile-4", JSON.parse(resB))
         let parsed = JSON.parse(resB);
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
         let profPicURL = parsed.profPicURL;
-        //let items = parsed.items;
         this.setState({
           artistName: artistName,
           bio: bio,
           location: location,
-          profPicURL: profPicURL,
-          //items: items
+          profPicURL: profPicURL
         });
       });
-    //FETCH get artist info endpoint: getArtistDetails
 
-    //FETCH ARTIST ITEMS
-    fetch("/getArtistItems?artistName="+this.props.artistName, {
-      method: 'GET'
-    }).then(res=>res.text())
-      .then(resB=>{
-        let parsed=JSON.parse(resB)
-        //console.log(parsed)
-        this.setState({items: parsed})
-      })
-
+    fetch("/getArtistItems?artistName=" + this.props.artistName, {
+      method: "GET"
+    })
+      .then(res => res.text())
+      .then(resB => {
+        let parsed = JSON.parse(resB);
+        this.setState({ items: parsed });
+      });
   };
-
-  // JACQUES'S CODE UPLOAD PICTURE
-  //FETCH change profile endpoint: uploadProfilePic
 
   uploadFile = (x, stateName) => {
     let filename = x.name;
@@ -109,13 +98,11 @@ class ArtistAccount extends Component {
   };
 
   render() {
-    //console.log(this.props.artistName)
     let itemsRendered = this.state.items.map((el, id) => {
-      //console.log("state items", this.state.items)
       return (
         <div key={id}>
           <Item
-            itemID={el.itemID}
+            itemID={el._id}
             name={el.name}
             price={el.price}
             artistName={el.artistName}
@@ -163,12 +150,33 @@ class ArtistAccount extends Component {
         <NavButton />
         <HomeButton />
 
-        {this.props.artistName === "" ? null : <ArtistAccountButton artistName={this.props.artistName} />}
+        {this.props.artistName === "" ? null : (
+          <ArtistAccountButton artistName={this.props.artistName} />
+        )}
 
         <h2>MY ACCOUNT</h2>
 
-        <input id="changeProfile" style={{ display: "none" }} type="file" onChange={event => this.uploadFile(event.target.files[0], "profPicURL")} placeholder="Upload Profile Pic Image"/>
-        {this.state.profPicURL !== "" ? <img src={this.state.profPicURL} /> :<img onClick={() => {document.getElementById("changeProfile").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+        <input
+          id="changeProfile"
+          style={{ display: "none" }}
+          type="file"
+          onChange={event =>
+            this.uploadFile(event.target.files[0], "profPicURL")
+          }
+          placeholder="Upload Profile Pic Image"
+        />
+        {this.state.profPicURL !== "" ? (
+          <img src={this.state.profPicURL} />
+        ) : (
+          <img
+            onClick={() => {
+              document.getElementById("changeProfile").click();
+            }}
+            src="/items/addimage.png"
+            height="50px"
+            width="50px"
+          />
+        )}
 
         <div>{accountInfo}</div>
 

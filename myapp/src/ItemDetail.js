@@ -13,9 +13,9 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      itemID: "5afdb5c7f050e705bfccb99f",
+      itemID: "",
       name: "",
-      imageURL: "",
+      img1: "",
       blurb: "",
       artistName: "",
       price: ""
@@ -31,16 +31,16 @@ class ItemDetail extends Component {
         let parsed=JSON.parse(resB);
         console.log(parsed)
         let name=parsed.name;
-        let imageURL=parsed.imageURL;
+        let img1=parsed.img1;
         let blurb=parsed.blurb;
         let artistName=parsed.artistName;
         let price=parsed.price;
         let quantity=parsed.quantity;
-        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price, quantity: quantity})
+        this.setState({name: name, img1: img1, blurb: blurb, artistName: artistName, price: price, quantity: quantity})
     })
   }
   addToCart = () => {
-    let body=JSON.stringify({userID: this.props.userID, name: this.state.name, imageURL: this.state.imageURL,
+    let body=JSON.stringify({userID: this.props.userID, name: this.state.name, img1: this.state.img1,
        blurb: this.state.blurb, artistName: this.state.artistName, price: this.state.price, itemID: this.props.itemID, 
        quantity: this.state.quantity, quantityToBuy: 1})
     fetch("/addToCart", {
@@ -87,11 +87,11 @@ class ItemDetail extends Component {
       <div className ="row">
         <div className="detailsContainer noPad">
           <div className ="space">
-          <img width="300px" src={"/"+this.state.imageURL}/>
+          <img width="300px" src={this.state.img1}/>
           </div>
 
           <div className ="space">
-          <div>{this.state.name}</div>
+          <div className="bold">{this.state.name}</div>
           <div>{this.state.blurb}</div>
           Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
           <br />
