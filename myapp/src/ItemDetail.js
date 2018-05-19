@@ -13,12 +13,16 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      itemID: "5afdb5c7f050e705bfccb99f",
-      name: "",
-      imageURL: "",
-      blurb: "",
+      itemID: "",
       artistName: "",
-      price: ""
+      blurb: "",
+      category: [],
+      img1: "",
+      img2: "",
+      img3: "",
+      name: "",
+      price: "",
+      quantity: ""
     };
   }
 
@@ -29,20 +33,24 @@ class ItemDetail extends Component {
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        console.log(parsed)
-        let name=parsed.name;
-        let imageURL=parsed.imageURL;
-        let blurb=parsed.blurb;
+        //console.log(parsed)
         let artistName=parsed.artistName;
+        let blurb=parsed.blurb;
+        let category=parsed.category;
+        let img1=parsed.img1;
+        let img2=parsed.img2;
+        let img3=parsed.img3;
+        let name=parsed.name;
         let price=parsed.price;
         let quantity=parsed.quantity;
-        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price, quantity: quantity})
+        this.setState({artistName: artistName, blurb: blurb, category: category, img1: img1, img2: img2, img3: img3,
+          name: name, price: price, quantity: quantity})
     })
   }
   addToCart = () => {
-    let body=JSON.stringify({userID: this.props.userID, name: this.state.name, imageURL: this.state.imageURL,
-       blurb: this.state.blurb, artistName: this.state.artistName, price: this.state.price, itemID: this.props.itemID, 
-       quantity: this.state.quantity, quantityToBuy: 1})
+    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID, artistName: this.state.artistName, blurb: this.state.blurb, 
+      category: this.state.category, img1: this.state.img1, img2: this.state.img2, img3: this.state.img3, name: this.state.name,
+      price: this.state.price, quantity: this.state.quantity, quantityToBuy: 1})
     fetch("/addToCart", {
       method: 'POST',
       body: body 
@@ -87,11 +95,11 @@ class ItemDetail extends Component {
       <div className ="row">
         <div className="detailsContainer noPad">
           <div className ="space">
-          <img width="300px" src={"/"+this.state.imageURL}/>
+          <img width="300px" src={this.state.img1}/>
           </div>
 
           <div className ="space">
-          <div>{this.state.name}</div>
+          <div className="bold">{this.state.name}</div>
           <div>{this.state.blurb}</div>
           Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
           <br />

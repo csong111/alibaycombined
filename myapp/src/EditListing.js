@@ -11,26 +11,44 @@ class EditListing extends Component {
   constructor() {
     super();
     this.state={
-      artistName: "aisha",
-      name: 'print',
-      price: 100,
-      cat: "Prints",
-      blurb: "cool print",
-      quantity: 1,
-      imageURL1: '/items/aisha.jpg',
-      imageURL2: '/items/pillow.jpg',
+      artistName: "",
+      name: '',
+      price: undefined,
+      cat: "",
+      blurb: "",
+      quantity: undefined,
+      imageURL1: '',
+      imageURL2: '',
       imageURL3: '',
-      itemID: 1333
+      itemID: undefined
     }
   }
-  seeArtistAcct = () => {
-    return (<ArtistAccount/>)
-  }
+  // seeArtistAcct = () => {
+  //   return (<ArtistAccount/>)
+  // }
 
   //fetch editListings
-  handleSubmit = () => {
-    this.props.history.push("/itemdetail/"+this.state.itemID)
-
+  handleSubmit = (event) => {
+    event.preventDefault()
+    let body = {
+      itemID: this.state.itemID,
+      artistName: this.state.artistName,
+      name: this.state.name,
+      price: this.state.price,
+      cat: this.state.cat,
+      blurb: this.state.blurb,
+      quantity: this.state.quantity,
+      img1: this.state.img1,
+      img2: this.state.img2,
+      img3: this.state.img3,
+    }
+    fetch("/editListing",{method:"POST",body:JSON.stringify(body)})
+    .then(e=>e.text())
+    .then(e=>JSON.parse(e))
+    .then(e=>{
+      return e 
+    })  
+    .then(e=>this.props.history.push("/itemdetail/"+e.itemID))    
   }
 
   uploadFile = x => {
@@ -51,14 +69,15 @@ class EditListing extends Component {
         <div className="App">
             <NavButton />
             <HomeButton/>
+
             <h1>EDIT LISTING</h1>
-            <button onClick={this.seeArtistAcct}>Your artist account</button>
+
             <form onSubmit={this.handleSubmit}>
-             Item Name: <input type="text" onChange={(e)=>{this.setState({name:e.target.value})}} value={this.state.name} placeholder="Name" required/><br/>
-             Item Price: <input type="text" onChange={(e)=>{this.setState({price:e.target.value})}} value={this.state.price} placeholder="Price" required/><br/>
-             Item Description: <textarea rows="4" cols="50" onChange={(e)=>{this.setState({blurb:e.target.value})}} value={this.state.blurb} placeholder="A little blurb about the item" required/><br/>
-             Quantity Available: <input type="text" onChange={(e)=>{this.setState({quantity:e.target.value})}} value={this.state.quantity} placeholder="Quantity Available" required/><br/>
-              Category: <select onChange={(e)=>{this.setState({category:e.target.value})}} value={this.state.category} placeholder="Category" required><br/>
+             Item Name: <input type="text" onChange={(e)=>{this.setState({name:e.target.value})}} value={this.state.name} placeholder="Name" /><br/>
+             Item Price: <input type="text" onChange={(e)=>{this.setState({price:e.target.value})}} value={this.state.price} placeholder="Price" /><br/>
+             Item Description: <textarea rows="4" cols="50" onChange={(e)=>{this.setState({blurb:e.target.value})}} value={this.state.blurb} placeholder="A little blurb about the item" /><br/>
+             Quantity Available: <input type="text" onChange={(e)=>{this.setState({quantity:e.target.value})}} value={this.state.quantity} placeholder="Quantity Available" /><br/>
+              Category: <select onChange={(e)=>{this.setState({category:e.target.value})}} value={this.state.category} placeholder="Category" ><br/>
                 <option value="Prints">Prints</option>
                 <option value="Pillows">Pillows</option>
                 <option value="Embroidery">Embroidery</option>
