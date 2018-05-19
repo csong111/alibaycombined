@@ -52,18 +52,46 @@ class Cart extends Component {
     var body = {
       userID : this.props.userID
     }
-    console.log("getCart-1",body)
+    //console.log("getCart-1",body)
     fetch("/getCart", {
       method: "POST",
       body : JSON.stringify(body)
     })
     .then(e => e.text())
-    .then(e => JSON.parse(e))
-    //.then(e=>{console.log("getCart-4",e);return e})
     .then(e => {
-      this.setState({ cartItems: e.cartItems });
-      this.getUserDetails()
-    });
+      let parsed=JSON.parse(e)
+      this.setState({cartItems: parsed});
+      console.log(this.state.cartItems)
+      this.getUserDetails();
+
+    })
+    getCartItemDetails = async items => {
+      let responses = await Promise.all(
+        this.state.cartItems.map(item=>
+          fetch("getItemDetails?itemID="+item.itemID, {
+            method: "GET",
+          }).then(res=>res.text())
+            .then(resB=>{
+              let parsed=JSON.parse(resB)
+              return parsed;
+            })
+      )); this.setState({cartItems: responses})
+    } 
+    
+    fetch("/getItemDetails?itemID="+this.props.itemID, {
+      method: 'GET',
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        console.log(parsed)
+        let name=parsed.name;
+        let imageURL=parsed.imageURL;
+        let blurb=parsed.blurb;
+        let artistName=parsed.artistName;
+        let price=parsed.price;
+        this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
+    })
+  
 
     var self = this;
     window.paypal.Button.render(
@@ -223,10 +251,10 @@ class Cart extends Component {
   };
 
   render() {
-    console.log(this.state.total)
+    //console.log(this.state.total)
     let total = 0;
     let cartItems = this.state.cartItems.map((item, id) => {
-      total += item.price * item.quantityToBuy;
+      total += parseInt(item.price) * parseInt(item.quantityToBuy);
       return (
         <div key={id}>
           <img src={"/" + item.imageURL} />

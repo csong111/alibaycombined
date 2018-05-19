@@ -13,11 +13,11 @@ class ItemDetail extends Component {
   constructor() {
     super();
     this.state = {
-      //itemID: "",
-      name: "A pillow",
-      imageURL: "items/45589157_095_b.jpg",
+      itemID: "5afdb5c7f050e705bfccb99f",
+      name: "",
+      imageURL: "",
       blurb: "",
-      artistName: "clara",
+      artistName: "",
       price: ""
     };
   }
@@ -29,6 +29,7 @@ class ItemDetail extends Component {
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
+        console.log(parsed)
         let name=parsed.name;
         let imageURL=parsed.imageURL;
         let blurb=parsed.blurb;
