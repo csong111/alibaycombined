@@ -83,7 +83,6 @@ class Account extends Component {
     //FETCH get account info endpoint: getUserShippingInfo
     //FETCH get itemsBought then setState the results endpoint: getItemsBought
 
-
     fetch("/getItemsBought?userID="+this.props.userID, { method: 'GET' })
     .then(x => x.text())
     .then(x => JSON.parse(x))

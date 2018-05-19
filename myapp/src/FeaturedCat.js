@@ -36,21 +36,42 @@ class FeaturedCat extends Component {
     render() {
       var itemsRendered = this.state.itemsInCat.map((el,id)=>{
         return (
-          <Item key={id} itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
+          <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
+          </div>
         )
       })
 
       return (
         <div>
-        <NavButton />
-        <HomeButton/>
-        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
-        {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
-        {this.props.email !== "" || this.props.artistName !== "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null}
-        <SearchBar/>
-        <h2>FEATURED CAT</h2>
-        <div name="cat-items">
+        <div className="headerElements">
+          <NavButton />
+
+          <div className="logo">
+            <HomeButton />
+          </div>
+          
+          <div className="search">
+            <SearchBar />
+          </div>
+
+          <div>
+            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
+            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
+            {this.props.email === "" && this.props.artistName === "" ? (
+              <ConnectButton />
+            ) : null}
+            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+
+        <h2 className="catName space">{this.props.cat}</h2>
+
+        <div name="cat-items" className="row">
           {itemsRendered}
         </div>
         </div>

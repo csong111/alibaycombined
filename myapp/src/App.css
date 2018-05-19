@@ -17,7 +17,6 @@ p {
 
 h2 {
   font-family: 'Open Sans Condensed', sans-serif;
-  font-weight: bold;
 }
 
 .bold {
@@ -31,17 +30,33 @@ h2 {
 
 /* Header Elements */
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
 .logo {
-  margin-left: 1%;
+  margin-left: 0.5%;
   margin-right: auto;
 }
 
 .headerElements {
   padding-top: 15px;
   display: flex;
-  height: 50px;
+  height: 64px;
   background-color: white;
 }
+
+/* @media only screen and (max-width: 600px) {
+  .headerElements {
+    padding-top: 15px;
+    display: flex;
+    height: 35px;
+    background-color: white;
+  }
+} */
 
 .accountElements {
   float: right;
@@ -68,6 +83,10 @@ h2 {
 
 .searchMobile {
   text-align: center;
+}
+
+.search {
+  margin-right: 10px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -104,6 +123,40 @@ h2 {
   padding: 10px;
 }
 
+.marginTopNavPush {
+  margin-top: 40px;
+}
+
+.marginTop {
+  margin-top: 15px
+}
+
+/* Category Styles */
+
+.catName {
+  margin-top: 15px;
+}
+
+/* Details */
+
+
+
+
+@media only screen and (min-width: 600px) {
+  .detailsContainer {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .detailsContainer {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 
 /* Mockup Styles */
 
@@ -128,3 +181,4 @@ button:focus {
 #paypal-button {
   bottom: 400px;
 }
+
