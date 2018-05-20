@@ -20,29 +20,29 @@ class Cart extends Component {
 
 
       // UserDetails
-      firstName: "Jen",
-      lastName: "O",
-      email: "jen@email.com",
-      address: "123 Blah St.",
-      city: "Montreal",
-      province: "Quebec",
-      postalCode: "H13 1Y8",
-      country: "Canada",
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      city: "",
+      province: "",
+      postalCode: "",
+      country: "",
 
       // Cart
       cartItems: [
         {
-          itemID: "123458",
-          artistName: "caro",
+          itemID: "",
+          artistName: "",
           blurb: "",
           category: [],
           img1: "",
           img2: "",
           img3: "",
-          name: "Pillow",
-          price: 100,
-          quantity: 2,
-          quantityToBuy: 1,
+          name: "",
+          price: null,
+          quantity: null,
+          quantityToBuy: null,
         }
       ]
 
@@ -96,7 +96,7 @@ class Cart extends Component {
     // })
   
 
-    var self = this;
+    //var self = this;
     window.paypal.Button.render(
       {
         env: "sandbox",
@@ -120,12 +120,12 @@ class Cart extends Component {
           });
         },
 
-        onAuthorize: function(data, actions) {
+        onAuthorize: (data, actions) => {
           return actions.payment.execute().then(function(payment) {
             // The payment is complete!
             // You can now show a confirmation message to the customer
             //console.log(payment);
-            self.buy();
+            this.buy();
           });
         }
       },
@@ -212,10 +212,13 @@ class Cart extends Component {
     .then(e => e.text())
     .then(e => JSON.parse(e))
     //.then(e=>{console.log("removeItem-4",e);return e})
-    .then(e => {
-      this.setState({
-        cartItems : e.cartItems,
-      })
+    .then(res => {
+      if(res.success) {
+        console.log(this.state.cartItems, tempCartItems)
+        this.setState({
+          cartItems : tempCartItems,
+        })
+      }
     });
   };
   
@@ -226,7 +229,7 @@ class Cart extends Component {
       total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <div key={id}>
-          <img src={"/" + item.imageURL} />
+          <img src={"/" + item.img1} />
           <br />
           {item.name}
           <br />

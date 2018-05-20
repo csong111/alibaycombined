@@ -11,11 +11,9 @@ class Orders extends Component {
     constructor() {
         super();
         this.state={
-            artistName:"caro",
-            orders: [
-                { orderID: "#123782", buyerName: "Joe", itemID: ['123457','123458'], total: 100, date: "May 15, 2018", fulfilled: "fulfilled", itemNames:[] },
-                { orderID: "#1237866", buyerName: "Joe", itemID: ['1479','123458'], total: 600, date: "May 10, 2018", fulfilled: "unfulfilled", itemNames:[] }
-            ],
+            artistName:"",
+            orders: [],
+            previousOrders: false
         }
     }
 
@@ -34,19 +32,24 @@ class Orders extends Component {
         .then (e =>JSON.parse(e))
         .then(e=>{console.log("getOrders-4", e);return e})
         .then(e =>{
-            // this.setState({orders :e.orders})
-            this.getOrderItemNames(e.orders)
-
+        //    console.log("E",e)
+           //  this.setState({orders :e.cartItems})
+            if(e.cartItems.length>=1){
+                let itemIDs = e.cartItems.map(item=>{return item.itemID})
+                this.getOrderItemNames(itemIDs)
+                this.setState({ orders: itemIDs, previousOrders:true})
+            }
+            else this.setState({previousOrders:false})
         })
     }
     
-
     seeArtistAcct = () => {
 
         this.props.history.push("/artistaccount/"+this.state.artistName)
     }
 
     getItemNames = async order=>{  
+        console.log("ORDER",order)
         let itemNames = await Promise.all(
                  order.itemID.map(id => 
                  fetch("/getItemDetails?itemID=" + id, { method: "GET" })
@@ -56,17 +59,17 @@ class Orders extends Component {
                     return e.name
                  })
              ));
-        console.log(itemNames)
+       // console.log(itemNames)
         return itemNames
        }
 
     getOrderItemNames = async orders=>{  
-        console.log(orders)  
+      //  console.log(orders)  
         let ordersWithName = await Promise.all(orders.map(async order => {
             let itemNames = await this.getItemNames(order)
             return {...order, itemNames}
         }))
-        console.log(ordersWithName)
+     //   console.log(ordersWithName)
         this.setState({orders: ordersWithName})
        }
     
@@ -125,8 +128,10 @@ class Orders extends Component {
               <HomeButton />
               <ArtistAccountButton/>
               <h1>Your order history</h1>
-              <div>{renderTitle}</div>
-              <div>{renderOrders}</div>
+              {!this.state.previousOrders ?
+               <div className="failedAccount">No previous orders</div> :
+              <div><div>{renderTitle}</div>
+              <div>{renderOrders}</div></div>}
           </div>
         );
       }
