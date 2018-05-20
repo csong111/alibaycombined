@@ -13,9 +13,10 @@ class ConnectArtist extends Component {
     constructor (props) {
         super(props);
         this.state={//ARTIST LOGIN
-            artistName: 'aisha',
-            aPassword: '123456',
+            artistName: '',
+            aPassword: '',
             loggedIn: false,
+            incorrectData:false,
          
             //ARTIST SIGN UP
             sName: '',
@@ -28,8 +29,10 @@ class ConnectArtist extends Component {
             sImageURL1: '',
             sImageURL2: '',
             sImageURL3: '',
-        }
+            accountExists: false,
+
     }
+}
 
     uploadProfile = (x,stateName) => {
         let filename = x.name;
@@ -74,16 +77,18 @@ class ConnectArtist extends Component {
         event.preventDefault();
 
         let bod = JSON.stringify({
-            artistName: 'aisha',
-            aPassword: '123456',
+            artistName: this.state.artistName,
+            aPassword: this.state.aPassword,
           });
       
           fetch("/artistLogin", { method: "POST", body: bod })
           .then(x => x.text())
           .then(x => JSON.parse(x))
           .then(x => {
-              if (x.artistName !== "") {
-                this.props.loginArtist(x.artistName) //change to artistName from backend
+              console.log(x)
+              if (x.success) {
+                  console.log("this should be the name",x.RESB.artistName)
+                this.props.loginArtist(x.RESB.artistName) //change to artistName from backend
                 this.setState({loggedIn: true});
                 // Fetch login in
                 this.props.history.push("/")
@@ -113,9 +118,10 @@ class ConnectArtist extends Component {
           .then(x => x.text())
           .then(x => JSON.parse(x))
           .then(x => {
-              if (x === "success") {
+              if (x.success) {
                 this.props.history.push("/artistsignupcomplete")
               } else {
+                  this.setState({accountExists:true})
                   console.log("something went wrong")
               }
           })
@@ -127,6 +133,7 @@ class ConnectArtist extends Component {
         event.preventDefault();
         window.history.back();
     }
+    
 
     render () {
         return (
@@ -142,6 +149,7 @@ class ConnectArtist extends Component {
                 <form onSubmit={this.handleLogin}> LOG IN TO YOUR ARTIST ACCOUNT
                     <input type="text" onChange={(e)=>{this.setState({artistName: e.target.value})}} value={this.state.artistName} placeholder="name@email.com" required/>
                     <input type="password" onChange={(e)=>{this.setState({aPassword:e.target.value})}} value={this.state.aPassword} placeholder="Password" required/>
+                    {this.state.incorrectData ? <div className="failedLogin">Woops - incorrect! Try again</div> :null}
                     <input type="submit"/>
                 </form>
                 <hr/>
@@ -162,11 +170,12 @@ class ConnectArtist extends Component {
                     {/* <p>{this.state.sProfPicURL}</p>
                     <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/> */}
                     <p>{this.state.sImageURL1}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL1")} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL1")} placeholder="Upload Art" />
                     <p>{this.state.sImageURL2}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL2")} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL2")} placeholder="Upload Art" />
                     <p>{this.state.sImageURL3}</p>
-                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL3")} placeholder="Upload Art" required/>
+                    <input type="file" onChange={event => this.uploadFile(event.target.files[0],"sImageURL3")} placeholder="Upload Art" />
+                    {this.state.accountExists ? <div className="failedAccount">This email is already in use, please try another</div> :null}
                     <br/>
                     <input type="submit"/>
                 </form>
