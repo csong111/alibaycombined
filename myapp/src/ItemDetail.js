@@ -55,10 +55,10 @@ class ItemDetail extends Component {
       method: 'POST',
       body: body 
     }).then(res=>res.text())
-      .then(resB=>{
-        let parsed=JSON.parse(resB);
-        //console.log(parsed);
-      })
+      // .then(resB=>{
+      //   let parsed=JSON.parse(resB);
+      //   //console.log(parsed);
+      // })
   };
 
   render() {
