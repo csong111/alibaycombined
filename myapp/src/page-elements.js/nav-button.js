@@ -18,7 +18,7 @@ class NavButton extends Component {
   render() {
     return (
       <div>
-        <button className="noButton navIcon" onClick={this.bring}><img src='/ui-elements/nav.png' width="25px"/></button>
+        <button className="noButton navIcon" onClick={this.bring}><img src='/ui-elements/nav.png' width="22px"/></button>
       </div>
     );
   }

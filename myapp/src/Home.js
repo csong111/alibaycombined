@@ -67,7 +67,7 @@ class Home extends Component {
             <SearchBar />
           </div>
 
-          <div>
+          <div className="flex">
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
@@ -80,7 +80,6 @@ class Home extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
-
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
         

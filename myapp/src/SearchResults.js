@@ -56,7 +56,8 @@ class SearchResults extends Component {
     })
     return (
       <div>
-        <div className="headerElements">
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
           <NavButton />
 
           <div className="logo">
@@ -67,7 +68,7 @@ class SearchResults extends Component {
             <SearchBar />
           </div>
 
-          <div>
+          <div className="flex">
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
@@ -80,6 +81,7 @@ class SearchResults extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
         
         <h2>Search Results</h2>
         <div name="search-results" className="row">

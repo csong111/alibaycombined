@@ -11,7 +11,7 @@ body {
 
 /* Bootstrap Spacing Styles */
 
-.noPad{
+.noPad {
   padding: 0px;
   margin: 0px;
 }
@@ -35,19 +35,26 @@ hr {
 
 /* Text Styles */
 
+a {
+  color: gray;
+}
+
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  src: local("Open Sans Light"), local("OpenSans-Light"),
+    url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2)
+      format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 p {
   margin: 15px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 10pt;
-  text-align: center;
+  /* text-align: center; */
   line-height: 5px;
 }
 
@@ -59,17 +66,27 @@ p {
 }
 
 h2 {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 h3 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 100;
   font-size: 15pt;
 }
 
+h4 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
+}
+
 .inputText {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 11pt;
 }
 
@@ -82,12 +99,12 @@ h3 {
 }
 
 .buttonText {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   font-size: 11pt;
 }
 
 .fail {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-left: 15px;
   font-size: 8pt;
   color: darkred;
@@ -96,24 +113,28 @@ h3 {
 
 /* Placeholder */
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 11pt;
 }
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
+  /* Firefox 19+ */
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 11pt;
 }
-:-ms-input-placeholder { /* IE 10+ */
+:-ms-input-placeholder {
+  /* IE 10+ */
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 11pt;
 }
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
+  /* Firefox 18- */
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 11pt;
 }
 
@@ -158,14 +179,15 @@ h3 {
 
 .navIcon {
   margin: 0;
-  margin-top: 3px;
+  margin-top: 2px;
   padding: 0;
 }
 
 .connect {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   margin-top: 2px;
   vertical-align: middle;
+  font-size: 11pt;
   /* font-weight: bolder; */
 }
 
@@ -174,24 +196,26 @@ h3 {
   vertical-align: 2px;
 }
 
-
-.closeButton{
+.closeButton {
   margin-left: 5px;
   vertical-align: 5px;
+}
+
+.flex {
+  display: flex;
 }
 
 /* Home */
 
 .mainBanner {
-margin-top: 45px;
+  margin-top: 45px;
 }
 
 @media only screen and (max-width: 600px) {
   .mainBanner {
     margin-top: 10px;
-    }
+  }
 }
-
 
 /* Search Styles */
 
@@ -213,7 +237,7 @@ margin-top: 45px;
   .search {
     display: none;
   }
-  .searchInput{
+  .searchInput {
     margin-top: 0;
     width: 200px;
   }
@@ -222,15 +246,13 @@ margin-top: 45px;
     height: 40px;
     background-color: white;
   }
-
 }
 
 .searchInput {
   border: 0;
-  border-bottom: 1.5px solid black ;
+  border-bottom: 1.5px solid black;
   outline: 0;
 }
-
 
 /* Category Styles */
 
@@ -241,25 +263,29 @@ margin-top: 45px;
 @media only screen and (max-width: 600px) {
   .catName {
     margin-top: 10px;
-    }
+  }
 }
 
 /* Details */
 
-@media only screen and (min-width: 600px) {
-  .detailsContainer {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 15px;
-  }
+.detailsContainer {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 65px;
 }
 
 @media only screen and (max-width: 600px) {
   .detailsContainer {
     display: block;
     margin: 0 auto;
+    margin-top: 10px;
   }
 }
+
+.blurb {
+  width: 230px;
+}
+
 
 /* Connect */
 
@@ -306,7 +332,7 @@ margin-top: 45px;
 
 .formInput {
   border: 0;
-  border-bottom: 1.5px solid black ;
+  border-bottom: 1.5px solid black;
   outline: 0;
   background: none;
   width: 100%;
@@ -326,7 +352,7 @@ margin-top: 45px;
   background-image: url("/ui-elements/submit.png");
   background-color: #f2f2f2;
   background-repeat: no-repeat;
-  background-size: 100%; 
+  background-size: 100%;
   background-size: 20px auto;
   border: none;
   outline: 0;
@@ -337,14 +363,28 @@ margin-top: 45px;
   margin-top: 8px;
 }
 
+/* Artist Profile */
 
+.artistProfile {
+  display: flex;
+  margin-top: 55px;
+}
 
+@media only screen and (max-width: 600px) {
+  .artistProfile {
+    margin-top: 10px;
+  }
+}
 
-/* Connect User */
+.profileImage {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
 
-/* Connect Artist */
-
-
+.accountInfo {
+  vertical-align: middle;
+}
 
 /* Mockup Styles */
 
@@ -354,7 +394,7 @@ margin-top: 45px;
   outline: 0;
 }
 
-button:focus { 
+button:focus {
   outline: none;
 }
 
@@ -369,4 +409,3 @@ button:focus {
 #paypal-button {
   bottom: 400px;
 }
-

@@ -20,6 +20,7 @@ import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 import ItemsBought from './ItemsBought.js';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -28,6 +29,7 @@ class App extends Component {
       artistName: "",
       email: "",
       userID: "",
+      firstName: ""
     }
   }
 
@@ -43,6 +45,7 @@ class App extends Component {
   render() {
     //console.log(this.state)
     return (
+      
       <div className="App">
         <BrowserRouter>
           <div>

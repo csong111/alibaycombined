@@ -15,8 +15,8 @@ class CartButton extends Component {
     }
   render() {
     return (
-      <div className="">
-        <button className="noButton" onClick={this.goToCart}><img width="30px" src='../cart.png' className="icon"/></button>
+      <div>
+        <button className="noButton" onClick={this.goToCart}><img width="25px" src='/ui-elements/cart.png' className="icon"/></button>
       </div>
     );
   }
