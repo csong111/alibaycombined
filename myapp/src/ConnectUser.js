@@ -17,7 +17,7 @@ class ConnectUser extends Component {
       email: "",
       password: "",
       loggedIn: false,
-      incorrectData:false,
+      incorrectData: false,
 
       //SIGN UP
       firstName: "",
@@ -25,7 +25,7 @@ class ConnectUser extends Component {
       emailSignUp: "",
       passwordSignUp: "",
       passwordSignUpConf: "",
-      accountExists: false
+      accountExists: false,
     };
   }
 
@@ -33,24 +33,24 @@ class ConnectUser extends Component {
     event.preventDefault();
     let bod = JSON.stringify({
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     });
 
     fetch("/userLogin", { method: "POST", body: bod })
-    .then(x => x.text())
-    .then(x =>  JSON.parse(x))
-    // .then(x => console.log(x))
-    .then( x => {
-      if (x.success) {
-   //     console.log(x)
-        this.props.loginUser(x.RESB.email, x.RESB.id, x.RESB.firstName); //fetch userID from the backend and send to app.js
-   //     console.log(this.props.loginUser)
-        this.setState({ loggedIn: true });
-        this.props.history.push("/");
-      } else {
-        this.setState({incorrectData:true})
-      }
-    })
+      .then(x => x.text())
+      .then(x => JSON.parse(x))
+      // .then(x => console.log(x))
+      .then(x => {
+        if (x.success) {
+          //     console.log(x)
+          this.props.loginUser(x.RESB.email, x.RESB.id, x.RESB.firstName); //fetch userID from the backend and send to app.js
+          //     console.log(this.props.loginUser)
+          this.setState({ loggedIn: true });
+          this.props.history.push("/");
+        } else {
+          this.setState({ incorrectData: true });
+        }
+      });
   };
 
   handleSubmit = event => {
@@ -61,26 +61,25 @@ class ConnectUser extends Component {
       lastName: this.state.lastName,
       emailSignUp: this.state.emailSignUp,
       passwordSignUp: this.state.passwordSignUp,
-      passwordSignUpConf: this.state.passwordSignUpConf,
+      passwordSignUpConf: this.state.passwordSignUpConf
     });
 
     fetch("/userSignUp", { method: "POST", body: bod })
-    .then(x => x.text())
-    .then(x => JSON.parse(x))
-    // .then(x => console.log(x))
-    .then(x => {
-      if (x.success) {
-      this.props.history.push("/usersignupcomplete");
-      this.props.loginUser(x.email, x.id, x.firstName);
-      // Fetch Create new User
-      //this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
-      this.setState({ loggedIn: true });
-      } else {
-        this.setState({accountExists:true})
-      }
-    })
+      .then(x => x.text())
+      .then(x => JSON.parse(x))
+      // .then(x => console.log(x))
+      .then(x => {
+        if (x.success) {
+          this.props.history.push("/usersignupcomplete");
+          this.props.loginUser(x.email, x.id, x.firstName);
+          // Fetch Create new User
+          //this.setState({ email: this.state.emailSignUp }); //fetch userID from the backend and send to app.js
+          this.setState({ loggedIn: true });
+        } else {
+          this.setState({ accountExists: true });
+        }
+      });
   };
-
 
   bringA = event => {
     event.preventDefault();
@@ -91,93 +90,135 @@ class ConnectUser extends Component {
     window.history.back();
   };
 
-
   render() {
     return (
       <div>
-        <button onClick={this.back}>X</button>
-        <button>I'm a user</button>
-        <button onClick={this.bringA}>I'm an artist</button>
-        <h1>CONNECT USER</h1>
-        <NavButton />
-        <HomeButton/>
-        {this.props.email ? <UserAccountButton userID={this.props.userID} /> : null}
-        <hr />
-        <form onSubmit={this.handleLogin}>
-          {" "}
-          LOG IN TO YOUR ACCOUNT
-          <input
-            type="text"
-            onChange={e => {
-              this.setState({ email: e.target.value });
-            }}
-            value={this.state.email}
-            placeholder="name@email.com"
-            required
-          />
-          <input
-            type="password"
-            onChange={e => {
-              this.setState({ password: e.target.value });
-            }}
-            value={this.state.password}
-            placeholder="Password"
-            required
-          />{this.state.incorrectData ? <div className="failedLogin">Woops - incorrect! Try again</div> :null}
-          <input type="submit" />
-        </form>
-        <hr />
-        <form onSubmit={this.handleSubmit}>
-          {" "}
-          FIRST TIME? CREATE AN ACCOUNT
-          <input
-            type="text"
-            onChange={e => {
-              this.setState({ firstName: e.target.value });
-            }}
-            value={this.state.firstName}
-            placeholder="First Name"
-            required
-          />
-          <input
-            type="text"
-            onChange={e => {
-              this.setState({ lastName: e.target.value });
-            }}
-            value={this.state.lastName}
-            placeholder="Last Name"
-            required
-          />
-          <input
-            type="text"
-            onChange={e => {
-              this.setState({ emailSignUp: e.target.value });
-            }}
-            value={this.state.emailSignUp}
-            placeholder="name@email.com"
-            required
-          />
-          <input
-            type="password"
-            onChange={e => {
-              this.setState({ passwordSignUp: e.target.value });
-            }}
-            value={this.state.passwordSignUp}
-            placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            onChange={e => {
-              this.setState({ passwordSignUpConf: e.target.value });
-            }}
-            value={this.state.passwordSignUpConf}
-            placeholder="Confirm Password"
-            required
-          />{this.state.accountExists ? <div className="failedAccount">This email is already in use, please try another</div> :null}
-          <br />
-          <input type="submit" />
-        </form>
+        <button className="closeButton noPad noButton" onClick={this.back}>
+          <img src="/ui-elements/close.png" width="20px" />
+        </button>
+        <button className="userButtonClick buttonText bold">I'M A USER</button>
+        <button className="artistButton buttonText bold" onClick={this.bringA}>
+          I'M AN ARTIST
+        </button>
+
+        <div className="form">
+          <form onSubmit={this.handleLogin}>
+            {" "}
+            <h3>Log in to your account</h3>
+
+            <div className="row">
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ email: e.target.value });
+                  }}
+                  value={this.state.email}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+              <input className="formInput"
+                type="password"
+                onChange={e => {
+                  this.setState({ password: e.target.value });
+                }}
+                value={this.state.password}
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+              <input className="submitButton" value="" type="submit" />
+            </div>
+            {this.state.incorrectData ? (
+                <div className="fail">Woops - incorrect! Try again</div>
+              ) : null}
+            </div>
+          </form>
+          <hr className="connectHR"/>
+          <form onSubmit={this.handleSubmit}>
+            {" "}
+            <h3>First time? Create an account</h3>
+
+          <div className="row">
+          <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="formInput"
+              type="text"
+              onChange={e => {
+                this.setState({ firstName: e.target.value });
+              }}
+              value={this.state.firstName}
+              placeholder="First Name"
+              required
+            />
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="formInput"
+              type="text"
+              onChange={e => {
+                this.setState({ lastName: e.target.value });
+              }}
+              value={this.state.lastName}
+              placeholder="Last Name"
+              required
+            />
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="formInput"
+              type="text"
+              onChange={e => {
+                this.setState({ emailSignUp: e.target.value });
+              }}
+              value={this.state.emailSignUp}
+              placeholder="Email"
+              required
+            />
+            </div>
+          </div>
+
+          <div className="row">
+          <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="formInput"
+              type="password"
+              onChange={e => {
+                this.setState({ passwordSignUp: e.target.value });
+              }}
+              value={this.state.passwordSignUp}
+              placeholder="Password"
+              required
+            />
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="formInput"
+              type="password"
+              onChange={e => {
+                this.setState({ passwordSignUpConf: e.target.value });
+              }}
+              value={this.state.passwordSignUpConf}
+              placeholder="Confirm Password"
+              required
+            />
+            
+          
+            </div>
+
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="submitButton" value="" type="submit" />
+
+           </div>
+           {this.state.accountExists ? (
+              <div className="fail">
+                This email is already in use, please try another
+              </div>
+            ) : null}
+           </div>
+
+
+
+          </form>
+        </div>
       </div>
     );
   }

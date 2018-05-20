@@ -48,13 +48,14 @@ class ItemDetail extends Component {
     })
   }
   addToCart = () => {
-    let body=JSON.stringify({userID: this.props.userID, itemID: this.props.itemID, artistName: this.state.artistName, blurb: this.state.blurb, 
+    let body=JSON.stringify({userID: this.props.userID, cartObj: {itemID: this.props.itemID, artistName: this.state.artistName, blurb: this.state.blurb, 
       category: this.state.category, img1: this.state.img1, img2: this.state.img2, img3: this.state.img3, name: this.state.name,
-      price: this.state.price, quantity: this.state.quantity, quantityToBuy: 1})
+      price: this.state.price, quantity: this.state.quantity, quantityToBuy: 1} })
     fetch("/addToCart", {
       method: 'POST',
       body: body 
     }).then(res=>res.text())
+    .then(res => console.log(res))
       // .then(resB=>{
       //   let parsed=JSON.parse(resB);
       //   //console.log(parsed);
@@ -66,7 +67,8 @@ class ItemDetail extends Component {
     return (
       <div>
 
-        <div className="headerElements">
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
           <NavButton />
 
           <div className="logo">
@@ -77,7 +79,7 @@ class ItemDetail extends Component {
             <SearchBar />
           </div>
 
-          <div>
+          <div className="flex">
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
@@ -90,24 +92,29 @@ class ItemDetail extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
-      <div className ="container space">
+      {/* <div className ="container space"> */}
       <div className ="row">
         <div className="detailsContainer noPad">
           <div className ="space">
-          <img width="300px" src={this.state.img1}/>
+          <img width="350px" src={this.state.img1}/>
+          <div className="space"/>
+          <img width="350px" src={this.state.img2}/>
+          <div className="space"/>
+          <img width="350px" src={this.state.img3}/>
           </div>
 
           <div className ="space">
-          <div className="bold">{this.state.name}</div>
-          <div>{this.state.blurb}</div>
-          Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link>
-          <br />
-          <button onClick={this.addToCart}>Add to Cart</button>
+          <div className="bold"><h4 className="bold">{this.state.name}</h4></div>
+          <h4>${this.state.price}</h4>
+          <h5 className="blurb">{this.state.blurb}</h5>
+          <h5>Made by <Link to={"/artistprofile/"+this.state.artistName}>{this.state.artistName}</Link></h5>
+          <button className="noButton noPad connect bold" onClick={this.addToCart}>ADD TO CART</button>
           </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
       
       </div>
     );

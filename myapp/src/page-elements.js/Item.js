@@ -8,13 +8,13 @@ class Item extends Component {
     // console.log(this.props.location.pathname.split('/')[1])
     return (
       <div>
-      <div>
+      <div className="center">
         <Link to={"/itemdetail/" + this.props.itemID}> 
           <img width ="100%"src={this.props.img1} alt="null" />
         </Link>
           <div className="bold"><p>{this.props.name}</p></div>
           <div><p>${this.props.price}</p></div>
-          <div><p>by {this.props.artistName}</p></div>
+          <div><p>by <Link to={"/artistprofile/" + this.props.artistName}>{this.props.artistName}</Link></p></div>
           {this.props.location.pathname.split('/')[1] === "artistaccount" ? <Link to = {"/editlisting/" + this.props.itemID}>Edit Item</Link> : null}
       </div>
       </div>

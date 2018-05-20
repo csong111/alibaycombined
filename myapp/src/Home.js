@@ -20,58 +20,7 @@ class Home extends Component {
         { name: "Spring", imageURL: "collections/2.jpg" },
         { name: "Popular", imageURL: "collections/3.jpg" }
       ],
-      randomItems: [
-        // {
-        //   itemID: "123456",
-        //   name: "Spring Print",
-        //   price: 50,
-        //   artistName: "aisha",
-        //   imageURL: "/items/43581461_041_b2.jpg",
-        //   cat: "Spring",
-        //   blurb: "Here's my spring print",
-        //   quantity: 2
-        // },
-        // {
-        //   itemID: "123457",
-        //   name: "Awesome Embroidery",
-        //   price: 100,
-        //   artistName: "caro",
-        //   imageURL: "/items/44313724_104_b.jpg",
-        //   cat: "Spring",
-        //   blurb: "Best embroidery ever!",
-        //   quantity: 1
-        // },
-        // {
-        //   itemID: "123458",
-        //   name: "Pillow",
-        //   price: 100,
-        //   artistName: "caro",
-        //   imageURL: "/items/44622173_045_b.jpg",
-        //   cat: "Popular",
-        //   blurb: "Check out my pillow",
-        //   quantity: 1
-        // },
-        // {
-        //   itemID: "123459",
-        //   name: "Painting",
-        //   price: 20,
-        //   artistName: "jen",
-        //   imageURL: "/items/45513033_045_b10.jpg",
-        //   cat: "Prints",
-        //   blurb: "This is a cool painting",
-        //   quantity: 3
-        // },
-        // {
-        //   itemID: "123450",
-        //   name: "Cool Print",
-        //   price: 30,
-        //   artistName: "jen",
-        //   imageURL: "/items/45589157_095_b.jpg",
-        //   cat: "Prints",
-        //   blurb: "Great print",
-        //   quantity: 4
-        // }
-      ],
+      randomItems: [],
       query: ""
     };
   }
@@ -82,24 +31,12 @@ class Home extends Component {
     }).then(res=>res.text())
       .then(resB=>{
         let parsed=JSON.parse(resB);
-        //console.log(parsed)
         this.setState({randomItems: parsed})
       })
-    //FETCH get randomItems then setState the results endpoint: getRandomItems
+
   }
 
   render() {
-    // let featuredCollection = this.state.featuredCat.map((el, id) => {
-    //   return (
-    //     <div key={id}>
-    //       <Link to = {"/featuredcat/" + el.name}><img src = {el.imageURL} /></Link>
-    //       <br />
-    //       <p>{el.name}</p>
-    //     </div>
-    //   );
-    // });
-
-    console.log(this.state.randomItems)
 
     var itemsRendered = this.state.randomItems.map((el, id) => {
       return (
@@ -117,7 +54,9 @@ class Home extends Component {
 
     return (
       <div>
-        <div className="headerElements">
+
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
           <NavButton />
 
           <div className="logo">
@@ -128,7 +67,7 @@ class Home extends Component {
             <SearchBar />
           </div>
 
-          <div>
+          <div className="flex">
             {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
             {this.props.email === "" && this.props.artistName === "" ? (
@@ -141,9 +80,11 @@ class Home extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
+        
         <div>
-          <div name="mainBanner" className="row">
+          <div name="mainBanner" className="mainBanner row">
             <div className="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 noPad space">
               <Link to={"/featuredcat/" + this.state.featuredCat[0].name}>
                 <img width="100%" src={this.state.featuredCat[0].imageURL} />
@@ -167,20 +108,6 @@ class Home extends Component {
             </div>
           </div>
 
-
-        {/* <NavButton />
-        <HomeButton/>
-        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
-        {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
-        {this.props.email === "" && this.props.artistName === "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton userID = {this.props.userID} /> : null} */}
-
-
-        {/* <SearchBar /> */}
-        {/* <h2>Featured collection</h2> */}
-        {/* <div name="categories">
-            {featuredCollection}
-        </div> */}
         <div name="items" className="row">
           {/* HOW TO DO COLUMNS */}
           {/* <div className="col-2" style={{backgroundColor:"grey"}}>

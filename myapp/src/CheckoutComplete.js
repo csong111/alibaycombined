@@ -14,22 +14,16 @@ class CheckoutComplete extends Component {
     this.state = {
       checkoutItems: [
         {
-          itemID: "123458",
-          name: "Pillow",
-          price: 100,
-          artistName: "caro",
-          imageURL: "items/pillow.jpg",
-          cat: "Popular",
-          quantity: 1
-        },
-        {
-          itemID: "245679",
-          name: "Embroidery",
-          price: 120,
-          artistName: "aisha",
-          imageURL: "items/aisha.jpg",
-          cat: "Popular",
-          quantity: 1
+          itemID: "",
+          artistName: "",
+          category: [],
+          img1: "",
+          img2: "",
+          img3: "",
+          name: "",
+          price: null,
+          quantity: null,
+          quantityToBuy: null
         }
       ]
     };
@@ -50,7 +44,7 @@ class CheckoutComplete extends Component {
       total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <li key={id}>
-        <img src={"/"+item.imageURL} />
+        <img src={"/"+item.image1} />
           <div>Item Name: {item.name}</div>
           <div>Price: ${item.price}</div>
           <div>Artist: {item.artistName}</div>

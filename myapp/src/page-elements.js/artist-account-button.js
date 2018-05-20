@@ -15,8 +15,13 @@ class ArtistAccountButton extends Component {
     }
   render() {
     return (
-      <div className="">
-        <button className="noButton" onClick={this.handleClick}><img width="30px" src='../artistacct.png' className="icon"/></button>
+      <div>
+        <button className="noButton" onClick={this.handleClick}>
+        {/* <img width="30px" src='../artistacct.png' className="icon"/> */}
+        <div className="connect">
+          <span className="bold">{this.props.artistName.toUpperCase()}'S ACCOUNT</span>
+          </div>
+        </button>
       </div>
     );
   }

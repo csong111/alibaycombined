@@ -24,48 +24,28 @@ class ArtistProfile extends Component {
   }
   componentDidMount() {
     var body = {
-      artistName : this.props.artistName
-    }
- // console.log("getArtistProfile-1",body)
-  fetch("/getArtistProfile", {
-    method: "POST",
-    body : JSON.stringify(body)
-  })
-  .then(e =>e.text())
-  .then(e =>JSON.parse(e))
- // .then(e =>{console.log("getAristProfile-4",e); return e})
-  .then(e =>{
-    console.log(e)
-    this.setState({
-      bio: e.bio,
-      location: e.location,
-      profPicURL: e.profPicURL,
-      items: e.items
-    })
-  })
-console.log(this.state)
-  this.viewArtistItems(this.state.items)
-
+      artistName: this.props.artistName
+    };
+    // console.log("getArtistProfile-1",body)
     fetch("/getArtistProfile", {
       method: "POST",
       body: JSON.stringify(body)
     })
-      .then(e => e.text())
-
-      .then(e => {
-        let parsed = JSON.parse(e);
-        let artistName = parsed.artistName;
-        let bio = parsed.bio;
-        let location = parsed.location;
-        let profPicURL = parsed.profPicURL;
-
-        this.setState({
-          artistName: artistName,
-          bio: bio,
-          location: location,
-          profPicURL: profPicURL
-        });
+    .then(res => res.text())
+    .then(resB => {
+      let parsed = JSON.parse(resB);
+      let artistName = parsed.artistName;
+      let bio = parsed.bio;
+      let location = parsed.location;
+      let profPicURL = parsed.profPicURL;
+      this.setState({
+        artistName: artistName,
+        bio: bio,
+        location: location,
+        profPicURL: profPicURL
       });
+    });
+
 
     fetch("/getArtistItems?artistName=" + this.props.artistName, {
       method: "GET"
@@ -78,45 +58,69 @@ console.log(this.state)
       });
   }
 
-
   render() {
     let accountInfo = () => {
       return (
-        <div>
-          <p>Name: {this.state.artistName}</p>
-          <p>Location: {this.state.location}</p>
-          <p>{this.state.bio}</p>
+        <div className="accountInfo">
+          <h4>Name: {this.state.artistName}</h4>
+          <h4>Location: {this.state.location}</h4>
+          <h4>{this.state.bio}</h4>
         </div>
       );
     };
-    let itemsRendered = this.state.items.map(el => {
+
+    let itemsRendered = this.state.items.map((el, id) => {
       return (
-        <Item
+        <div className="col-6 col-md-4 col-lg-3 noPad space"  key={id}>
+        <Item 
           itemID={el._id}
           name={el.name}
           price={el.price}
           artistName={el.artistName}
           img1={el.img1}
         />
+        </div>
       );
     });
     return (
-      <div className="ArtistProf">
-        <NavButton />
-        <HomeButton />
-        {this.props.email !== "" ? (
-          <UserAccountButton userID={this.props.userID} />
-        ) : null}
-        {this.props.email !== "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? (
-          <CartButton userID={this.props.userID} />
-        ) : null}
-        <img src={this.state.profPicURL} />
-        <div>{this.state.artistName}</div>
-        <div>{this.state.location}</div>
-        <div>{this.state.bio}</div>
-        <div>Other items by this artist:</div>
+
+      <div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
+          <NavButton />
+
+          <div className="logo">
+            <HomeButton />
+          </div>
+          
+          <div className="search">
+            <SearchBar />
+          </div>
+
+          <div className="flex">
+            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
+            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
+            {this.props.email === "" && this.props.artistName === "" ? (
+              <ConnectButton />
+            ) : null}
+            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+
+        <div className="artistProfile space">
+        <img className="profileImage" src={this.state.profPicURL} />
+        <span className="spaceLeft">{accountInfo()}</span>
+        </div>
+
+        <h4>Other items by this artist:</h4>
+        <div className="row">
         {itemsRendered}
+        </div>
       </div>
     );
   }
