@@ -32,12 +32,14 @@ class Orders extends Component {
         .then (e =>JSON.parse(e))
         .then(e=>{console.log("getOrders-4", e);return e})
         .then(e =>{
-        //    console.log("E",e)
-           //  this.setState({orders :e.cartItems})
+            console.log("E",e)
+            
+            this.setState({orders :e})
+
             if(e.cartItems.length>=1){
-                let itemIDs = e.cartItems.map(item=>{return item.itemID})
-                this.getOrderItemNames(itemIDs)
-                this.setState({ orders: itemIDs, previousOrders:true})
+        //        let itemIDs = e.cartItems.map(item=>{return item.itemID})
+       //         this.getOrderItemNames(itemIDs)
+                this.setState({  previousOrders:true})
             }
             else this.setState({previousOrders:false})
         })
@@ -48,30 +50,15 @@ class Orders extends Component {
         this.props.history.push("/artistaccount/"+this.state.artistName)
     }
 
-    getItemNames = async order=>{  
-        console.log("ORDER",order)
-        let itemNames = await Promise.all(
-                 order.itemID.map(id => 
-                 fetch("/getItemDetails?itemID=" + id, { method: "GET" })
-                 .then(e => e.text())
-                 .then(e =>JSON.parse(e))
-                 .then(e=>{
-                    return e.name
-                 })
-             ));
-       // console.log(itemNames)
-        return itemNames
-       }
-
-    getOrderItemNames = async orders=>{  
-      //  console.log(orders)  
-        let ordersWithName = await Promise.all(orders.map(async order => {
-            let itemNames = await this.getItemNames(order)
-            return {...order, itemNames}
-        }))
-     //   console.log(ordersWithName)
-        this.setState({orders: ordersWithName})
-       }
+    // getOrderItemNames = async orders=>{  
+    //   //  console.log(orders)  
+    //     let ordersWithName = await Promise.all(orders.map(async order => {
+    //         let itemNames = await this.getItemNames(order)
+    //         return {...order, itemNames}
+    //     }))
+    //  //   console.log(ordersWithName)
+    //     this.setState({orders: ordersWithName})
+    //    }
     
     render() {
     
@@ -97,31 +84,34 @@ class Orders extends Component {
                     </div>
                 </div>
             )
+            console.log("STATE ORDERS",this.state.orders.cartItems)
 
-        let renderOrders = this.state.orders.map((order, id )=>{
-            return (
-                <div key={id} style={{display: "flex"}}>
+            let renderOrders = (
+         //   }
+       //let renderOrders = this.state.orders.map((order, id )=>{
+                <div  style={{display: "flex"}}>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {order.orderID}
+                {this.state.orders._id}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {order.buyerName}
+                {this.state.orders.firstName}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                 {order.itemNames.map((itemName,id) => <li key={id}>{itemName}</li>)}
+                    {this.state.orders.map((item, id)=><li key={id}>{item.name}</li>)}
+                 {/* {order.name.map((itemName,id) => <li key={id}>{itemName}</li>)} */}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {order.total}
+                {this.state.orders.total}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {order.date}
+                {this.state.orders.date}
                     </div>
                     <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {order.fulfilled}
+                {this.state.orders.fulfilled}
                     </div>
                 </div>
             )
-        })
+        
         return (
           <div className="ArtistProf">
               <NavButton />
