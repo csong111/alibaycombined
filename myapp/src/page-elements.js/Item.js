@@ -12,10 +12,13 @@ class Item extends Component {
         <Link to={"/itemdetail/" + this.props.itemID}> 
           <img width ="100%"src={this.props.img1} alt="null" />
         </Link>
-          <div className="bold"><p>{this.props.name}</p></div>
-          <div><p>${this.props.price}</p></div>
-          <div><p>by <Link to={"/artistprofile/" + this.props.artistName}>{this.props.artistName}</Link></p></div>
+          <div className="spaceSmaller" />
+          <div className="bold">
+          <p>{this.props.name}</p>
+          <p>${this.props.price}</p>
+          <p>by <Link to={"/artistprofile/" + this.props.artistName}>{this.props.artistName}</Link></p>
           {this.props.location.pathname.split('/')[1] === "artistaccount" ? <Link to = {"/editlisting/" + this.props.itemID}><button className="button noPad connect">EDIT ITEM</button></Link> : null}
+          </div>
       </div>
       </div>
           )

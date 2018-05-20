@@ -89,7 +89,7 @@ class Home extends Component {
               <Link to={"/featuredcat/" + this.state.featuredCat[0].name}>
                 <img width="100%" src={this.state.featuredCat[0].imageURL} />
               </Link>
-              <p>{this.state.featuredCat[0].name}</p>
+              <h6 className="center">{this.state.featuredCat[0].name.toUpperCase()}</h6>
             </div>
           </div>
 
@@ -98,13 +98,13 @@ class Home extends Component {
               <Link to={"/featuredcat/" + this.state.featuredCat[1].name}>
                 <img width="100%" src={this.state.featuredCat[1].imageURL} />
               </Link>
-              <p>{this.state.featuredCat[1].name}</p>
+              <h6 className="center">{this.state.featuredCat[1].name.toUpperCase()}</h6>
             </div>
             <div className="col-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 noPad space">
               <Link to={"/featuredcat/" + this.state.featuredCat[2].name}>
                 <img width="100%" src={this.state.featuredCat[2].imageURL} />
               </Link>
-              <p>{this.state.featuredCat[2].name}</p>
+              <h6 className="center">{this.state.featuredCat[2].name.toUpperCase()}</h6>
             </div>
           </div>
 
