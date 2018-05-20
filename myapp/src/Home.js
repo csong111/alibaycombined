@@ -17,8 +17,8 @@ class Home extends Component {
     this.state = {
       featuredCat: [
         { name: "Featured Items", imageURL: "collections/1.jpg" },
-        { name: "Spring", imageURL: "collections/2.jpg" },
-        { name: "Popular", imageURL: "collections/3.jpg" }
+        { name: "Popular", imageURL: "collections/2.jpg" },
+        { name: "Spring", imageURL: "collections/3.jpg" }
       ],
       randomItems: [],
       query: ""
