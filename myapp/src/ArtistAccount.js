@@ -5,6 +5,8 @@ import NavButton from "./page-elements.js/nav-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import Item from "./page-elements.js/Item.js";
+import ConnectButton from "./page-elements.js/connect-button.js";
+import SearchBar from "./page-elements.js/search-bar.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -100,7 +102,7 @@ class ArtistAccount extends Component {
   render() {
     let itemsRendered = this.state.items.map((el, id) => {
       return (
-        <div key={id}>
+        <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
           <Item
             itemID={el._id}
             name={el.name}
@@ -116,10 +118,10 @@ class ArtistAccount extends Component {
       if (this.state.edit === false) {
         return (
           <div>
-            <p>Name: {this.state.artistName}</p>
-            <p>Location: {this.state.location}</p>
-            <p>{this.state.bio}</p>
-            <button onClick={this.editInfo}>Edit Info</button>
+            <h4>Name: {this.state.artistName}</h4>
+            <h4>Location: {this.state.location}</h4>
+            <h4>{this.state.bio}</h4>
+            <button className="button noPad connect"  onClick={this.editInfo}>EDIT INFO</button>
           </div>
         );
       } else {
@@ -147,45 +149,89 @@ class ArtistAccount extends Component {
 
     return (
       <div className="ArtistProf">
-        <NavButton />
-        <HomeButton />
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
+          <NavButton />
 
-        {this.props.artistName === "" ? null : (
-          <ArtistAccountButton artistName={this.props.artistName} />
-        )}
+          <div className="logo">
+            <HomeButton />
+          </div>
 
-        <h2>MY ACCOUNT</h2>
+          <div className="search">
+            <SearchBar />
+          </div>
 
-        <input
-          id="changeProfile"
-          style={{ display: "none" }}
-          type="file"
-          onChange={event =>
-            this.uploadFile(event.target.files[0], "profPicURL")
-          }
-          placeholder="Upload Profile Pic Image"
-        />
-        {this.state.profPicURL !== "" ? (
-          <img src={this.state.profPicURL} />
-        ) : (
-          <img
-            onClick={() => {
-              document.getElementById("changeProfile").click();
-            }}
-            src="/items/addimage.png"
-            height="50px"
-            width="50px"
+          <div className="flex">
+            {this.props.email !== "" ? (
+              <UserAccountButton userID={this.props.userID} />
+            ) : null}
+            {this.props.artistName !== "" ? (
+              <ArtistAccountButton artistName={this.props.artistName} />
+            ) : null}
+            {this.props.email === "" && this.props.artistName === "" ? (
+              <ConnectButton />
+            ) : null}
+            {this.props.email !== "" ? (
+              <CartButton userID={this.props.userID} />
+            ) : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+
+        <h2 className="artistAccountContainer">MY ACCOUNT</h2>
+
+        <div className="artistAccount space">
+          <input
+            id="changeProfile"
+            style={{ display: "none" }}
+            type="file"
+            onChange={event =>
+              this.uploadFile(event.target.files[0], "profPicURL")
+            }
+            placeholder="Upload Profile Pic Image"
           />
-        )}
+          <div className="flex">
+            <div className="center">
+              <img className="profileImage" src={this.state.profPicURL} />
+              <br />
+              <button className="button noPad connect" 
+                onClick={() => {
+                  document.getElementById("changeProfile").click();
+                }}
+              >
+                EDIT PROFILE PICTURE
+              </button>
+              {/* <img
+          onClick={() => {
+            document.getElementById("changeProfile").click();
+          }}
+          src="/ui-elements/profpic.png"
+          height="50px"
+          width="50px"
+        /> */}
+            </div>
+            <span className="spaceLeft accountInfo">
+              {accountInfo}
+              <button className="button noPad connect" onClick={this.createListing}>CREATE LISTING</button>
+              <button className="button noPad connect" onClick={this.seeOrders}>SEE ORDERS</button>
+            </span>
+          </div>
+        </div>
 
-        <div>{accountInfo}</div>
-
-        <h2>ORDERS</h2>
-        <button onClick={this.seeOrders}>See Orders</button>
-
-        <h2>MY ITEMS</h2>
-        <div name="items">{itemsRendered}</div>
+        {/* <h2>CREATE LISTING</h2>
         <button onClick={this.createListing}>Create Listing</button>
+        <div className="space" />
+        <h2>ORDERS</h2>
+        <button onClick={this.seeOrders}>See Orders</button> */}
+        <div className="space" />
+        <h2>MY ITEMS</h2>
+        <div className="row" name="items">
+          {itemsRendered}
+        </div>
       </div>
     );
   }

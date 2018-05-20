@@ -14,10 +14,7 @@ class FeaturedCat extends Component {
     constructor() {
         super();
         this.state={
-            itemsInCat: [
-                // { itemID: '123456', name: "Spring Print", price: 50, artistName: "aisha", img1: '/items/45589157_095_b.jpg', cat: "Spring" },
-                // { itemID: '123457', name: "Awesome Emproidery", price: 100, artistName: "caro", img1: '/items/45513033_045_b10.jpg', cat: "Spring" },
-            ],
+            itemsInCat: [],
         }
     }
 
@@ -30,7 +27,6 @@ class FeaturedCat extends Component {
           console.log(parsed)
           this.setState({itemsInCat: parsed})
         })
-      //FETCH get itemsInCat by cat name then setState the results endpoint: getCatItems
     }
 
     render() {

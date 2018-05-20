@@ -33,6 +33,10 @@ hr {
   padding: 0;
 }
 
+.centerContent {
+  justify-content: center;
+}
+
 /* Text Styles */
 
 a {
@@ -77,12 +81,12 @@ h3 {
 
 h4 {
   font-family: "Open Sans", sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
 }
 
 h5 {
   font-family: "Open Sans", sans-serif;
-  font-size: 10pt;
+  font-size: 11pt;
 }
 
 .inputText {
@@ -278,7 +282,7 @@ h5 {
   .detailsContainer {
     display: block;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 0;
   }
 }
 
@@ -286,6 +290,25 @@ h5 {
   width: 230px;
 }
 
+.detailImage {
+  margin-bottom: 10px;
+}
+
+.detailsMobile {
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  .detailsMobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .details {
+    display: none;
+  }
+}
 
 /* Connect */
 
@@ -367,11 +390,13 @@ h5 {
 
 .artistProfile {
   display: flex;
+  justify-content: center;
   margin-top: 55px;
 }
 
 @media only screen and (max-width: 600px) {
   .artistProfile {
+    justify-content: center;
     margin-top: 10px;
   }
 }
@@ -380,10 +405,47 @@ h5 {
   border-radius: 50%;
   width: 150px;
   height: 150px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .profileImage {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .accountInfo {
-  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.artistAccount {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .artistAccount {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+
+
+/* Artist Account */
+
+.artistAccountContainer {
+  margin-top: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .artistAccountContainer  {
+    margin-top: 10px;
+  }
 }
 
 /* Mockup Styles */
@@ -392,6 +454,17 @@ h5 {
   background: none;
   border: none;
   outline: 0;
+}
+
+.button {
+  background: none;
+  border: 1px solid black;
+  outline: 0;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 6px;
+  margin-left: 0;
 }
 
 button:focus {

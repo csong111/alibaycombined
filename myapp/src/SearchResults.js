@@ -15,13 +15,7 @@ class SearchResults extends Component {
     super();
     this.state = {
 
-    searchItems: [
-        // { itemID: '123456', name: "Spring Print", price: 50, artistName: "aisha", imageURL: 'print.jpg', cat: "Spring", blurb: "Here's my spring print", quantity: 2 },
-        // { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
-        // { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
-        // { itemID: '123459', name: "Painting", price: 20, artistName: "jen", imageURL: 'painting.jpg', cat: "Prints", blurb: "This is a cool painting", quantity: 3 },
-        // { itemID: '123450', name: "Cool Print", price: 30, artistName: "jen", imageURL: 'print.jpg', cat: "Prints", blurb: "Great print", quantity: 4 },
-    ],
+    searchItems: [],
   };
   }
 
@@ -30,14 +24,14 @@ class SearchResults extends Component {
     let body = {
       query : this.props.query
     }
-    console.log("getResults-1", body)
+    // console.log("getResults-1", body)
     fetch("/getSearchResults",{
       method: "POST",
       body: JSON.stringify(body)
     })
     .then(e =>e.text())
     .then(e =>JSON.parse(e))
-    .then(e=>{console.log("getResults-2",e); return e})
+    // .then(e=>{console.log("getResults-2",e); return e})
     .then(e =>{
       this.setState({searchItems: e})
     })
@@ -45,7 +39,7 @@ class SearchResults extends Component {
 
   render() {
 
-    console.log("this is the state:", this.state.searchItems)
+    // console.log("this is the state:", this.state.searchItems)
 
     var itemsRendered = this.state.searchItems.map((el,id)=>{
       return (
