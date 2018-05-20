@@ -34,7 +34,7 @@ class CreateListing extends Component {
       artistName: this.state.artistName,
       name: this.state.name,
       price: this.state.price,
-      cat: this.state.cat,
+      category: this.state.cat,
       blurb: this.state.blurb,
       quantity: this.state.quantity,
       img1: this.state.img1,

@@ -69,7 +69,7 @@ class FeaturedCat extends Component {
           <SearchBar />
         </div>
 
-        <h2 className="catName space">{this.props.cat}</h2>
+        <h2 className="catName">{this.props.cat}</h2>
 
         <div name="cat-items" className="row">
           {itemsRendered}

@@ -23,11 +23,11 @@ class Nav extends Component {
             <div>
                 <button onClick={this.closeNav}>X</button>
                 <ul style={{listStyleType: "none"}}>
-                    <li><Link className="link" to={"/featuredcat/prints"}>PRINTS</Link></li>
-                    <li><Link className="link" to={"/featuredcat/pillows"}>PILLOWS</Link></li>
-                    <li><Link className="link" to={"/featuredcat/embroidery"}>EMBROIDERY</Link></li>
-                    <li><Link className="link" to={"/featuredcat/wallpaper"}>WALLPAPER</Link></li>
-                    <li><Link className="link" to={"/featuredcat/curtains"}>CURTAINS</Link></li>
+                    <li><Link className="link" to={"/featuredcat/Prints"}>PRINTS</Link></li>
+                    <li><Link className="link" to={"/featuredcat/Pillows"}>PILLOWS</Link></li>
+                    <li><Link className="link" to={"/featuredcat/Embroidery"}>EMBROIDERY</Link></li>
+                    <li><Link className="link" to={"/featuredcat/Wallpaper"}>WALLPAPER</Link></li>
+                    <li><Link className="link" to={"/featuredcat/Curtains"}>CURTAINS</Link></li>
                 </ul>
             </div>
         )
