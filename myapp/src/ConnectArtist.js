@@ -30,7 +30,7 @@ class ConnectArtist extends Component {
       sImageURL1: "",
       sImageURL2: "",
       sImageURL3: "",
-      accountExists: false
+      accountExists: false,
     };
   }
 
@@ -125,7 +125,6 @@ class ConnectArtist extends Component {
         }
       });
 
-    // Fetch add new Artist
   };
 
   back = event => {
@@ -136,63 +135,123 @@ class ConnectArtist extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.back}>X</button>
-        <button onClick={this.bringU}>I'm a user</button>
-        <button>I'm an artist</button>
+        <button className="closeButton noPad noButton" onClick={this.back}>
+          <img src="/ui-elements/close.png" width="20px" />
+        </button>
+        <button className="userButton buttonText bold" onClick={this.bringU}>
+          I'M A USER
+        </button>
+        <button className="artistButtonClick buttonText bold">
+          I'M AN ARTIST
+        </button>
 
-        <div className="border">
-          <h1>CONNECT ARTIST</h1>
-
-          <hr />
+        <div className="form">
           <form onSubmit={this.handleLogin}>
             {" "}
-            LOG IN TO YOUR ARTIST ACCOUNT
-            <input
-              type="text"
-              onChange={e => {
-                this.setState({ artistName: e.target.value });
-              }}
-              value={this.state.artistName}
-              placeholder="name@email.com"
-              required
-            />
-            <input
-              type="password"
-              onChange={e => {
-                this.setState({ aPassword: e.target.value });
-              }}
-              value={this.state.aPassword}
-              placeholder="Password"
-              required
-            />
-            {this.state.incorrectData ? (
-              <div className="failedLogin">Woops - incorrect! Try again</div>
-            ) : null}
-            <input type="submit" />
+            <h3>Log in to your artist account</h3>
+            <div className="row">
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ artistName: e.target.value });
+                  }}
+                  value={this.state.artistName}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input
+                  className="formInput"
+                  type="password"
+                  onChange={e => {
+                    this.setState({ aPassword: e.target.value });
+                  }}
+                  value={this.state.aPassword}
+                  placeholder="Password"
+                  required
+                />
+              </div>
+
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input className="submitButton" value="" type="submit"  />
+              </div>
+              {this.state.incorrectData ? (
+                <div className="fail">Woops - incorrect! Try again</div>
+              ) : null}
+            </div>
           </form>
-          <hr />
+
+          <hr className="connectHR"/>
+
           <form onSubmit={this.handleSubmit}>
             {" "}
-            FIRST TIME? CREATE AN ARTIST ACCOUNT
+            <h3>First time? Sign up to become an artist</h3>
+            <div className="row">
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ sName: e.target.value });
+                  }}
+                  value={this.state.sName}
+                  placeholder="Name"
+                  required
+                />
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ sEmail: e.target.value });
+                  }}
+                  value={this.state.sEmail}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ sLocation: e.target.value });
+                  }}
+                  value={this.state.sLocation}
+                  placeholder="Location"
+                  required
+                />
+              </div>
+            </div>
+            <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPad formSpace">
             <input
+              className="formInput"
               type="text"
               onChange={e => {
-                this.setState({ sName: e.target.value });
+                this.setState({ sDescription: e.target.value });
               }}
-              value={this.state.sName}
-              placeholder="Name"
+              value={this.state.sDescription}
+              placeholder="Artist Description"
               required
             />
-            <input
-              type="text"
-              onChange={e => {
-                this.setState({ sEmail: e.target.value });
-              }}
-              value={this.state.sEmail}
-              placeholder="name@email.com"
-              required
-            />
-            <input
+            </div>
+            {this.state.accountExists ? (
+              <div className="fail">
+                This email is already in use, please try another
+              </div>
+            ) : null}
+            </div>
+
+
+
+            {/* DO WE NEED PASSWORDS? ////////////////////// */}
+            {/* <input
+              className="formInput"
               type="password"
               onChange={e => {
                 this.setState({ sPassword: e.target.value });
@@ -202,6 +261,7 @@ class ConnectArtist extends Component {
               required
             />
             <input
+              className="formInput"
               type="password"
               onChange={e => {
                 this.setState({ sPasswordConf: e.target.value });
@@ -209,27 +269,9 @@ class ConnectArtist extends Component {
               value={this.state.sPasswordConf}
               placeholder="Confirm Password"
               required
-            />
-            <input
-              type="text"
-              onChange={e => {
-                this.setState({ sDescription: e.target.value });
-              }}
-              value={this.state.sDescription}
-              placeholder="Artist Description"
-              required
-            />
-            <input
-              type="text"
-              onChange={e => {
-                this.setState({ sLocation: e.target.value });
-              }}
-              value={this.state.sLocation}
-              placeholder="Montreal, QC"
-              required
-            />
-            <br />
-            Upload Profile Pic
+            /> */}
+
+            <div className ="space">
             <input
               id="profilePic"
               style={{ display: "none" }}
@@ -241,50 +283,58 @@ class ConnectArtist extends Component {
               required
             />
             {this.state.sProfPicURL !== "" ? (
-              <img src={this.state.sProfPicURL} />
+              <img width="50px "src={this.state.sProfPicURL} />
             ) : (
-              <img
+              <img 
                 onClick={() => {
                   document.getElementById("profilePic").click();
                 }}
-                src="/items/addimage.png"
+                src="/ui-elements/profpic.png"
                 height="50px"
                 width="50px"
               />
             )}
+            <span className="inputText spaceLeft">Upload Profile Pic</span>
+            </div>
+
+
             {/* <p>{this.state.sProfPicURL}</p>
                     <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/> */}
-            <p>{this.state.sImageURL1}</p>
-            <input
+            <div className ="space"/>
+            <div className="inputText">Please upload 3 art submissions:</div>
+            <br />
+            <div>
+            <input className="inputText"
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL1")
               }
               placeholder="Upload Art"
             />
-            <p>{this.state.sImageURL2}</p>
-            <input
+            </div>
+            <br />
+            <div>
+            <input className="inputText"
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL2")
               }
               placeholder="Upload Art"
             />
-            <p>{this.state.sImageURL3}</p>
-            <input
+            </div>
+            <br />
+            <div>
+            <input className="inputText"
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL3")
               }
               placeholder="Upload Art"
             />
-            {this.state.accountExists ? (
-              <div className="failedAccount">
-                This email is already in use, please try another
-              </div>
-            ) : null}
-            <br />
-            <input type="submit" />
+            </div>
+
+            <div className ="space"/>
+            <input className="submitButton" value="" type="submit"  />
           </form>
         </div>
       </div>

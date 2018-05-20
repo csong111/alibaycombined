@@ -25,7 +25,7 @@ class ConnectUser extends Component {
       emailSignUp: "",
       passwordSignUp: "",
       passwordSignUpConf: "",
-      accountExists: false
+      accountExists: false,
     };
   }
 
@@ -97,8 +97,8 @@ class ConnectUser extends Component {
           <img src="/ui-elements/close.png" width="20px" />
         </button>
         <button className="userButtonClick buttonText bold">I'M A USER</button>
-        <button className="artistButton noButton" onClick={this.bringA}>
-          I'm an artist
+        <button className="artistButton buttonText bold" onClick={this.bringA}>
+          I'M AN ARTIST
         </button>
 
         <div className="form">
@@ -114,7 +114,7 @@ class ConnectUser extends Component {
                     this.setState({ email: e.target.value });
                   }}
                   value={this.state.email}
-                  placeholder="Email Address"
+                  placeholder="Email"
                   required
                 />
               </div>
@@ -130,16 +130,14 @@ class ConnectUser extends Component {
               />
             </div>
             <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-              {this.state.incorrectData ? (
-                <div className="failedLogin">Woops - incorrect! Try again</div>
+              <input className="submitButton" value="" type="submit" />
+            </div>
+            {this.state.incorrectData ? (
+                <div className="fail">Woops - incorrect! Try again</div>
               ) : null}
-              <input type="submit" />
             </div>
-            </div>
-
           </form>
-
-          <hr />
+          <hr className="connectHR"/>
           <form onSubmit={this.handleSubmit}>
             {" "}
             <h3>First time? Create an account</h3>
@@ -174,7 +172,7 @@ class ConnectUser extends Component {
                 this.setState({ emailSignUp: e.target.value });
               }}
               value={this.state.emailSignUp}
-              placeholder="name@email.com"
+              placeholder="Email"
               required
             />
             </div>
@@ -205,16 +203,16 @@ class ConnectUser extends Component {
             
           
             </div>
-            {this.state.accountExists ? (
-              <div className="failedAccount">
+
+            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            <input className="submitButton" value="" type="submit" />
+
+           </div>
+           {this.state.accountExists ? (
+              <div className="fail">
                 This email is already in use, please try another
               </div>
             ) : null}
-            <br />
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-            <input type="submit" />
-
-           </div>
            </div>
 
 
