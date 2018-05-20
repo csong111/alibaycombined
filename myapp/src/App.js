@@ -109,7 +109,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/editlisting/:itemID"
-              render={()=>{return(<EditListing artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<EditListing itemID={routerData.match.params.itemID} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}

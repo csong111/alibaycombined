@@ -27,41 +27,55 @@ class EditListing extends Component {
   //   return (<ArtistAccount/>)
   // }
 
+  componentDidMount = () => {
+    console.log(this.props.itemID)
+    fetch("/getItemDetails?itemID="+this.props.itemID, {
+      method: 'GET',
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB);
+        //console.log(parsed)
+        let itemID=parsed._id;
+        let artistName=parsed.artistName;
+        let blurb=parsed.blurb;
+        let category=parsed.category;
+        let img1=parsed.img1;
+        let img2=parsed.img2;
+        let img3=parsed.img3;
+        let name=parsed.name;
+        let price=parsed.price;
+        let quantity=parsed.quantity;
+        this.setState({itemID: itemID, artistName: artistName, blurb: blurb, category: category, img1: img1, img2: img2, img3: img3,
+          name: name, price: price, quantity: quantity})
+    })
+  }
+
+
   //fetch editListings
   handleSubmit = (event) => {
     event.preventDefault()
-    let body = {
-      itemID: this.state.itemID,
-      artistName: this.state.artistName,
-      name: this.state.name,
-      price: this.state.price,
-      cat: this.state.cat,
-      blurb: this.state.blurb,
-      quantity: this.state.quantity,
-      img1: this.state.img1,
-      img2: this.state.img2,
-      img3: this.state.img3,
-    }
-    fetch("/editListing",{method:"POST",body:JSON.stringify(body)})
+
+    let bod = JSON.stringify(this.state)
+
+    fetch("/editListing",{ method:"POST", body : bod})
     .then(e=>e.text())
     .then(e=>JSON.parse(e))
-    .then(e=>{
-      return e 
-    })  
-    .then(e=>this.props.history.push("/itemdetail/"+e.itemID))    
+    .then(e=> {
+      if(e.success) this.props.history.push("/itemdetail/"+ this.state.itemID)
+    });
   }
 
-  uploadFile = x => {
-    // let filename = x.name;
-    // let fileExtension = filename.split(".").pop();
-    // this.setState({ imageInputName: x.name });
-    // fetch("/uploadPic?ext=" + fileExtension, {
-    //   method: "POST",
-    //   body: x
-    // })
-    //   .then(response => response.text())
-    //   .then(response => this.setState({ imageInput: response }))
-    //   .then(() => this.state.imageInput);
+  uploadFile = (x,stateName) => {
+    let filename = x.name;
+    let fileExtension = filename.split(".").pop();
+    this.setState({ imageInputName: x.name });
+    fetch("/uploadPicItem?ext=" + fileExtension, {
+      method: "POST",
+      body: x
+    })
+    .then(response => response.text())
+    .then(response => this.setState({ [stateName]: response }))
+    .then(() => this.state.imageInput);
   };
   
   render() {
@@ -77,22 +91,26 @@ class EditListing extends Component {
              Item Price: <input type="text" onChange={(e)=>{this.setState({price:e.target.value})}} value={this.state.price} placeholder="Price" /><br/>
              Item Description: <textarea rows="4" cols="50" onChange={(e)=>{this.setState({blurb:e.target.value})}} value={this.state.blurb} placeholder="A little blurb about the item" /><br/>
              Quantity Available: <input type="text" onChange={(e)=>{this.setState({quantity:e.target.value})}} value={this.state.quantity} placeholder="Quantity Available" /><br/>
-              Category: <select onChange={(e)=>{this.setState({category:e.target.value})}} value={this.state.category} placeholder="Category" ><br/>
+              Category: <select onChange={(e)=>{this.setState({category:e.target.value})}} value={this.state.category} placeholder="Category" >
                 <option value="Prints">Prints</option>
                 <option value="Pillows">Pillows</option>
                 <option value="Embroidery">Embroidery</option>
                 <option value="Wallpaper">Wallpaper</option>
                 <option value="Curtains">Curtains</option>
-              </select><br/>
-             Upload up to 3 images: <br/>
-             <input id="editListingImg1" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
-              {this.state.imageURL1 !=="" ? <img src={this.state.imageURL1}/> : <img onClick={()=>{document.getElementById("editListingImg1").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              </select>
+              Upload up to 3 images:
               <br/>
-              <input id="editListingImg2" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
-              {this.state.imageURL2 !=="" ? <img src={this.state.imageURL2}/> : <img onClick={()=>{document.getElementById("editListingImg2").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              <input id="createListingImg1" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img1")} placeholder="Upload Item Image" />
+              {this.state.img1 !=="" ? <img src={this.state.img1}/> : null}
+              <img onClick={()=>{document.getElementById("createListingImg1").click()}} src="/items/addimage.png" height="50px" width="50px"/>
               <br/>
-              <input id="editListingImg3" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Item Image" />
-              {this.state.imageURL3 !=="" ? <img src={this.state.imageURL3}/> : <img onClick={()=>{document.getElementById("editListingImg3").click()}} src="/items/addimage.png" height="50px" width="50px"/>}
+              <input id="createListingImg2" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img2")} placeholder="Upload Item Image" />
+              {this.state.img2 !=="" ? <img src={this.state.img2}/> : null}
+              <img onClick={()=>{document.getElementById("createListingImg2").click()}} src="/items/addimage.png" height="50px" width="50px"/>
+              <br/>
+              <input id="createListingImg3" style={{display:"none"}} type="file" onChange={event => this.uploadFile(event.target.files[0],"img3")} placeholder="Upload Item Image" />
+              {this.state.img3 !=="" ? <img src={this.state.img3}/> : null}
+              <img onClick={()=>{document.getElementById("createListingImg3").click()}} src="/items/addimage.png" height="50px" width="50px"/>
               <br/>
               <input type="submit"/>
             </form>
