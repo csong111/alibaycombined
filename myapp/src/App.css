@@ -208,6 +208,22 @@ h6 {
   padding: 0;
 }
 
+.closeNav {
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: 0;
+}
+
+.navPage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 75vh;
+}
+
 .connect {
   font-family: "Open Sans Condensed", sans-serif;
   margin-top: 2px;
@@ -219,6 +235,8 @@ h6 {
 .line {
   font-size: 10pt;
   vertical-align: 2px;
+  margin: 0;
+  padding: 0;
 }
 
 .closeButton {
@@ -240,6 +258,21 @@ h6 {
   .mainBanner {
     margin-top: 10px;
   }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  font-size: 30pt;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: black;
+}
+
+.link:hover {
+  color: black;
 }
 
 /* Search Styles */
