@@ -235,7 +235,13 @@ margin-top: 45px;
 /* Category Styles */
 
 .catName {
-  margin-top: 15px;
+  margin-top: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .catName {
+    margin-top: 10px;
+    }
 }
 
 /* Details */

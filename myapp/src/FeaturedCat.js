@@ -44,7 +44,9 @@ class FeaturedCat extends Component {
 
       return (
         <div>
-        <div className="headerElements">
+          
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
           <NavButton />
 
           <div className="logo">
@@ -68,6 +70,8 @@ class FeaturedCat extends Component {
         <div className="searchMobile space">
           <SearchBar />
         </div>
+
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
         <h2 className="catName">{this.props.cat}</h2>
 

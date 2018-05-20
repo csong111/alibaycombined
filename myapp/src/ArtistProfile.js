@@ -24,48 +24,28 @@ class ArtistProfile extends Component {
   }
   componentDidMount() {
     var body = {
-      artistName : this.props.artistName
-    }
- // console.log("getArtistProfile-1",body)
-  fetch("/getArtistProfile", {
-    method: "POST",
-    body : JSON.stringify(body)
-  })
-  .then(e =>e.text())
-  .then(e =>JSON.parse(e))
- // .then(e =>{console.log("getAristProfile-4",e); return e})
-  .then(e =>{
-    console.log(e)
-    this.setState({
-      bio: e.bio,
-      location: e.location,
-      profPicURL: e.profPicURL,
-      items: e.items
-    })
-  })
-console.log(this.state)
-  this.viewArtistItems(this.state.items)
-
+      artistName: this.props.artistName
+    };
+    // console.log("getArtistProfile-1",body)
     fetch("/getArtistProfile", {
       method: "POST",
       body: JSON.stringify(body)
     })
-      .then(e => e.text())
-
-      .then(e => {
-        let parsed = JSON.parse(e);
-        let artistName = parsed.artistName;
-        let bio = parsed.bio;
-        let location = parsed.location;
-        let profPicURL = parsed.profPicURL;
-
-        this.setState({
-          artistName: artistName,
-          bio: bio,
-          location: location,
-          profPicURL: profPicURL
-        });
+    .then(res => res.text())
+    .then(resB => {
+      let parsed = JSON.parse(resB);
+      let artistName = parsed.artistName;
+      let bio = parsed.bio;
+      let location = parsed.location;
+      let profPicURL = parsed.profPicURL;
+      this.setState({
+        artistName: artistName,
+        bio: bio,
+        location: location,
+        profPicURL: profPicURL
       });
+    });
+
 
     fetch("/getArtistItems?artistName=" + this.props.artistName, {
       method: "GET"
@@ -77,7 +57,6 @@ console.log(this.state)
         this.setState({ items: parsed });
       });
   }
-
 
   render() {
     let accountInfo = () => {
