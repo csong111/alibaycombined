@@ -31,21 +31,20 @@ class ArtistProfile extends Component {
       method: "POST",
       body: JSON.stringify(body)
     })
-    .then(res => res.text())
-    .then(resB => {
-      let parsed = JSON.parse(resB);
-      let artistName = parsed.artistName;
-      let bio = parsed.bio;
-      let location = parsed.location;
-      let profPicURL = parsed.profPicURL;
-      this.setState({
-        artistName: artistName,
-        bio: bio,
-        location: location,
-        profPicURL: profPicURL
+      .then(res => res.text())
+      .then(resB => {
+        let parsed = JSON.parse(resB);
+        let artistName = parsed.artistName;
+        let bio = parsed.bio;
+        let location = parsed.location;
+        let profPicURL = parsed.profPicURL;
+        this.setState({
+          artistName: artistName,
+          bio: bio,
+          location: location,
+          profPicURL: profPicURL
+        });
       });
-    });
-
 
     fetch("/getArtistItems?artistName=" + this.props.artistName, {
       method: "GET"
@@ -61,7 +60,7 @@ class ArtistProfile extends Component {
   render() {
     let accountInfo = () => {
       return (
-        <div className="accountInfo">
+        <div>
           <h4>Name: {this.state.artistName}</h4>
           <h4>Location: {this.state.location}</h4>
           <h4>{this.state.bio}</h4>
@@ -71,19 +70,18 @@ class ArtistProfile extends Component {
 
     let itemsRendered = this.state.items.map((el, id) => {
       return (
-        <div className="col-6 col-md-4 col-lg-3 noPad space"  key={id}>
-        <Item 
-          itemID={el._id}
-          name={el.name}
-          price={el.price}
-          artistName={el.artistName}
-          img1={el.img1}
-        />
+        <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
+          <Item
+            itemID={el._id}
+            name={el.name}
+            price={el.price}
+            artistName={el.artistName}
+            img1={el.img1}
+          />
         </div>
       );
     });
     return (
-
       <div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
         <div className="headerElements sticky">
@@ -92,18 +90,24 @@ class ArtistProfile extends Component {
           <div className="logo">
             <HomeButton />
           </div>
-          
+
           <div className="search">
             <SearchBar />
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
-            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
+            {this.props.email !== "" ? (
+              <UserAccountButton userID={this.props.userID} />
+            ) : null}
+            {this.props.artistName !== "" ? (
+              <ArtistAccountButton artistName={this.props.artistName} />
+            ) : null}
             {this.props.email === "" && this.props.artistName === "" ? (
               <ConnectButton />
             ) : null}
-            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+            {this.props.email !== "" ? (
+              <CartButton userID={this.props.userID} />
+            ) : null}
           </div>
         </div>
 
@@ -113,14 +117,13 @@ class ArtistProfile extends Component {
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
         <div className="artistProfile space">
-        <img className="profileImage" src={this.state.profPicURL} />
-        <span className="spaceLeft">{accountInfo()}</span>
+          <img className="profileImage" src={this.state.profPicURL} />
+          <span className="spaceLeft accountInfo">{accountInfo()}</span>
         </div>
-
+        <div className="space" />
+        <div className="space" />
         <h4>Other items by this artist:</h4>
-        <div className="row">
-        {itemsRendered}
-        </div>
+        <div className="row">{itemsRendered}</div>
       </div>
     );
   }
