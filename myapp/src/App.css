@@ -188,7 +188,7 @@ h6 {
   width: 95%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   margin: 20px;
   margin-top: 0;
   padding: 20px;
@@ -251,6 +251,12 @@ h6 {
 
 .flex {
   display: flex;
+}
+
+.uploadProfPic {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
 }
 
 /* Home */
@@ -517,12 +523,40 @@ ul {
 /* LISTING FORM */
 
 .selectpicker {
-  background-color: white;
+  padding-left: 5px;
+  background-color: #edf2f5;
   width: 150px;
   height: 30px;
-  border: 1px solid black;
-  border-radius: 0px;
+  border: 0;
+  border-bottom: 1.5px solid black;
+  border-radius: 0;
   outline: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+}
+
+.submitButtonWhite {
+  margin-top: 5px;
+  width: 50px;
+  background-image: url("/ui-elements/submit.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: 20px auto;
+  border: none;
+  outline: 0;
+}
+
+
+/* ViewInRoom */
+
+.img2 {
+  position: absolute;
+  top:200px;
+  left:350px;
+  z-index: 1
 }
 
 

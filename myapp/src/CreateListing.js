@@ -81,13 +81,14 @@ class CreateListing extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className="App">
+      <div>
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
-        <div className="space" />
-        <h2>CREATE LISTING</h2>
-
+        <button className="userButtonClick buttonText bold">CREATE LISTING</button>
+        {/* <div className="space" />
+        <h2>CREATE LISTING</h2> */}
+        <div className="form">
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
@@ -139,10 +140,10 @@ class CreateListing extends Component {
             placeholder="A little blurb about the item"
             required
           />
-          <br />
-          Category:{" "}
+          <div className="space" />
+          <span className="inputText">Category:{" "}</span>
           <select
-            className="selectpicker"
+            className="selectpicker inputText"
             onChange={e => {
               console.log(e.target.value)
               this.setState({ category: e.target.value });
@@ -158,7 +159,9 @@ class CreateListing extends Component {
             <option>Curtains</option>
           </select>
           <div className="space" />
-          Upload up to 3 images: <br />
+          <span className="inputText">Upload up to 3 images:</span>
+             <br />
+
           <input
             id="createListingImg1"
             style={{ display: "none" }}
@@ -180,6 +183,7 @@ class CreateListing extends Component {
           >
             UPLOAD ITEM IMAGE 1
           </button>
+          
           <br />
           <input
             id="createListingImg2"
@@ -210,7 +214,7 @@ class CreateListing extends Component {
             onChange={event => this.uploadFile(event.target.files[0], "img3")}
             placeholder="Upload Item Image"
           />
-            <img src={this.state.img3} />
+            <img width="100px" src={this.state.img3} />
             <br />
             <button
             type="button"
@@ -224,9 +228,10 @@ class CreateListing extends Component {
             >
             UPLOAD ITEM IMAGE 3
             </button>
-          <br />
-          <input type="submit" />
+          <div className="space" />
+          <input className="submitButton" type="submit" value="" />
         </form>
+      </div>
       </div>
     );
   }

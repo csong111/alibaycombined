@@ -10,7 +10,6 @@ class LogOutButton extends Component {
     return (
       <div>
         <button className="noButton" onClick={this.logout}>
-          {/* <img width="30px" src='../useracct.png' className="icon"/> */}
           <div className="connect">
           <span className="bold">LOG OUT</span>
           </div>

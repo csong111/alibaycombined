@@ -19,7 +19,7 @@ import UserSignUpComplete from './UserSignUpComplete.js';
 import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 import ItemsBought from './ItemsBought.js';
-
+import ViewInRoom from './ViewInRoom.js';
 
 class App extends Component {
   constructor() {
@@ -159,6 +159,11 @@ class App extends Component {
               exact={true}
               path="/checkoutcomplete/:orderNumber"
               render={(routerData)=>{return(<CheckoutComplete counter={this.state.cartItems.length} cartItems={routerData.location.state} transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
+            />
+            <Route
+              exact={true}
+              path="/viewinroom/"
+              render={()=>{return(<ViewInRoom/>)}}
             />
           </div>
         </BrowserRouter>

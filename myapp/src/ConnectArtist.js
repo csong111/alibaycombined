@@ -31,7 +31,7 @@ class ConnectArtist extends Component {
       sImageURL1: "",
       sImageURL2: "",
       sImageURL3: "",
-      accountExists: false,
+      accountExists: false
     };
   }
 
@@ -57,7 +57,7 @@ class ConnectArtist extends Component {
       body: x
     })
       .then(response => response.text())
-      .then(response => this.setState({ [stateName]: filename }))
+      .then(response => this.setState({ [stateName]: response }))
       .then(() => this.state.imageInput);
   };
 
@@ -85,15 +85,15 @@ class ConnectArtist extends Component {
       .then(x => x.text())
       .then(x => JSON.parse(x))
       .then(x => {
-        console.log(x);
+      //  console.log(x);
         if (x.success) {
-   //       console.log("this should be the name", x.RESB.artistName);
+          //       console.log("this should be the name", x.RESB.artistName);
           this.props.loginArtist(x.RESB.artistID); //change to artistName from backend
           this.setState({ loggedIn: true });
           // Fetch login in
           this.props.history.push("/");
         } else {
-          this.setState({incorrectData:true})
+          this.setState({ incorrectData: true });
         }
       });
   };
@@ -124,7 +124,6 @@ class ConnectArtist extends Component {
           this.setState({ accountExists: true });
         }
       });
-
   };
 
   back = event => {
@@ -176,7 +175,7 @@ class ConnectArtist extends Component {
               </div>
 
               <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-                <input className="submitButton" value="" type="submit"  />
+                <input className="submitButton" value="" type="submit" />
               </div>
               {this.state.incorrectData ? (
                 <div className="fail">Woops - incorrect! Try again</div>
@@ -184,7 +183,7 @@ class ConnectArtist extends Component {
             </div>
           </form>
 
-          <hr className="connectHR"/>
+          <hr className="connectHR" />
 
           <form onSubmit={this.handleSubmit}>
             {" "}
@@ -228,27 +227,27 @@ class ConnectArtist extends Component {
               </div>
             </div>
             <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPad formSpace">
-            <input
-              className="formInput"
-              type="text"
-              onChange={e => {
-                this.setState({ sDescription: e.target.value });
-              }}
-              value={this.state.sDescription}
-              placeholder="Artist Description"
-              required
-            />
-            </div>
-            {this.state.accountExists ? (
-              <div className="fail">
-                This email is already in use, please try another
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPad formSpace">
+                <textarea
+                  className="textAreaInput"
+                  rows="4"
+                  cols="50"
+                  // className="formInput"
+                  // type="text"
+                  onChange={e => {
+                    this.setState({ sDescription: e.target.value });
+                  }}
+                  value={this.state.sDescription}
+                  placeholder="Artist Description"
+                  required
+                />
               </div>
-            ) : null}
+              {this.state.accountExists ? (
+                <div className="fail">
+                  This email is already in use, please try another
+                </div>
+              ) : null}
             </div>
-
-
-
             {/* DO WE NEED PASSWORDS? ////////////////////// */}
             {/* <input
               className="formInput"
@@ -270,71 +269,113 @@ class ConnectArtist extends Component {
               placeholder="Confirm Password"
               required
             /> */}
+            <div>
 
-            <div className ="space">
-            <input
-              id="profilePic"
-              style={{ display: "none" }}
-              type="file"
-              onChange={event =>
-                this.uploadProfile(event.target.files[0], "sProfPicURL")
-              }
-              placeholder="Upload Profile Picture"
-              required
-            />
-            {this.state.sProfPicURL !== "" ? (
-              <img width="50px "src={this.state.sProfPicURL} />
-            ) : (
-              <img 
-                onClick={() => {
-                  document.getElementById("profilePic").click();
-                }}
-                src="/ui-elements/profpic.png"
-                height="50px"
-                width="50px"
+            {/* <br /> */}
+            <div className ="space" />
+              <input
+                id="profilePic"
+                style={{ display: "none" }}
+                type="file"
+                onChange={event =>
+                  this.uploadProfile(event.target.files[0], "sProfPicURL")
+                }
+                placeholder="Upload Profile Picture"
+                required
               />
-            )}
-            <span className="inputText spaceLeft">Upload Profile Pic</span>
+              {/* {this.state.sProfPicURL !== "" ? ( */}
+                <div className="inputText">Upload Profile Pic</div>
+                <div><img width="100px " src={this.state.sProfPicURL} /></div>
+                {/* <br /> */}
+              {/* // ) : ( */}
+                <button className="button noPad connect"
+                  onClick={() => {
+                    document.getElementById("profilePic").click();
+                  }}
+                  // src="/ui-elements/profpic.png"
+                  // height="50px"
+                  // width="50px"
+                >
+                CHOOSE FILE
+                </button>
+              {/* )} */}
+              
             </div>
-
-
             {/* <p>{this.state.sProfPicURL}</p>
                     <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/> */}
-            <div className ="space"/>
+            <div className="space" />
             <div className="inputText">Please upload 3 art submissions:</div>
-            <br />
-            <div>
-            <input className="inputText"
+            <input
+              // className="inputText"
+              id="sImageURL1"
+              style={{ display: "none" }}
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL1")
               }
               placeholder="Upload Art"
             />
-            </div>
+            <img width="100px" src={this.state.sImageURL1} />
             <br />
-            <div>
-            <input className="inputText"
+            <button
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("sImageURL1").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              SUBMISSION 1
+            </button>
+            <br />
+            <input
+              id="sImageURL2"
+              style={{ display: "none" }}
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL2")
               }
               placeholder="Upload Art"
             />
-            </div>
+            <img width="100px" src={this.state.sImageURL2} />
             <br />
-            <div>
-            <input className="inputText"
+            <button
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("sImageURL2").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              SUBMISSION 2
+            </button>
+            <br />
+            <input
+              id="sImageURL3"
+              style={{ display: "none" }}
               type="file"
               onChange={event =>
                 this.uploadFile(event.target.files[0], "sImageURL3")
               }
               placeholder="Upload Art"
             />
-            </div>
-
-            <div className ="space"/>
-            <input className="submitButton" value="" type="submit"  />
+            <img width="100px" src={this.state.sImageURL3} />
+            <br />
+            <button
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("sImageURL3").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              SUBMISSION 3
+            </button>
+            <div className="space" />
+            <input className="submitButton" value="" type="submit" />
           </form>
         </div>
       </div>

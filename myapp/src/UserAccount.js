@@ -17,10 +17,7 @@ class Account extends Component {
     this.state = {
     editAccount: false,
     editShipping: false,
-    itemsBought: [ 
-        // { itemID: '123457', name: "Awesome Embroidery", price: 100, artistName: "caro", imageURL: 'embroidery.jpg', cat: "Spring", blurb: "Best embroidery ever!", quantity: 1 },
-        // { itemID: '123458', name: "Pillow", price: 100, artistName: "caro", imageURL: 'pillow.jpg', cat: "Popular", blurb: "Check out my pillow", quantity: 1 },
-     ],
+    itemsBought: [],
 
      // infos from back end
     firstName: "",
@@ -60,7 +57,7 @@ class Account extends Component {
     .then(x => x.text())
     .then(x => JSON.parse(x))
     .then(x => {
-      console.log(x)
+   //   console.log(x)
       this.setState ({
         firstName: x.firstName,
         lastName: x.lastName,
@@ -80,7 +77,8 @@ class Account extends Component {
     .then(x => x.text())
     .then(x => JSON.parse(x))
     .then(x => {
-        this.setState({itemsBought: x.itemsBought})
+      //console.log(x)
+        this.setState({itemsBought: x})
     })
 
   }
@@ -149,12 +147,21 @@ class Account extends Component {
   }
 
   render() {
-    var itemsRendered = this.state.itemsBought.map((el,id)=>{
-      return (
-        <Item key={id} itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} imageURL = {el.imageURL} />
-      )
-    })
-
+    console.log(this.state.itemsBought)
+    var cartItems = this.state.itemsBought.map(item=>{return item.cartItems})
+  //  console.log(cartItems)
+    let cartStore = []
+    for (let i=0; i<cartItems.length; i++) {
+      cartStore = cartStore.concat(cartItems[i])
+    }
+     var itemsRendered = cartStore.map((item,id)=>{ 
+          return (
+            <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
+            <Item key={id} name = {item.name} price = {item.price} artistName = {item.artistName} img1 ={item.img1}/>
+         </div>
+          )
+         })
+ 
     let shippingInfo = (() => {
       if (this.state.editShipping === false) {
         return (<div>
@@ -211,7 +218,7 @@ class Account extends Component {
         </div>
 
         <h2>ITEMS BOUGHT</h2>
-        <div name="items-bought">
+        <div name="items-bought" className="row">
           {itemsRendered}
         </div>
 
