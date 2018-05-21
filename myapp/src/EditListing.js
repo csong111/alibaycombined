@@ -108,6 +108,7 @@ class EditListing extends Component {
         <form onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+          Item Name: 
           <input className="formInput"
             type="text"
             onChange={e => {
@@ -118,6 +119,7 @@ class EditListing extends Component {
           />
           </div>
             <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            Price: 
           <input className="formInput"
             type="text"
             onChange={e => {
@@ -128,6 +130,7 @@ class EditListing extends Component {
           />
           </div>
             <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+            Quantity: 
           <input className="formInput"
             type="text"
             onChange={e => {
