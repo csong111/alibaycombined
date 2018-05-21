@@ -143,19 +143,18 @@ class CreateListing extends Component {
           <select
             className="selectpicker"
             onChange={e => {
+              console.log(e.target.value)
               this.setState({ category: e.target.value });
             }}
             value={this.state.category}
             placeholder="Category"
             required
           >
-            <option className="option" value="Prints">
-              Prints
-            </option>
-            <option value="Pillows">Pillows</option>
-            <option value="Embroidery">Embroidery</option>
-            <option value="Wallpaper">Wallpaper</option>
-            <option value="Curtains">Curtains</option>
+            <option className="option">Prints</option>
+            <option>Pillows</option>
+            <option>Embroidery</option>
+            <option>Wallpaper</option>
+            <option>Curtains</option>
           </select>
           <div className="space" />
           Upload up to 3 images: <br />
@@ -169,6 +168,7 @@ class CreateListing extends Component {
           <img width="100px" src={this.state.img1} />
           <br />
           <button
+            type="button"
             className="button noPad connect"
             onClick={() => {
               document.getElementById("createListingImg1").click();
@@ -190,6 +190,7 @@ class CreateListing extends Component {
           <img width="100px" src={this.state.img2} />
           <br />
           <button
+            type="button"
             className="button noPad connect"
             onClick={() => {
               document.getElementById("createListingImg2").click();
@@ -211,6 +212,7 @@ class CreateListing extends Component {
             <img src={this.state.img3} />
             <br />
             <button
+            type="button"
             className="button noPad connect"
               onClick={() => {
                 document.getElementById("createListingImg3").click();
