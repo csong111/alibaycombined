@@ -21,7 +21,8 @@ class Nav extends Component {
     render () {
         return (
             <div>
-                <button onClick={this.closeNav}>X</button>
+            <button className="closeNav" onClick={this.closeNav}><img src="/ui-elements/close.png" width="20px" /></button>
+            <div className="center navPage">
                 <ul style={{listStyleType: "none"}}>
                     <li><Link className="link" to={"/featuredcat/Prints"}>PRINTS</Link></li>
                     <li><Link className="link" to={"/featuredcat/Pillows"}>PILLOWS</Link></li>
@@ -29,6 +30,7 @@ class Nav extends Component {
                     <li><Link className="link" to={"/featuredcat/Wallpaper"}>WALLPAPER</Link></li>
                     <li><Link className="link" to={"/featuredcat/Curtains"}>CURTAINS</Link></li>
                 </ul>
+            </div>
             </div>
         )
     }

@@ -20,6 +20,10 @@ body {
   padding: 10px;
 }
 
+.spaceSmaller {
+  padding: 5px;
+}
+
 .spaceLeft {
   margin-left: 10px;
 }
@@ -55,17 +59,22 @@ a {
 }
 
 p {
-  margin: 15px;
+  /* margin: 15px; */
   font-family: "Open Sans", sans-serif;
   font-size: 10pt;
+  margin: 0;
+  padding: 0;
   /* text-align: center; */
-  line-height: 5px;
+  /* line-height: 5px; */
 }
 
 @media only screen and (max-width: 768px) {
   p {
     font-size: 8pt;
-    margin: 12px;
+    margin: 0;
+    padding: 0;
+    /* margin: 12px; */
+    /* line-height: 12px; */
   }
 }
 
@@ -87,6 +96,18 @@ h4 {
 h5 {
   font-family: "Open Sans", sans-serif;
   font-size: 11pt;
+}
+
+h6 {
+  margin-top: 10px;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 20pt;
+}
+
+@media only screen and (max-width: 600px) {
+  h6 {
+    font-size: 12pt;
+  }
 }
 
 .inputText {
@@ -187,6 +208,22 @@ h5 {
   padding: 0;
 }
 
+.closeNav {
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: 0;
+}
+
+.navPage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 75vh;
+}
+
 .connect {
   font-family: "Open Sans Condensed", sans-serif;
   margin-top: 2px;
@@ -198,6 +235,8 @@ h5 {
 .line {
   font-size: 10pt;
   vertical-align: 2px;
+  margin: 0;
+  padding: 0;
 }
 
 .closeButton {
@@ -219,6 +258,21 @@ h5 {
   .mainBanner {
     margin-top: 10px;
   }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  font-size: 30pt;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: black;
+}
+
+.link:hover {
+  color: black;
 }
 
 /* Search Styles */
