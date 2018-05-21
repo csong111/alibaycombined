@@ -147,9 +147,9 @@ class Account extends Component {
   }
 
   render() {
-    console.log(this.state.itemsBought)
+   // console.log(this.state.itemsBought)
     var cartItems = this.state.itemsBought.map(item=>{return item.cartItems})
-  //  console.log(cartItems)
+    console.log(this.state.itemsBought)
     let cartStore = []
     for (let i=0; i<cartItems.length; i++) {
       cartStore = cartStore.concat(cartItems[i])
@@ -157,7 +157,7 @@ class Account extends Component {
      var itemsRendered = cartStore.map((item,id)=>{ 
           return (
             <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
-            <Item key={id} name = {item.name} price = {item.price} artistName = {item.artistName} img1 ={item.img1}/>
+            <Item key={id} itemID = {item.itemID} name = {item.name} price = {item.price} artistName = {item.artistName} img1 ={item.img1}/>
          </div>
           )
          })
