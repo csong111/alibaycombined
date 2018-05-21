@@ -611,3 +611,9 @@ button:focus {
 .ordersTableItemNames{
   list-style-type: none;
 }
+
+/*CART COUNTER BUTTON */
+.counter{
+  font-weight: bold;
+  margin-top: 5px;
+}
