@@ -10,23 +10,17 @@ import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 class CreateListing extends Component {
   constructor() {
     super();
-    this.state={
-      artistID: "",
+    this.state = {
       artistName: "",
       name: "",
       price: undefined,
-      category: "",
+      cat: "",
       blurb: "",
       quantity: undefined,
       img1: "",
       img2: "",
       img3: ""
     };
-  }
-
-  componentDidMount = () => {
-    console.log(this.props)
-    this.setState({artistID: this.props.artistID, artistName: this.props.artistName.name})
   }
 
   seeArtistAcct = () => {
@@ -37,27 +31,26 @@ class CreateListing extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let body = {
-      artistID: this.state.artistID,
       artistName: this.state.artistName,
       name: this.state.name,
       price: this.state.price,
-      category: this.state.category,
+      category: this.state.cat,
       blurb: this.state.blurb,
       quantity: this.state.quantity,
       img1: this.state.img1,
       img2: this.state.img2,
-      img3: this.state.img3,
-    }
-    //console.log("createListing-1",body)
-    fetch("/createListing",{method:"POST",body:JSON.stringify(body)})
-    .then(e=>e.text())
-    .then(e=>JSON.parse(e))
-    .then(e=>{
-      console.log("createListing-4",e);
-      return e 
-    })  
-    .then(e=>this.props.history.push("/itemdetail/"+e.itemID))    
-  }
+      img3: this.state.img3
+    };
+    console.log("createListing-1", body);
+    fetch("/createListing", { method: "POST", body: JSON.stringify(body) })
+      .then(e => e.text())
+      .then(e => JSON.parse(e))
+      .then(e => {
+        console.log("createListing-4", e);
+        return e;
+      })
+      .then(e => this.props.history.push("/itemdetail/" + e.itemID));
+  };
 
   uploadFile = (x, stateName) => {
     let filename = x.name;
@@ -144,18 +137,19 @@ class CreateListing extends Component {
           <select
             className="selectpicker inputText"
             onChange={e => {
-              console.log(e.target.value)
               this.setState({ category: e.target.value });
             }}
             value={this.state.category}
             placeholder="Category"
             required
           >
-            <option className="option">Prints</option>
-            <option>Pillows</option>
-            <option>Embroidery</option>
-            <option>Wallpaper</option>
-            <option>Curtains</option>
+            <option className="option" value="Prints">
+              Prints
+            </option>
+            <option value="Pillows">Pillows</option>
+            <option value="Embroidery">Embroidery</option>
+            <option value="Wallpaper">Wallpaper</option>
+            <option value="Curtains">Curtains</option>
           </select>
           <div className="space" />
           <span className="inputText">Upload up to 3 images:</span>
@@ -171,7 +165,6 @@ class CreateListing extends Component {
           <img width="100px" src={this.state.img1} />
           <br />
           <button
-            type="button"
             className="button noPad connect"
             onClick={() => {
               document.getElementById("createListingImg1").click();
@@ -194,7 +187,6 @@ class CreateListing extends Component {
           <img width="100px" src={this.state.img2} />
           <br />
           <button
-            type="button"
             className="button noPad connect"
             onClick={() => {
               document.getElementById("createListingImg2").click();
@@ -216,7 +208,6 @@ class CreateListing extends Component {
             <img width="100px" src={this.state.img3} />
             <br />
             <button
-            type="button"
             className="button noPad connect"
               onClick={() => {
                 document.getElementById("createListingImg3").click();
