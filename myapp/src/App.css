@@ -43,8 +43,13 @@ hr {
 
 /* Text Styles */
 
-a {
+.a {
   color: gray;
+}
+
+.a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 @font-face {
@@ -367,7 +372,7 @@ ul {
 /* Connect */
 
 .form {
-  background-color: #f2f2f2;
+  background-color: #edf2f5;
   padding: 20px;
 }
 
@@ -385,7 +390,7 @@ ul {
   padding-right: 15px;
   margin-left: 20px;
   margin-bottom: 0;
-  background-color: #f2f2f2;
+  background-color: #edf2f5;
   border: none;
   outline: 0;
 }
@@ -402,7 +407,7 @@ ul {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 0;
-  background-color: #f2f2f2;
+  background-color: #edf2f5;
   border: none;
   outline: 0;
 }
@@ -413,6 +418,15 @@ ul {
   outline: 0;
   background: none;
   width: 100%;
+}
+
+.textAreaInput {
+  /* border: 0; */
+  border: 1.5px solid black;
+  outline: 0;
+  background: none;
+  width: 100%;
+  padding: 10px;
 }
 
 /* .formInputLong {
@@ -427,7 +441,7 @@ ul {
   margin-top: 5px;
   width: 50px;
   background-image: url("/ui-elements/submit.png");
-  background-color: #f2f2f2;
+  background-color: #edf2f5;
   background-repeat: no-repeat;
   background-size: 100%;
   background-size: 20px auto;
@@ -488,8 +502,6 @@ ul {
   }
 }
 
-
-
 /* Artist Account */
 
 .artistAccountContainer {
@@ -501,6 +513,18 @@ ul {
     margin-top: 10px;
   }
 }
+
+/* LISTING FORM */
+
+.selectpicker {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 0px;
+  outline: none;
+}
+
 
 /* Mockup Styles */
 
