@@ -7,7 +7,7 @@ import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
-import "./App.css";
+import ItemCarousel from './ItemCarousel.js';
 
 class ItemDetail extends Component {
   constructor() {
@@ -93,7 +93,6 @@ class ItemDetail extends Component {
 
   render() {
     //fetch itemdetails from backend
-
     let details = () => {
           return (<div className="space">
               <div className="bold">
@@ -120,6 +119,7 @@ class ItemDetail extends Component {
     return (
       <div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
+
         <div className="headerElements sticky">
           <NavButton />
 
@@ -158,29 +158,12 @@ class ItemDetail extends Component {
           <div className="detailsContainer noPad">
           <div className="detailsMobile">{details()}</div>
             <div className="space">
-              <div>
-                <img
-                  className="detailImage"
-                  width="350px"
-                  src={this.state.img1}
-                />
-              </div>
-              <div>
-                <img
-                  className="detailImage"
-                  width="350px"
-                  src={this.state.img2}
-                />
-              </div>
-              <div>
-                <img width="350px" src={this.state.img3} />
-              </div>
-            </div>
-
-            <div className="details">{details()}</div>
-
           </div>
+          <ItemCarousel img1={this.state.img1} img2={this.state.img2}  img3={this.state.img3} src/>
+          <div className="details">{details()}</div>
+
         </div>
+      </div>
       </div>
     );
   }
