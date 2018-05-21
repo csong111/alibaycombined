@@ -188,7 +188,7 @@ h6 {
   width: 95%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   margin: 20px;
   margin-top: 0;
   padding: 20px;
@@ -547,6 +547,16 @@ ul {
   background-size: 20px auto;
   border: none;
   outline: 0;
+}
+
+
+/* ViewInRoom */
+
+.img2 {
+  position: absolute;
+  top:200px;
+  left:350px;
+  z-index: 1
 }
 
 

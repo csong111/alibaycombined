@@ -5,51 +5,40 @@ import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
+import CartButton from "./page-elements.js/cart-button.js";
+import ConnectButton from "./page-elements.js/connect-button.js";
+import SearchBar from "./page-elements.js/search-bar.js";
+import UserAccount from "./UserAccount.js";
+import UserAccountButton from "./page-elements.js/user-account-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+import Item from "./page-elements.js/Item.js"
 
-class CreateListing extends Component {
+class ViewInRoom extends Component {
   constructor() {
     super();
     this.state = {
-      artistName: "",
-      name: "",
-      price: undefined,
-      cat: "",
-      blurb: "",
-      quantity: undefined,
       img1: "",
       img2: "",
-      img3: ""
+      img3: "",
+      itemsInCat: [],
     };
   }
 
-  seeArtistAcct = () => {
-    return <ArtistAccount />;
+  componentDidMount = () => {
+    fetch("/getCatItems?cat="+"Prints", {
+      method: 'GET'
+    }).then(res=>res.text())
+      .then(resB=>{
+        let parsed=JSON.parse(resB)
+        console.log(parsed)
+        this.setState({itemsInCat: parsed})
+      })
   };
+
 
   //Fetch create listing.
   handleSubmit = event => {
     event.preventDefault();
-    let body = {
-      artistName: this.state.artistName,
-      name: this.state.name,
-      price: this.state.price,
-      category: this.state.cat,
-      blurb: this.state.blurb,
-      quantity: this.state.quantity,
-      img1: this.state.img1,
-      img2: this.state.img2,
-      img3: this.state.img3
-    };
-    console.log("createListing-1", body);
-    fetch("/createListing", { method: "POST", body: JSON.stringify(body) })
-      .then(e => e.text())
-      .then(e => JSON.parse(e))
-      .then(e => {
-        console.log("createListing-4", e);
-        return e;
-      })
-      .then(e => this.props.history.push("/itemdetail/" + e.itemID));
   };
 
   uploadFile = (x, stateName) => {
@@ -65,167 +54,115 @@ class CreateListing extends Component {
       .then(() => this.state.imageInput);
   };
 
-  back = event => {
-    event.preventDefault();
-    window.history.back();
-  };
+  showInRoom = (img) => {
+    this.setState({img2: img})
+  }
 
   render() {
-    console.log(this.state);
+    var itemsRendered = this.state.itemsInCat.map((el,id)=>{
+      return (
+        <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
+        
+        <Item itemID = {el._id} name = {el.name} price = {el.price} artistName = {el.artistName} img1 = {el.img1} />
+        <button onClick={() => this.showInRoom(el.img1)}>SHOW IN ROOM</button>
+        </div>
+      )
+    })
+
     return (
       <div>
-        <button className="closeButton noPad noButton" onClick={this.back}>
-          <img src="/ui-elements/close.png" width="20px" />
-        </button>
-        <button className="userButtonClick buttonText bold">CREATE LISTING</button>
-        {/* <div className="space" />
-        <h2>CREATE LISTING</h2> */}
-        <div className="form">
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-              <input
-                className="formInput"
-                type="text"
-                onChange={e => {
-                  this.setState({ name: e.target.value });
-                }}
-                value={this.state.name}
-                placeholder="Item Name"
-                required
-              />
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-              <input
-                className="formInput"
-                type="text"
-                onChange={e => {
-                  this.setState({ price: e.target.value });
-                }}
-                value={this.state.price}
-                placeholder="Price"
-                required
-              />
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-              <input
-                className="formInput"
-                type="text"
-                onChange={e => {
-                  this.setState({ quantity: e.target.value });
-                }}
-                value={this.state.quantity}
-                placeholder="Quantity Available"
-                required
-              />
-            </div>
-          </div>
-          <br />
-          <textarea
-            className="textAreaInput"
-            rows="4"
-            cols="50"
-            onChange={e => {
-              this.setState({ blurb: e.target.value });
-            }}
-            value={this.state.blurb}
-            placeholder="A little blurb about the item"
-            required
-          />
-          <div className="space" />
-          <span className="inputText">Category:{" "}</span>
-          <select
-            className="selectpicker inputText"
-            onChange={e => {
-              this.setState({ category: e.target.value });
-            }}
-            value={this.state.category}
-            placeholder="Category"
-            required
-          >
-            <option className="option" value="Prints">
-              Prints
-            </option>
-            <option value="Pillows">Pillows</option>
-            <option value="Embroidery">Embroidery</option>
-            <option value="Wallpaper">Wallpaper</option>
-            <option value="Curtains">Curtains</option>
-          </select>
-          <div className="space" />
-          <span className="inputText">Upload up to 3 images:</span>
-             <br />
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
+          <NavButton />
 
-          <input
-            id="createListingImg1"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img1")}
-            placeholder="Upload Item Image"
-          />
-          <img width="100px" src={this.state.img1} />
-          <br />
-          <button
-            className="button noPad connect"
-            onClick={() => {
-              document.getElementById("createListingImg1").click();
-            }}
-            // src="/items/addimage.png"
-            // height="50px"
-            // width="50px"
-          >
-            UPLOAD ITEM IMAGE 1
-          </button>
-          
-          <br />
-          <input
-            id="createListingImg2"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img2")}
-            placeholder="Upload Item Image"
-          />
-          <img width="100px" src={this.state.img2} />
-          <br />
-          <button
-            className="button noPad connect"
-            onClick={() => {
-              document.getElementById("createListingImg2").click();
-            }}
-            // src="/items/addimage.png"
-            // height="50px"
-            // width="50px"
-          >
-          UPLOAD ITEM IMAGE 2
-          </button>
-          <br />
-          <input
-            id="createListingImg3"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img3")}
-            placeholder="Upload Item Image"
-          />
-            <img width="100px" src={this.state.img3} />
+          <div className="logo">
+            <HomeButton />
+          </div>
+
+          <div className="search">
+            <SearchBar />
+          </div>
+
+          <div className="flex">
+            {this.props.email ? (
+              <UserAccountButton userID={this.props.userID} />
+            ) : null}
+            {this.props.artistID ? (
+              <ArtistAccountButton artistID={this.props.artistID} />
+            ) : null}
+            {!this.props.email && !this.props.artistID ? (
+              <ConnectButton />
+            ) : null}
+            {this.props.email ? (
+              <CartButton userID={this.props.userID} />
+            ) : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+
+        <div>
+          <h2 className="catName">VIEW IN ROOM</h2>
+          <form>
+            <img className="img2" width="200px" src={this.state.img2} />
+            {this.state.img1 ? <img width="700px" src={this.state.img1}/> : <img width="700px" src="room/test.jpg" /> }
+
+
+            {/* HIDDEN!!!!!!!! */}
+
+            <input
+              id="createListingImg1"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event => this.uploadFile(event.target.files[0], "img1")}
+              placeholder="Upload Item Image"
+            />
+
+            <input
+              id="createListingImg2"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event => this.uploadFile(event.target.files[0], "img2")}
+              placeholder="Upload Item Image"
+            />
+
+            {/* ///////////// */}
+
             <br />
             <button
-            className="button noPad connect"
+              type="button"
+              className="button noPad connect"
               onClick={() => {
-                document.getElementById("createListingImg3").click();
+                document.getElementById("createListingImg1").click();
               }}
-              // src="/items/addimage.png"
-              // height="50px"
-              // width="50px"
             >
-            UPLOAD ITEM IMAGE 3
+              BACKGROUND IMAGE
             </button>
-          <div className="space" />
-          <input className="submitButton" type="submit" value="" />
-        </form>
-      </div>
+
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("createListingImg2").click();
+              }}
+            >
+              UPLOAD ITEM IMAGE
+            </button>
+
+
+          </form>
+          <div name="cat-items" className="row">
+          {itemsRendered}
+        </div>
+        </div>
       </div>
     );
   }
 }
 
-let Content = withRouter(CreateListing);
+let Content = withRouter(ViewInRoom);
 export default Content;
