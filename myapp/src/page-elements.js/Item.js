@@ -16,7 +16,7 @@ class Item extends Component {
           <div className="bold">
           <p>{this.props.name}</p>
           <p>${this.props.price}</p>
-          <p>by <Link to={"/artistprofile/" + this.props.artistName}>{this.props.artistName}</Link></p>
+          <p>by <Link className="a" to={"/artistprofile/" + this.props.artistName}>{this.props.artistName}</Link></p>
           {this.props.location.pathname.split('/')[1] === "artistaccount" ? <Link to = {"/editlisting/" + this.props.itemID}><button className="button noPad connect">EDIT ITEM</button></Link> : null}
           </div>
       </div>

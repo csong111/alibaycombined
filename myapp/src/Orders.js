@@ -94,7 +94,7 @@ class Orders extends Component {
               <NavButton />
               <HomeButton />
               <ArtistAccountButton/>
-              <h1>Your order history</h1>
+              <h1>Items sold</h1>
               {!this.state.previousOrders ?
                <div className="failedAccount">No previous orders</div> :
               <div><div>{renderTitle}</div>

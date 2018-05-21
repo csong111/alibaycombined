@@ -97,7 +97,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/artistaccount/:artistID"
-              render={(routerData)=>{return(<ArtistAccount artistID={routerData.match.params.artistID} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ArtistAccount artistName={this.state.artistName} artistID={routerData.match.params.artistID} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
@@ -106,8 +106,8 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/createlisting/"
-              render={()=>{return(<CreateListing artistName={this.state.artistName} email={this.state.email}/>)}}
+              path="/createlisting/:artistID"
+              render={(routerData)=>{return(<CreateListing artistID = {routerData.match.params.artistID} artistName={routerData.location.state} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
