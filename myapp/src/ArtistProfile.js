@@ -68,7 +68,7 @@ class ArtistProfile extends Component {
         </div>
       );
     };
-
+    console.log(this.state.items)
     let itemsRendered = this.state.items.map((el, id) => {
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
