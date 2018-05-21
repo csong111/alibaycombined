@@ -129,9 +129,9 @@ class ItemDetail extends Component {
             {this.props.email !== "" ? (
               <UserAccountButton userID={this.props.userID} />
             ) : null}
-            {this.props.artistName !== "" ? (
+            {/* {this.props.artistName == "" ? (
               <ArtistAccountButton artistName={this.props.artistName} />
-            ) : null}
+            ) : null} */}
             {this.props.email === "" && this.props.artistName === "" ? (
               <ConnectButton />
             ) : null}
