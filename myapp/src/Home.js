@@ -32,6 +32,7 @@ class Home extends Component {
       .then(resB=>{
         let parsed=JSON.parse(resB);
         this.setState({randomItems: parsed})
+        //console.log(this.state.randomItems[0].artistName)
       })
 
   }

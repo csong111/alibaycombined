@@ -87,22 +87,22 @@ class App extends Component {
             <Route
               exact={true}
               path="/useraccount/:userID"
-              render={(routerData)=>{return(<UserAccount artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
+              render={(routerData)=>{return(<UserAccount email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
               exact={true}
               path="/artistprofile/:artistName"
-              render={(routerData)=>{return(<ArtistProfile artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ArtistProfile artistName={routerData.match.params.artistName} userID={this.state.userID} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/artistaccount/:artistName"
-              render={(routerData)=>{return(<ArtistAccount artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
+              path="/artistaccount/:artistID"
+              render={(routerData)=>{return(<ArtistAccount artistID={routerData.match.params.artistID} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/orders/:artistName"
-              render={()=>{return(<Orders artistName={this.state.artistName} email={this.state.email}/>)}}
+              path="/orders/:artistID"
+              render={(routerData)=>{return(<Orders artistID={routerData.match.params.artistID} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
@@ -137,7 +137,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/checkoutcomplete/:orderNumber"
-              render={(routerData)=>{return(<CheckoutComplete cartItems={routerData.location.state}transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<CheckoutComplete cartItems={routerData.location.state} transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
           </div>
         </BrowserRouter>

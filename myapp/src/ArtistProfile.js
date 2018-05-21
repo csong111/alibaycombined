@@ -23,10 +23,11 @@ class ArtistProfile extends Component {
     };
   }
   componentDidMount() {
+    console.log(this.props.userID)
     var body = {
       artistName: this.props.artistName
     };
-    // console.log("getArtistProfile-1",body)
+    //console.log("getArtistProfile-1",body)
     fetch("/getArtistProfile", {
       method: "POST",
       body: JSON.stringify(body)
