@@ -92,7 +92,7 @@ class ConnectArtist extends Component {
           // Fetch login in
           this.props.history.push("/");
         } else {
-          console.log("something went wrong");
+          this.setState({incorrectData:true})
         }
       });
   };
@@ -121,7 +121,6 @@ class ConnectArtist extends Component {
           this.props.history.push("/artistsignupcomplete");
         } else {
           this.setState({ accountExists: true });
-          console.log("something went wrong");
         }
       });
 
