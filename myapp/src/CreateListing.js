@@ -56,7 +56,7 @@ class CreateListing extends Component {
     .then(e=>e.text())
     .then(e=>JSON.parse(e))
     .then(e=>{
-      console.log("createListing-4",e);
+   //   console.log("createListing-4",e);
       return e 
     })  
     .then(e=>this.props.history.push("/itemdetail/"+e.itemID))    
