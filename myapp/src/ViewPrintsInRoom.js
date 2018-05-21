@@ -13,7 +13,7 @@ import UserAccountButton from "./page-elements.js/user-account-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import Item from "./page-elements.js/Item.js"
 
-class ViewInRoom extends Component {
+class ViewPrintsInRoom extends Component {
   constructor() {
     super();
     this.state = {
@@ -60,13 +60,17 @@ class ViewInRoom extends Component {
 
   render() {
     var itemsRendered = this.state.itemsInCat.map((el,id)=>{
+
+      if (el.cutout) {
       return (
-        <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
-        
+        <div className="col-6 col-md-3 col-lg-3 noPad space" key={id}>
+        <div className="center">
         <Item itemID = {el._id} name = {el.name} price = {el.price} artistName = {el.artistName} img1 = {el.img1} />
-        <button onClick={() => this.showInRoom(el.img1)}>SHOW IN ROOM</button>
+        <button className="centerContent button noPad connect" onClick={() => this.showInRoom(el.cutout)}>SHOW IN ROOM</button>
+        </div>
         </div>
       )
+    } else return null;
     })
 
     return (
@@ -108,7 +112,7 @@ class ViewInRoom extends Component {
         <div>
           <h2 className="catName">VIEW IN ROOM</h2>
           <form>
-            <img className="img2" width="200px" src={this.state.img2} />
+            <img className="img2" height="200px" src={this.state.img2} />
             {this.state.img1 ? <img width="700px" src={this.state.img1}/> : <img width="700px" src="room/test.jpg" /> }
 
 
@@ -140,22 +144,11 @@ class ViewInRoom extends Component {
                 document.getElementById("createListingImg1").click();
               }}
             >
-              BACKGROUND IMAGE
+              CHANGE BACKGROUND IMAGE
             </button>
-
-            <button
-              type="button"
-              className="button noPad connect"
-              onClick={() => {
-                document.getElementById("createListingImg2").click();
-              }}
-            >
-              UPLOAD ITEM IMAGE
-            </button>
-
 
           </form>
-          <div name="cat-items" className="row">
+          <div className="row">
           {itemsRendered}
         </div>
         </div>
@@ -164,5 +157,5 @@ class ViewInRoom extends Component {
   }
 }
 
-let Content = withRouter(ViewInRoom);
+let Content = withRouter(ViewPrintsInRoom);
 export default Content;

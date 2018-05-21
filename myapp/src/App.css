@@ -41,6 +41,12 @@ hr {
   justify-content: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .hideLogin{
+    display: none;
+  }
+}
+
 /* Text Styles */
 
 .a {
@@ -95,7 +101,8 @@ h3 {
 
 h4 {
   font-family: "Open Sans", sans-serif;
-  font-size: 10pt;
+  font-size: 9pt;
+  line-height: 1.5;
 }
 
 h5 {
@@ -188,7 +195,7 @@ h6 {
   width: 95%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 100;
   margin: 20px;
   margin-top: 0;
   padding: 20px;
@@ -554,8 +561,8 @@ ul {
 
 .img2 {
   position: absolute;
-  top:200px;
-  left:350px;
+  top:160px;
+  left:390px;
   z-index: 1
 }
 
@@ -612,7 +619,10 @@ button:focus {
 }
 
 /*CART COUNTER BUTTON */
+
 .counter{
   font-weight: bold;
-  margin-top: 5px;
+  margin-left: 3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
 }

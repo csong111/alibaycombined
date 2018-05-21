@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './App.css';
 import Home from './Home.js'; 
 import Nav from './Nav.js'; 
@@ -19,7 +20,8 @@ import UserSignUpComplete from './UserSignUpComplete.js';
 import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 import ItemsBought from './ItemsBought.js';
-import ViewInRoom from './ViewInRoom.js';
+import ViewPrintsInRoom from './ViewPrintsInRoom.js';
+
 
 class App extends Component {
   constructor() {
@@ -162,8 +164,8 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/viewinroom/"
-              render={()=>{return(<ViewInRoom/>)}}
+              path="/viewprintsinroom/"
+              render={()=>{return(<ViewPrintsInRoom/>)}}
             />
           </div>
         </BrowserRouter>
