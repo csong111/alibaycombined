@@ -17,28 +17,23 @@ class Orders extends Component {
         }
     }
 
-    //fetch getOrders. returns an array or Order objects
-    //get the artist name
     componentDidMount = () =>{
         let body = {
             artistName : this.props.artistName
         }
-        console.log("getOrders-1",body)
+//console.log("getOrders-1",body)
         fetch("/getOrders",{
             method:"POST",
             body : JSON.stringify(body)
         })
         .then(e =>e.text())
         .then (e =>JSON.parse(e))
-        .then(e=>{console.log("getOrders-4", e);return e})
+        // .then(e=>{console.log("getOrders-4", e);return e})
         .then(e =>{
-            console.log("E",e)
             
             this.setState({orders :e})
 
-            if(e.cartItems.length>=1){
-        //        let itemIDs = e.cartItems.map(item=>{return item.itemID})
-       //         this.getOrderItemNames(itemIDs)
+            if(e.length>=1){
                 this.setState({  previousOrders:true})
             }
             else this.setState({previousOrders:false})
@@ -49,69 +44,51 @@ class Orders extends Component {
 
         this.props.history.push("/artistaccount/"+this.state.artistName)
     }
-
-    // getOrderItemNames = async orders=>{  
-    //   //  console.log(orders)  
-    //     let ordersWithName = await Promise.all(orders.map(async order => {
-    //         let itemNames = await this.getItemNames(order)
-    //         return {...order, itemNames}
-    //     }))
-    //  //   console.log(ordersWithName)
-    //     this.setState({orders: ordersWithName})
-    //    }
     
     render() {
     
         let renderTitle = (
-                <div style={{display: "flex"}}>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
+                <div className="ordersTable">
+                    <div className = "ordersTableData">
                 Order #
                     </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
+                    <div className = "ordersTableData">
                 Buyer
                     </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
+                    <div className = "ordersTableData">
                 Items
                     </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                Total
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
+                    <div className = "ordersTableData">
                 Date
                     </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
+                    <div className = "ordersTableData">
                 Fulfilled
                     </div>
                 </div>
             )
-            console.log("STATE ORDERS",this.state.orders.cartItems)
-
-            let renderOrders = (
-         //   }
-       //let renderOrders = this.state.orders.map((order, id )=>{
-                <div  style={{display: "flex"}}>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {this.state.orders._id}
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {this.state.orders.firstName}
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                    {this.state.orders.map((item, id)=><li key={id}>{item.name}</li>)}
-                 {/* {order.name.map((itemName,id) => <li key={id}>{itemName}</li>)} */}
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {this.state.orders.total}
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {this.state.orders.date}
-                    </div>
-                    <div style={{width:"100px",height:"50px", border:"1px solid black"}}>
-                {this.state.orders.fulfilled}
-                    </div>
+      
+    let renderOrders = this.state.orders.map((order, id )=>{
+        return (
+            <div key={id} className="ordersTable">
+                <div className = "ordersTableData">
+            {order._id}<br/>
                 </div>
-            )
-        
+                <div className = "ordersTableData">
+            {order.firstName}<br/>
+                </div>
+                <div className = "ordersTableData">
+             {order.cartItems.map((item,id) => <li key={id} className="ordersTableItemNames">{item.name}<br/></li>)}
+                </div>
+                <div className = "ordersTableData">
+            {order.date}<br/>
+                </div>
+                <div className = "ordersTableData">
+            fulfilled<br/>
+                </div>
+            </div>
+        )
+    })
+
         return (
           <div className="ArtistProf">
               <NavButton />
