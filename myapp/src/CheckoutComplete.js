@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import UserAccountButton from "./page-elements.js/user-account-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
@@ -60,7 +61,8 @@ class CheckoutComplete extends Component {
           Thank you for your purchase. Your order number is {this.props.transactionID}
         </h1>
         {this.state.userID ? <UserAccountButton userID={this.props.userID}/> : null}
-        {this.state.userID ? <CartButton userID = {this.props.userID} /> : null} 
+        {this.props.userID ? <LogOutButton />: null}
+        {this.state.userID ? <CartButton userID = {this.props.userID} counter={this.props.counter} /> : null} 
         <div>Order details</div>
         <ul>{checkoutItems}</ul>
         <div>Total: ${total}</div>

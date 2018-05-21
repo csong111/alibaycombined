@@ -5,6 +5,7 @@ import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 
 class EditListing extends Component {
