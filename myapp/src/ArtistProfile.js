@@ -96,16 +96,16 @@ class ArtistProfile extends Component {
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? (
+          {this.props.email  ? (
               <UserAccountButton userID={this.props.userID} />
             ) : null}
-            {this.props.artistName !== "" ? (
-              <ArtistAccountButton artistName={this.props.artistName} />
+            {this.props.artistID ? (
+              <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
-            {this.props.email === "" && this.props.artistName === "" ? (
+            {!this.props.email && !this.props.artistID ? (
               <ConnectButton />
             ) : null}
-            {this.props.email !== "" ? (
+            {this.props.email ? (
               <CartButton userID={this.props.userID} />
             ) : null}
           </div>

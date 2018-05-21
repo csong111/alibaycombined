@@ -28,6 +28,7 @@ class ItemDetail extends Component {
 
   //getItem details
   componentDidMount = () => {
+    console.log(this.state.artistID)
     fetch("/getItemDetails?itemID=" + this.props.itemID, {
       method: "GET"
     })
@@ -126,16 +127,23 @@ class ItemDetail extends Component {
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? (
+            {this.props.email  ? (
               <UserAccountButton userID={this.props.userID} />
             ) : null}
+<<<<<<< HEAD
             {/* {this.props.artistName == "" ? (
               <ArtistAccountButton artistName={this.props.artistName} />
             ) : null} */}
             {this.props.email === "" && this.props.artistName === "" ? (
+=======
+            {this.props.artistID ? (
+              <ArtistAccountButton artistID={this.props.artistID} />
+            ) : null}
+            {!this.props.email && !this.props.artistID ? (
+>>>>>>> fda694230824f6b02de81e5aef734b4bb9edff18
               <ConnectButton />
             ) : null}
-            {this.props.email !== "" ? (
+            {this.props.email ? (
               <CartButton userID={this.props.userID} />
             ) : null}
           </div>

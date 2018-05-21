@@ -15,6 +15,7 @@ class ArtistAccount extends Component {
     super();
     this.state = {
       edit: false,
+      artistID:"",
       artistName: "",
       artistNameInput: "",
       bio: "",
@@ -37,11 +38,13 @@ class ArtistAccount extends Component {
       .then(res => res.text())
       .then(resB => {
         let parsed = JSON.parse(resB);
+        let artistID = parsed.artistID;
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
         let profPicURL = parsed.profPicURL;
         this.setState({
+          artistID: artistID,
           artistName: artistName,
           bio: bio,
           location: location,
