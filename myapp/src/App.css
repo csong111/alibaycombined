@@ -195,7 +195,7 @@ h6 {
   width: 95%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 100;
   margin: 20px;
   margin-top: 0;
   padding: 20px;

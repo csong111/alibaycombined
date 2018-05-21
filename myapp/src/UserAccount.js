@@ -19,28 +19,20 @@ class Account extends Component {
     editShipping: false,
     itemsBought: [],
 
-     // infos from back end
+    // info that we are changing
+    userID: "",
     firstName: "",
     lastName: "",
-    email: "",
-    address: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
+    address: '',
     city: "",
     province: "",
     postalCode: "",
-    country: "",
-
-    // info that we are changing
-    ifirstName: "Jen",
-    ilastName: "o",
-    iemail: 'jen@email.com',
-    iaddress: '123 Blah St.',
-    icity: "Montreal",
-    iprovince: "Quebec",
-    ipostalCode: "H13 1Y8",
-    icountry: "Canada"
+    country: ""
     };
   }
-
 
   componentDidMount () {
     this.initGetData()
@@ -48,20 +40,19 @@ class Account extends Component {
 
   initGetData = () => {
 
-    //FETCH get user info endpoint: getUserDetails
-      // Copy the data to idata
-
     let bod = JSON.stringify({ userID : this.props.userID });
 
     fetch("/getUserDetails", { method: "POST", body: bod })
     .then(x => x.text())
     .then(x => JSON.parse(x))
     .then(x => {
-   //   console.log(x)
       this.setState ({
+        userID: x._id,
         firstName: x.firstName,
         lastName: x.lastName,
         email: x.email,
+        password: x.password,
+        confirmPassword: x.confirmPassword,
         address: x.address,
         city: x.city,
         province: x.province,
@@ -69,9 +60,6 @@ class Account extends Component {
         country: x.country,
       })
     })
-
-    //FETCH get account info endpoint: getUserShippingInfo
-    //FETCH get itemsBought then setState the results endpoint: getItemsBought
 
     fetch("/getItemsBought?userID="+this.props.userID, { method: 'GET' })
     .then(x => x.text())
@@ -88,9 +76,13 @@ class Account extends Component {
     // Strech goal
   }
 
-  saveAccount = () => {
-    //edit account & update server
-    //FETCH endpoint: updateUserAccount
+  saveAccount = (event) => {
+    event.preventDefault();
+    let bod = this.state;
+    fetch("/editUserAccount", { method: "POST", body: JSON.stringify(bod) })
+      .then(e => e.text())
+      .then(e => JSON.parse(e))
+      .then((e) => {this.setState({ editAccount: false, editShipping: false })});
   }
 
   saveShipping = () => {
@@ -103,35 +95,43 @@ class Account extends Component {
   ///////////////////////////////////
   ///////////////////////////////////
   handleAddressChange = (event) => {
-    this.setState({ iaddress: event.target.value })
+    this.setState({ address: event.target.value })
   }
 
   handleCityChange = (event) => {
-    this.setState({ icity: event.target.value })
+    this.setState({ city: event.target.value })
   }
 
   handleProvinceChange = (event) => {
-    this.setState({ iprovince: event.target.value })
+    this.setState({ province: event.target.value })
   }
 
   handlePostalCodeChange = (event) => {
-    this.setState({ ipostalCode: event.target.value })
+    this.setState({ postalCode: event.target.value })
   }
 
   handleCountryChange = (event) => {
-    this.setState({ icountry: event.target.value })
+    this.setState({ country: event.target.value })
   }
 
   handleFirstNameChange = (event) => {
-    this.setState({ ifirstName: event.target.value })
+    this.setState({ firstName: event.target.value })
   }
 
   handleLastNameChange = (event) => {
-    this.setState({ ilastName: event.target.value })
+    this.setState({ lastName: event.target.value })
   }
 
   handleEmailChange = (event) => {
-    this.setState({ iemail: event.target.value })
+    this.setState({ email: event.target.value })
+  }
+
+  handlePasswordChange = (event) => {
+    this.setState({ password: event.target.value })
+  }
+
+  handlePasswordConfChange = (event) => {
+    this.setState({ confirmPassword: event.target.value })
   }
   ///////////////////////////////////
   ///////////////////////////////////
@@ -147,9 +147,7 @@ class Account extends Component {
   }
 
   render() {
-   // console.log(this.state.itemsBought)
     var cartItems = this.state.itemsBought.map(item=>{return item.cartItems})
-    console.log(this.state.itemsBought)
     let cartStore = []
     for (let i=0; i<cartItems.length; i++) {
       cartStore = cartStore.concat(cartItems[i])
@@ -173,12 +171,12 @@ class Account extends Component {
         <button onClick={this.editShippingInfo}>Edit Shipping Info</button>
           </div>)
       } else {return (<form>
-        <input type="text" value={this.state.iaddress} onChange={this.handleAddressChange}></input><br />
-        <input type="text" value={this.state.icity} onChange={this.handleCityChange}></input><br />
-        <input type="text" value={this.state.iprovince} onChange={this.handleProvinceChange}></input><br />
-        <input type="text" value={this.state.ipostalCode} onChange={this.handlePostalCodeChange}></input><br />
-        <input type="text" value={this.state.icountry} onChange={this.handleCountryChange}></input><br />
-        <button onClick = {this.saveShipping}>Save Info</button>
+        <input type="text" value={this.state.address} onChange={this.handleAddressChange}></input><br />
+        <input type="text" value={this.state.city} onChange={this.handleCityChange}></input><br />
+        <input type="text" value={this.state.province} onChange={this.handleProvinceChange}></input><br />
+        <input type="text" value={this.state.postalCode} onChange={this.handlePostalCodeChange}></input><br />
+        <input type="text" value={this.state.country} onChange={this.handleCountryChange}></input><br />
+        <button onClick = {this.saveAccount}>Save Info</button>
       </form>)
       }
     })()
@@ -192,10 +190,11 @@ class Account extends Component {
         <button onClick={this.editAccountInfo}>Edit Account</button>
         </div>)
       } else {return (<form>
-        <input type="text" value={this.state.ifirstName} onChange={this.handleFirstNameChange}></input><br />
-        <input type="text" value={this.state.ilastName} onChange={this.handleLastNameChange}></input><br />
-        <input type="text" value={this.state.iemail} onChange={this.handleEmailChange}></input><br />
-        <p>Password: ******</p>
+        <input type="text" value={this.state.firstName} onChange={this.handleFirstNameChange}></input><br />
+        <input type="text" value={this.state.lastName} onChange={this.handleLastNameChange}></input><br />
+        <input type="text" value={this.state.email} onChange={this.handleEmailChange}></input><br />
+        <input type="password" value={this.state.password} onChange={this.handlePasswordChange}></input><br />
+        <input type="password" value={this.state.confirmPassword} onChange={this.handlePasswordConfChange}></input><br />
         <button onClick = {this.saveAccount}>Save Info</button>
       </form>)
       }
