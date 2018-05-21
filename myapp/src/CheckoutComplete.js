@@ -44,7 +44,7 @@ class CheckoutComplete extends Component {
       total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <li key={id}>
-        <img src={"/"+item.image1} />
+        <img src={item.img1} />
           <div>Item Name: {item.name}</div>
           <div>Price: ${item.price}</div>
           <div>Artist: {item.artistName}</div>

@@ -96,7 +96,7 @@ class Cart extends Component {
     // })
   
 
-    //var self = this;
+    var self = this;
     window.paypal.Button.render(
       {
         env: "sandbox",
@@ -125,7 +125,7 @@ class Cart extends Component {
             // The payment is complete!
             // You can now show a confirmation message to the customer
             //console.log(payment);
-            this.buy();
+            self.buy();
           });
         }
       },
@@ -223,13 +223,13 @@ class Cart extends Component {
   };
   
   render() {
-    //console.log("cartItems", this.state.cartItems)
+    console.log("cartItems", this.state.cartItems)
     let total = 0;
     let cartItems = this.state.cartItems.map((item, id) => {
       total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <div key={id}>
-          <img src={"/" + item.img1} />
+          <img src={item.img1} />
           <br />
           {item.name}
           <br />
@@ -263,9 +263,7 @@ class Cart extends Component {
         <NavButton />
         {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
         {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
-        {this.props.email == "" || this.props.artistName == "" ? (
-          <ConnectButton />
-        ) : null}
+        {this.props.email == "" ? <ConnectButton /> : null}
         {this.props.email !== "" ? <CartButton  userID = {this.props.userID}/> : null}
         <h1>CART</h1>
         <div>{cartItems}</div>
@@ -375,8 +373,7 @@ class Cart extends Component {
               required
             />
             <br />
-            <button onClick={this.buy}>Buy</button>
-            {/* <div id="paypal-button" /> */}
+            <div id="paypal-button" />
             <Stripe />
           </form>
         </div>
