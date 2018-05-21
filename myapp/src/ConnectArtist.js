@@ -86,8 +86,8 @@ class ConnectArtist extends Component {
       .then(x => {
         console.log(x);
         if (x.success) {
-          console.log("this should be the name", x.RESB.artistName);
-          this.props.loginArtist(x.RESB.artistName); //change to artistName from backend
+   //       console.log("this should be the name", x.RESB.artistName);
+          this.props.loginArtist(x.RESB.artistID); //change to artistName from backend
           this.setState({ loggedIn: true });
           // Fetch login in
           this.props.history.push("/");
@@ -157,7 +157,7 @@ class ConnectArtist extends Component {
                     this.setState({ artistName: e.target.value });
                   }}
                   value={this.state.artistName}
-                  placeholder="Email"
+                  placeholder="Artist Name"
                   required
                 />
               </div>

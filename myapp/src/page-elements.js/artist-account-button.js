@@ -11,7 +11,7 @@ class ArtistAccountButton extends Component {
     }
     handleClick = (event) => {
         event.preventDefault();
-        this.props.history.push("/artistaccount/"+this.props.artistName)
+        this.props.history.push("/artistaccount/"+this.props.artistID)
     }
   render() {
     return (

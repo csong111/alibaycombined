@@ -15,6 +15,7 @@ class ArtistAccount extends Component {
     super();
     this.state = {
       edit: false,
+      artistID:"",
       artistName: "",
       artistNameInput: "",
       bio: "",
@@ -29,19 +30,23 @@ class ArtistAccount extends Component {
   }
 
   initData = () => {
-    var body = { artistName: this.props.artistName };
-    fetch("/getArtistProfile", {
+    //console.log(this.props.artistID)
+    var body = { artistID: this.props.artistID };
+    fetch("/getArtistAccount", {
       method: "POST",
       body: JSON.stringify(body)
     })
       .then(res => res.text())
       .then(resB => {
         let parsed = JSON.parse(resB);
+        //console.log(parsed)
+        let artistID = parsed.artistID;
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
         let profPicURL = parsed.profPicURL;
         this.setState({
+          artistID: artistID,
           artistName: artistName,
           bio: bio,
           location: location,
@@ -166,7 +171,7 @@ class ArtistAccount extends Component {
               <UserAccountButton userID={this.props.userID} />
             ) : null}
             {this.props.artistName !== "" ? (
-              <ArtistAccountButton artistName={this.props.artistName} />
+              <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
             {this.props.email === "" && this.props.artistName === "" ? (
               <ConnectButton />

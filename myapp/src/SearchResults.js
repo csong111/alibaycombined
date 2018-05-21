@@ -39,12 +39,12 @@ class SearchResults extends Component {
 
   render() {
 
-    // console.log("this is the state:", this.state.searchItems)
+    console.log("this is the state:", this.state.searchItems)
 
     var itemsRendered = this.state.searchItems.map((el,id)=>{
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
-        <Item itemID = {el.itemID} name = {el.name} price = {el.price} artistName = {el.artistName} img1 = {el.img1} />
+        <Item itemID = {el._id} name = {el.name} price = {el.price} artistName = {el.artistName} img1 = {el.img1} />
         </div>
       )
     })
@@ -63,12 +63,10 @@ class SearchResults extends Component {
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
-            {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
-            {this.props.email === "" && this.props.artistName === "" ? (
-              <ConnectButton />
-            ) : null}
-            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+            {this.props.email ? <UserAccountButton userID={this.props.userID}  /> : null}
+            {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
+            {!this.props.email && !this.props.artistName ? <ConnectButton /> : null}
+            {this.props.email ? <CartButton userID = {this.props.userID}  /> : null}
           </div>
         </div>
 
