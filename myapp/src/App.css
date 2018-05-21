@@ -95,7 +95,8 @@ h3 {
 
 h4 {
   font-family: "Open Sans", sans-serif;
-  font-size: 10pt;
+  font-size: 9pt;
+  line-height: 1.5;
 }
 
 h5 {
@@ -554,8 +555,8 @@ ul {
 
 .img2 {
   position: absolute;
-  top:200px;
-  left:350px;
+  top:160px;
+  left:390px;
   z-index: 1
 }
 

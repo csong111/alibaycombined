@@ -20,6 +20,7 @@ class EditListing extends Component {
       imageURL1: "",
       imageURL2: "",
       imageURL3: "",
+      cutout: "",
       itemID: undefined
     };
   }
@@ -43,6 +44,7 @@ class EditListing extends Component {
         let img1 = parsed.img1;
         let img2 = parsed.img2;
         let img3 = parsed.img3;
+        let cutout = parsed.cutout;
         let name = parsed.name;
         let price = parsed.price;
         let quantity = parsed.quantity;
@@ -54,6 +56,7 @@ class EditListing extends Component {
           img1: img1,
           img2: img2,
           img3: img3,
+          cutout: cutout,
           name: name,
           price: price,
           quantity: quantity
@@ -226,6 +229,25 @@ class EditListing extends Component {
           />
           {this.state.img3 !== "" ? (
             <img width="100px" src={this.state.img3} />
+          ) : null}
+          <br />
+          <input
+            id="cutoutimg"
+            style={{ display: "none" }}
+            type="file"
+            onChange={event => this.uploadFile(event.target.files[0], "cutout")}
+            placeholder="Upload Cutout Image"
+          />
+          <img
+            onClick={() => {
+              document.getElementById("cutoutimg").click();
+            }}
+            src="/items/addimage.png"
+            height="50px"
+            width="50px"
+          />
+          {this.state.cutout !== "" ? (
+            <img width="100px" src={this.state.cutout} />
           ) : null}
           <br />
           <input type="submit" />
