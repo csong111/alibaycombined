@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserAccountButton from "./page-elements.js/user-account-button.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
@@ -62,8 +63,10 @@ class Cart extends Component {
     })
     .then(e => e.text())
     .then(e => {
+      //console.log("HEY JORDAN", e)
       let parsed=JSON.parse(e)
       this.setState({cartItems: parsed});
+      this.props.setCartItems(parsed)
       //console.log(this.state.cartItems)
       this.getUserDetails();
 
@@ -262,8 +265,9 @@ class Cart extends Component {
         <HomeButton />
         <NavButton />
         {this.props.email ? <UserAccountButton userID={this.props.userID} /> : null}
+        {this.props.email ? <LogOutButton />: null}
         {!this.props.email ? <ConnectButton /> : null}
-        {this.props.email ? <CartButton userID = {this.props.userID}/> : null}
+        {this.props.email ? <CartButton userID = {this.props.userID} counter ={this.props.counter} /> : null}
         <h1>CART</h1>
         <div>{cartItems}</div>
         <div>Total: ${total}</div>

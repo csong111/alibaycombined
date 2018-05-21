@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserAccountButton from "./page-elements.js/user-account-button.js";
 import ArtistAccountButton from './page-elements.js/artist-account-button.js';
+import LogOutButton from "./page-elements.js/logout-button.js";
 import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
@@ -204,8 +205,10 @@ class Account extends Component {
       <div className="App">
         <NavButton />
         <HomeButton/>
-        {this.state.userID === "" ? null : <UserAccountButton userID={this.props.userID} />}
-        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
+        {this.props.email ? <UserAccountButton userID={this.props.userID} />: null}
+        {this.props.email || this.props.artistID ? <LogOutButton />: null}
+        {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
+        {this.props.email ? <CartButton userID = {this.props.userID} counter={this.props.counter}  /> : null}
         <h2>ACCOUNT INFO</h2>
         {accountInfo}
 

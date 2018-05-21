@@ -5,6 +5,7 @@ import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 
 class CreateListing extends Component {
@@ -15,12 +16,13 @@ class CreateListing extends Component {
       artistName: "",
       name: "",
       price: undefined,
-      category: "",
+      category: [],
       blurb: "",
       quantity: undefined,
       img1: "",
       img2: "",
-      img3: ""
+      img3: "",
+      cutout: ""
     };
   }
 
@@ -47,6 +49,7 @@ class CreateListing extends Component {
       img1: this.state.img1,
       img2: this.state.img2,
       img3: this.state.img3,
+      cutout: this.state.cutout,
     }
     //console.log("createListing-1",body)
     fetch("/createListing",{method:"POST",body:JSON.stringify(body)})
@@ -145,13 +148,14 @@ class CreateListing extends Component {
             className="selectpicker inputText"
             onChange={e => {
               console.log(e.target.value)
-              this.setState({ category: e.target.value });
+              this.setState({ category: [e.target.value] });
             }}
             value={this.state.category}
             placeholder="Category"
             required
           >
-            <option className="option">Prints</option>
+            <option>Select a category</option>
+            <option>Prints</option>
             <option>Pillows</option>
             <option>Embroidery</option>
             <option>Wallpaper</option>
@@ -227,6 +231,29 @@ class CreateListing extends Component {
             >
             UPLOAD ITEM IMAGE 3
             </button>
+          <div className="space" />
+          <span className="inputText">Upload cutout image:</span>
+             <br />
+            <input
+            id="cutoutimg"
+            style={{ display: "none" }}
+            type="file"
+            onChange={event => this.uploadFile(event.target.files[0], "cutout")}
+            placeholder="Upload Item Image"
+          />
+            <img width="100px" src={this.state.cutout} />
+            <br />
+            <button
+            type="button"
+            className="button noPad connect"
+              onClick={() => {
+                document.getElementById("cutoutimg").click();
+              }}
+            >
+            UPLOAD CUTOUT IMAGE
+            </button>
+
+
           <div className="space" />
           <input className="submitButton" type="submit" value="" />
         </form>
