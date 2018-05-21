@@ -84,7 +84,7 @@ class ConnectArtist extends Component {
       .then(x => x.text())
       .then(x => JSON.parse(x))
       .then(x => {
-        console.log(x);
+      //  console.log(x);
         if (x.success) {
           //       console.log("this should be the name", x.RESB.artistName);
           this.props.loginArtist(x.RESB.artistID); //change to artistName from backend
