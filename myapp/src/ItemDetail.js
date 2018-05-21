@@ -22,7 +22,8 @@ class ItemDetail extends Component {
       img3: "",
       name: "",
       price: "",
-      quantity: ""
+      quantity: "",
+      mustConnect: false
     };
   }
 
@@ -59,6 +60,8 @@ class ItemDetail extends Component {
       });
   };
   addToCart = () => {
+    if (!this.props.userID) {this.setState({mustConnect: true})}
+    else {
     let body = JSON.stringify({
       userID: this.props.userID,
       cartObj: {
@@ -86,6 +89,7 @@ class ItemDetail extends Component {
     //   //console.log(parsed);
     // })
   };
+}
 
   render() {
     //fetch itemdetails from backend
@@ -109,6 +113,7 @@ class ItemDetail extends Component {
               >
                 ADD TO CART
               </button>
+              {this.state.mustConnect? <div>Please log in or sign up</div>: null}
             </div>)
     }
 

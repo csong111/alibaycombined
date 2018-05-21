@@ -11,16 +11,22 @@ class CreateListing extends Component {
   constructor() {
     super();
     this.state={
+      artistID: "",
       artistName: "",
       name: '',
       price: undefined,
-      cat: "",
+      category: "",
       blurb: "",
       quantity: undefined,
       img1: '',
       img2: '',
       img3: '',
     }
+  }
+
+  componentDidMount = () => {
+    console.log(this.props)
+    this.setState({artistID: this.props.artistID, artistName: this.props.artistName.name})
   }
 
   seeArtistAcct = () => {
@@ -31,17 +37,18 @@ class CreateListing extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     let body = {
+      artistID: this.state.artistID,
       artistName: this.state.artistName,
       name: this.state.name,
       price: this.state.price,
-      category: this.state.cat,
+      category: this.state.category,
       blurb: this.state.blurb,
       quantity: this.state.quantity,
       img1: this.state.img1,
       img2: this.state.img2,
       img3: this.state.img3,
     }
-    console.log("createListing-1",body)
+    //console.log("createListing-1",body)
     fetch("/createListing",{method:"POST",body:JSON.stringify(body)})
     .then(e=>e.text())
     .then(e=>JSON.parse(e))
@@ -66,7 +73,7 @@ class CreateListing extends Component {
   };
 
   render() {
-    console.log(this.state)
+    //console.log(this.state)
       return (
         <div className="App">
             <NavButton />

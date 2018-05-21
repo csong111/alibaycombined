@@ -69,12 +69,10 @@ class Home extends Component {
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? <UserAccountButton userID={this.props.userID}  /> : null}
-            {this.props.artistID !== "" ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
-            {this.props.email === "" && this.props.artistID === "" ? (
-              <ConnectButton />
-            ) : null}
-            {this.props.email !== "" ? <CartButton userID = {this.props.userID}  /> : null}
+            {this.props.email ? <UserAccountButton userID={this.props.userID}  /> : null}
+            {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
+            {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
+            {this.props.email ? <CartButton userID = {this.props.userID}  /> : null}
           </div>
         </div>
 

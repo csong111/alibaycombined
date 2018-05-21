@@ -28,7 +28,7 @@ class EditListing extends Component {
   // }
 
   componentDidMount = () => {
-    console.log(this.props.itemID)
+    //console.log(this.props.itemID)
     fetch("/getItemDetails?itemID="+this.props.itemID, {
       method: 'GET',
     }).then(res=>res.text())
