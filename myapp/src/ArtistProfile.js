@@ -23,7 +23,7 @@ class ArtistProfile extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.userID)
+    //console.log(this.props.userID)
     var body = {
       artistName: this.props.artistName
     };

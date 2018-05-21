@@ -59,8 +59,8 @@ class CheckoutComplete extends Component {
         <h1>
           Thank you for your purchase. Your order number is {this.props.transactionID}
         </h1>
-        {this.state.userID === "" ? null : <UserAccountButton userID={this.props.userID} />}
-        {this.state.userID === "" ? null : <CartButton userID = {this.props.userID} />}
+        {this.state.userID ? <UserAccountButton userID={this.props.userID}/> : null}
+        {this.state.userID ? <CartButton userID = {this.props.userID} /> : null} 
         <div>Order details</div>
         <ul>{checkoutItems}</ul>
         <div>Total: ${total}</div>

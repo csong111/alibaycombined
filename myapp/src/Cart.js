@@ -261,10 +261,9 @@ class Cart extends Component {
       <div className="App">
         <HomeButton />
         <NavButton />
-        {this.props.email !== "" ? <UserAccountButton userID={this.props.userID} /> : null}
-        {this.props.artistName !== "" ? <ArtistAccountButton artistName={this.props.artistName} /> : null}
-        {this.props.email == "" ? <ConnectButton /> : null}
-        {this.props.email !== "" ? <CartButton  userID = {this.props.userID}/> : null}
+        {this.props.email ? <UserAccountButton userID={this.props.userID} /> : null}
+        {!this.props.email ? <ConnectButton /> : null}
+        {this.props.email ? <CartButton userID = {this.props.userID}/> : null}
         <h1>CART</h1>
         <div>{cartItems}</div>
         <div>Total: ${total}</div>

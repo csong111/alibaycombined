@@ -53,8 +53,7 @@ class ArtistAccount extends Component {
           profPicURL: profPicURL
         });
       });
-
-    fetch("/getArtistItems?artistName=" + this.props.artistName, {
+    fetch("/getArtistAccountItems/?artistID=" + this.props.artistID, {
       method: "GET"
     })
       .then(res => res.text())
@@ -77,8 +76,8 @@ class ArtistAccount extends Component {
       .then(() => this.state.imageInput);
   };
 
-  createListing = artistName => {
-    this.props.history.push("/createListing/");
+  createListing = () => {
+    this.props.history.push("/createListing/" + this.props.artistID, {name: this.state.artistName});
   };
   seeOrders = () => {
     this.props.history.push("/orders/" + this.state.artistName);
@@ -167,17 +166,11 @@ class ArtistAccount extends Component {
           </div>
 
           <div className="flex">
-            {this.props.email !== "" ? (
-              <UserAccountButton userID={this.props.userID} />
-            ) : null}
-            {this.props.artistName !== "" ? (
+            {this.props.artistID ? (
               <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
-            {this.props.email === "" && this.props.artistName === "" ? (
+            {!this.props.artistID ? (
               <ConnectButton />
-            ) : null}
-            {this.props.email !== "" ? (
-              <CartButton userID={this.props.userID} />
             ) : null}
           </div>
         </div>
