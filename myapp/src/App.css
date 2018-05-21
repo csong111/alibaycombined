@@ -41,6 +41,12 @@ hr {
   justify-content: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .hideLogin{
+    display: none;
+  }
+}
+
 /* Text Styles */
 
 .a {
@@ -613,7 +619,10 @@ button:focus {
 }
 
 /*CART COUNTER BUTTON */
+
 .counter{
   font-weight: bold;
-  margin-top: 5px;
+  margin-left: 3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
 }
