@@ -53,8 +53,7 @@ class ArtistAccount extends Component {
           profPicURL: profPicURL
         });
       });
-
-    fetch("/getArtistItems?artistName=" + this.props.artistName, {
+    fetch("/getArtistAccountItems/?artistID=" + this.props.artistID, {
       method: "GET"
     })
       .then(res => res.text())
