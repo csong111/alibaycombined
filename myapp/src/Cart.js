@@ -231,15 +231,14 @@ class Cart extends Component {
         <div className="flex" key={id}>
           <div>
             <img width="150px" src={item.img1} />
+            <div className="spaceSmaller" />
           </div>
+          <div className="space" />
           <div>
-            {item.name}
-            <br />
-            {item.artistName}
-            <br />
-            Price: ${item.price}
-            <br />
-            <input
+            <p>{item.name}</p>
+            <p>{item.artistName}</p>
+            <p>Price: ${item.price}</p>
+            <input className="quantityInput"
               type="text"
               onChange={e => {
                 if (e.target.value <= Number(item.quantity)) {
@@ -251,15 +250,15 @@ class Cart extends Component {
               value={item.quantityToBuy}
               placeholder={item.quantity + " in stock"}
             />
-            <br />
-            <button
+            <div className="space" />
+            <button className="button noPad connect"
               onClick={() => {
                 var temp = JSON.parse(JSON.stringify(this.state.cartItems));
                 temp = temp.filter((EL, ID) => ID !== id);
                 this.removeItem(temp);
               }}
             >
-              Remove Item
+              REMOVE ITEM
             </button>
           </div>
         </div>
@@ -316,6 +315,7 @@ class Cart extends Component {
           {/* <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 noPad space"> */}
           <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 noPad space">
             <h2 className="catName">MY SHOPPING CART</h2>
+            <div className="spaceSmaller" />
             <div>{cartItems}</div>
             {/* <div>Total: ${total}</div> */}
           </div>
@@ -324,9 +324,12 @@ class Cart extends Component {
           {/* <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 noPad space"> */}
           <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 noPad space">
             <h2 className="catName">CHECKOUT</h2>
+            <div className="spaceSmaller" />
 
-            <div>Total: ${total}</div>
-
+            <div className="inputText">Total: <div className="bold">${total}</div></div>
+            <div className="space" />
+            <hr />
+            <div className="space" />
             {/* <button
               onClick={e => {
                 this.setState({ showCheckout: true, total: total });
@@ -351,10 +354,11 @@ class Cart extends Component {
               }
             > */}
 
-              <div>Enter Shipping Info</div>
+              <div className="inputText">Enter Shipping Info</div>
+              <div className="spaceSmaller" />
               <form onSubmit={e => e.preventDefault()}>
-                First Name:{" "}
-                <input
+                <p>First Name:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ firstName: e.target.value });
@@ -363,9 +367,9 @@ class Cart extends Component {
                   placeholder="First Name"
                   required
                 />
-                <br />
-                Last Name:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Last Name:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ lastName: e.target.value });
@@ -374,9 +378,9 @@ class Cart extends Component {
                   placeholder="Last Name"
                   required
                 />
-                <br />
-                Email:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Email:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ email: e.target.value });
@@ -385,9 +389,9 @@ class Cart extends Component {
                   placeholder="Email"
                   required
                 />
-                <br />
-                Address:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Address:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ address: e.target.value });
@@ -396,9 +400,9 @@ class Cart extends Component {
                   placeholder="Address"
                   required
                 />
-                <br />
-                City:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>City:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ city: e.target.value });
@@ -407,9 +411,9 @@ class Cart extends Component {
                   placeholder="City"
                   required
                 />
-                <br />
-                Province:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Province:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ province: e.target.value });
@@ -418,9 +422,9 @@ class Cart extends Component {
                   placeholder="Province"
                   required
                 />
-                <br />
-                Postal Code:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Postal Code:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ postalCode: e.target.value });
@@ -429,9 +433,9 @@ class Cart extends Component {
                   placeholder="Postal Code"
                   required
                 />
-                <br />
-                Country:{" "}
-                <input
+                <div className="spaceSmaller" />
+                <p>Country:{" "}</p>
+                <input className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ country: e.target.value });
@@ -440,7 +444,7 @@ class Cart extends Component {
                   placeholder="Country"
                   required
                 />
-                <br />
+                <div className="space" />
                 <div id="paypal-button" />
                 <Stripe />
               </form>

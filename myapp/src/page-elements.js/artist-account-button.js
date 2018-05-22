@@ -19,7 +19,7 @@ class ArtistAccountButton extends Component {
         <button className="noButton" onClick={this.handleClick}>
         {/* <img width="30px" src='../artistacct.png' className="icon"/> */}
         <div className="connect">
-          <span className="bold">MY ACCOUNT</span>
+          <span className="accountMobile bold">MY ACCOUNT</span>
           </div>
         </button>
       </div>

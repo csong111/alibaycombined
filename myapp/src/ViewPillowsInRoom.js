@@ -24,8 +24,6 @@ class ViewPillowsInRoom extends Component {
       canMove: false,
       imgX: 360,
       imgY: 130,
-      // innerDivHeight:100,
-      // innerDivWidth: 100,
     };
   }
 
@@ -149,7 +147,7 @@ class ViewPillowsInRoom extends Component {
         className="img2"
         id="moveImg"
         onMouseDown={e => {
-          console.log("AAAA")
+          // console.log("AAAA")
           this.setState({
             canMove: true,
             iniX: e.clientX,
@@ -254,11 +252,11 @@ class ViewPillowsInRoom extends Component {
             backgroundRepeat: "no-repeat",
             backgroundSize: "100%",
             backgroundSize: "700px auto",
-            backgroundImage: "url(" + "room/test.jpg"  + ")",
+            backgroundImage: "url(" + "room/couch.jpg"  + ")",
           }}
             // onMouseMove={this.setInnerDiv}
           >
-            <img id="outImg" width="700px" src="room/test.jpg" style={{visibility:"hidden"}} />
+            <img id="outImg" width="700px" src="room/couch.jpg" style={{visibility:"hidden"}} />
             {moveImg}
           </div>
           )}

@@ -13,7 +13,7 @@ class UserAccountButton extends Component {
         <button className="noButton" onClick={this.bring}>
           {/* <img width="30px" src='../useracct.png' className="icon"/> */}
           <div className="connect">
-          <span className="bold">MY ACCOUNT</span>
+          <span className="accountMobile bold">MY ACCOUNT</span>
           </div>
         </button>
       </div>

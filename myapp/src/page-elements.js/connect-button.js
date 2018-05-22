@@ -25,7 +25,7 @@ class ConnectButton extends Component {
         {/* <img src='../connect.png' width="30px"/> */}
         <div className="connect">
         {/* <img width="100px" src='/ui-elements/connect.png'/> */}
-        <span className ="bold">SIGN IN</span> <span className = "line"> | </span> <span className ="bold">SIGN UP</span>
+        <span className ="accountMobile bold">SIGN IN</span> <span className = "line"> | </span> <span className ="accountMobile bold">SIGN UP</span>
         </div>
         </button>
       </div>
