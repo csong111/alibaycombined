@@ -57,15 +57,19 @@ class ArtistProfile extends Component {
         //console.log(parsed)
         this.setState({ items: parsed });
       });
-  }
+  
 
+    // fetch("/checkToken", {
+    //   method: "POST",
+    //   body: JSON.stringify({artistName: this.props.artistName })
+    // }).then(res=>res.text())
+    //   .then(resB=> {
+    //     let parsed = JSON.parse(resB);
+        
+        
+    //   })
+  }
   render() {
-    // instagramAPI.userMedia('csong111').then(res=> {
-    //   console.log("INSTAGRAM", res)
-    // })
-    //<div id="pixlee_container"></div>
-    // <script type="text/javascript">window.PixleeAsyncInit = function() {Pixlee.init({apiKey:'479KLJmELsQlQoANsgX0'});Pixlee.addSimpleWidget({widgetId:'4650'});};</script>
-    // <script src="//instafeed.assets.pixlee.com/assets/pixlee_widget_1_0_0.js"></script>
     let accountInfo = () => {
       return (
         <div>
@@ -123,7 +127,6 @@ class ArtistProfile extends Component {
         </div>
         <div className="space" />
         <div className="space" />
-        <div id="pixlee_container"></div>
         <h4>Other items by this artist:</h4>
         <div className="row">{itemsRendered}</div>
       </div>

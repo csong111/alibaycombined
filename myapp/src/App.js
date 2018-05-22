@@ -66,7 +66,11 @@ class App extends Component {
   }
 
   renderIgCallback = (routeProps) => {
-    const token = routeProps.match.params.token;
+    //window.localStorage.setItem("artistID", this.state.artistID)
+    //console.log("ROUTEPROPS", routeProps)
+    const token = routeProps.location.hash;
+    //console.log("ARTIST ID", this.state.artistID)
+    //console.log(token)
     return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
   }
 
@@ -173,8 +177,8 @@ class App extends Component {
               render={()=>{return(<ViewPrintsInRoom/>)}}
             />
             <Route
-              exact={true}
-              path="/ig-callback/:token"
+              exact={false}
+              path="/ig-callback/foobar/"
               render={this.renderIgCallback}
             />
           </div>
