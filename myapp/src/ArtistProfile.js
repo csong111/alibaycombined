@@ -59,16 +59,47 @@ class ArtistProfile extends Component {
       });
   
 
-    // fetch("/checkToken", {
-    //   method: "POST",
-    //   body: JSON.stringify({artistName: this.props.artistName })
-    // }).then(res=>res.text())
-    //   .then(resB=> {
-    //     let parsed = JSON.parse(resB);
-        
-        
-    //   })
+    fetch("/checkToken", {
+      method: "POST",
+      body: JSON.stringify({artistName: this.props.artistName })
+    }).then(res=>res.text())
+      .then(resB=> {
+        if (resB) {
+        let parsed = JSON.parse(resB);
+        let IGData = parsed.data;
+        console.log("HEYJACQUES", IGData)
+        let imgInfo = IGData.map(item=>{
+          return item.images;
+        })
+        let imgItems=imgInfo.map(item=>{
+          return item.thumbnail;
+        })
+        let imgURLs=imgItems.map(item=>{
+          return item.url;
+        })
+        let imgLinks= IGData.map(item=>{
+          return item.link
+        })
+        //console.log("HELLO", imgLinks)
+        this.setState({imgURLs: imgURLs, imgLinks: imgLinks})
+        console.log("HELLO", this.state.imgLinks)
+      }})
   }
+
+  renderIGPhotos = () => {
+    if (!this.state.imgURLs) return null;
+    return this.state.imgURLs.map((imgURL, id) => {
+      return <img src={imgURL} onClick={()=>{this.openInNewTab(this.state.imgLinks[id], window.innerWidth/2, window.innerHeight/1.5)}}></img>
+    })
+  }
+  openInNewTab = (url, w, h) => {
+      var left = (window.screen.width - w) / 2;
+      var top = (window.screen.height - h) / 4;  
+      var win = window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+  
+    win.focus();
+  }
+
   render() {
     let accountInfo = () => {
       return (
@@ -79,7 +110,6 @@ class ArtistProfile extends Component {
         </div>
       );
     };
-    //console.log(this.state.items)
     let itemsRendered = this.state.items.map((el, id) => {
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
@@ -129,6 +159,7 @@ class ArtistProfile extends Component {
         <div className="space" />
         <h4>Other items by this artist:</h4>
         <div className="row">{itemsRendered}</div>
+        <div>{this.renderIGPhotos()}</div>
       </div>
     );
   }

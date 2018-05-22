@@ -22,14 +22,44 @@ class ArtistAccount extends Component {
       bio: "",
       location: "",
       profPicURL: "",
-      items: []
+      items: [],
+      showIGButton: false,
     };
   }
 
   componentDidMount() {
+    console.log(this.props)
     window.localStorage.setItem("artistID", this.props.artistID)
     if (!this.props.isLoggedIn) this.props.history.push("/")
     this.initData();
+    fetch("/checkArtistToken", {
+      method: "POST",
+      body: JSON.stringify({artistID: this.props.artistID })
+    }).then(res=>res.text())
+      .then(resB=> {
+        console.log(resB)
+        if (resB) {
+        this.setState({showIGButton: false});
+        let parsed = JSON.parse(resB);
+        let IGData = parsed.data;
+        console.log("HEYJACQUES", IGData)
+        let imgInfo = IGData.map(item=>{
+          return item.images;
+        })
+        let imgItems=imgInfo.map(item=>{
+          return item.thumbnail;
+        })
+        let imgURLs=imgItems.map(item=>{
+          return item.url;
+        })
+        let imgLinks= IGData.map(item=>{
+          return item.link;
+        })
+        //console.log("HELLO", imgLinks)
+        this.setState({imgURLs: imgURLs, imgLinks: imgLinks})
+        console.log("HELLO", this.state.imgLinks)
+      }
+      })
     //window.localStorage.setItem("artistID", this.state.artistID)
   }
 
@@ -127,6 +157,21 @@ class ArtistAccount extends Component {
     //fetch()
   }
 
+  renderIGPhotos = () => {
+    console.log(this.state.imgURLs)
+    if (!this.state.imgURLs) return null;
+    return this.state.imgURLs.map((imgURL, id) => {
+      return <img src={imgURL} onClick={()=>{this.openInNewTab(this.state.imgLinks[id], window.innerWidth/2, window.innerHeight/1.5)}}></img>
+    })
+  }
+  openInNewTab = (url, w, h) => {
+      var left = (window.screen.width - w) / 2;
+      var top = (window.screen.height - h) / 4;  
+      var win = window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+  
+    win.focus();
+  }
+
   render() {
     let itemsRendered = this.state.items.map((el, id) => {
       return (
@@ -150,7 +195,7 @@ class ArtistAccount extends Component {
             <h4>Location: {this.state.location}</h4>
             <h4>{this.state.bio}</h4>
 
-            <button onClick={this.connectIG}>Connect with Instagram</button>
+            {this.state.showIGButton ? <button onClick={this.connectIG}>Connect with Instagram</button>: <div>Instagram connected!</div>}
 
             <button className="button noPad connect" onClick={this.editInfo}>
               EDIT INFO
@@ -267,6 +312,7 @@ class ArtistAccount extends Component {
         <div className="row" name="items">
           {itemsRendered}
         </div>
+        <div>Your IG Feed{this.renderIGPhotos()}</div>
       </div>
     );
   }
