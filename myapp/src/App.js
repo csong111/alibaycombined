@@ -21,6 +21,7 @@ import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 // import ItemsBought from './ItemsBought.js';
 import ViewPrintsInRoom from './ViewPrintsInRoom.js';
+import ViewPillowsInRoom from './ViewPillowsInRoom.js';
 import IgCallback from './IgCallback.js';
 
 class App extends Component {
@@ -72,8 +73,13 @@ class App extends Component {
     const token = routeProps.location.hash;
     //console.log("ARTIST ID", this.state.artistID)
     //console.log(token)
-    return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
+    return <IgCallback setLoggedIn={this.setLoggedIn} history={routeProps.history} artistID={this.state.artistID} token={token} isLoggedIn={!!this.state.artistID} />; 
   }
+
+  setLoggedIn = (artistID) => {
+    this.setState({artistID: artistID})
+  }
+
 
   render() {
     //console.log(this.state)
@@ -171,6 +177,11 @@ class App extends Component {
               exact={true}
               path="/viewprintsinroom/"
               render={()=>{return(<ViewPrintsInRoom/>)}}
+            />
+            <Route
+              exact={true}
+              path="/viewpillowsinroom/"
+              render={()=>{return(<ViewPillowsInRoom/>)}}
             />
             <Route
               exact={false}

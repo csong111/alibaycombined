@@ -13,7 +13,7 @@ import UserAccountButton from "./page-elements.js/user-account-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import Item from "./page-elements.js/Item.js";
 
-class ViewPrintsInRoom extends Component {
+class ViewPillowsInRoom extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,12 +23,14 @@ class ViewPrintsInRoom extends Component {
       itemsInCat: [],
       canMove: false,
       imgX: 360,
-      imgY: 130
+      imgY: 130,
+      // innerDivHeight:100,
+      // innerDivWidth: 100,
     };
   }
 
   componentDidMount = () => {
-    fetch("/getCatItems?cat=" + "Prints", {
+    fetch("/getCatItems?cat=" + "Pillows", {
       method: "GET"
     })
       .then(res => res.text())
@@ -69,24 +71,26 @@ class ViewPrintsInRoom extends Component {
     var in_ = document.getElementById("moveImg");
     var out_ = document.getElementById("outImg");
 
-    var inx = offset(in_).left;
-    var iny = offset(in_).top;
+    var inx = offset(in_).left
+    var iny = offset(in_).top
     var inX = inx + in_.clientWidth;
     var inY = iny + in_.clientHeight;
 
-    var outx = offset(out_).left;
-    var outy = offset(out_).top;
+
+    var outx = offset(out_).left
+    var outy = offset(out_).top
     var outX = outx + out_.clientWidth;
     var outY = outy + out_.clientHeight;
 
-    if (
-      inx + dx < outx ||
-      iny + dy < outy ||
-      inX + dx > outX ||
-      inY + dy > outY
-    ) {
-      this.setState({ canMove: false });
-    } else {
+
+    if(
+      inx+dx < outx ||
+      iny+dy < outy ||
+      inX+dx > outX ||
+      inY+dy > outY
+    ){
+      this.setState({canMove : false})
+    }else{
       this.setState({
         iniX: e.clientX,
         iniY: e.clientY,
@@ -99,20 +103,20 @@ class ViewPrintsInRoom extends Component {
   // setInnerDiv = () => {
   //   if(this.state.img2){
   //     var in_ = document.getElementById("moveImg");
-  //     let y = in_.clientHeight
-  //     let x = in_.clientWidth
-  //   }
+  //     let y = in_.clientHeight 
+  //     let x = in_.clientWidth 
+  //   } 
   // }
 
   render() {
-    console.log(this.state)
+
     var fullSize = {
       width: "200px",
       backgroundRepeat: "no-repeat",
       backgroundSize: "contain",
       resize: "both",
       overflow: "auto",
-      border: "10px solid black 0"
+      border: "10px solid black 0",
     };
 
     var itemsRendered = this.state.itemsInCat.map((el, id) => {
@@ -139,64 +143,58 @@ class ViewPrintsInRoom extends Component {
       } else return null;
     });
 
-    var moveImg = this.state.img2 ? (
-      this.state.canMove === false ? (
-        <div
-          className="img2"
-          id="moveImg"
-          onMouseDown={e => {
-            console.log("AAAA");
-            this.setState({
-              canMove: true,
-              iniX: e.clientX,
-              iniY: e.clientY
-            });
-          }}
-          onMouseUp={e => {
-            this.setState({
-              canMove: false,
-              iniX: e.clientX,
-              iniY: e.clientY
-            });
-          }}
-          style={{
-            ...fullSize,
-            backgroundImage: "url(" + this.state.img2 + ")",
-            top: this.state.imgY,
-            left: this.state.imgX
-          }}
-        >
-          <img
-            src={this.state.img2}
-            style={{ visibility: "hidden", width: "200px" }}
-          />
-        </div>
-      ) : (
-        <div
-          className="img2"
-          id="moveImg"
-          onMouseMove={this.moveImage}
-          onMouseUp={e => {
-            this.setState({
-              canMove: false,
-              iniX: e.clientX,
-              iniY: e.clientY
-            });
-          }}
-          style={{
-            backgroundImage: "url(" + this.state.img2 + ")",
-            ...fullSize,
-            top: this.state.imgY,
-            left: this.state.imgX
-          }}
-        >
-          <img
-            src={this.state.img2}
-            style={{ visibility: "hidden", width: "200px" }}
-          />
-        </div>
-      )
-    ) : null;
+    var moveImg = this.state.img2 ?
+     this.state.canMove === false ? (
+      <div
+        className="img2"
+        id="moveImg"
+        onMouseDown={e => {
+          console.log("AAAA")
+          this.setState({
+            canMove: true,
+            iniX: e.clientX,
+            iniY: e.clientY
+          });
+        }}
+        onMouseUp={e => {
+          this.setState({
+            canMove: false,
+            iniX: e.clientX,
+            iniY: e.clientY
+          });
+        }}
+        style={{
+          ...fullSize,
+          backgroundImage: "url(" + this.state.img2 + ")",
+          top: this.state.imgY,
+          left: this.state.imgX
+        }}
+      >
+      <img src={this.state.img2} style={{visibility: "hidden",width: "200px"}} /></div>
+    ) : (
+      <div
+        className="img2"
+        id="moveImg"
+        onMouseMove={this.moveImage}
+        onMouseUp={e => {
+          this.setState({
+            canMove: false,
+            iniX: e.clientX,
+            iniY: e.clientY
+          });
+        }}
+        style={{
+          backgroundImage: "url(" + this.state.img2 + ")",
+          ...fullSize,
+          top: this.state.imgY,
+          left: this.state.imgX
+        }}
+      >
+      <img src={this.state.img2} style={{visibility: "hidden",width: "200px"}} />
+      </div>
+    ) : null
+
+
 
     return (
       <div>
@@ -238,39 +236,31 @@ class ViewPrintsInRoom extends Component {
           <h2 className="catName">VIEW IN ROOM</h2>
 
           {this.state.img1 ? (
-            <div
-              style={{
-                width: "700px",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "100%",
-                backgroundSize: "700px auto",
-                backgroundImage: "url(" + this.state.img1 + ")"
-              }} >
-              <img
-                id="outImg"
-                width="700px"
-                src={this.state.img1}
-                style={{ visibility: "hidden" }}
-              />
-              {moveImg}
-            </div>
+          <div style={{
+            width: "700px",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100%",
+            backgroundSize: "700px auto",
+            backgroundImage: "url(" + this.state.img1  + ")",
+          }}
+            // onMouseMove={this.setInnerDiv}
+          >
+            <img id="outImg" width="700px" src={this.state.img1} style={{visibility:"hidden"}} />
+            {moveImg}
+          </div>
           ) : (
-            <div
-              style={{
-                width: "700px",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "100%",
-                backgroundSize: "700px auto",
-                backgroundImage: "url(" + "room/test.jpg" + ")"
-              }} >
-              <img
-                id="outImg"
-                width="700px"
-                src="room/test.jpg"
-                style={{ visibility: "hidden" }}
-              />
-              {moveImg}
-            </div>
+          <div style={{
+            width: "700px",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100%",
+            backgroundSize: "700px auto",
+            backgroundImage: "url(" + "room/test.jpg"  + ")",
+          }}
+            // onMouseMove={this.setInnerDiv}
+          >
+            <img id="outImg" width="700px" src="room/test.jpg" style={{visibility:"hidden"}} />
+            {moveImg}
+          </div>
           )}
 
           <input
@@ -289,6 +279,7 @@ class ViewPrintsInRoom extends Component {
             placeholder="Upload Item Image"
           />
 
+
           <button
             type="button"
             className="button noPad connect"
@@ -306,5 +297,5 @@ class ViewPrintsInRoom extends Component {
   }
 }
 
-let Content = withRouter(ViewPrintsInRoom);
+let Content = withRouter(ViewPillowsInRoom);
 export default Content;
