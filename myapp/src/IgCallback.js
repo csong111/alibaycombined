@@ -10,19 +10,27 @@ class IgCallback extends Component {
     }
     componentDidMount() {
         let artistID=window.localStorage.getItem("artistID");
+        let splitToken=this.props.token.split('=');
+        let token=splitToken[1];
+        this.setState({artistID: artistID})
+        //console.log("ARTISTIDEEE", artistID)
+        //console.log("SPLITUP", splitToken)
         let body=JSON.stringify({
             artistID: artistID,
-            token: this.props.token
+            token: token
         })
-        console.log("BODY", body)
+        //console.log("BODY", body)
         //this.setState({artistID: artistID});
         fetch('/saveToken', {
             method: 'POST',
             body: body
         })
-        .then(res => res.text())
+        .then(res => {
+            res.text();
+        })
         .then(res => {
             console.log(res);
+            this.props.setLoggedIn(artistID);
             this.props.history.push('/artistaccount/' + artistID);
         })
     }

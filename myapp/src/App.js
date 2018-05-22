@@ -72,8 +72,13 @@ class App extends Component {
     const token = routeProps.location.hash;
     //console.log("ARTIST ID", this.state.artistID)
     //console.log(token)
-    return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
+    return <IgCallback setLoggedIn={this.setLoggedIn} history={routeProps.history} artistID={this.state.artistID} token={token} isLoggedIn={!!this.state.artistID} />; 
   }
+
+  setLoggedIn = (artistID) => {
+    this.setState({artistID: artistID})
+  }
+
 
   render() {
     //console.log(this.state)
