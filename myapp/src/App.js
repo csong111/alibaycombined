@@ -53,6 +53,7 @@ class App extends Component {
     })
   }
   loginArtist = (e) => {
+  //  console.log(e)
     this.setState({artistID : e})
   }
   loginUser = (e, id, name) => {
@@ -66,7 +67,10 @@ class App extends Component {
   }
 
   renderIgCallback = (routeProps) => {
-    const token = routeProps.match.params.token;
+  // const artistID = route.state.artistID
+
+  window.localStorage.setItem("artistID", this.state.artistID)
+    const token = routeProps.location.hash;
     return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
   }
 
@@ -97,11 +101,6 @@ class App extends Component {
               path="/cart/:userID"
               render={(routerData)=>{return(<Cart setCartItems ={this.setCartItems} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
-            {/* <Route
-              exact={true}
-              path="/itemsbought/:userID"
-              render={(routerData)=>{return(<ItemsBought counter={this.state.cartItems.length} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
-            /> */}
             <Route
               exact={true}
               path="/searchresults/:query"
@@ -173,8 +172,8 @@ class App extends Component {
               render={()=>{return(<ViewPrintsInRoom/>)}}
             />
             <Route
-              exact={true}
-              path="/ig-callback/:token"
+              exact={false}
+              path="/ig-callback/foobar/"
               render={this.renderIgCallback}
             />
           </div>

@@ -116,10 +116,10 @@ class ArtistAccount extends Component {
     this.setState({ bio: event.target.value });
   };
 
-  connectIG = (event) => {
+  connectIG = (event, artistID) => {
     event.preventDefault();
-    window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fig-callback&response_type=token';
-    this.setState({})
+    window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fig-callback%2Ffoobar%2F&response_type=token';
+    //fetch()
   }
 
   render() {
