@@ -21,6 +21,7 @@ import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 // import ItemsBought from './ItemsBought.js';
 import ViewPrintsInRoom from './ViewPrintsInRoom.js';
+import ViewPillowsInRoom from './ViewPillowsInRoom.js';
 import IgCallback from './IgCallback.js';
 
 class App extends Component {
@@ -171,6 +172,11 @@ class App extends Component {
               exact={true}
               path="/viewprintsinroom/"
               render={()=>{return(<ViewPrintsInRoom/>)}}
+            />
+            <Route
+              exact={true}
+              path="/viewpillowsinroom/"
+              render={()=>{return(<ViewPillowsInRoom/>)}}
             />
             <Route
               exact={false}

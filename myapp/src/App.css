@@ -587,11 +587,15 @@ ul {
   z-index: 1;
 }
 
-/* #moveImg::-webkit-resizer {
-  background-color: red;
-  border: 5px solid black;
-} */
-
+.img2:hover {
+  background-color: none !important;
+  border:none !important;
+  border: 3px dotted grey !important;
+    border-top-width:5px;
+    border-right-width:0px;
+    border-bottom-width:0px;
+    border-left-width:0px;
+}
 
 /* Mockup Styles */
 
