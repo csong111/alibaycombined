@@ -270,6 +270,7 @@ h6 {
 .navIcon:hover {
   margin-top: 4px;
   background-image: url("/ui-elements/navhover.png");
+  background-color: #fff
 }
 
 
@@ -472,6 +473,7 @@ ul {
   margin-left: 20px;
   border: 0;
   outline: 0;
+  background-color: #fff
 }
 
 .userButtonClick {
@@ -490,6 +492,7 @@ ul {
   padding-right: 15px;
   border: 0;
   outline: 0;
+  background-color: #fff
 }
 
 .artistButtonClick {
