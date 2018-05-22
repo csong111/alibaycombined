@@ -43,6 +43,8 @@ class Account extends Component {
 
 
   componentDidMount () {
+    //check if there is a userID 
+    if (!this.props.isLoggedIn) this.props.history.push("/")
     this.initGetData()
   }
 

@@ -19,7 +19,7 @@ import ArtistSignUpComplete from './ArtistSignUpComplete.js';
 import UserSignUpComplete from './UserSignUpComplete.js';
 import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
-import ItemsBought from './ItemsBought.js';
+// import ItemsBought from './ItemsBought.js';
 import ViewPrintsInRoom from './ViewPrintsInRoom.js';
 
 
@@ -92,11 +92,11 @@ class App extends Component {
               path="/cart/:userID"
               render={(routerData)=>{return(<Cart setCartItems ={this.setCartItems} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
-            <Route
+            {/* <Route
               exact={true}
               path="/itemsbought/:userID"
               render={(routerData)=>{return(<ItemsBought counter={this.state.cartItems.length} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
-            />
+            /> */}
             <Route
               exact={true}
               path="/searchresults/:query"
@@ -110,7 +110,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/useraccount/:userID"
-              render={(routerData)=>{return(<UserAccount counter={this.state.cartItems.length} email={this.state.email} userID={routerData.match.params.userID}/>)}}
+              render={(routerData)=>{return(<UserAccount history={routerData.history} isLoggedIn={!!this.state.userID} counter={this.state.cartItems.length} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
               exact={true}
@@ -120,12 +120,12 @@ class App extends Component {
             <Route
               exact={true}
               path="/artistaccount/:artistID"
-              render={(routerData)=>{return(<ArtistAccount artistName={this.state.artistName} artistID={routerData.match.params.artistID} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<ArtistAccount history={routerData.history} isLoggedIn={!!this.state.artistID} artistName={this.state.artistName} artistID={routerData.match.params.artistID} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
-              path="/orders/:artistID"
-              render={(routerData)=>{return(<Orders counter={this.state.cartItems.length} artistID={routerData.match.params.artistID} artistName={this.state.artistName} email={this.state.email}/>)}}
+              path="/orders/:artistName"
+              render={(routerData)=>{return(<Orders counter={this.state.cartItems.length} artistID={routerData.match.params.artistID} artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}

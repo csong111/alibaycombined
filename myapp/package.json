@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "instafeed.js": "^1.4.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-responsive-carousel": "^3.1.38",
