@@ -59,8 +59,10 @@ class ItemDetail extends Component {
           quantity: quantity
         });
       });
+      setTimeout(()=>this.forceUpdate(),100)
   };
   addToCart = () => {
+
     if (!this.props.userID) {this.setState({mustConnect: true})}
     else {
     let body = JSON.stringify({

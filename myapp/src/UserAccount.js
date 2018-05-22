@@ -34,8 +34,11 @@ class Account extends Component {
     };
   }
 
-  componentDidMount() {
-    this.initGetData();
+
+  componentDidMount () {
+    //check if there is a userID 
+    if (!this.props.isLoggedIn) this.props.history.push("/")
+    this.initGetData()
   }
 
   initGetData = () => {

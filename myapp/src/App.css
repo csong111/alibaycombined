@@ -3,6 +3,11 @@ body {
   padding-top: 20px;
 }
 
+
+.xcomponent-outlet{
+  z-index: 0;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     padding: 20px;
@@ -101,8 +106,7 @@ h3 {
 
 h4 {
   font-family: "Open Sans", sans-serif;
-  font-size: 9pt;
-  line-height: 1.5;
+  font-size: 10pt;
 }
 
 h5 {
@@ -561,8 +565,8 @@ ul {
 
 .img2 {
   position: absolute;
-  top:160px;
-  left:390px;
+  top:200px;
+  left:350px;
   z-index: 1
 }
 
@@ -602,20 +606,15 @@ button:focus {
   bottom: 400px;
 }
 
-.ordersTable{
-  display: flex;
-  border-bottom: 1px solid #ddd;
 
-
-}
 .ordersTableData{
-   padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-
+  font-size: 12px;
 }
 .ordersTableItemNames{
   list-style-type: none;
+<<<<<<< HEAD
+}
+=======
 }
 
 /*CART COUNTER BUTTON */
@@ -626,3 +625,4 @@ button:focus {
   font-family: "Open Sans", sans-serif;
   font-size: 10pt;
 }
+>>>>>>> 7c274ba0268a630497e4b41885d319a1a720afeb

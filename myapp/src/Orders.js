@@ -19,6 +19,7 @@ class Orders extends Component {
     }
 
     componentDidMount = () =>{
+        console.log("artist name" ,this.props.artistName)
         let body = {
             artistName : this.props.artistName
         }
@@ -49,41 +50,43 @@ class Orders extends Component {
     render() {
     
         let renderTitle = (
-                <div className="ordersTable">
-                    <div className = "ordersTableData">
+            <div className="row">
+                    <div className = " col-2 col-md-6 col-lg-2 noPad space">
                 Order #
                     </div>
-                    <div className = "ordersTableData">
+                    <div className = "col-2 col-md-6 col-lg-2 noPad space">
                 Buyer
                     </div>
-                    <div className = "ordersTableData">
+                    <div className = "col-2 col-md-6 col-lg-2 noPad space">
                 Items
                     </div>
-                    <div className = "ordersTableData">
+                    <div className = "col-2 col-md-6 col-lg-2 noPad space">
                 Date
                     </div>
-                    <div className = "ordersTableData">
+                    <div className = "col-2 col-md-6 col-lg-2 noPad space">
                 Fulfilled
                     </div>
+                    {/* </div> */}
                 </div>
             )
       
     let renderOrders = this.state.orders.map((order, id )=>{
         return (
-            <div key={id} className="ordersTable">
-                <div className = "ordersTableData">
+
+            <div className="row">
+            <div className = " ordersTableData col-2 col-md-6 col-lg-2 noPad space">
             {order._id}<br/>
                 </div>
-                <div className = "ordersTableData">
+                <div className = "col-2 col-md-6 col-lg-2 noPad space">
             {order.firstName}<br/>
                 </div>
-                <div className = "ordersTableData">
+                <div className = "col-2 col-md-6 col-lg-2 noPad space">
              {order.cartItems.map((item,id) => <li key={id} className="ordersTableItemNames">{item.name}<br/></li>)}
                 </div>
-                <div className = "ordersTableData">
+                <div className = "col-2 col-md-6 col-lg-2 noPad space">
             {order.date}<br/>
                 </div>
-                <div className = "ordersTableData">
+                <div className = "col-2 col-md-6 col-lg-2 noPad space">
             fulfilled<br/>
                 </div>
             </div>

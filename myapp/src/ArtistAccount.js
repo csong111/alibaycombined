@@ -27,6 +27,7 @@ class ArtistAccount extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.isLoggedIn) this.props.history.push("/")
     this.initData();
   }
 

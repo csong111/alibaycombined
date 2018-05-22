@@ -118,6 +118,7 @@ class Home extends Component {
           {itemsRendered}
         </div>
       </div>
+      <div class='sk-instagram-feed' data-embed-id='9961'></div><script src='https://www.sociablekit.com/app/embed/instagram-feed/widget.js'></script>
       </div>
       // </div>
     );
