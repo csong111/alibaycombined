@@ -3,6 +3,11 @@ body {
   padding-top: 20px;
 }
 
+
+.xcomponent-outlet{
+  z-index: 0;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     padding: 20px;
