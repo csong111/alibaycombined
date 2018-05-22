@@ -41,6 +41,12 @@ hr {
   justify-content: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .hideLogin{
+    display: none;
+  }
+}
+
 /* Text Styles */
 
 .a {
@@ -188,7 +194,7 @@ h6 {
   width: 95%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 100;
   margin: 20px;
   margin-top: 0;
   padding: 20px;
@@ -601,4 +607,17 @@ button:focus {
 }
 .ordersTableItemNames{
   list-style-type: none;
+<<<<<<< HEAD
 }
+=======
+}
+
+/*CART COUNTER BUTTON */
+
+.counter{
+  font-weight: bold;
+  margin-left: 3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
+}
+>>>>>>> 7c274ba0268a630497e4b41885d319a1a720afeb

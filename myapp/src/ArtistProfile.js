@@ -11,6 +11,9 @@ import ItemDetail from "./ItemDetail.js";
 import Item from "./page-elements.js/Item.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
+var accessToken = '143581308.e3d55b1.e41d8982169d4cc5872f651fff767aeb';
+var InstagramAPI = require('instagram-api');
+var instagramAPI = new InstagramAPI(accessToken);
 
 class ArtistProfile extends Component {
   constructor() {
@@ -60,6 +63,12 @@ class ArtistProfile extends Component {
   }
 
   render() {
+    // instagramAPI.userMedia('csong111').then(res=> {
+    //   console.log("INSTAGRAM", res)
+    // })
+    //<div id="pixlee_container"></div>
+    // <script type="text/javascript">window.PixleeAsyncInit = function() {Pixlee.init({apiKey:'479KLJmELsQlQoANsgX0'});Pixlee.addSimpleWidget({widgetId:'4650'});};</script>
+    // <script src="//instafeed.assets.pixlee.com/assets/pixlee_widget_1_0_0.js"></script>
     let accountInfo = () => {
       return (
         <div>
@@ -69,7 +78,7 @@ class ArtistProfile extends Component {
         </div>
       );
     };
-    console.log(this.state.items)
+    //console.log(this.state.items)
     let itemsRendered = this.state.items.map((el, id) => {
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
@@ -117,6 +126,7 @@ class ArtistProfile extends Component {
         </div>
         <div className="space" />
         <div className="space" />
+        <div id="pixlee_container"></div>
         <h4>Other items by this artist:</h4>
         <div className="row">{itemsRendered}</div>
       </div>

@@ -16,7 +16,7 @@ class ArtistAccount extends Component {
     super();
     this.state = {
       edit: false,
-      artistID:"",
+      artistID: "",
       artistName: "",
       artistNameInput: "",
       bio: "",
@@ -42,7 +42,7 @@ class ArtistAccount extends Component {
       .then(resB => {
         let parsed = JSON.parse(resB);
         //console.log(parsed)
-        let artistID = parsed.artistID;
+        let artistID = parsed._id;
         let artistName = parsed.artistName;
         let bio = parsed.bio;
         let location = parsed.location;
@@ -61,7 +61,7 @@ class ArtistAccount extends Component {
       .then(res => res.text())
       .then(resB => {
         let parsed = JSON.parse(resB);
-  // console.log("parsed",parsed)
+        // console.log("parsed",parsed)
         this.setState({ items: parsed });
       });
   };
@@ -80,7 +80,9 @@ class ArtistAccount extends Component {
   };
 
   createListing = () => {
-    this.props.history.push("/createListing/" + this.props.artistID, {name: this.state.artistName});
+    this.props.history.push("/createListing/" + this.props.artistID, {
+      name: this.state.artistName
+    });
   };
   seeOrders = () => {
     this.props.history.push("/orders/" + this.state.artistName);
@@ -90,8 +92,16 @@ class ArtistAccount extends Component {
   };
 
   saveInfo = event => {
-    //FETCH endpoint: updateArtistAccount then =>
-    this.initData();
+    event.preventDefault();
+    let bod = this.state;
+    fetch("/editArtistAccount", { method: "POST", body: JSON.stringify(bod) })
+      .then(e => e.text())
+      .then(e => JSON.parse(e))
+      // .then(e => {
+      //   if (e.success)
+      //     this.props.history.push("/artistaccount/" + this.state.artistID);
+      // });
+      .then((e) => {this.setState({ edit: false })});
   };
 
   handleArtistNameChange = event => {
@@ -106,10 +116,14 @@ class ArtistAccount extends Component {
     this.setState({ bio: event.target.value });
   };
 
+  connectIG = (event) => {
+    event.preventDefault();
+    window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2F167.99.180.126%3A3000%2F&response_type=token';
+    console.log(window.location.href);
+  }
+
   render() {
-    console.log(this.state.items)
     let itemsRendered = this.state.items.map((el, id) => {
-      console.log(el)
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
           <Item
@@ -130,7 +144,13 @@ class ArtistAccount extends Component {
             <h4>Name: {this.state.artistName}</h4>
             <h4>Location: {this.state.location}</h4>
             <h4>{this.state.bio}</h4>
-            <button className="button noPad connect"  onClick={this.editInfo}>EDIT INFO</button>
+
+            <button onClick={this.connectIG}>Connect with Instagram</button>
+
+            <button className="button noPad connect" onClick={this.editInfo}>
+              EDIT INFO
+            </button>
+
           </div>
         );
       } else {
@@ -171,7 +191,9 @@ class ArtistAccount extends Component {
           </div>
 
           <div className="flex">
-            {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
+            {this.props.artistID ? (
+              <ArtistAccountButton artistID={this.props.artistID} />
+            ) : null}
             {this.props.artistID ? <LogOutButton /> : null}
             {!this.props.artistID ? <ConnectButton /> : null}
           </div>
@@ -198,7 +220,8 @@ class ArtistAccount extends Component {
             <div className="center">
               <img className="profileImage" src={this.state.profPicURL} />
               <br />
-              <button className="button noPad connect" 
+              <button
+                className="button noPad connect"
                 onClick={() => {
                   document.getElementById("changeProfile").click();
                 }}
@@ -216,8 +239,15 @@ class ArtistAccount extends Component {
             </div>
             <span className="spaceLeft accountInfo">
               {accountInfo}
-              <button className="button noPad connect" onClick={this.createListing}>CREATE LISTING</button>
-              <button className="button noPad connect" onClick={this.seeOrders}>SEE ORDERS</button>
+              <button
+                className="button noPad connect"
+                onClick={this.createListing}
+              >
+                CREATE LISTING
+              </button>
+              <button className="button noPad connect" onClick={this.seeOrders}>
+                SEE ORDERS
+              </button>
             </span>
           </div>
         </div>

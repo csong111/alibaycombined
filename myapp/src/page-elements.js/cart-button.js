@@ -15,11 +15,12 @@ class CartButton extends Component {
     }
   render() {
     return (
-      <div className="flex">
-        <button className="noButton" onClick={this.goToCart}>
-        <img width="25px" src='/ui-elements/cart.png' className="icon"/>
-        </button>
+      <div>
+        <button className="noButton flex" onClick={this.goToCart}>
+        <img width="25px" src='/ui-elements/cart.png' />
         <div className="counter">{this.props.counter}</div>
+        </button>
+
       </div>
     );
   }

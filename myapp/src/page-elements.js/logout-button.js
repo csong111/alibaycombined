@@ -4,7 +4,7 @@ import "../App.css";
 
 class LogOutButton extends Component {
   logout = () => {
-    window.location.reload();
+    window.location.reload(true);
   };
   render() {
     return (
