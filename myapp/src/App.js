@@ -21,7 +21,7 @@ import EditListing from './EditListing.js';
 import CheckoutComplete from './CheckoutComplete.js';
 // import ItemsBought from './ItemsBought.js';
 import ViewPrintsInRoom from './ViewPrintsInRoom.js';
-
+import IgCallback from './IgCallback.js';
 
 class App extends Component {
   constructor() {
@@ -63,6 +63,11 @@ class App extends Component {
     //console.log(items)
     this.setState({cartItems: items})
     //console.log(this.state.cartItems)
+  }
+
+  renderIgCallback = (routeProps) => {
+    const token = routeProps.match.params.token;
+    return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
   }
 
   render() {
@@ -166,6 +171,11 @@ class App extends Component {
               exact={true}
               path="/viewprintsinroom/"
               render={()=>{return(<ViewPrintsInRoom/>)}}
+            />
+            <Route
+              exact={true}
+              path="/ig-callback/:token"
+              render={this.renderIgCallback}
             />
           </div>
         </BrowserRouter>

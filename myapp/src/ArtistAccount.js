@@ -118,8 +118,8 @@ class ArtistAccount extends Component {
 
   connectIG = (event) => {
     event.preventDefault();
-    window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2F167.99.180.126%3A3000%2F&response_type=token';
-    console.log(window.location.href);
+    window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fig-callback&response_type=token';
+    this.setState({})
   }
 
   render() {
