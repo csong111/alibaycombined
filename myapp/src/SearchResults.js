@@ -22,8 +22,16 @@ class SearchResults extends Component {
 
   componentDidMount () {
     //FETCH get searchItems by searchQuery then setState the results endpoint: searchItems
+    this.getSearchResults(this.props.query);
+    }
+
+  componentWillReceiveProps(nextProps) {
+    this.getSearchResults(nextProps.query);
+  }
+
+  getSearchResults = (query) => {
     let body = {
-      query : this.props.query
+      query : query
     }
     // console.log("getResults-1", body)
     fetch("/getSearchResults",{
