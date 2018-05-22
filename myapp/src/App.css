@@ -612,9 +612,6 @@ button:focus {
 }
 .ordersTableItemNames{
   list-style-type: none;
-<<<<<<< HEAD
-}
-=======
 }
 
 /*CART COUNTER BUTTON */
@@ -625,4 +622,3 @@ button:focus {
   font-family: "Open Sans", sans-serif;
   font-size: 10pt;
 }
->>>>>>> 7c274ba0268a630497e4b41885d319a1a720afeb
