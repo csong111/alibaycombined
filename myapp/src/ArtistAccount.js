@@ -27,12 +27,16 @@ class ArtistAccount extends Component {
   }
 
   componentDidMount() {
+    window.localStorage.setItem("artistID", this.props.artistID)
     if (!this.props.isLoggedIn) this.props.history.push("/")
     this.initData();
+    //window.localStorage.setItem("artistID", this.state.artistID)
   }
 
   initData = () => {
     //console.log(this.props.artistID)
+    //window.localStorage.setItem("artistID", this.state.artistID)
+    
     var body = { artistID: this.props.artistID };
     fetch("/getArtistAccount", {
       method: "POST",
@@ -118,8 +122,7 @@ class ArtistAccount extends Component {
 
   connectIG = (event) => {
     event.preventDefault();
-    console.log("THIS IS THE ONE", this.state)
-    window.localStorage.setItem("artistID", this.state.artistID)
+    //console.log("THIS IS THE ONE", this.state)
     window.location.href = 'https://api.instagram.com/oauth/authorize/?client_id=e3d55b1b8fe34ae9aae892e410c9f3b6&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fig-callback%2Ffoobar%2F&response_type=token';
     //fetch()
   }
