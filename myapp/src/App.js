@@ -53,6 +53,7 @@ class App extends Component {
     })
   }
   loginArtist = (e) => {
+  //  console.log(e)
     this.setState({artistID : e})
   }
   loginUser = (e, id, name) => {
@@ -101,11 +102,6 @@ class App extends Component {
               path="/cart/:userID"
               render={(routerData)=>{return(<Cart setCartItems ={this.setCartItems} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
-            {/* <Route
-              exact={true}
-              path="/itemsbought/:userID"
-              render={(routerData)=>{return(<ItemsBought counter={this.state.cartItems.length} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
-            /> */}
             <Route
               exact={true}
               path="/searchresults/:query"
