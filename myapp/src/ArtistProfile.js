@@ -20,7 +20,8 @@ class ArtistProfile extends Component {
       bio: "",
       location: "",
       profPicURL: "",
-      items: []
+      items: [],
+      igData: []
     };
   }
   componentDidMount() {
@@ -58,18 +59,12 @@ class ArtistProfile extends Component {
         this.setState({ items: parsed });
       });
   
+  
+    }
 
-    // fetch("/checkToken", {
-    //   method: "POST",
-    //   body: JSON.stringify({artistName: this.props.artistName })
-    // }).then(res=>res.text())
-    //   .then(resB=> {
-    //     let parsed = JSON.parse(resB);
-        
-        
-    //   })
-  }
   render() {
+
+  
     let accountInfo = () => {
       return (
         <div>
