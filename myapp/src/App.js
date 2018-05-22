@@ -67,10 +67,11 @@ class App extends Component {
   }
 
   renderIgCallback = (routeProps) => {
-  // const artistID = route.state.artistID
-
-  window.localStorage.setItem("artistID", this.state.artistID)
+    //window.localStorage.setItem("artistID", this.state.artistID)
+    //console.log("ROUTEPROPS", routeProps)
     const token = routeProps.location.hash;
+    //console.log("ARTIST ID", this.state.artistID)
+    //console.log(token)
     return <IgCallback history={routeProps.history} artistID={this.state.artistID} token={token} />; 
   }
 
