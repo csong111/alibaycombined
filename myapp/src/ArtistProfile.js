@@ -11,9 +11,6 @@ import ItemDetail from "./ItemDetail.js";
 import Item from "./page-elements.js/Item.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
-var accessToken = '143581308.e3d55b1.e41d8982169d4cc5872f651fff767aeb';
-var InstagramAPI = require('instagram-api');
-var instagramAPI = new InstagramAPI(accessToken);
 
 class ArtistProfile extends Component {
   constructor() {
