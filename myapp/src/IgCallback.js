@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
+import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+import "./App.css";
 
 class IgCallback extends Component {
-    state = {}
+    constructor (props) {
+        super(props);
+        this.state={
+        }
+    }
     componentDidMount() {
-        // fetch('/saveToken', {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         artistID: this.props.artistID,
-        //         token: this.props.token
-        //     })
-        // })
-        // .then(res => res.text())
-        // .then(res => {
-        //     console.log(res);
-        //     this.props.history.push('/artistaccount/' + this.props.artistID);
-        // })
-        console.log('ig callback')
-        this.props.history.push('/artistaccount/' + this.props.artistID);
+        let artistID=window.localStorage.getItem("artistID");
+        let body=JSON.stringify({
+            artistID: artistID,
+            token: this.props.token
+        })
+        console.log("BODY", body)
+        //this.setState({artistID: artistID});
+        fetch('/saveToken', {
+            method: 'POST',
+            body: body
+        })
+        .then(res => res.text())
+        .then(res => {
+            console.log(res);
+            this.props.history.push('/artistaccount/' + artistID);
+        })
     }
     render() { 
         return (
