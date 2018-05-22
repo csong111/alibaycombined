@@ -194,12 +194,9 @@ class ArtistAccount extends Component {
             <h4>Name: {this.state.artistName}</h4>
             <h4>Location: {this.state.location}</h4>
             <h4>{this.state.bio}</h4>
-<<<<<<< HEAD
-=======
 
             {this.state.showIGButton ? <button onClick={this.connectIG}>Connect with Instagram</button>: <div>Instagram connected!</div>}
 
->>>>>>> e206dcd9ee55b6f7d3768a38bd408536267391cc
             <button className="button noPad connect" onClick={this.editInfo}>
               EDIT INFO
             </button>
