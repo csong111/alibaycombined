@@ -116,9 +116,7 @@ class ArtistAccount extends Component {
   };
 
   render() {
-    console.log(this.state.items);
     let itemsRendered = this.state.items.map((el, id) => {
-      console.log(el);
       return (
         <div className="col-6 col-md-4 col-lg-3 noPad space" key={id}>
           <Item
