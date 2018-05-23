@@ -238,7 +238,8 @@ class Cart extends Component {
             <p>{item.name}</p>
             <p>{item.artistName}</p>
             <p>Price: ${item.price}</p>
-            <input className="quantityInput"
+            <input
+              className="quantityInput"
               type="text"
               onChange={e => {
                 if (e.target.value <= Number(item.quantity)) {
@@ -251,7 +252,8 @@ class Cart extends Component {
               placeholder={item.quantity + " in stock"}
             />
             <div className="space" />
-            <button className="button noPad connect"
+            <button
+              className="button noPad connect"
               onClick={() => {
                 var temp = JSON.parse(JSON.stringify(this.state.cartItems));
                 temp = temp.filter((EL, ID) => ID !== id);
@@ -326,16 +328,17 @@ class Cart extends Component {
             <h2 className="catName">CHECKOUT</h2>
             <div className="spaceSmaller" />
 
-            <div className="inputText">Total: <div className="bold">${total}</div></div>
-            <div className="space" />
-            <hr />
-            <div className="space" />
-            {/* <button
+            <div className="inputText">
+              Total: <div className="bold">${total}</div>
+            </div>
+
+            <button
+              className="button noPad connect"
               onClick={e => {
                 this.setState({ showCheckout: true, total: total });
               }}
             >
-              Check Out Now
+              CHECK OUT NOW
             </button>
 
             <div
@@ -352,13 +355,24 @@ class Cart extends Component {
                   ? { display: "inline" }
                   : { display: "none" }
               }
-            > */}
+            />
 
-              <div className="inputText">Enter Shipping Info</div>
-              <div className="spaceSmaller" />
+            {this.state.showCheckout ? (
+              <div>
+                <div className="space" />
+                <hr />
+                <div className="space" />
+
+                <div className="inputText">Enter Shipping Info</div>
+                <div className="spaceSmaller" />
+              </div>
+             ) : null} 
+
+            {this.state.showCheckout ? (
               <form onSubmit={e => e.preventDefault()}>
-                <p>First Name:{" "}</p>
-                <input className="formInput"
+                <p>First Name: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ firstName: e.target.value });
@@ -368,8 +382,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Last Name:{" "}</p>
-                <input className="formInput"
+                <p>Last Name: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ lastName: e.target.value });
@@ -379,8 +394,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Email:{" "}</p>
-                <input className="formInput"
+                <p>Email: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ email: e.target.value });
@@ -390,8 +406,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Address:{" "}</p>
-                <input className="formInput"
+                <p>Address: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ address: e.target.value });
@@ -401,8 +418,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>City:{" "}</p>
-                <input className="formInput"
+                <p>City: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ city: e.target.value });
@@ -412,8 +430,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Province:{" "}</p>
-                <input className="formInput"
+                <p>Province: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ province: e.target.value });
@@ -423,8 +442,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Postal Code:{" "}</p>
-                <input className="formInput"
+                <p>Postal Code: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ postalCode: e.target.value });
@@ -434,8 +454,9 @@ class Cart extends Component {
                   required
                 />
                 <div className="spaceSmaller" />
-                <p>Country:{" "}</p>
-                <input className="formInput"
+                <p>Country: </p>
+                <input
+                  className="formInput"
                   type="text"
                   onChange={e => {
                     this.setState({ country: e.target.value });
@@ -444,14 +465,16 @@ class Cart extends Component {
                   placeholder="Country"
                   required
                 />
-                <div className="space" />
+                {/* <div className="space" />
+                <div id="paypal-button" />
+                <Stripe /> */}
+              </form>
+            ) : null}
+            <div className="space" />
                 <div id="paypal-button" />
                 <Stripe />
-              </form>
-            </div>
           </div>
-        {/* </div> */}
-        {/* !!!!!!!!!!!!!!!!!!!!!!!! */}
+        </div>
       </div>
     );
   }
