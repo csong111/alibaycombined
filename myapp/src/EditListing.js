@@ -7,6 +7,7 @@ import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
 import LogOutButton from "./page-elements.js/logout-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+import {Helmet} from 'react-helmet';
 
 class EditListing extends Component {
   constructor() {
@@ -101,6 +102,7 @@ class EditListing extends Component {
   render() {
     return (
       <div>
+        <Helmet bodyAttributes={{style: 'background-color : #ffecdf'}}/>
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
