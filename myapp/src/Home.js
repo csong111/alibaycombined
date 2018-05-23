@@ -19,7 +19,7 @@ class Home extends Component {
       featuredCat: [
         { name: "Featured Items", imageURL: "collections/1.jpg" },
         { name: "Popular", imageURL: "collections/2.jpg" },
-        { name: "Spring", imageURL: "collections/3.jpg" }
+        { name: "Summer", imageURL: "collections/3.jpg" }
       ],
       randomItems: [],
       query: ""
