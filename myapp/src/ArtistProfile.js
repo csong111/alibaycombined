@@ -116,7 +116,7 @@ class ArtistProfile extends Component {
         <div>
           <h4>Name: {this.state.artistName}</h4>
           <h4>Location: {this.state.location}</h4>
-          <h4>{this.state.bio}</h4>
+          <h4 className="restrictWidth">{this.state.bio}</h4>
         </div>
       );
     };
