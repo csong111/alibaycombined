@@ -251,7 +251,7 @@ class Cart extends Component {
               value={item.quantityToBuy}
               placeholder={item.quantity + " in stock"}
             />
-            <div className="space" />
+            <div className="spaceSmaller" />
             <button
               className="button noPad connect"
               onClick={() => {
@@ -331,7 +331,7 @@ class Cart extends Component {
             <div className="inputText">
               Total: <div className="bold">${total}</div>
             </div>
-
+            <div className="spaceSmaller" />
             <button
               className="button noPad connect"
               onClick={e => {
