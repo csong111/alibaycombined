@@ -1,6 +1,29 @@
+/* //////////// */
+
+
+
+/* /////////// */
+
 body {
   padding: 40px;
   padding-top: 20px;
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -67,6 +90,16 @@ hr {
   justify-content: center;
 }
 
+.vAlign {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.spaceCenter {
+  height: 100%;
+}
+
 @media only screen and (max-width: 600px) {
   .hideLogin{
     display: none;
@@ -128,6 +161,15 @@ p {
 h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 100;
+  font-size: 22pt;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 100;
+    font-size: 14pt;
+  }
 }
 
 h2 {
@@ -154,6 +196,12 @@ h6 {
   margin-top: 10px;
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 20pt;
+}
+
+.countDown {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+  font-size: 50pt;
 }
 
 @media only screen and (max-width: 600px) {
@@ -221,6 +269,7 @@ h6 {
 
 .logo {
   margin-left: 1%;
+  margin-top: 1px;
   margin-right: auto;
 }
 
