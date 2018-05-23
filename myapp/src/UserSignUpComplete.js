@@ -8,6 +8,7 @@ import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import ItemDetail from "./ItemDetail.js";
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
+import {Helmet} from 'react-helmet';
 import './App.css';
 
 class UserSignUpComplete extends Component{
@@ -25,9 +26,10 @@ class UserSignUpComplete extends Component{
 
     render() {
         return (
-          <div className="UserComp">
-           <h1>THANK YOU! YOU'RE NOW LOGGED IN.</h1>
-            <button onClick={this.redirect}>Back to Home</button>
+          <div>
+            <Helmet bodyAttributes={{style: 'background-color : #ffecdf'}}/>
+           <h1>Thank you! You're now logged in.</h1>
+            <button className="button noPad connect"onClick={this.redirect}>BACK TO HOME</button>
           </div>
         );
       }
