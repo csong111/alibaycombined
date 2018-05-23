@@ -54,7 +54,7 @@ class FeaturedCat extends Component {
             <SearchBar />
           </div>
 
-          <div className="flex">
+          <div className="flex moveOver">
             {this.props.email ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
             <span className="hideLogin">{this.props.email || this.props.artistID ? <LogOutButton />: null}</span>

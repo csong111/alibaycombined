@@ -208,7 +208,7 @@ class ViewPillowsInRoom extends Component {
             <SearchBar />
           </div>
 
-          <div className="flex">
+          <div className="flex moveOver">
             {this.props.email ? (
               <UserAccountButton userID={this.props.userID} />
             ) : null}

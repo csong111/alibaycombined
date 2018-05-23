@@ -70,10 +70,10 @@ class SearchResults extends Component {
             <SearchBar />
           </div>
 
-          <div className="flex">
+          <div className="flex moveOver">
             {this.props.email ? <UserAccountButton userID={this.props.userID} />: null}
             {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
-            {this.props.email || this.props.artistID ? <LogOutButton />: null}
+            <span className="hideLogin">{this.props.email || this.props.artistID ? <LogOutButton />: null}</span>
             {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
             {this.props.email ? <CartButton userID = {this.props.userID} counter={this.props.counter}  /> : null}
           </div>

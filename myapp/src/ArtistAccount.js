@@ -227,9 +227,6 @@ class ArtistAccount extends Component {
               <div>Instagram connected!</div>
             ): null}
 
-            <button className="button noPad connect" onClick={this.editInfo}>
-              EDIT INFO
-            </button>
           </div>
         );
       } else {
@@ -249,7 +246,7 @@ class ArtistAccount extends Component {
             <div className="spaceSmaller" />
             <textarea className="textAreaInput" value={this.state.bio} onChange={this.handleBioChange} />
             <br />
-            <button className="button noPad connect" onClick={this.saveInfo}>Save Info</button>
+            <button className="button noPad connect" onClick={this.saveInfo}>SAVE</button>
           </form>
         );
       }
@@ -269,7 +266,7 @@ class ArtistAccount extends Component {
             <SearchBar />
           </div>
 
-          <div className="flex">
+          <div className="flex moveOver">
             {this.props.artistID ? (
               <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
@@ -318,6 +315,9 @@ class ArtistAccount extends Component {
             </div>
             <span className="spaceLeft accountInfo">
               {accountInfo}
+              {!this.state.edit ? <button className="button noPad connect" onClick={this.editInfo}>
+              EDIT INFO
+            </button> : null}
               <button
                 className="button noPad connect"
                 onClick={this.createListing}
@@ -327,6 +327,7 @@ class ArtistAccount extends Component {
               <button className="button noPad connect" onClick={this.seeOrders}>
                 SEE ORDERS
               </button>
+
             </span>
           </div>
         </div>

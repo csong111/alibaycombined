@@ -5,7 +5,8 @@ import ArtistAccountButton from './page-elements.js/artist-account-button.js';
 import LogOutButton from "./page-elements.js/logout-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import { BrowserRouter, withRouter, Route, Link } from 'react-router-dom'
-
+import ConnectButton from "./page-elements.js/connect-button.js";
+import SearchBar from "./page-elements.js/search-bar.js";
 import './App.css';
 
 class Orders extends Component {
@@ -94,12 +95,43 @@ class Orders extends Component {
     })
 
         return (
-          <div className="ArtistProf">
+          <div className="ArtistProf">\
+
+{/*           
               <NavButton />
               <HomeButton />
               <ArtistAccountButton/>
-              <LogOutButton/>
-              <h1>Items sold</h1>
+              <LogOutButton/> */}
+
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+        <div className="headerElements sticky">
+          <NavButton />
+
+          <div className="logo">
+            <HomeButton />
+          </div>
+
+          <div className="search">
+            <SearchBar />
+          </div>
+
+          <div className="flex moveOver">
+            {this.props.artistID ? (
+              <ArtistAccountButton artistID={this.props.artistID} />
+            ) : null}
+            <span className="hideLogin">{this.props.artistID ? <LogOutButton /> : null}</span>
+            {!this.props.artistID ? <ConnectButton /> : null}
+          </div>
+        </div>
+
+        <div className="searchMobile space">
+          <SearchBar />
+        </div>
+        {/* NAV !!!!!!!!!!!!!!!!!!*/}
+
+
+
+              <h2 className="catName">ITEMS SOLD</h2>
               {!this.state.previousOrders ?
                <div className="failedAccount">No previous orders</div> :
               <div><div>{renderTitle}</div>
