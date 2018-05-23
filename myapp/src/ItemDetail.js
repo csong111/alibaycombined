@@ -95,7 +95,7 @@ class ItemDetail extends Component {
   render() {
     //fetch itemdetails from backend
     let details = () => {
-          return (<div className="space">
+          return (<div className="spaceBigger">
               <div className="bold">
                 <h5 className="bold">{this.state.name}</h5>
               </div>
@@ -103,7 +103,7 @@ class ItemDetail extends Component {
               <h4 className="blurb">{this.state.blurb}</h4>
               <h4>
                 Made by{" "}
-                <Link to={"/artistprofile/" + this.state.artistName}>
+                <Link className="a" to={"/artistprofile/" + this.state.artistName}>
                   {this.state.artistName}
                 </Link>
               </h4>
