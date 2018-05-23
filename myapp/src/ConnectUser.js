@@ -63,7 +63,7 @@ class ConnectUser extends Component {
       lastName: this.state.lastName,
       emailSignUp: this.state.emailSignUp,
       passwordSignUp: this.state.passwordSignUp,
-      passwordSignUpConf: this.state.passwordSignUpConf
+      passwordSignUpConf: this.state.passwordSignUpConf,
     });
 
     fetch("/userSignUp", { method: "POST", body: bod })

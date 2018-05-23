@@ -216,22 +216,22 @@ class ArtistAccount extends Component {
       if (this.state.edit === false) {
         return (
           <div>
-            <h4>Name: {this.state.artistName}</h4>
-            <h4>Location: {this.state.location}</h4>
-            <h4>{this.state.bio}</h4>
+            <h4>Name: <span className="bold">{this.state.artistName}</span></h4>
+            <h4>Location: <span className="bold">{this.state.location}</span></h4>
+            <h4 className="restrictWidth">{this.state.bio}</h4>
 
             {this.state.loaded ?
               this.state.showIGButton ? (
-              <button onClick={this.connectIG}>Connect with Instagram</button>
+              <button className="button noPad connect" onClick={this.connectIG}>CONNECT WITH INSTAGRAM</button>
             ) : (
-              <div>Instagram connected!</div>
+              <h4 className="bold">Instagram connected!</h4>
             ): null}
 
           </div>
         );
       } else {
         return (
-          <form>
+          <form className="restrictWidth">
             <input className="formInput"
               type="text"
               value={this.state.artistName}
@@ -292,7 +292,8 @@ class ArtistAccount extends Component {
             }
             placeholder="Upload Profile Pic Image"
           />
-          <div className="flex">
+          <div className="artistFlex">
+            
             <div className="center">
               <img className="profileImage" src={this.state.profPicURL} />
               <br />
@@ -342,7 +343,17 @@ class ArtistAccount extends Component {
         <div className="row" name="items">
           {itemsRendered}
         </div>
-        <div>Your IG Feed{this.renderIGPhotos()}</div>
+       
+
+        {!this.state.showIGButton ? 
+           <div>
+            <h2>YOUR INSTAGRAM FEED</h2>
+            <div>{this.renderIGPhotos()}</div>
+          </div>
+        : null}
+
+        
+        {/* <div>Your IG Feed{this.renderIGPhotos()}</div> */}
       </div>
     );
   }
