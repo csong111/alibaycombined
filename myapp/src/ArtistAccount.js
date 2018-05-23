@@ -23,7 +23,8 @@ class ArtistAccount extends Component {
       location: "",
       profPicURL: "",
       items: [],
-      showIGButton: true
+      showIGButton: true,
+      loaded : false,
     };
   }
 
@@ -37,6 +38,7 @@ class ArtistAccount extends Component {
     })
       .then(res => res.text())
       .then(resB => {
+        this.setState({loaded : true})
         let parsed = JSON.parse(resB);
      //   console.log("A--4", parsed);
         if (parsed.success !== false || parsed.success === undefined) {
@@ -218,20 +220,16 @@ class ArtistAccount extends Component {
             <h4>Location: {this.state.location}</h4>
             <h4>{this.state.bio}</h4>
 
-            {this.state.showIGButton ? (
+            {this.state.loaded ?
+              this.state.showIGButton ? (
               <button onClick={this.connectIG}>Connect with Instagram</button>
             ) : (
               <div>Instagram connected!</div>
-            )}
+            ): null}
 
             <button className="button noPad connect" onClick={this.editInfo}>
               EDIT INFO
             </button>
-
-            <button className="button noPad connect" onClick={this.connectIG}>CONNECT WITH INSTAGRAM</button>
-
-
-
           </div>
         );
       } else {
