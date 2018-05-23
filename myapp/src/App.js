@@ -53,9 +53,9 @@ class App extends Component {
       //console.log(this.state.cartItems)  
     })
   }
-  loginArtist = (e) => {
+  loginArtist = (e, n) => {
   //  console.log(e)
-    this.setState({artistID : e})
+    this.setState({artistID : e, artistName: n})
   }
   loginUser = (e, id, name) => {
     this.setState({email: e, userID: id, firstName: name})
@@ -111,7 +111,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/searchresults/:query"
-              render={(routerData)=>{return(<SearchResults counter={this.state.cartItems.length} query={routerData.match.params.query} artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<SearchResults artistID={this.state.artistID} userID={this.state.userID} counter={this.state.cartItems.length} query={routerData.match.params.query} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
@@ -135,8 +135,8 @@ class App extends Component {
             />
             <Route
               exact={true}
-              path="/orders/:artistName"
-              render={(routerData)=>{return(<Orders counter={this.state.cartItems.length} artistID={routerData.match.params.artistID} artistName={routerData.match.params.artistName} email={this.state.email}/>)}}
+              path="/orders/:artistID"
+              render={(routerData)=>{return(<Orders counter={this.state.cartItems.length} artistID={routerData.match.params.artistID} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}
@@ -176,12 +176,12 @@ class App extends Component {
             <Route
               exact={true}
               path="/viewprintsinroom/"
-              render={()=>{return(<ViewPrintsInRoom/>)}}
+              render={()=>{return(<ViewPrintsInRoom artistID={this.state.artistID} userID={this.state.userID}/>)}}
             />
             <Route
               exact={true}
               path="/viewpillowsinroom/"
-              render={()=>{return(<ViewPillowsInRoom/>)}}
+              render={()=>{return(<ViewPillowsInRoom artistID={this.state.artistID} userID={this.state.userID}/>)}}
             />
             <Route
               exact={false}

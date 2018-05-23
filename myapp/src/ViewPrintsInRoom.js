@@ -5,6 +5,7 @@ import NavButton from "./page-elements.js/nav-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
@@ -219,6 +220,7 @@ class ViewPrintsInRoom extends Component {
             {this.props.artistID ? (
               <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
+            {this.props.email || this.props.artistID ? <LogOutButton />: null}
             {!this.props.email && !this.props.artistID ? (
               <ConnectButton />
             ) : null}

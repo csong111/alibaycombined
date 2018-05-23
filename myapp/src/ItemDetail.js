@@ -107,12 +107,12 @@ class ItemDetail extends Component {
                   {this.state.artistName}
                 </Link>
               </h4>
-              <button
+              {this.props.artistID? null: <button
                 className="button noPad connect"
                 onClick={this.addToCart}
               >
                 ADD TO CART
-              </button>
+              </button>}
               {this.state.mustConnect? <div>Please log in or sign up</div>: null}
             </div>)
     }

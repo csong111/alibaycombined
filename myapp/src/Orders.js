@@ -44,7 +44,7 @@ class Orders extends Component {
     
     seeArtistAcct = () => {
 
-        this.props.history.push("/artistaccount/"+this.state.artistName)
+        this.props.history.push("/artistaccount/"+this.props.artistID)
     }
     
     render() {
@@ -95,10 +95,10 @@ class Orders extends Component {
 
         return (
           <div className="ArtistProf">
-              <NavButton />
-              <HomeButton />
-              <ArtistAccountButton/>
-              <LogOutButton/>
+              <NavButton artistID={this.props.artistID}/>
+              <HomeButton artistID={this.props.artistID}/>
+              <ArtistAccountButton artistID={this.props.artistID}/>
+              <LogOutButton />
               <h1>Items sold</h1>
               {!this.state.previousOrders ?
                <div className="failedAccount">No previous orders</div> :
