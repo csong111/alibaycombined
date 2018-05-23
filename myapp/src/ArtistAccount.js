@@ -343,12 +343,14 @@ class ArtistAccount extends Component {
         <div className="row" name="items">
           {itemsRendered}
         </div>
+       
 
-        
-
-        {!this.state.showIGButton ? (
-          <div>Your IG Feed{this.renderIGPhotos()}</div>
-        ): null}
+        {!this.state.showIGButton ? 
+           <div>
+            <h2>YOUR INSTAGRAM FEED</h2>
+            <div>{this.renderIGPhotos()}</div>
+          </div>
+        : null}
 
         
         {/* <div>Your IG Feed{this.renderIGPhotos()}</div> */}
