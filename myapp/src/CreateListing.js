@@ -186,7 +186,15 @@ class CreateListing extends Component {
           >
             UPLOAD ITEM IMAGE 1
           </button>
-          
+          <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img1: ""})
+              }}
+            >
+              REMOVE
+            </button>
           <br />
           <input
             id="createListingImg2"
@@ -209,6 +217,15 @@ class CreateListing extends Component {
           >
           UPLOAD ITEM IMAGE 2
           </button>
+          <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img2: ""})
+              }}
+            >
+              REMOVE
+            </button>
           <br />
           <input
             id="createListingImg3"
@@ -231,6 +248,15 @@ class CreateListing extends Component {
             >
             UPLOAD ITEM IMAGE 3
             </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img3: ""})
+              }}
+            >
+              REMOVE
+            </button>
           <div className="space" />
           <span className="inputText">Upload cutout image:</span>
              <br />
@@ -251,6 +277,15 @@ class CreateListing extends Component {
               }}
             >
             UPLOAD CUTOUT IMAGE
+            </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({cutout: ""})
+              }}
+            >
+              REMOVE
             </button>
 
 

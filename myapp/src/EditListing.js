@@ -200,6 +200,15 @@ class EditListing extends Component {
             >
               ADD/CHANGE IMAGE
             </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img1: ""})
+              }}
+            >
+              REMOVE
+            </button>
             <br />
             <img width="100px" src={this.state.img2} />
             <br />
@@ -222,7 +231,15 @@ class EditListing extends Component {
             >
               ADD/CHANGE IMAGE
             </button>
-
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img2: ""})
+              }}
+            >
+              REMOVE
+            </button>
             <br />
             <input
               id="createListingImg3"
@@ -245,7 +262,15 @@ class EditListing extends Component {
             >
               ADD/CHANGE IMAGE
             </button>
-
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({img3: ""})
+              }}
+            >
+              REMOVE
+            </button>
             <div className="space" />
             Upload cutout image:
             <br />
@@ -271,6 +296,15 @@ class EditListing extends Component {
               // width="50px"
             >
               ADD/CHANGE IMAGE
+            </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({cutout: ""})
+              }}
+            >
+              REMOVE
             </button>
             <div className="space" />
             <input className="submitButton" type="submit" value="" />
