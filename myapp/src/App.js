@@ -171,7 +171,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/checkoutcomplete/:orderNumber"
-              render={(routerData)=>{return(<CheckoutComplete counter={this.state.cartItems.length} cartItems={routerData.location.state} transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
+              render={(routerData)=>{return(<CheckoutComplete userID={this.state.userID} counter={this.state.cartItems.length} cartItems={routerData.location.state} transactionID={routerData.match.params.orderNumber} artistName={this.state.artistName} email={this.state.email}/>)}}
             />
             <Route
               exact={true}

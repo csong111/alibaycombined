@@ -14,6 +14,7 @@ class ArtistProfile extends Component {
   constructor() {
     super();
     this.state = {
+      loaded : false ,
       artistName: "",
       bio: "",
       location: "",
@@ -54,7 +55,7 @@ class ArtistProfile extends Component {
       .then(resB => {
         let parsed = JSON.parse(resB);
         //console.log(parsed)
-        this.setState({ items: parsed });
+        this.setState({ items: parsed, loaded: true });
       });
   
   
@@ -133,54 +134,53 @@ class ArtistProfile extends Component {
         </div>
       );
     });
-    return (
-      <div>
-        {/* NAV !!!!!!!!!!!!!!!!!!*/}
-        <div className="headerElements sticky">
-          <NavButton />
-
-          <div className="logo">
-            <HomeButton />
+    if(this.state.loaded === true){
+      return (
+        <div>
+          {/* NAV !!!!!!!!!!!!!!!!!!*/}
+          <div className="headerElements sticky">
+            <NavButton />
+  
+            <div className="logo">
+              <HomeButton />
+            </div>
+  
+            <div className="search">
+              <SearchBar />
+            </div>
+  
+            <div className="flex moveOver">
+              {this.props.email  ? <UserAccountButton userID={this.props.userID} /> : null}
+              {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} />: null}
+              <span className="hideLogin">{this.props.email || this.props.artistID ? <LogOutButton />: null}</span>
+              {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
+              {this.props.email ? <CartButton userID={this.props.userID} counter={this.props.counter} /> : null}
+            </div>
           </div>
-
-          <div className="search">
+  
+          <div className="searchMobile space">
             <SearchBar />
+          </div>  
+          <div className="artistProfile space">
+            <img className="profileImage" src={this.state.profPicURL} />
+            <span className="spaceLeft accountInfo">{accountInfo()}</span>
           </div>
-
-          <div className="flex moveOver">
-            {this.props.email  ? <UserAccountButton userID={this.props.userID} /> : null}
-            {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} />: null}
-            <span className="hideLogin">{this.props.email || this.props.artistID ? <LogOutButton />: null}</span>
-            {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
-            {this.props.email ? <CartButton userID={this.props.userID} counter={this.props.counter} /> : null}
+          <div className="space" />
+          <div className="space" />
+          <h4>Other items by this artist:</h4>
+          <div className="row">
+          {itemsRendered}
           </div>
-        </div>
-
-        <div className="searchMobile space">
-          <SearchBar />
-        </div>
-        {/* NAV !!!!!!!!!!!!!!!!!!*/}
-
-        <div className="artistProfile space">
-          <div className="artistFlex">
-          <img className="profileImage" src={this.state.profPicURL} />
-          <span className="spaceLeft accountInfo">{accountInfo()}</span>
+          <div className="space" />
+          {this.state.imgLinks ? <h2>{this.state.artistName.toUpperCase()}'S INSTAGRAM FEED</h2> : null}
+          <div className="row">
+          {this.renderIGPhotos()}
           </div>
         </div>
-
-        <div className="space" />
-        <div className="space" />
-        <h4>Other items by this artist:</h4>
-        <div className="row">
-        {itemsRendered}
-        </div>
-        <div className="space" />
-        {this.state.imgLinks ? <h2>{this.state.artistName.toUpperCase()}'S INSTAGRAM FEED</h2> : null}
-        <div className="row">
-        {this.renderIGPhotos()}
-        </div>
-      </div>
-    );
+      );
+    }else{
+      return (<div></div>)
+    }
   }
 }
 
