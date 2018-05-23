@@ -153,7 +153,7 @@ class ItemDetail extends Component {
           <div className="detailsMobile">{details()}</div>
             <div className="space">
           </div>
-          <ItemCarousel img1={this.state.img1} img2={this.state.img2}  img3={this.state.img3} src/>
+          <ItemCarousel  images={[this.state.img1, this.state.img2, this.state.img3]} src/>
           <div className="details">{details()}</div>
 
         </div>
