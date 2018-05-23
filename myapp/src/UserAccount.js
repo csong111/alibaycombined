@@ -229,7 +229,7 @@ class Account extends Component {
               onChange={this.handleCountryChange}
             />
             <br />
-            <button className="button noPad connect" onClick={this.saveAccount}>SAVE INFO</button>
+            <button className="button noPad connect" onClick={this.saveAccount}>SAVE</button>
           </form>
         );
       }
