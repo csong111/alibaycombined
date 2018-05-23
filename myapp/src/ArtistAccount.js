@@ -228,8 +228,6 @@ class ArtistAccount extends Component {
               EDIT INFO
             </button>
 
-            <button className="button noPad connect" onClick={this.connectIG}>CONNECT WITH INSTAGRAM</button>
-
 
 
           </div>
