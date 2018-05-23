@@ -119,7 +119,7 @@ class ArtistAccount extends Component {
     });
   };
   seeOrders = () => {
-    this.props.history.push("/orders/" + this.state.artistName);
+    this.props.history.push("/orders/" + this.props.artistID);
   };
   editInfo = () => {
     this.setState({ edit: true });
@@ -161,7 +161,7 @@ class ArtistAccount extends Component {
   };
 
   renderIGPhotos = () => {
-    console.log(this.state.imgURLs);
+    //console.log(this.state.imgURLs);
     if (!this.state.imgURLs) return null;
     return this.state.imgURLs.map((imgURL, id) => {
       return (

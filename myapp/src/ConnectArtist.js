@@ -81,7 +81,7 @@ class ConnectArtist extends Component {
       //  console.log(x);
         if (x.success) {
           //       console.log("this should be the name", x.RESB.artistName);
-          this.props.loginArtist(x.RESB.artistID); //change to artistName from backend
+          this.props.loginArtist(x.RESB.artistID, x.RESB.artistName); //change to artistName from backend
           this.setState({ loggedIn: true });
           // Fetch login in
           this.props.history.push("/");

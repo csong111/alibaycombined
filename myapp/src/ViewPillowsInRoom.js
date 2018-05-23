@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import NavButton from "./page-elements.js/nav-button.js";
+import LogOutButton from "./page-elements.js/logout-button.js";
 import HomeButton from "./page-elements.js/home-button.js";
 import ArtistAccount from "./ArtistAccount.js";
 import ArtistAccountButton from "./page-elements.js/artist-account-button.js";
@@ -215,6 +216,7 @@ class ViewPillowsInRoom extends Component {
             {this.props.artistID ? (
               <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
+            {this.props.email || this.props.artistID ? <LogOutButton />: null}
             {!this.props.email && !this.props.artistID ? (
               <ConnectButton />
             ) : null}

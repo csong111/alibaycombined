@@ -45,7 +45,7 @@ class Orders extends Component {
     
     seeArtistAcct = () => {
 
-        this.props.history.push("/artistaccount/"+this.state.artistName)
+        this.props.history.push("/artistaccount/"+this.props.artistID)
     }
     
     render() {
@@ -112,7 +112,7 @@ class Orders extends Component {
           </div>
 
           <div className="search">
-            <SearchBar />
+            <SearchBar artistID={this.props.artistID}/>
           </div>
 
           <div className="flex moveOver">
@@ -125,13 +125,19 @@ class Orders extends Component {
         </div>
 
         <div className="searchMobile space">
-          <SearchBar />
+          <SearchBar artistID={this.props.artistID}/>
         </div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
 
 
               <h2 className="catName">ITEMS SOLD</h2>
+          {/* <div className="ArtistProf">
+              <NavButton artistID={this.props.artistID}/>
+              <HomeButton artistID={this.props.artistID}/>
+              <ArtistAccountButton artistID={this.props.artistID}/>
+              <LogOutButton />
+              <h1>Items sold</h1> */}
               {!this.state.previousOrders ?
                <div className="failedAccount">No previous orders</div> :
               <div><div>{renderTitle}</div>

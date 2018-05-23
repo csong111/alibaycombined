@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://localhost:3000/orders/5afdc252f050e705bfccb9a6 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
+    <link rel="stylesheet" href="./React App_files/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <!-- Open Sans -->
+    <link href="./React App_files/css" rel="stylesheet">
+
+    <title>React App</title>
+  <script async="true" id="xo-pptm" src="./React App_files/pptm.js.download"></script><style type="text/css">body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+</style><style type="text/css">.carousel .control-arrow,.carousel.carousel-slider .control-arrow{-webkit-transition:all .25s ease-in;-o-transition:all .25s ease-in;transition:all .25s ease-in;opacity:.4;position:absolute;z-index:2;top:20px;background:0 0;border:0;font-size:32px;cursor:pointer}.carousel .control-arrow:hover{opacity:1}.carousel .control-arrow:before,.carousel.carousel-slider .control-arrow:before{margin:0 5px;display:inline-block;border-top:8px solid transparent;border-bottom:8px solid transparent;content:''}.carousel .control-disabled.control-arrow{opacity:0;cursor:inherit;display:none}.carousel .control-prev.control-arrow{left:0}.carousel .control-prev.control-arrow:before{border-right:8px solid #fff}.carousel .control-next.control-arrow{right:0}.carousel .control-next.control-arrow:before{border-left:8px solid #fff}.carousel{position:relative;width:100%}.carousel *{-webkit-box-sizing:border-box;box-sizing:border-box}.carousel button{outline:0;border:0;background:0 0}.carousel img{width:100%;display:inline-block;pointer-events:none}.carousel .carousel{position:relative}.carousel .control-arrow{top:50%;margin-top:-13px;font-size:18px}.carousel .thumbs-wrapper{margin:20px;overflow:hidden}.carousel .thumbs{-webkit-transition:all .15s ease-in;-o-transition:all .15s ease-in;transition:all .15s ease-in;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);position:relative;list-style:none;white-space:nowrap}.carousel .thumb{-webkit-transition:border .15s ease-in;-o-transition:border .15s ease-in;transition:border .15s ease-in;display:inline-block;width:80px;margin-right:6px;white-space:nowrap;overflow:hidden;border:3px solid #fff;padding:2px}.carousel .thumb.selected,.carousel .thumb:hover{border:3px solid #333;padding:2px}.carousel .thumb img{vertical-align:top}.carousel.carousel-slider{position:relative;margin:0;overflow:hidden}.carousel.carousel-slider .control-arrow{top:0;color:#fff;font-size:26px;bottom:0;margin-top:0;padding:5px}.carousel.carousel-slider .control-arrow:hover{background:rgba(0,0,0,.2)}.carousel .slider-wrapper{overflow:hidden;margin:auto;width:100%;-webkit-transition:height .15s ease-in;-o-transition:height .15s ease-in;transition:height .15s ease-in}.carousel .slider-wrapper.axis-horizontal .slider{-ms-box-orient:horizontal;display:-ms-flexbox;display:-moz-flex;display:flex}.carousel .slider-wrapper.axis-horizontal .slider .slide{-ms-flex-direction:column;flex-direction:column;-ms-flex-flow:column;flex-flow:column}.carousel .slider-wrapper.axis-vertical{-ms-box-orient:horizontal;display:-ms-flexbox;display:-moz-flex;display:flex}.carousel .slider-wrapper.axis-vertical .slider{-ms-flex-direction:column;flex-direction:column}.carousel .slider{margin:0;padding:0;position:relative;list-style:none;width:100%}.carousel .slider.animated{-webkit-transition:all .35s ease-in-out;-o-transition:all .35s ease-in-out;transition:all .35s ease-in-out}.carousel .slide{min-width:100%;margin:0;position:relative;text-align:center;background:#000}.carousel .slide img{width:100%;vertical-align:top;border:0}.carousel .slide iframe{display:inline-block;width:calc(100% - 80px);margin:0 40px 40px;border:0}.carousel .slide .legend{-webkit-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;position:absolute;bottom:40px;left:50%;margin-left:-45%;width:90%;border-radius:10px;background:#000;color:#fff;padding:10px;font-size:12px;text-align:center;opacity:.25;-webkit-transition:opacity .35s ease-in-out;-o-transition:opacity .35s ease-in-out;transition:opacity .35s ease-in-out}.carousel .control-dots{position:absolute;bottom:0;margin:10px 0;text-align:center;width:100%}@media (min-width:960px){.carousel .control-dots{bottom:0}}.carousel .control-dots .dot{-webkit-transition:opacity .25s ease-in;-o-transition:opacity .25s ease-in;transition:opacity .25s ease-in;opacity:.3;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.9);box-shadow:1px 1px 2px rgba(0,0,0,.9);background:#fff;border-radius:50%;width:8px;height:8px;cursor:pointer;display:inline-block;margin:0 8px}.carousel .control-dots .dot.selected,.carousel .control-dots .dot:hover{opacity:1}.carousel .carousel-status{position:absolute;top:0;right:0;padding:5px;font-size:10px;text-shadow:1px 1px 1px rgba(0,0,0,.9);color:#fff}.carousel:hover .slide .legend{opacity:1}</style><style type="text/css">body {
+  padding: 40px;
+  padding-top: 20px;
+}
+
+
+.xcomponent-outlet{
+  z-index: 0;
+}
+
+
+#mydiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+}
+
+#mydivheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+}
+
+/* Bootstrap Spacing Styles */
+
+.noPad {
+  padding: 0px;
+  margin: 0px;
+}
+
+.space {
+  padding: 10px;
+}
+
+.spaceSmaller {
+  padding: 5px;
+}
+
+.spaceLeft {
+  margin-left: 10px;
+}
+
+.spaceRight {
+  margin-left: 10px;
+}
+
+.formSpace {
+  padding: 15px;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+.centerContent {
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .hideLogin{
+    display: none;
+  }
+}
+
+/* Text Styles */
+
+.noLink {
+  text-decoration: none;
+  color:black
+}
+
+.noLink:hover {
+  color:black;
+  text-decoration: none;
+}
+
+.a {
+  color: gray;
+}
+
+.a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"),
+    url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2)
+      format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+p {
+  /* margin: 15px; */
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
+  margin: 0;
+  padding: 0;
+  /* text-align: center; */
+  /* line-height: 5px; */
+}
+
+@media only screen and (max-width: 768px) {
+  p {
+    font-size: 8pt;
+    margin: 0;
+    padding: 0;
+    /* margin: 12px; */
+    /* line-height: 12px; */
+  }
+}
+
+h2 {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+  font-size: 15pt;
+}
+
+h4 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
+}
+
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+
+h6 {
+  margin-top: 10px;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 20pt;
+}
+
+@media only screen and (max-width: 600px) {
+  h6 {
+    font-size: 12pt;
+  }
+}
+
+.inputText {
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.buttonText {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 11pt;
+}
+
+.fail {
+  font-family: "Open Sans", sans-serif;
+  margin-left: 15px;
+  font-size: 8pt;
+  color: darkred;
+  margin-bottom: 10px;
+}
+
+/* Placeholder */
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+}
+
+/* //////////// */
+
+/* Header Elements */
+
+.logo {
+  margin-left: 1%;
+  margin-right: auto;
+}
+
+.headerElements {
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  background-color: white;
+}
+
+.sticky {
+  position: fixed;
+  width: 95%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 20px;
+  margin-top: 0;
+  padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sticky {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.accountElements {
+  float: right;
+}
+
+/* .navIcon {
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+} */
+
+.navIcon {
+  margin-top: 5.5px;
+  background-image: url("/ui-elements/nav.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: 22px auto;
+  width: 22px;
+  height: 100%;
+  border: none;
+  outline: 0;
+  background-color: #fff
+}
+
+.navIcon:hover {
+  margin-top: 4px;
+  background-image: url("/ui-elements/navhover.png");
+  background-color: #fff
+}
+
+
+.closeNav {
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: 0;
+}
+
+
+
+.navPage {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  height: 75vh;
+}
+
+.connect {
+  font-family: "Open Sans Condensed", sans-serif;
+  margin-top: 2px;
+  vertical-align: middle;
+  font-size: 11pt;
+  /* font-weight: bolder; */
+}
+
+
+.line {
+  font-size: 10pt;
+  vertical-align: 2px;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .line {
+    font-size: 8pt;
+    vertical-align: 2px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+.closeButton {
+  margin-left: 5px;
+  vertical-align: 5px;
+}
+
+.flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.marginAuto {
+  margin: auto;
+  vertical-align: middle;
+}
+
+.uploadProfPic {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+.accountMobile {
+  font-size: 9.5pt;
+}
+}
+
+/* Home */
+
+.mainBanner {
+  margin-top: 45px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainBanner {
+    margin-top: 10px;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  font-size: 30pt;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: black;
+}
+
+.link:hover {
+  color: black;
+}
+
+/* Search Styles */
+
+.searchMobile {
+  text-align: center;
+}
+
+.search {
+  margin-right: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  .searchMobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    display: none;
+  }
+  .searchInput {
+    margin-top: 0;
+    width: 200px;
+  }
+  .headerElements {
+    display: -ms-flexbox;
+    display: flex;
+    height: 40px;
+    background-color: white;
+  }
+}
+
+.searchInput {
+  border: 0;
+  border-bottom: 1.5px solid black;
+  outline: 0;
+}
+
+/* Category Styles */
+
+.catName {
+  margin-top: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .catName {
+    margin-top: 10px;
+  }
+}
+
+/* Details */
+
+.detailsContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 65px;
+}
+
+@media only screen and (max-width: 600px) {
+  .detailsContainer {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0;
+  }
+}
+
+.blurb {
+  width: 230px;
+}
+
+.detailImage {
+  margin-bottom: 10px;
+}
+
+.detailsMobile {
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  .detailsMobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .details {
+    display: none;
+  }
+}
+
+/* Connect */
+
+.form {
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+.userButton {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 20px;
+  border: 0;
+  outline: 0;
+  background-color: #fff
+}
+
+.userButtonClick {
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 20px;
+  margin-bottom: 0;
+  background-color: #fafafa;
+  border: none;
+  outline: 0;
+}
+
+.artistButton {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 0;
+  outline: 0;
+  background-color: #fff
+}
+
+.artistButtonClick {
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 0;
+  background-color: #fafafa;
+  border: none;
+  outline: 0;
+}
+
+.formInput {
+  border: 0;
+  border-bottom: 1.5px solid black;
+  outline: 0;
+  background: none;
+  width: 100%;
+}
+
+.editInput {
+  border: 0;
+  border-bottom: 1.5px solid black;
+  outline: 0;
+  background: none;
+  width: 60%;
+}
+
+.textAreaInput {
+  /* border: 0; */
+  border: 1.5px solid black;
+  outline: 0;
+  background: none;
+  width: 100%;
+  padding: 10px;
+}
+
+.quantityInput {
+  border: 0;
+  border-bottom: 1.5px solid black;
+  outline: 0;
+  background: none;
+  width: 80px;
+  height: 30px;
+  font-size: 10pt;
+}
+
+/* .formInputLong {
+  width: 90%;
+  border: 0;
+  border-bottom: 1.5px solid black ;
+  outline: 0;
+  background: none;
+} */
+
+.submitButton {
+  margin-top: 5px;
+  width: 50px;
+  background-image: url("/ui-elements/submit.png");
+  background-color: #fafafa;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: 20px auto;
+  border: none;
+  outline: 0;
+}
+
+.connectHR {
+  margin-bottom: 25px;
+  margin-top: 8px;
+}
+
+/* Artist Profile */
+
+.artistProfile {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-top: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .artistProfile {
+    -ms-flex-pack: center;
+        justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+.profileImage {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .profileImage {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.accountInfo {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.artistAccount {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .artistAccount {
+    -ms-flex-pack: center;
+        justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+/* Artist Account */
+
+.artistAccountContainer {
+  margin-top: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .artistAccountContainer  {
+    margin-top: 10px;
+  }
+}
+
+/* LISTING FORM */
+
+.selectpicker {
+  padding-left: 5px;
+  background-color: #fafafa;
+  width: 150px;
+  height: 30px;
+  border: 0;
+  border-bottom: 1.5px solid black;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+}
+
+.submitButtonWhite {
+  margin-top: 5px;
+  width: 50px;
+  background-image: url("/ui-elements/submit.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: 20px auto;
+  border: none;
+  outline: 0;
+}
+
+
+/* ViewInRoom */
+
+.img2 {
+  position: absolute;
+  top:200px;
+  left:350px;
+  z-index: 1;
+}
+
+.img2:hover {
+  background-color: none !important;
+  border:none !important;
+  border: 3px dotted grey !important;
+    border-top-width:5px;
+    border-right-width:0px;
+    border-bottom-width:0px;
+    border-left-width:0px;
+}
+
+/* Mockup Styles */
+
+.noButton {
+  background: none;
+  border: none;
+  outline: 0;
+}
+
+.button {
+  background: none;
+  border: 1px solid black;
+  outline: 0;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 6px;
+  margin-left: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* .icon {
+  width: 30px;
+} */
+
+/* .search {
+  width: 30px;
+} */
+
+#paypal-button {
+  bottom: 400px;
+}
+
+
+.ordersTableData{
+  font-size: 12px;
+}
+.ordersTableItemNames{
+  list-style-type: none;
+}
+
+/*CART COUNTER BUTTON */
+
+.counter{
+  font-weight: bold;
+  margin-left: 3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
+}
+
+</style></head>
+  <body cz-shortcut-listen="true">
+    <script src="./React App_files/checkout.js.download"></script>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"><div class="App"><div><div class="ArtistProf"><div><button class="navIcon"></button></div><div><button class="noButton"><img width="100px" src="./React App_files/logo.png"></button></div><div><button class="noButton"><div class="connect"><span class="accountMobile bold">MY ACCOUNT</span></div></button></div><div><button class="noButton"><div class="connect"><span class="accountMobile bold">LOG OUT</span></div></button></div><h1>Items sold</h1><div class="failedAccount">No previous orders</div></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script type="text/javascript" src="./React App_files/bundle.js.download"></script>
+
+</body></html>
