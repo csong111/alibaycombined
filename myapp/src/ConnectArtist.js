@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+import {Helmet} from 'react-helmet';
 import "./App.css";
 
 class ConnectArtist extends Component {
@@ -127,6 +128,7 @@ class ConnectArtist extends Component {
   render() {
     return (
       <div>
+        <Helmet bodyAttributes={{style: 'background-color : #ffecdf'}}/>
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
@@ -281,7 +283,8 @@ class ConnectArtist extends Component {
                 <div><img width="100px " src={this.state.sProfPicURL} /></div>
                 {/* <br /> */}
               {/* // ) : ( */}
-                <button className="button noPad connect"
+                <button className="button noPad connect" type="button"
+                
                   onClick={() => {
                     document.getElementById("profilePic").click();
                   }}
@@ -319,7 +322,7 @@ class ConnectArtist extends Component {
             <img width="100px" src={this.state.sImageURL1} />
             <br />
             <button
-              className="button noPad connect"
+              className="button noPad connect" type="button"
               onClick={() => {
                 document.getElementById("sImageURL1").click();
               }}
@@ -351,7 +354,7 @@ class ConnectArtist extends Component {
             <img width="100px" src={this.state.sImageURL2} />
             <br />
             <button
-              className="button noPad connect"
+              className="button noPad connect" type="button"
               onClick={() => {
                 document.getElementById("sImageURL2").click();
               }}
@@ -382,7 +385,7 @@ class ConnectArtist extends Component {
             />
             <img width="100px" src={this.state.sImageURL3} />
             <br />
-            <button
+            <button type="button"
               className="button noPad connect"
               onClick={() => {
                 document.getElementById("sImageURL3").click();

@@ -8,6 +8,7 @@ import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
 import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
+import {Helmet} from 'react-helmet';
 import "./App.css";
 
 class ConnectUser extends Component {
@@ -94,6 +95,7 @@ class ConnectUser extends Component {
   render() {
     return (
       <div>
+        <Helmet bodyAttributes={{style: 'background-color : #ffecdf'}}/>
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
