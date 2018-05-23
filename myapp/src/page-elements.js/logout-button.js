@@ -11,7 +11,7 @@ class LogOutButton extends Component {
       <div>
         <button className="noButton" onClick={this.logout}>
           <div className="connect">
-          <span className="bold">LOG OUT</span>
+          <span className="accountMobile bold">LOG OUT</span>
           </div>
         </button>
       </div>

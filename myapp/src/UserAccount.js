@@ -147,6 +147,10 @@ class Account extends Component {
     this.setState({ editAccount: true });
   };
 
+  logout = () => {
+    window.location.reload(true);
+  };
+
   render() {
     var cartItems = this.state.itemsBought.map(item => {
       return item.cartItems;
@@ -190,37 +194,42 @@ class Account extends Component {
       } else {
         return (
           <form>
-            <input
-              type="text"
+            <input className="editInput"
+              placeholder="Address"
+              type="text" 
               value={this.state.address}
               onChange={this.handleAddressChange}
             />
             <br />
-            <input
-              type="text"
+            <input className="editInput"
+              placeholder="City"
+              type="text" 
               value={this.state.city}
               onChange={this.handleCityChange}
             />
             <br />
-            <input
-              type="text"
+            <input className="editInput"
+              placeholder="Province"
+              type="text" 
               value={this.state.province}
               onChange={this.handleProvinceChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder="Postal Code"
               type="text"
               value={this.state.postalCode}
               onChange={this.handlePostalCodeChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder="Country"
               type="text"
               value={this.state.country}
               onChange={this.handleCountryChange}
             />
             <br />
-            <button onClick={this.saveAccount}>SAVE INFO</button>
+            <button className="button noPad connect" onClick={this.saveAccount}>SAVE INFO</button>
           </form>
         );
       }
@@ -240,42 +249,54 @@ class Account extends Component {
             >
               EDIT ACCOUNT
             </button>
+            <br />
+            <button
+              className="button noPad connect"
+              onClick={this.logout}
+            >
+              LOG OUT
+            </button>
           </div>
         );
       } else {
         return (
           <form>
-            <input
+            <input className="editInput"
+              placeholder='First Name'
               type="text"
               value={this.state.firstName}
               onChange={this.handleFirstNameChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder='Last Name'
               type="text"
               value={this.state.lastName}
               onChange={this.handleLastNameChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder="Email"
               type="text"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder="Password"
               type="password"
               value={this.state.password}
               onChange={this.handlePasswordChange}
             />
             <br />
-            <input
+            <input className="editInput"
+              placeholder="Confirm Password"
               type="password"
               value={this.state.confirmPassword}
               onChange={this.handlePasswordConfChange}
             />
             <br />
-            <button onClick={this.saveAccount}>SAVE INFO</button>
+            <button className="button noPad connect" onClick={this.saveAccount}>SAVE</button>
           </form>
         );
       }

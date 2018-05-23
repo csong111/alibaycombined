@@ -227,26 +227,31 @@ class ArtistAccount extends Component {
             <button className="button noPad connect" onClick={this.editInfo}>
               EDIT INFO
             </button>
+
+            <button className="button noPad connect" onClick={this.connectIG}>CONNECT WITH INSTAGRAM</button>
+
+
+
           </div>
         );
       } else {
         return (
           <form>
-            <input
+            <input className="formInput"
               type="text"
               value={this.state.artistName}
               onChange={this.handleArtistNameChange}
             />
             <br />
-            <input
+            <input className="formInput"
               type="text"
               value={this.state.location}
               onChange={this.handleLocationChange}
             />
+            <div className="spaceSmaller" />
+            <textarea className="textAreaInput" value={this.state.bio} onChange={this.handleBioChange} />
             <br />
-            <textarea value={this.state.bio} onChange={this.handleBioChange} />
-            <br />
-            <button onClick={this.saveInfo}>Save Info</button>
+            <button className="button noPad connect" onClick={this.saveInfo}>Save Info</button>
           </form>
         );
       }
@@ -270,7 +275,7 @@ class ArtistAccount extends Component {
             {this.props.artistID ? (
               <ArtistAccountButton artistID={this.props.artistID} />
             ) : null}
-            {this.props.artistID ? <LogOutButton /> : null}
+            <span className="hideLogin">{this.props.artistID ? <LogOutButton /> : null}</span>
             {!this.props.artistID ? <ConnectButton /> : null}
           </div>
         </div>

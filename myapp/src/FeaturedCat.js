@@ -57,7 +57,7 @@ class FeaturedCat extends Component {
           <div className="flex">
             {this.props.email ? <UserAccountButton userID={this.props.userID}  /> : null}
             {this.props.artistID ? <ArtistAccountButton artistID={this.props.artistID} /> : null}
-            {this.props.email || this.props.artistID ? <LogOutButton />: null}
+            <span className="hideLogin">{this.props.email || this.props.artistID ? <LogOutButton />: null}</span>
             {!this.props.email && !this.props.artistID ? <ConnectButton /> : null}
             {this.props.email ? <CartButton userID = {this.props.userID} counter={this.props.counter}  /> : null}
           </div>
@@ -68,7 +68,14 @@ class FeaturedCat extends Component {
         </div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
-        <h2 className="catName">{this.props.cat}</h2>
+        <div className="catName">
+          <div className="flex">
+          <h2 className="">{this.props.cat}</h2>
+          <div className="marginAuto"/>
+          {this.props.cat === "Prints" ? <button className="button noPad connect"><Link className="noLink" to={"/viewprintsinroom"}> VIEW IN ROOM</Link></button> : null}
+          {this.props.cat === "Pillows" ? <button className="button noPad connect"><Link className="noLink" to={"/viewpillowsinroom"}> VIEW IN ROOM</Link></button> : null}
+          </div>
+        </div>
 
         <div name="cat-items" className="row">
           {itemsRendered}

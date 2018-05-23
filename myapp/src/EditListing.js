@@ -100,159 +100,182 @@ class EditListing extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
-        <div className="space" />
-
-        <h2>EDIT LISTING</h2>
-
-
-        <form onSubmit={this.handleSubmit}>
-        <div className="row">
-          <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-          Item Name: 
-          <input className="formInput"
-            type="text"
-            onChange={e => {
-              this.setState({ name: e.target.value });
-            }}
-            value={this.state.name}
-            placeholder="Name"
-          />
-          </div>
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-            Price: 
-          <input className="formInput"
-            type="text"
-            onChange={e => {
-              this.setState({ price: e.target.value });
-            }}
-            value={this.state.price}
-            placeholder="Price"
-          />
-          </div>
-            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
-            Quantity: 
-          <input className="formInput"
-            type="text"
-            onChange={e => {
-              this.setState({ quantity: e.target.value });
-            }}
-            value={this.state.quantity}
-            placeholder="Quantity Available"
-          />
-          </div>
-          </div>
-
-
-          <textarea className="textAreaInput"
-            rows="4"
-            cols="50"
-            onChange={e => {
-              this.setState({ blurb: e.target.value });
-            }}
-            value={this.state.blurb}
-            placeholder="A little blurb about the item"
-          />
-          <br />
-
-          Category:{" "}
-          <select
-            onChange={e => {
-              this.setState({ category: e.target.value });
-            }}
-            value={this.state.category}
-            placeholder="Category"
-          >
-            <option value="Prints">Prints</option>
-            <option value="Pillows">Pillows</option>
-            <option value="Embroidery">Embroidery</option>
-            <option value="Wallpaper">Wallpaper</option>
-            <option value="Curtains">Curtains</option>
-          </select>
-          <br />
-          Upload up to 3 images:
-          <br />
-          <input
-            id="createListingImg1"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img1")}
-            placeholder="Upload Item Image"
-          />
-          <img
-            onClick={() => {
-              document.getElementById("createListingImg1").click();
-            }}
-            src="/items/addimage.png"
-            height="50px"
-            width="50px"
-          />
-          {this.state.img1 !== "" ? (
+        {/* <div className="space" /> */}
+        <button className="userButtonClick buttonText bold">
+          EDIT LISTING
+        </button>
+        <div className="form">
+          <form onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                Item Name:
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ name: e.target.value });
+                  }}
+                  value={this.state.name}
+                  placeholder="Name"
+                />
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                Price:
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ price: e.target.value });
+                  }}
+                  value={this.state.price}
+                  placeholder="Price"
+                />
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 noPad formSpace">
+                Quantity:
+                <input
+                  className="formInput"
+                  type="text"
+                  onChange={e => {
+                    this.setState({ quantity: e.target.value });
+                  }}
+                  value={this.state.quantity}
+                  placeholder="Quantity Available"
+                />
+              </div>
+            </div>
+            <br />
+            <textarea
+              className="textAreaInput"
+              rows="4"
+              cols="50"
+              onChange={e => {
+                this.setState({ blurb: e.target.value });
+              }}
+              value={this.state.blurb}
+              placeholder="A little blurb about the item"
+            />
+            <div className="space" />
+            Category:{" "}
+            <select
+              className="selectpicker inputText"
+              onChange={e => {
+                this.setState({ category: e.target.value });
+              }}
+              value={this.state.category}
+              placeholder="Category"
+            >
+              <option value="Prints">Prints</option>
+              <option value="Pillows">Pillows</option>
+              <option value="Embroidery">Embroidery</option>
+              <option value="Wallpaper">Wallpaper</option>
+              <option value="Curtains">Curtains</option>
+            </select>
+            <div className="space" />
+            Upload up to 3 images:
+            <br />
+            <input
+              id="createListingImg1"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event => this.uploadFile(event.target.files[0], "img1")}
+              placeholder="Upload Item Image"
+            />
+            <br />
             <img width="100px" src={this.state.img1} />
-          ) : null}
-          <br />
-          <input
-            id="createListingImg2"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img2")}
-            placeholder="Upload Item Image"
-          />
-          <img
-            onClick={() => {
-              document.getElementById("createListingImg2").click();
-            }}
-            src="/items/addimage.png"
-            height="50px"
-            width="50px"
-          />
-          {this.state.img2 !== "" ? (
+            <br />
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("createListingImg1").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              ADD/CHANGE IMAGE
+            </button>
+            <br />
             <img width="100px" src={this.state.img2} />
-          ) : null}
-          <br />
-          <input
-            id="createListingImg3"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "img3")}
-            placeholder="Upload Item Image"
-          />
-          <img
-            onClick={() => {
-              document.getElementById("createListingImg3").click();
-            }}
-            src="/items/addimage.png"
-            height="50px"
-            width="50px"
-          />
-          {this.state.img3 !== "" ? (
-            <img width="100px" src={this.state.img3} />
-          ) : null}
-          <br />
-          <input
-            id="cutoutimg"
-            style={{ display: "none" }}
-            type="file"
-            onChange={event => this.uploadFile(event.target.files[0], "cutout")}
-            placeholder="Upload Cutout Image"
-          />
-          <img
-            onClick={() => {
-              document.getElementById("cutoutimg").click();
-            }}
-            src="/items/addimage.png"
-            height="50px"
-            width="50px"
-          />
-          {this.state.cutout !== "" ? (
+            <br />
+            <input
+              id="createListingImg2"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event => this.uploadFile(event.target.files[0], "img2")}
+              placeholder="Upload Item Image"
+            />
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("createListingImg2").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              ADD/CHANGE IMAGE
+            </button>
+
+            <br />
+            <input
+              id="createListingImg3"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event => this.uploadFile(event.target.files[0], "img3")}
+              placeholder="Upload Item Image"
+            />
+             <img width="100px" src={this.state.img3} />
+             <br />
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("createListingImg3").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              ADD/CHANGE IMAGE
+            </button>
+
+            <div className="space" />
+            Upload cutout image:
+            <br />
+            <input
+              id="cutoutimg"
+              style={{ display: "none" }}
+              type="file"
+              onChange={event =>
+                this.uploadFile(event.target.files[0], "cutout")
+              }
+              placeholder="Upload Cutout Image"
+            />
             <img width="100px" src={this.state.cutout} />
-          ) : null}
-          <br />
-          <input type="submit" />
-        </form>
+            <br />
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                document.getElementById("cutoutimg").click();
+              }}
+              // src="/items/addimage.png"
+              // height="50px"
+              // width="50px"
+            >
+              ADD/CHANGE IMAGE
+            </button>
+            <div className="space" />
+            <input className="submitButton" type="submit" value="" />
+          </form>
+        </div>
       </div>
     );
   }
