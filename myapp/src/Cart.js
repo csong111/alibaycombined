@@ -195,7 +195,8 @@ class Cart extends Component {
       //.then(e=>{console.log("removeItem-4",e);return e})
       .then(res => {
         if (res.success) {
-          console.log(this.state.cartItems, tempCartItems);
+          //console.log(this.state.cartItems, tempCartItems);
+          this.getCart()
           this.setState({
             cartItems: tempCartItems
           });
