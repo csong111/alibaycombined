@@ -7,9 +7,7 @@ import HomeButton from "./page-elements.js/home-button.js";
 import CartButton from "./page-elements.js/cart-button.js";
 import ConnectButton from "./page-elements.js/connect-button.js";
 import SearchBar from "./page-elements.js/search-bar.js";
-import ItemDetail from "./ItemDetail.js";
 import Item from "./page-elements.js/Item.js";
-import { BrowserRouter, withRouter, Route, Link } from "react-router-dom";
 import "./App.css";
 
 class ArtistProfile extends Component {
@@ -20,7 +18,8 @@ class ArtistProfile extends Component {
       bio: "",
       location: "",
       profPicURL: "",
-      items: []
+      items: [],
+      igData: []
     };
   }
   componentDidMount() {
@@ -58,16 +57,24 @@ class ArtistProfile extends Component {
         this.setState({ items: parsed });
       });
   
+  
+
 
     fetch("/checkToken", {
       method: "POST",
       body: JSON.stringify({artistName: this.props.artistName })
     }).then(res=>res.text())
       .then(resB=> {
-        if (resB) {
-        let parsed = JSON.parse(resB);
+
+        if (resB){
+        let parsed = JSON.parse(resB)
+        if (parsed.success !== false || parsed.success === undefined) {
+          parsed = {
+            success: parsed.success,
+            ...JSON.parse(parsed.RESB)
+          };
+
         let IGData = parsed.data;
-        console.log("HEYJACQUES", IGData)
         let imgInfo = IGData.map(item=>{
           return item.images;
         })
@@ -82,8 +89,7 @@ class ArtistProfile extends Component {
         })
         //console.log("HELLO", imgLinks)
         this.setState({imgURLs: imgURLs, imgLinks: imgLinks})
-        console.log("HELLO", this.state.imgLinks)
-      }})
+      }}})
   }
 
   renderIGPhotos = () => {
@@ -101,6 +107,8 @@ class ArtistProfile extends Component {
   }
 
   render() {
+
+  
     let accountInfo = () => {
       return (
         <div>
