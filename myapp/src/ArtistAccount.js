@@ -252,7 +252,7 @@ class ArtistAccount extends Component {
         );
       }
     })();
-
+    if (this.state.loaded ===true){
     return (
       <div className="ArtistProf">
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
@@ -359,8 +359,10 @@ class ArtistAccount extends Component {
         {/* <div>Your IG Feed{this.renderIGPhotos()}</div> */}
       </div>
     );
+  } else{
+    return (<div></div>)
   }
 }
-
+}
 let Content = withRouter(ArtistAccount);
 export default Content;

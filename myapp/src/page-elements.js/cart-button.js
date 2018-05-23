@@ -15,9 +15,9 @@ class CartButton extends Component {
     }
   render() {
     return (
-      <div>
+      <div >
         <button className="noButton flex" onClick={this.goToCart}>
-        <img width="25px" src='/ui-elements/cart.png' />
+        <img className="cartSmaller" width="25px" src='/ui-elements/cart.png' />
         <div className="counter">{this.props.counter}</div>
         </button>
 

@@ -162,9 +162,12 @@ class ArtistProfile extends Component {
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
         <div className="artistProfile space">
+          <div className="artistFlex">
           <img className="profileImage" src={this.state.profPicURL} />
           <span className="spaceLeft accountInfo">{accountInfo()}</span>
+          </div>
         </div>
+
         <div className="space" />
         <div className="space" />
         <h4>Other items by this artist:</h4>
