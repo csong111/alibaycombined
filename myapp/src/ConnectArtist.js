@@ -292,7 +292,15 @@ class ConnectArtist extends Component {
                 CHOOSE FILE
                 </button>
               {/* )} */}
-              
+              <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({sProfPicURL: ""})
+              }}
+            >
+              REMOVE
+            </button>
             </div>
             {/* <p>{this.state.sProfPicURL}</p>
                     <input type="file" onChange={event => this.uploadFile(event.target.files[0])} placeholder="Upload Proflile Picture" required/> */}
@@ -321,6 +329,15 @@ class ConnectArtist extends Component {
             >
               SUBMISSION 1
             </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({sImageURL1: ""})
+              }}
+            >
+              REMOVE
+            </button>
             <br />
             <input
               id="sImageURL2"
@@ -344,6 +361,15 @@ class ConnectArtist extends Component {
             >
               SUBMISSION 2
             </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({sImageURL2: ""})
+              }}
+            >
+              REMOVE
+            </button>
             <br />
             <input
               id="sImageURL3"
@@ -366,6 +392,15 @@ class ConnectArtist extends Component {
               // width="50px"
             >
               SUBMISSION 3
+            </button>
+            <button
+              type="button"
+              className="button noPad connect"
+              onClick={() => {
+                this.setState({sImageURL3: ""})
+              }}
+            >
+              REMOVE
             </button>
             <div className="space" />
             <input className="submitButton" value="" type="submit" />
