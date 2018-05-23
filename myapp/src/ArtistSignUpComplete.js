@@ -19,9 +19,9 @@ class ArtistSignUpComplete extends Component {
   }
 
   componentDidMount = () => {
-    // setInterval(() =>
-    //   this.setState({counter: this.state.counter-1}
-    // ), 1000)
+    setInterval(() =>
+      this.setState({counter: this.state.counter-1}
+    ), 1000)
   };
 
   redirect = () => {
@@ -47,7 +47,7 @@ class ArtistSignUpComplete extends Component {
             </h1>
             {this.timeUp()}
             <br />
-            <h5>You will be redirected back to Home in:</h5>
+            <h5>Redirecting back to home in:</h5>
             <div className="countDown">{this.state.counter}</div>
             <button
               width="100px"

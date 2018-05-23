@@ -164,7 +164,7 @@ class ArtistAccount extends Component {
     //console.log(this.state.imgURLs);
     if (!this.state.imgURLs) return null;
     return this.state.imgURLs.map((imgURL, id) => {
-      return (
+      return (<div className="col-6 col-lg-2 col-md-3 col-sm-4 col-xs-6 noPad space">
         <img
           src={imgURL}
           onClick={() => {
@@ -175,6 +175,7 @@ class ArtistAccount extends Component {
             );
           }}
         />
+        </div>
       );
     });
   };
@@ -344,11 +345,13 @@ class ArtistAccount extends Component {
           {itemsRendered}
         </div>
        
-
+        <div className="space" />
         {!this.state.showIGButton ? 
            <div>
             <h2>YOUR INSTAGRAM FEED</h2>
-            <div>{this.renderIGPhotos()}</div>
+            <div className="row">
+            {this.renderIGPhotos()}
+            </div>
           </div>
         : null}
 

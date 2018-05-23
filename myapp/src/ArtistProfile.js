@@ -95,7 +95,9 @@ class ArtistProfile extends Component {
   renderIGPhotos = () => {
     if (!this.state.imgURLs) return null;
     return this.state.imgURLs.map((imgURL, id) => {
-      return <img src={imgURL} onClick={()=>{this.openInNewTab(this.state.imgLinks[id], window.innerWidth/2, window.innerHeight/1.5)}}></img>
+      return <div className="col-6 col-lg-2 col-md-3 col-sm-4 col-xs-6 noPad space">
+      <img src={imgURL} onClick={()=>{this.openInNewTab(this.state.imgLinks[id], window.innerWidth/2, window.innerHeight/1.5)}}></img>
+      </div>
     })
   }
   openInNewTab = (url, w, h) => {
@@ -166,8 +168,14 @@ class ArtistProfile extends Component {
         <div className="space" />
         <div className="space" />
         <h4>Other items by this artist:</h4>
-        <div className="row">{itemsRendered}</div>
-        <div>{this.renderIGPhotos()}</div>
+        <div className="row">
+        {itemsRendered}
+        </div>
+        <div className="space" />
+        {this.state.imgLinks ? <h2>{this.state.artistName.toUpperCase()}'S INSTAGRAM FEED</h2> : null}
+        <div className="row">
+        {this.renderIGPhotos()}
+        </div>
       </div>
     );
   }
