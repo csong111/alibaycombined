@@ -106,7 +106,7 @@ class App extends Component {
             <Route
               exact={true}
               path="/cart/:userID"
-              render={(routerData)=>{return(<Cart setCartItems ={this.setCartItems} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
+              render={(routerData)=>{return(<Cart counter={this.state.cartItems.length} setCartItems ={this.setCartItems} artistName={this.state.artistName} email={this.state.email} userID={routerData.match.params.userID}/>)}}
             />
             <Route
               exact={true}

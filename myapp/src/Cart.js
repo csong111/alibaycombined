@@ -47,9 +47,7 @@ class Cart extends Component {
     };
   }
 
-  //do a fetch to getCart  and  then setState with the items.
-  //getUser details to prepopulate the shipping info.
-  componentDidMount() {
+  getCart = () => {
     var body = {
       userID: this.props.userID
     };
@@ -67,32 +65,13 @@ class Cart extends Component {
         //console.log(this.state.cartItems)
         this.getUserDetails();
       });
-    // getCartItemDetails = async items => {
-    //   let responses = await Promise.all(
-    //     this.state.cartItems.map(item=>
-    //       fetch("getItemDetails?itemID="+item.itemID, {
-    //         method: "GET",
-    //       }).then(res=>res.text())
-    //         .then(resB=>{
-    //           let parsed=JSON.parse(resB)
-    //           return parsed;
-    //         })
-    //   )); this.setState({cartItems: responses})
-    // }
+  }
 
-    // fetch("/getItemDetails?itemID="+this.props.itemID, {
-    //   method: 'GET',
-    // }).then(res=>res.text())
-    //   .then(resB=>{
-    //     let parsed=JSON.parse(resB);
-    //     console.log(parsed)
-    //     let name=parsed.name;
-    //     let imageURL=parsed.imageURL;
-    //     let blurb=parsed.blurb;
-    //     let artistName=parsed.artistName;
-    //     let price=parsed.price;
-    //     this.setState({name: name, imageURL: imageURL, blurb: blurb, artistName: artistName, price: price})
-    // })
+  //do a fetch to getCart  and  then setState with the items.
+  //getUser details to prepopulate the shipping info.
+  componentDidMount() {
+    this.getCart()
+
 
     var self = this;
     window.paypal.Button.render(
@@ -161,7 +140,7 @@ class Cart extends Component {
   buy = () => {
     // addTransaction
     let date = new Date();
-    var body = JSON.stringify({
+    var body = ({
       // Shipping Infos
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -177,17 +156,19 @@ class Cart extends Component {
       cartItems: this.state.cartItems,
       date: date
     });
-    //console.log("createTransaction-1",body)
+    console.log("checkout-1",body)
     fetch("/checkout", {
       method: "POST",
-      body: body
+      body: JSON.stringify(body)
     })
       .then(res => res.text())
       .then(res => {
-        console.log(res);
+        console.log("checkout-4",res);
         let parsed = JSON.parse(res);
+        var postCartItems = JSON.parse(JSON.stringify(this.state.cartItems))
+        this.getCart()
         this.props.history.push("/checkoutcomplete/" + parsed, {
-          cartItems: this.state.cartItems
+          cartItems: postCartItems
         });
       });
   };
@@ -229,6 +210,7 @@ class Cart extends Component {
       total += Number(item.price) * Number(item.quantityToBuy);
       return (
         <div className="flex" key={id}>
+        {/* <button onClick={this.buy}>Temp</button> */}
           <div>
             <img width="150px" src={item.img1} />
             <div className="spaceSmaller" />
