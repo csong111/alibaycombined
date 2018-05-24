@@ -133,7 +133,7 @@ class ConnectArtist extends Component {
           <img src="/ui-elements/close.png" width="20px" />
         </button>
         <button className="userButton buttonText bold" onClick={this.bringU}>
-          I'M A USER
+          I'M A SHOPPER
         </button>
         <button className="artistButtonClick buttonText bold">
           I'M AN ARTIST

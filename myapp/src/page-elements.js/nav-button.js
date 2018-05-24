@@ -6,12 +6,11 @@ class NavButton extends Component {
     constructor(props){
         super(props)
         this.state = {
-
         }
     }
 
     bring = (event) => {
-      console.log("hey")
+      // console.log("hey")
       event.preventDefault();
       this.props.history.push("/nav")
     }

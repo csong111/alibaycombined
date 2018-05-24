@@ -99,7 +99,7 @@ class ConnectUser extends Component {
         <button className="closeButton noPad noButton" onClick={this.back}>
           <img src="/ui-elements/close.png" width="20px" />
         </button>
-        <button className="userButtonClick buttonText bold">I'M A USER</button>
+        <button className="userButtonClick buttonText bold">I'M A SHOPPER</button>
         <button className="artistButton buttonText bold" onClick={this.bringA}>
           I'M AN ARTIST
         </button>

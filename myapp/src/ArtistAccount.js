@@ -280,9 +280,9 @@ class ArtistAccount extends Component {
           <SearchBar />
         </div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
-
-        <h2 className="artistAccountContainer">MY ACCOUNT</h2>
-
+        {/* <div className="space" /> */}
+        <h2 className="catName">MY ACCOUNT</h2>
+       
         <div className="artistAccount space">
           <input
             id="changeProfile"
@@ -315,7 +315,7 @@ class ArtistAccount extends Component {
           width="50px"
         /> */}
             </div>
-            <span className="spaceLeft accountInfo">
+            <span className="spaceLeftTwo accountInfo">
               {accountInfo}
               {!this.state.edit ? <button className="button noPad connect" onClick={this.editInfo}>
               EDIT INFO

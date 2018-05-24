@@ -23,8 +23,8 @@ class ViewPrintsInRoom extends Component {
       img3: "",
       itemsInCat: [],
       canMove: false,
-      imgX: 360,
-      imgY: 130
+      imgX: 400,
+      imgY: 150
     };
   }
 
@@ -242,15 +242,15 @@ class ViewPrintsInRoom extends Component {
           {this.state.img1 ? (
             <div
               style={{
-                width: "700px",
+                width: "800px",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "100%",
-                backgroundSize: "700px auto",
+                backgroundSize: "800px auto",
                 backgroundImage: "url(" + this.state.img1 + ")"
               }} >
               <img
                 id="outImg"
-                width="700px"
+                width="800px"
                 src={this.state.img1}
                 style={{ visibility: "hidden" }}
               />
@@ -259,15 +259,15 @@ class ViewPrintsInRoom extends Component {
           ) : (
             <div
               style={{
-                width: "700px",
+                width: "800px",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "100%",
-                backgroundSize: "700px auto",
+                backgroundSize: "800px auto",
                 backgroundImage: "url(" + "room/test.jpg" + ")"
               }} >
               <img
                 id="outImg"
-                width="700px"
+                width="800px"
                 src="room/test.jpg"
                 style={{ visibility: "hidden" }}
               />
@@ -300,7 +300,7 @@ class ViewPrintsInRoom extends Component {
           >
             CHANGE BACKGROUND IMAGE
           </button>
-
+          <div className="space" />
           <div className="row">{itemsRendered}</div>
         </div>
       </div>

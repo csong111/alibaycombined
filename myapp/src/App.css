@@ -48,7 +48,7 @@ body {
   color: #fff;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   body {
     padding: 20px;
   }
@@ -78,6 +78,10 @@ body {
 
 .spaceLeft {
   margin-left: 10px;
+}
+
+.spaceLeftTwo {
+  margin-left: 20px;
 }
 
 .spaceRight {
@@ -110,7 +114,7 @@ hr {
   text-align: left;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .leftAlign{
     margin-top: 10px;
     text-align: center;
@@ -121,7 +125,7 @@ hr {
   height: 100%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .hideLogin{
     display: none;
   }
@@ -162,16 +166,16 @@ hr {
 p {
   /* margin: 15px; */
   font-family: "Open Sans", sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
   margin: 0;
   padding: 0;
   /* text-align: center; */
   /* line-height: 5px; */
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 760px) {
   p {
-    font-size: 8pt;
+    font-size: 10.5pt;
     margin: 0;
     padding: 0;
     /* margin: 12px; */
@@ -185,7 +189,7 @@ h1 {
   font-size: 22pt;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   h1 {
     font-family: "Open Sans", sans-serif;
     font-weight: 100;
@@ -200,23 +204,37 @@ h2 {
 h3 {
   font-family: "Open Sans", sans-serif;
   font-weight: 100;
-  font-size: 15pt;
+  font-size: 17pt;
 }
 
 h4 {
   font-family: "Open Sans", sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
+  line-height: 20px;
 }
 
 h5 {
   font-family: "Open Sans", sans-serif;
-  font-size: 11pt;
+  font-size: 12pt;
+  line-height: 20px;
 }
 
 h6 {
   margin-top: 10px;
   font-family: "Open Sans Condensed", sans-serif;
-  font-size: 20pt;
+  font-size: 25pt;
+}
+
+h7 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13pt;
+  line-height: 20px;
+}
+
+@media only screen and (max-width: 760px) {
+  h6 {
+    font-size: 16pt;
+  }
 }
 
 .countDown {
@@ -225,15 +243,11 @@ h6 {
   font-size: 50pt;
 }
 
-@media only screen and (max-width: 600px) {
-  h6 {
-    font-size: 12pt;
-  }
-}
+
 
 .inputText {
   font-family: "Open Sans", sans-serif;
-  font-size: 11pt;
+  font-size: 12pt;
 }
 
 .bold {
@@ -246,7 +260,7 @@ h6 {
 
 .buttonText {
   font-family: "Open Sans Condensed", sans-serif;
-  font-size: 11pt;
+  font-size: 13pt;
 }
 
 .fail {
@@ -290,17 +304,39 @@ h6 {
 
 .logo {
   margin-left: 1%;
-  margin-top: 1px;
+  margin-top: 0px;
   margin-right: auto;
 }
 
-@media only screen and (max-width: 600px) {
+.cartAdjust {
+  margin-top: 4px;
+}
+
+@media only screen and (max-width: 800px) {
+  .logo {
+    margin-left: 1%;
+    margin-top: 3px;
+    margin-right: auto;
+  }
   .logoSmaller {
-    max-width: 115px;
+    max-width: 170px;
+  }
+}
+
+
+@media only screen and (max-width: 760px) {
+  .logo {
+    margin-left: 1%;
+    margin-top: 2px;
+    margin-right: auto;
+  }
+
+  .logoSmaller {
+    max-width: 165px;
   }
   .cartSmaller {
-    margin-top: 5px;
-    max-width: 18px;
+    margin-top: 2px;
+    max-width: 23px;
   }
 }
 
@@ -322,7 +358,7 @@ h6 {
   padding: 20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .sticky {
     position: relative;
     margin: 0;
@@ -342,12 +378,12 @@ h6 {
 } */
 
 .navIcon {
-  margin-top: 5.5px;
+  margin-top: 5px;
   background-image: url("/ui-elements/nav.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-size: 22px auto;
-  width: 22px;
+  background-size: 26px auto;
+  width: 26px;
   height: 100%;
   border: none;
   outline: 0;
@@ -383,22 +419,22 @@ h6 {
   font-family: "Open Sans Condensed", sans-serif;
   margin-top: 2px;
   vertical-align: middle;
-  font-size: 11pt;
+  font-size: 14pt;
   /* font-weight: bolder; */
 }
 
 
 .line {
   font-size: 10pt;
-  vertical-align: 2px;
+  vertical-align: 3px;
   margin: 0;
   padding: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .line {
     font-size: 8pt;
-    vertical-align: 2px;
+    vertical-align: 3px;
     margin: 0;
     padding: 0;
   }
@@ -414,13 +450,15 @@ h6 {
   display: flex;
 }
 
-
+.moveOver2 {
+  margin-right: 50px;
+}
 
 .moveOver {
   margin-right: 4%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .moveOver {
     margin-right: 0;
   }
@@ -437,9 +475,9 @@ h6 {
   height: 60px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
 .accountMobile {
-  font-size: 9.5pt;
+  font-size: 12pt;
 }
 }
 
@@ -449,7 +487,7 @@ h6 {
   margin-top: 45px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .mainBanner {
     margin-top: 10px;
   }
@@ -461,7 +499,7 @@ ul {
 }
 
 .link {
-  font-size: 30pt;
+  font-size: 36pt;
   font-family: "Open Sans Condensed", sans-serif;
   color: black;
 }
@@ -480,13 +518,13 @@ ul {
   margin-right: 10px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 760px) {
   .searchMobile {
     display: none;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .search {
     display: none;
   }
@@ -510,10 +548,10 @@ ul {
 /* Category Styles */
 
 .catName {
-  margin-top: 55px;
+  margin-top: 70px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .catName {
     margin-top: 10px;
   }
@@ -527,7 +565,7 @@ ul {
   margin-top: 65px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .detailsContainer {
     display: block;
     margin: 0 auto;
@@ -536,8 +574,8 @@ ul {
 }
 
 .blurb {
-  width: 230px;
-  line-height: 18px;
+  width: 250px;
+  line-height: 20px;
 }
 
 .detailImage {
@@ -548,13 +586,13 @@ ul {
   margin-top: 10px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 760px) {
   .detailsMobile {
     display: none;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .details {
     display: none;
   }
@@ -658,7 +696,7 @@ ul {
   background-color: #fff;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-size: 20px auto;
+  background-size: 22px auto;
   border: none;
   outline: 0;
 }
@@ -676,7 +714,7 @@ ul {
   margin-top: 55px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .artistProfile {
     justify-content: center;
     margin-top: 10px;
@@ -685,16 +723,17 @@ ul {
 
 .profileImage {
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  margin-right: 10px;
+  width: 170px;
+  height: 170px;
+  margin-right: 15px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .profileImage {
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
+    margin-right: 0;
   }
 }
 
@@ -713,7 +752,7 @@ ul {
   display: flex;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .artistFlex {
     display: block;
   }
@@ -721,11 +760,12 @@ ul {
 
 
 .restrictWidth {
-  max-width: 280px;
-  width: 280px;
+  max-width: 300px;
+  width: 300px;
 }
 
-@media only screen and (max-width: 600px) {
+
+@media only screen and (max-width: 760px) {
   .artistAccount {
     justify-content: center;
     margin-top: 10px;
@@ -738,7 +778,7 @@ ul {
   margin-top: 55px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .artistAccountContainer  {
     margin-top: 10px;
   }
@@ -749,7 +789,7 @@ ul {
 .selectpicker {
   padding-left: 5px;
   background-color: #fff;
-  width: 150px;
+  width: 160px;
   height: 30px;
   border: 0;
   border-bottom: 1.5px solid black;
@@ -786,8 +826,8 @@ ul {
 .img2:hover {
   background-color: none !important;
   border:none !important;
-  border: 3px dotted grey !important;
-    border-top-width:5px;
+  border: 4px dotted grey !important;
+    border-top-width:4px;
     border-right-width:0px;
     border-bottom-width:0px;
     border-left-width:0px;
@@ -845,12 +885,12 @@ button:focus {
   font-size: 10pt;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .counter{
-    margin-top: 5px;
+    margin-top: 3px;
     font-weight: bold;
     margin-left: 3px;
     font-family: "Open Sans", sans-serif;
-    font-size: 8pt;
+    font-size: 9pt;
   }
 }

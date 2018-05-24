@@ -115,9 +115,9 @@ class ArtistProfile extends Component {
     let accountInfo = () => {
       return (
         <div>
-          <h4>Name: {this.state.artistName}</h4>
-          <h4>Location: {this.state.location}</h4>
-          <h4 className="restrictWidth">{this.state.bio}</h4>
+          <h4 className="bold">{this.state.artistName}</h4>
+          <h4 className="bold">{this.state.location}</h4>
+          <h4 className="blurb restrictWidth">{this.state.bio}</h4>
         </div>
       );
     };
@@ -164,9 +164,9 @@ class ArtistProfile extends Component {
 
           {/* <div className="artistProfile space"> */}
           <div className="catName">
-          <div className="artistAccount space">
+          <div className="artistAccount spaceBigger">
           <div className="center">
-          <div className="artistFlex centerContent">
+          <div className="artistFlex">
             <div><img className="profileImage" src={this.state.profPicURL} /></div>
             <div className="leftAlign">{accountInfo()}</div>
           </div>
@@ -177,7 +177,7 @@ class ArtistProfile extends Component {
 
           <div className="space" />
           <div className="space" />
-          <h4>Other items by this artist:</h4>
+          <h2>Other items by this artist:</h2>
           <div className="row">
           {itemsRendered}
           </div>

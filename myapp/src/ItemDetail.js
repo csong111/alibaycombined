@@ -147,7 +147,7 @@ class ItemDetail extends Component {
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
 
         {/* <div className="detailsMobile">{details()}</div> */}
-
+        <div className="space" />
         <div className="row">
           <div className="detailsContainer noPad">
           <div className="detailsMobile">{details()}</div>

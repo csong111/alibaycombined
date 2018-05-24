@@ -83,8 +83,7 @@ class SearchResults extends Component {
           <SearchBar />
         </div>
         {/* NAV !!!!!!!!!!!!!!!!!!*/}
-        
-        <h2>Search Results</h2>
+        <h2 className="catName">SEARCH RESULTS</h2>
         <div name="search-results" className="row">
           {itemsRendered}
         </div>

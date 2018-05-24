@@ -25,7 +25,7 @@ class SearchBar extends Component {
       <div className = "searchElement">
         <form onSubmit={this.handleSubmit}>
             <input className="searchInput" type="text" value={this.state.query} onChange={this.handleSearchChange} required/>
-            <button className="noButton"><img src='/ui-elements/search.png' width="20px"/></button>
+            <button className="noButton"><img src='/ui-elements/search.png' width="25px"/></button>
         </form>
       </div>
     );

@@ -312,7 +312,7 @@ class Cart extends Component {
             <div className="spaceSmaller" />
 
             <div className="inputText">
-              Total: <div className="bold">${total}</div>
+              <h7>Total: <div className="bold">${total}</div></h7>
             </div>
             <div className="spaceSmaller" />
             <button
@@ -455,6 +455,7 @@ class Cart extends Component {
             ) : null}
             <div className="space" />
                 <div id="paypal-button" />
+                <div className="space" />
                 <Stripe />
           </div>
         </div>

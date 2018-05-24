@@ -105,16 +105,19 @@ class CheckoutComplete extends Component {
         <h1 className="catName">
           Thank you for your purchase. Your order number is {this.props.transactionID}
         </h1>
+        <div className="space" />
         {/* {this.state.userID ? <UserAccountButton userID={this.props.userID}/> : null}
         {this.props.userID ? <LogOutButton />: null}
         {this.state.userID ? <CartButton userID = {this.props.userID} counter={this.props.counter} /> : null}  */}
         <div className="row">
         <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 noPad space">
-        <h4>Order details:</h4>
+        <h7>Order details:</h7>
+        <div className="spaceSmaller" />
         <div>{checkoutItems}</div>
         </div>
         <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 noPad space">
-        <div>Total: ${total}</div>
+        <h7>Total: <div className="bold">${total}</div></h7>
+        <div className="spaceSmaller" />
         <button className="button noPad connect"
         onClick={this.backHome}>BACK TO SHOPPING</button>
         </div>

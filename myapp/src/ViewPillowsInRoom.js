@@ -24,7 +24,7 @@ class ViewPillowsInRoom extends Component {
       itemsInCat: [],
       canMove: false,
       imgX: 360,
-      imgY: 130,
+      imgY: 170,
     };
   }
 
@@ -237,28 +237,28 @@ class ViewPillowsInRoom extends Component {
 
           {this.state.img1 ? (
           <div style={{
-            width: "700px",
+            width: "800px",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100%",
-            backgroundSize: "700px auto",
+            backgroundSize: "800px auto",
             backgroundImage: "url(" + this.state.img1  + ")",
           }}
             // onMouseMove={this.setInnerDiv}
           >
-            <img id="outImg" width="700px" src={this.state.img1} style={{visibility:"hidden"}} />
+            <img id="outImg" width="800px" src={this.state.img1} style={{visibility:"hidden"}} />
             {moveImg}
           </div>
           ) : (
           <div style={{
-            width: "700px",
+            width: "800px",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100%",
-            backgroundSize: "700px auto",
+            backgroundSize: "800px auto",
             backgroundImage: "url(" + "room/couch.jpg"  + ")",
           }}
             // onMouseMove={this.setInnerDiv}
           >
-            <img id="outImg" width="700px" src="room/couch.jpg" style={{visibility:"hidden"}} />
+            <img id="outImg" width="800px" src="room/couch.jpg" style={{visibility:"hidden"}} />
             {moveImg}
           </div>
           )}
@@ -289,7 +289,7 @@ class ViewPillowsInRoom extends Component {
           >
             CHANGE BACKGROUND IMAGE
           </button>
-
+          <div className="space" />
           <div className="row">{itemsRendered}</div>
         </div>
       </div>
