@@ -70,7 +70,7 @@ class FeaturedCat extends Component {
 
         <div className="catName">
           <div className="flex">
-          <h2 className="">{this.props.cat}</h2>
+          <h2 className="">{this.props.cat.toUpperCase()}</h2>
           <div className="marginAuto"/>
           {this.props.cat === "Prints" ? <button className="button noPad connect"><Link className="noLink" to={"/viewprintsinroom"}> VIEW IN ROOM</Link></button> : null}
           {this.props.cat === "Pillows" ? <button className="button noPad connect"><Link className="noLink" to={"/viewpillowsinroom"}> VIEW IN ROOM</Link></button> : null}

@@ -160,11 +160,21 @@ class ArtistProfile extends Component {
   
           <div className="searchMobile space">
             <SearchBar />
-          </div>  
-          <div className="artistProfile space">
-            <img className="profileImage" src={this.state.profPicURL} />
-            <span className="spaceLeft accountInfo">{accountInfo()}</span>
+          </div> 
+
+          {/* <div className="artistProfile space"> */}
+          <div className="catName">
+          <div className="artistAccount space">
+          <div className="center">
+          <div className="artistFlex centerContent">
+            <div><img className="profileImage" src={this.state.profPicURL} /></div>
+            <div className="leftAlign">{accountInfo()}</div>
           </div>
+          </div>
+          </div>
+          </div>
+
+
           <div className="space" />
           <div className="space" />
           <h4>Other items by this artist:</h4>

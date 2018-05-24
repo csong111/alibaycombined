@@ -103,6 +103,20 @@ hr {
   transform: translateY(-50%);
 }
 
+.leftAlign {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+  .leftAlign{
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
 .spaceCenter {
   height: 100%;
 }
@@ -282,7 +296,7 @@ h6 {
 
 @media only screen and (max-width: 600px) {
   .logoSmaller {
-    max-width: 110px;
+    max-width: 115px;
   }
   .cartSmaller {
     margin-top: 5px;
@@ -707,8 +721,8 @@ ul {
 
 
 .restrictWidth {
-  max-width: 300px;
-  width: 300px;
+  max-width: 280px;
+  width: 280px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -831,3 +845,12 @@ button:focus {
   font-size: 10pt;
 }
 
+@media only screen and (max-width: 600px) {
+  .counter{
+    margin-top: 5px;
+    font-weight: bold;
+    margin-left: 3px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 8pt;
+  }
+}
